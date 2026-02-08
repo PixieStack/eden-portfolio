@@ -58,7 +58,7 @@ This project deploys directly from the `docs` folder - **no GitHub Actions neede
 3. Source: **Deploy from a branch**
 4. Branch: **main** | Folder: **/docs**
 5. Click **Save**
-6. Wait 2 minutes - your site is live!
+6. Wait 2 minutes - my portfolio site is live!
 
 ---
 
@@ -81,7 +81,7 @@ npm run build
 
 **Thembinkosi Eden Thwala**
 
-Full Stack Developer & Cloud Engineer. Graduated **Cum Laude** from Nelson Mandela University.
+Full Stack Developer & Data Analyst. Graduated **Cum Laude** from Nelson Mandela University.
 
 - 📍 Johannesburg, South Africa
 - 📧 thwalathembinkosi16@gmail.com
