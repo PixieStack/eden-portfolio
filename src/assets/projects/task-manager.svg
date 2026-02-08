@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A0F"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F97316"/>
+      <stop offset="100%" style="stop-color:#FBBF24"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg3)"/>
+  
+  <!-- Kanban board layout -->
+  <rect x="80" y="100" width="200" height="350" rx="15" fill="#1E1E2A" stroke="#F97316" stroke-width="2"/>
+  <rect x="95" y="120" width="100" height="15" rx="7" fill="#F97316"/>
+  <text x="95" y="155" font-family="Arial" font-size="12" fill="#94A3B8">TO DO</text>
+  
+  <!-- Task cards in column 1 -->
+  <rect x="95" y="170" width="170" height="60" rx="8" fill="#2A2A35"/>
+  <rect x="105" y="180" width="80" height="8" rx="4" fill="#F97316"/>
+  <rect x="105" y="195" width="140" height="6" rx="3" fill="#64748b"/>
+  <rect x="105" y="208" width="100" height="6" rx="3" fill="#64748b"/>
+  
+  <rect x="95" y="240" width="170" height="60" rx="8" fill="#2A2A35"/>
+  <rect x="105" y="250" width="60" height="8" rx="4" fill="#FBBF24"/>
+  <rect x="105" y="265" width="120" height="6" rx="3" fill="#64748b"/>
+  <rect x="105" y="278" width="90" height="6" rx="3" fill="#64748b"/>
+  
+  <!-- Column 2 - In Progress -->
+  <rect x="300" y="100" width="200" height="350" rx="15" fill="#1E1E2A" stroke="#FBBF24" stroke-width="2"/>
+  <rect x="315" y="120" width="120" height="15" rx="7" fill="#FBBF24"/>
+  <text x="315" y="155" font-family="Arial" font-size="12" fill="#94A3B8">IN PROGRESS</text>
+  
+  <rect x="315" y="170" width="170" height="70" rx="8" fill="#2A2A35"/>
+  <rect x="325" y="180" width="90" height="8" rx="4" fill="#F97316"/>
+  <rect x="325" y="195" width="150" height="6" rx="3" fill="#64748b"/>
+  <rect x="325" y="208" width="110" height="6" rx="3" fill="#64748b"/>
+  <circle cx="460" cy="220" r="12" fill="#10B981"/>
+  <text x="455" y="224" font-family="Arial" font-size="10" fill="white">✓</text>
+  
+  <!-- Column 3 - Done -->
+  <rect x="520" y="100" width="200" height="350" rx="15" fill="#1E1E2A" stroke="#10B981" stroke-width="2"/>
+  <rect x="535" y="120" width="80" height="15" rx="7" fill="#10B981"/>
+  <text x="535" y="155" font-family="Arial" font-size="12" fill="#94A3B8">COMPLETED</text>
+  
+  <rect x="535" y="170" width="170" height="55" rx="8" fill="#2A2A35" opacity="0.7"/>
+  <rect x="545" y="180" width="70" height="8" rx="4" fill="#10B981"/>
+  <rect x="545" y="195" width="130" height="6" rx="3" fill="#64748b"/>
+  <circle cx="685" cy="195" r="10" fill="#10B981"/>
+  
+  <rect x="535" y="235" width="170" height="55" rx="8" fill="#2A2A35" opacity="0.7"/>
+  <rect x="545" y="245" width="90" height="8" rx="4" fill="#10B981"/>
+  <rect x="545" y="260" width="100" height="6" rx="3" fill="#64748b"/>
+  <circle cx="685" cy="260" r="10" fill="#10B981"/>
+  
+  <!-- Progress indicator -->
+  <rect x="200" y="480" width="400" height="12" rx="6" fill="#1E1E2A"/>
+  <rect x="200" y="480" width="280" height="12" rx="6" fill="url(#orange)"/>
+  <text x="400" y="520" font-family="Arial" font-size="14" fill="#94A3B8" text-anchor="middle">70% Complete</text>
+  
+  <text x="400" y="560" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">Task Management App</text>
+</svg>

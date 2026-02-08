@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A0F"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  
+  <!-- School building icon -->
+  <rect x="300" y="200" width="200" height="150" rx="10" fill="url(#accent)" opacity="0.9"/>
+  <rect x="340" y="240" width="40" height="50" fill="#0A0A0F" rx="5"/>
+  <rect x="420" y="240" width="40" height="50" fill="#0A0A0F" rx="5"/>
+  <rect x="370" y="300" width="60" height="50" fill="#0A0A0F" rx="5"/>
+  <polygon points="400,150 280,200 520,200" fill="url(#accent)"/>
+  
+  <!-- Digital elements -->
+  <circle cx="200" cy="150" r="30" fill="#3B82F6" opacity="0.3"/>
+  <circle cx="600" cy="450" r="40" fill="#06B6D4" opacity="0.3"/>
+  <rect x="100" y="400" width="150" height="8" rx="4" fill="#3B82F6" opacity="0.5"/>
+  <rect x="550" y="200" width="120" height="8" rx="4" fill="#06B6D4" opacity="0.5"/>
+  
+  <!-- Text -->
+  <text x="400" y="420" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">Enrollify</text>
+  <text x="400" y="455" font-family="Arial, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">School Application Platform</text>
+</svg>
