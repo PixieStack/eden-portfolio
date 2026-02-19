@@ -26,7 +26,7 @@ export const experience: Experience[] = [
   },
   {
     role: "Junior Full Stack Developer",
-    company: "AgriTech Startup",
+    company: "Agrigate One",
     period: "February 2024 - October 2024",
     location: "Illovo, South Africa",
     description:
