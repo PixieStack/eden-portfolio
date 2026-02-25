@@ -90,7 +90,7 @@ export const projects: Project[] = [
       "SMTP",
     ],
     image: attorneysImg,
-    github: "https://github.com/PixieStack",
+    live: "https://thwala-attorneys-dcgsejckgmfjbxdn.southafricanorth-01.azurewebsites.net",
   },
   {
     category: "Productivity",

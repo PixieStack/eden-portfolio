@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from "lucide-react";
+import { Globe } from "lucide-react";
 import type { Project } from "../data/projects";
 
 interface ProjectCardProps {
@@ -103,26 +103,15 @@ export default function ProjectCard({
 
         {/* Links */}
         <div className={`flex gap-4 ${reversed ? "lg:justify-end" : ""}`}>
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-surface border border-white/10 text-white font-medium text-sm hover:border-primary/30 transition-all"
-            >
-              <Github size={18} />
-              View Code
-            </a>
-          )}
           {project.live && (
             <a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-medium text-sm shadow-glow hover:scale-105 transition-transform"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white font-medium text-sm shadow-glow hover:scale-105 transition-transform w-fit"
             >
-              <ExternalLink size={18} />
-              Live Demo
+              <Globe size={16} />
+              Visit Website
             </a>
           )}
         </div>
