@@ -12,12 +12,12 @@ export interface Qualification {
 export const qualifications: Qualification[] = [
   // Education First
   {
-    title: "Advanced Diploma in Information Technology (NQF 7)",
-    institution: "Nelson Mandela University",
+    title: "Associate System Administrator (NQF Equivalent)",
+    institution: "ServiceNow University",
     description:
-      "Currently pursuing. Core modules: Information Security, Applied Project, Project Management. Electives: Operating Systems, Application Security, Enterprise Networks, Development Software, Advanced Development Software.",
+      "Currently pursuing. Core modules: ServiceNow Platform Overview, Instance Configuration, User and Group Management, Self-Service and Automation. Working towards hands-on administration skills including UI policies, business rules, service catalog configuration and access control.",
     year: "2026 - Present",
-    type: "Education",
+    type: "Certification",
   },
   {
     title: "Diploma in Information Technology - Software Development",
