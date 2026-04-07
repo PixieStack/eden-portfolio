@@ -37,11 +37,21 @@ export const qualifications: Qualification[] = [
   },
   // Certifications
   {
+    title: "Databricks Certified Data Engineer Professional",
+    institution: "Databricks",
+    description:
+      "Professional certification validating advanced data engineering skills including ETL pipeline development, Delta Lake, Apache Spark, data modeling, lakehouse architecture, and deploying secure and monitored data pipelines on the Databricks platform.",
+    year: "March 2026",
+    credentialUrl: "https://credentials.databricks.com/de0ccae3-5818-4fde-9c34-0a8115d149eb#acc.Oy7Jp9Ne",
+    type: "Certification",
+  },
+  {
     title: "Databricks Data Analyst Associate",
     institution: "Databricks",
     description:
       "Data analytics certification covering SQL, data visualization, dashboards, and Databricks workspace for data-driven insights.",
-    year: "2026",
+    year: "March 2026",
+    credentialUrl: "https://credentials.databricks.com/1469291d-914b-458a-b703-ba4e815a9a73#acc.luMRjA8W",
     type: "Certification",
   },
   {
@@ -49,7 +59,8 @@ export const qualifications: Qualification[] = [
     institution: "W3Schools",
     description:
       "Professional certification validating expertise in Java programming, OOP concepts, and application development.",
-    year: "2025",
+    year: "September 2025",
+    credentialUrl: "https://verify.w3schools.com/1QC1OY6WL0",
     type: "Certification",
   },
   {
@@ -57,7 +68,8 @@ export const qualifications: Qualification[] = [
     institution: "Cisco",
     description:
       "Network fundamentals including Ethernet, IP addressing, routing protocols, and network security basics.",
-    year: "2022",
+    year: "December 2021",
+    credentialUrl: "https://www.netacad.com/certificates/?issuanceId=c4a11973-01d3-4914-a587-fbfcd1865a75",
     type: "Certification",
   },
   {
@@ -65,15 +77,8 @@ export const qualifications: Qualification[] = [
     institution: "Cisco",
     description:
       "Cybersecurity fundamentals, threat landscape, security best practices, and protection mechanisms.",
-    year: "2022",
-    type: "Certification",
-  },
-  {
-    title: "120-Hour TEFL Certificate",
-    institution: "TEFL Institute",
-    description:
-      "Teaching English as a Foreign Language certification, demonstrating communication and instructional skills.",
-    year: "2021",
+    year: "June 2021",
+    credentialUrl: "https://www.netacad.com/certificates/?issuanceId=f69297a0-1df7-4844-9b39-22dac2ca3605",
     type: "Certification",
   },
 ];

@@ -6,9 +6,10 @@ import {
   BarChart3,
   Wrench,
   Brain,
+  Cloud,
 } from "lucide-react";
 import SkillCard from "../components/SkillCard";
-import { skills, softSkills } from "../data/skills";
+import { skills, softSkills, stats } from "../data/skills";
 
 const skillCategories = [
   {
@@ -36,6 +37,12 @@ const skillCategories = [
     color: "blue",
   },
   {
+    title: "Platforms",
+    icon: <Cloud size={24} />,
+    items: skills.platforms,
+    color: "indigo",
+  },
+  {
     title: "Data Analytics",
     icon: <BarChart3 size={24} />,
     items: skills.dataAnalytics,
@@ -55,11 +62,11 @@ const skillCategories = [
   },
 ];
 
-const stats = [
-  { value: "9+", label: "Programming Languages" },
-  { value: "11+", label: "Frameworks & Tools" },
-  { value: "6+", label: "Database Systems" },
-  { value: "5+", label: "Certifications" },
+const statsArray = [
+  { value: stats.programmingLanguages, label: "Programming Languages" },
+  { value: stats.frameworksAndTools, label: "Frameworks & Tools" },
+  { value: stats.databaseSystems, label: "Database Systems" },
+  { value: stats.certifications, label: "Certifications" },
 ];
 
 export default function Skills() {
@@ -84,7 +91,7 @@ export default function Skills() {
 
       {/* Stats Bar */}
       <div className="card px-8 py-8 mb-16 flex flex-wrap justify-center gap-8 md:gap-16">
-        {stats.map(({ value, label }) => (
+        {statsArray.map(({ value, label }) => (
           <div key={label} className="text-center">
             <div className="text-3xl md:text-4xl font-display font-bold text-gradient">
               {value}

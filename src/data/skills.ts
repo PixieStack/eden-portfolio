@@ -1,3 +1,10 @@
+export const stats = {
+  programmingLanguages: "9+",
+  frameworksAndTools: "11+",
+  databaseSystems: "6+",
+  certifications: "7+",
+};
+
 export const skills = {
   programming: [
     "C#",
@@ -29,28 +36,31 @@ export const skills = {
     "MySQL",
     "Supabase",
     "SQLite",
-    "Entity Framework",
     "Redis",
   ],
   devops: [
     "Docker",
     "Kubernetes",
-    "Git & GitHub",
+    "Git and GitHub",
     "CI/CD Pipelines",
     "Postman",
     "Jira",
     "Confluence",
   ],
+  platforms: [
+    "ServiceNow",
+    "Databricks",
+    "AWS",
+  ],
   dataAnalytics: [
     "Python Data Analytics",
-    "Databricks",
     "SQL Queries",
     "Data Visualization",
     "Pandas",
     "NumPy",
   ],
   practices: [
-    "Agile & Scrum",
+    "Agile and Scrum",
     "SDLC",
     "TDD",
     "Unit Testing",

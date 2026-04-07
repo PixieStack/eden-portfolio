@@ -19,9 +19,11 @@ const stats = [
 
 const highlights = [
   "Full Stack Development",
+  "Data Engineering",
   "Data Analytics",
-  "Database Architecture",
   "API Development",
+  "ServiceNow Administration",
+  "Cloud and DevOps",
 ];
 
 export default function Home() {
@@ -48,8 +50,8 @@ export default function Home() {
               className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight"
               data-testid="hero-title"
             >
-              Hi, I'm <br />
-              <span className="text-gradient">Thembinkosi</span>{" "}
+              Hi, I am <br />
+              <span className="text-gradient">Thembinkoski</span>{" "}
               <span className="text-white">Eden</span>{" "}
               <span className="text-gradient-purple">Thwala</span>
             </h1>
@@ -59,7 +61,7 @@ export default function Home() {
               className="mt-6 text-2xl md:text-3xl font-medium text-muted-light"
               data-testid="hero-role"
             >
-              Junior Full Stack Developer & Data Analyst
+              Junior Full Stack Developer, Data Analyst and Aspiring ServiceNow Administrator
             </p>
 
             {/* Bio */}
@@ -68,19 +70,7 @@ export default function Home() {
               data-testid="hero-bio"
             >
               A passionate <strong className="text-white">Cum Laude</strong>{" "}
-              graduate from Nelson Mandela University with
-              <strong className="text-primary"> 2 years</strong> of hands-on
-              experience building scalable enterprise applications. I specialize
-              in transforming complex business requirements into elegant,
-              efficient software solutions using modern technologies like{" "}
-              <strong className="text-primary">React</strong>,{" "}
-              <strong className="text-primary">Python</strong>,
-              <strong className="text-primary"> Angular</strong>,{" "}
-              <strong className="text-primary">C#</strong>,
-              <strong className="text-primary"> Java</strong>,{" "}
-              <strong className="text-primary">SQL</strong>,
-              <strong className="text-primary"> PostgreSQL</strong>, and{" "}
-              <strong className="text-primary">Databricks</strong>.
+              graduate from Nelson Mandela University with hands-on experience building full-stack applications and working with data. Currently pursuing an Advanced Diploma in Information Technology at Nelson Mandela University and an Associate System Administrator certification through ServiceNow University, I am committed to continuous growth across software development, data engineering and the ServiceNow platform.
             </p>
 
             {/* Highlights */}
@@ -218,32 +208,27 @@ export default function Home() {
             Turning Vision Into <span className="text-gradient">Reality</span>
           </h2>
           <p className="mt-8 text-lg text-muted leading-relaxed">
-            With a strong foundation in software development and data analytics,
-            I bring a unique blend of technical expertise and creative
-            problem-solving to every project. My journey from graduating
-            <strong className="text-white"> Cum Laude</strong> at Nelson Mandela
-            University to gaining
-            <strong className="text-white">
-              {" "}
-              2 years of professional experience
-            </strong>{" "}
-            has equipped me with the skills to build robust, scalable
-            applications that make a real impact.
+            With a strong foundation in software development and data analytics, I bring a unique blend of technical expertise and creative problem-solving to every project. My journey from graduating <strong className="text-white">Cum Laude</strong> at Nelson Mandela University to gaining <strong className="text-white">2 years of professional experience</strong> has equipped me with the skills to build robust, scalable applications that make a real impact.
           </p>
           <p className="mt-6 text-lg text-muted leading-relaxed">
-            I'm passionate about clean code, user-centric design, and continuous
-            learning. Whether it's building full-stack applications, analyzing
-            data for insights, or optimizing database queries, I approach each
-            challenge with enthusiasm and dedication.
+            I'm passionate about clean code, user-centric design, and continuous learning. Whether it's building full-stack applications, analyzing data for insights, or optimizing database queries, I approach each challenge with enthusiasm and dedication.
+          </p>
+
+          <p className="mt-6 text-lg text-muted leading-relaxed">
+            I am a <strong className="text-white">Cum Laude graduate from Nelson Mandela University, twice over</strong>, and a developer who chose this field not because it was practical but because it has been my passion since childhood. I build full stack applications, work with data, and I care deeply about writing code that is clean, purposeful and built to last.
+          </p>
+
+          <p className="mt-6 text-lg text-muted leading-relaxed">
+            But there is a lot more to me than what fits in a paragraph. My story starts in Giyani, Limpopo, runs through Ennerdale, George and Gqeberha, and is still being written one project and one certification at a time.
           </p>
 
           <div className="mt-10">
             <Link
-              to="/skills"
+              to="/about"
               data-testid="about-cta"
               className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all"
             >
-              Explore My Skills
+              Read My Full Story
               <ChevronRight size={18} />
             </Link>
           </div>
