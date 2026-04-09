@@ -16,7 +16,7 @@ export default function About() {
           </div>
 
           <h1 className="font-display text-5xl md:text-7xl font-bold leading-[1.2] tracking-tight mb-6">
-            Hey, I am <span className="text-gradient">Thembinkosi</span>
+            Hey, I am <span className="text-gradient">Thembinkosi Eden Thwala</span>
           </h1>
           <p className="text-2xl md:text-3xl text-muted-light font-medium">
             But most people call me <span className="text-white">Eden.</span>
@@ -69,7 +69,7 @@ export default function About() {
               But there was one more thing that year that changed everything. One module introduced basic coding, mostly pseudocode, but it was enough. Something about writing logic, structuring a solution, telling a machine what to do, lit me up in a way nothing else in that certificate had. I graduated Cum Laude and immediately knew what I was doing next.
             </p>
             <p className="text-primary font-semibold">
-              In 2021 I registered for the Diploma in Information Technology, Software Development and I never looked back.
+              In 2021, I registered for the Diploma in Information Technology, Software Development and I never looked back.
             </p>
           </div>
         </div>

@@ -8,6 +8,7 @@ import {
   Cloud,
   Sparkles,
   ChevronRight,
+  MapPin,
 } from "lucide-react";
 import profile from "../assets/profile.jpeg";
 
@@ -37,12 +38,20 @@ export default function Home() {
         <div className="section grid lg:grid-cols-2 gap-16 items-center">
           {/* LEFT - Content */}
           <div className="animate-fade-in">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 mb-8 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20">
-              <Sparkles className="text-primary" size={18} />
-              <span className="text-primary font-medium text-sm">
-                Available for Opportunities
-              </span>
+            {/* Badges */}
+            <div className="flex flex-wrap items-center gap-3 mb-8">
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20">
+                <Sparkles className="text-primary" size={18} />
+                <span className="text-primary font-medium text-sm">
+                  Available for Opportunities
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                <MapPin className="text-emerald-400" size={18} />
+                <span className="text-emerald-400 font-medium text-sm">
+                  Willing to Relocate — SA & Internationally
+                </span>
+              </div>
             </div>
 
             {/* Main Heading */}
@@ -51,7 +60,7 @@ export default function Home() {
               data-testid="hero-title"
             >
               Hi, I am <br />
-              <span className="text-gradient">Thembinkoski</span>{" "}
+              <span className="text-gradient">Thembinkosi</span>{" "}
               <span className="text-white">Eden</span>{" "}
               <span className="text-gradient-purple">Thwala</span>
             </h1>
@@ -61,7 +70,8 @@ export default function Home() {
               className="mt-6 text-2xl md:text-3xl font-medium text-muted-light"
               data-testid="hero-role"
             >
-              Junior Full Stack Developer, Data Analyst and Aspiring ServiceNow Administrator
+              Junior Full Stack Developer, Data Analyst and Aspiring ServiceNow
+              Administrator
             </p>
 
             {/* Bio */}
@@ -69,8 +79,15 @@ export default function Home() {
               className="mt-6 text-lg text-muted leading-relaxed max-w-xl"
               data-testid="hero-bio"
             >
-              A passionate <strong className="text-white">Cum Laude</strong>{" "}
-              graduate from Nelson Mandela University with hands-on experience building full-stack applications and working with data. Currently pursuing an Advanced Diploma in Information Technology at Nelson Mandela University and an Associate System Administrator certification through ServiceNow University, I am committed to continuous growth across software development, data engineering and the ServiceNow platform.
+              A passionate{" "}
+              <strong className="text-white">Cum Laude</strong> graduate from
+              Nelson Mandela University with hands-on experience building
+              full-stack applications and working with data. Currently pursuing
+              an Advanced Diploma in Information Technology at Nelson Mandela
+              University and an Associate System Administrator certification
+              through ServiceNow University, I am committed to continuous growth
+              across software development, data engineering and the ServiceNow
+              platform.
             </p>
 
             {/* Highlights */}
@@ -130,7 +147,10 @@ export default function Home() {
             {/* Scroll indicator - clickable */}
             <button
               onClick={() =>
-                window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+                window.scrollTo({
+                  top: window.innerHeight,
+                  behavior: "smooth",
+                })
               }
               className="mt-16 flex items-center gap-2 text-muted animate-bounce cursor-pointer hover:text-primary transition-colors"
             >
@@ -205,21 +225,50 @@ export default function Home() {
             About Me
           </span>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold text-white">
-            Turning Vision Into <span className="text-gradient">Reality</span>
+            Turning Vision Into{" "}
+            <span className="text-gradient">Reality</span>
           </h2>
           <p className="mt-8 text-lg text-muted leading-relaxed">
-            With a strong foundation in software development and data analytics, I bring a unique blend of technical expertise and creative problem-solving to every project. My journey from graduating <strong className="text-white">Cum Laude</strong> at Nelson Mandela University to gaining <strong className="text-white">2 years of professional experience</strong> has equipped me with the skills to build robust, scalable applications that make a real impact.
+            With a strong foundation in software development and data analytics,
+            I bring a unique blend of technical expertise and creative
+            problem-solving to every project. My journey from graduating{" "}
+            <strong className="text-white">
+              Cum Laude at Nelson Mandela University, twice over
+            </strong>
+            , to gaining{" "}
+            <strong className="text-white">
+              2+ years of professional experience
+            </strong>{" "}
+            has shaped me into a developer who does not just write code but
+            builds solutions that are clean, scalable and made to serve real
+            people with real needs.
           </p>
           <p className="mt-6 text-lg text-muted leading-relaxed">
-            I'm passionate about clean code, user-centric design, and continuous learning. Whether it's building full-stack applications, analyzing data for insights, or optimizing database queries, I approach each challenge with enthusiasm and dedication.
+            I am passionate about user-centric design, continuous learning and
+            the kind of problem-solving that requires you to sit with a challenge
+            until it truly makes sense. Whether it is building full-stack
+            applications from the ground up, analyzing data to uncover meaningful
+            insights, designing and optimizing database queries, or
+            containerizing services for production, I approach each task with the
+            same level of care and commitment regardless of its size or
+            visibility.
           </p>
-
           <p className="mt-6 text-lg text-muted leading-relaxed">
-            I am a <strong className="text-white">Cum Laude graduate from Nelson Mandela University, twice over</strong>, and a developer who chose this field not because it was practical but because it has been my passion since childhood. I build full stack applications, work with data, and I care deeply about writing code that is clean, purposeful and built to last.
+            I chose this field not because it was the practical option but
+            because it has been my passion since childhood. From watching my
+            sister assemble computers from scratch in her shop, to receiving my
+            very first Windows XP machine in Grade 4, to writing my first lines
+            of pseudocode during a pandemic, technology has always been the
+            thread running through every chapter of my life. That thread
+            eventually became a career and I have never looked back.
           </p>
-
           <p className="mt-6 text-lg text-muted leading-relaxed">
-            But there is a lot more to me than what fits in a paragraph. My story starts in Giyani, Limpopo, runs through Ennerdale, George and Gqeberha, and is still being written one project and one certification at a time.
+            But there is a lot more to me than what fits in a few paragraphs. My
+            story starts in Giyani, Limpopo, runs through Ennerdale, George and
+            Gqeberha, and is still being written one project and one
+            certification at a time. If you want the full picture, the kind of
+            developer I am, the kind of person I am, and the journey that shaped
+            both, you will find it all on my About page.
           </p>
 
           <div className="mt-10">
