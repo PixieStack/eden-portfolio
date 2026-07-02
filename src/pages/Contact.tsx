@@ -77,7 +77,7 @@ export default function Contact() {
         </h2>
         <p className="mt-6 text-lg text-muted">
           <strong className="text-white">
-            Looking for a Junior Full Stack Developer?
+            Looking for a Intermediate Full Stack Developer?
           </strong>{" "}
           I'm available for exciting opportunities! Have a project in mind, want
           to collaborate, or just want to say hello? I'd love to hear from you!

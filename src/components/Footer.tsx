@@ -61,7 +61,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-muted leading-relaxed">
-              Junior Full Stack Developer & Data Analyst passionate about
+              Intermediate Full Stack Developer & Data Analyst passionate about
               building scalable applications and transforming data into
               insights.
             </p>
@@ -170,7 +170,7 @@ export default function Footer() {
             and lots of code.
           </p>
           <p className="text-muted/60 text-xs">
-            Junior Full Stack Developer • Data Analyst • Problem Solver
+            Intermediate Full Stack Developer • Data Analyst • Problem Solver
           </p>
         </div>
       </div>

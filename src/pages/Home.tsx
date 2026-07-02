@@ -15,7 +15,7 @@ import profile from "../assets/profile.jpeg";
 const stats = [
   { value: "9+", label: "Languages" },
   { value: "11+", label: "Frameworks" },
-  { value: "2+", label: "Years Exp" },
+  { value: "4+", label: "Years Exp" },
 ];
 
 const highlights = [
@@ -70,7 +70,7 @@ export default function Home() {
               className="mt-6 text-2xl md:text-3xl font-medium text-muted-light"
               data-testid="hero-role"
             >
-              Junior Full Stack Developer, Data Analyst and Aspiring ServiceNow
+              Intermediate Full Stack Developer, Data Analyst and Aspiring ServiceNow
               Administrator
             </p>
 
@@ -83,8 +83,7 @@ export default function Home() {
               <strong className="text-white">Cum Laude</strong> graduate from
               Nelson Mandela University with hands-on experience building
               full-stack applications and working with data. Currently pursuing
-              an Advanced Diploma in Information Technology at Nelson Mandela
-              University and an Associate System Administrator certification
+              a Certified System Administrator (CSA) certification
               through ServiceNow University, I am committed to continuous growth
               across software development, data engineering and the ServiceNow
               platform.
@@ -237,7 +236,7 @@ export default function Home() {
             </strong>
             , to gaining{" "}
             <strong className="text-white">
-              2+ years of professional experience
+              4+ years of professional experience
             </strong>{" "}
             has shaped me into a developer who does not just write code but
             builds solutions that are clean, scalable and made to serve real

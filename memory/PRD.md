@@ -2,7 +2,7 @@
 
 ## Original Problem Statement
 
-Fix portfolio in terms of styling, fonts, responsiveness to different devices, colors. Make images bigger and titles bigger on home page. Ensure every page works. Contact form should send emails to thwalathembinkosi16@gmail.com using Resend. Add CV download option. Create a professional bio for a junior developer. Make it classy, modern and professional while keeping the orange/purple color scheme.
+Fix portfolio in terms of styling, fonts, responsiveness to different devices, colors. Make images bigger and titles bigger on home page. Ensure every page works. Contact form should send emails to thwalathembinkosi16@gmail.com using Resend. Add CV download option. Create a professional bio for a Intermediate developer. Make it classy, modern and professional while keeping the orange/purple color scheme.
 
 ## Architecture
 
@@ -27,7 +27,7 @@ Fix portfolio in terms of styling, fonts, responsiveness to different devices, c
 5. ✅ Contact form with email integration
 6. ✅ CV download option
 7. ✅ Social links (GitHub, LinkedIn)
-8. ✅ Compelling bio for junior developer
+8. ✅ Compelling bio for Intermediate developer
 
 ## What's Been Implemented (Jan 2026)
 

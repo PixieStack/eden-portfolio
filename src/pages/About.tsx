@@ -22,7 +22,7 @@ export default function About() {
             But most people call me <span className="text-white">Eden.</span>
           </p>
           <p className="mt-8 max-w-3xl mx-auto text-lg text-muted leading-relaxed">
-            I am a Junior Full Stack Developer and Data Analyst from Johannesburg, South Africa. I build with purpose, I learn with intention, and I genuinely love what I do. Not everyone can say that. I can, and I have the story to prove it.
+            I am a Intermediate Full Stack Developer and Data Analyst from Johannesburg, South Africa. I build with purpose, I learn with intention, and I genuinely love what I do. Not everyone can say that. I can, and I have the story to prove it.
           </p>
         </div>
       </section>
@@ -391,7 +391,7 @@ export default function About() {
             <div>
               <h3 className="text-white font-semibold text-lg mb-4 text-primary">→ Still Growing</h3>
               <p className="text-muted">
-                I am still building confidence in speaking up in rooms where I am the most junior person. I know it is worth saying. I am still convincing the part of my brain that was not always told that.
+                I am still building confidence in speaking up in rooms where I am the most Intermediate person. I know it is worth saying. I am still convincing the part of my brain that was not always told that.
               </p>
             </div>
           </div>
@@ -512,7 +512,7 @@ export default function About() {
             Let us <span className="text-gradient">Work Together</span>
           </h2>
           <p className="text-lg text-muted max-w-2xl mx-auto mb-8">
-            I am open to junior developer roles, ServiceNow opportunities and teams where I can show up fully, grow fast and build things worth building. If you are looking for someone who is technically capable, genuinely curious, culturally aware and not afraid to be the only one in the room, I would love to chat.
+            I am open to Intermediate developer roles, ServiceNow opportunities and teams where I can show up fully, grow fast and build things worth building. If you are looking for someone who is technically capable, genuinely curious, culturally aware and not afraid to be the only one in the room, I would love to chat.
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center mt-10">

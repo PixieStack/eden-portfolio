@@ -152,7 +152,7 @@ async def send_contact_email(request: ContactRequest):
                 
                 <div class="signature">
                     <div class="signature-name">{MY_NAME}</div>
-                    <div class="signature-title">Junior Full Stack Developer & Data Analyst</div>
+                    <div class="signature-title">Intermediate Full Stack Developer & Data Analyst</div>
                     <div class="signature-email">
                         <a href="mailto:{MY_EMAIL}" style="color: #64748b;">{MY_EMAIL}</a> | 
                         <a href="tel:+27648023069" style="color: #64748b;">064 802 3069</a>
