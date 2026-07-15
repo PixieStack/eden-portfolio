@@ -84,8 +84,8 @@ export default function Skills() {
           Skills & <span className="text-gradient">Technologies</span>
         </h2>
         <p className="mt-6 text-lg text-muted">
-          A comprehensive toolkit built through 2+ years of hands-on experience
-          in building modern, scalable applications.
+          A comprehensive toolkit developed through 2+ years of hands-on
+          experience building modern, scalable applications.
         </p>
       </div>
 

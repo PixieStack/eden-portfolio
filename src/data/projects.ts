@@ -32,7 +32,6 @@ export const projects: Project[] = [
     technologies: [
       "Angular",
       "TypeScript",
-      "Java",
       "Spring Boot",
       "PostgreSQL",
       "Docker",

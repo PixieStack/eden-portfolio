@@ -1,5 +1,5 @@
-import { NavLink, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import {
   Home,
   GraduationCap,
@@ -24,9 +24,36 @@ const links = [
   { to: "/contact", label: "Contact", icon: Mail },
 ];
 
+const scrollToHero = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const scrollToHomeAfterNavigation = useRef(false);
+
+  const handleLogoClick = () => {
+    setIsOpen(false);
+
+    if (location.pathname === "/") {
+      scrollToHero();
+      return;
+    }
+
+    scrollToHomeAfterNavigation.current = true;
+  };
+
+  useEffect(() => {
+    if (
+      location.pathname === "/" &&
+      scrollToHomeAfterNavigation.current
+    ) {
+      scrollToHomeAfterNavigation.current = false;
+      window.requestAnimationFrame(scrollToHero);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +96,12 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link
+          to="/"
+          onClick={handleLogoClick}
+          aria-label="Go to the Home hero section"
+          className="flex items-center gap-3 group"
+        >
           <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-glow transition-transform group-hover:scale-105">
             <img
               src={profile}

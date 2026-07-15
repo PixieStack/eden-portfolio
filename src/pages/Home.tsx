@@ -13,9 +13,9 @@ import {
 import profile from "../assets/profile.jpeg";
 
 const stats = [
-  { value: "9+", label: "Languages" },
+  { value: "8+", label: "Languages" },
   { value: "11+", label: "Frameworks" },
-  { value: "4+", label: "Years Exp" },
+  { value: "2+", label: "Years of Experience" },
 ];
 
 const highlights = [
@@ -70,8 +70,8 @@ export default function Home() {
               className="mt-6 text-2xl md:text-3xl font-medium text-muted-light"
               data-testid="hero-role"
             >
-              Intermediate Full Stack Developer, Data Analyst and Aspiring ServiceNow
-              Administrator
+              Junior Full-Stack Developer, Data Analyst, and Aspiring
+              ServiceNow Administrator
             </p>
 
             {/* Bio */}
@@ -236,7 +236,7 @@ export default function Home() {
             </strong>
             , to gaining{" "}
             <strong className="text-white">
-              4+ years of professional experience
+              2+ years of professional experience
             </strong>{" "}
             has shaped me into a developer who does not just write code but
             builds solutions that are clean, scalable and made to serve real

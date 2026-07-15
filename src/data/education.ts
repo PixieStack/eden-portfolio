@@ -55,15 +55,6 @@ export const qualifications: Qualification[] = [
     type: "Certification",
   },
   {
-    title: "Certified Java Developer",
-    institution: "W3Schools",
-    description:
-      "Professional certification validating expertise in Java programming, OOP concepts, and application development.",
-    year: "September 2025",
-    credentialUrl: "https://verify.w3schools.com/1QC1OY6WL0",
-    type: "Certification",
-  },
-  {
     title: "Cisco CCNA v7: Introduction to Networks",
     institution: "Cisco",
     description:

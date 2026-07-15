@@ -15,9 +15,9 @@ export const experience: Experience[] = [
     period: "July 2025 - Present",
     location: "Sandton, Johannesburg",
     description:
-      "Participating in enterprise technology training focused on Java, SQL, cloud technologies, software engineering best practices, and Agile methodologies.",
+      "Participating in enterprise technology training focused on SQL, cloud technologies, software engineering best practices, and Agile methodologies.",
     achievements: [
-      "Developing Java applications and backend solutions while applying object-oriented programming principles and software design patterns",
+      "Developing backend solutions while applying object-oriented programming principles and software design patterns",
       "Building and consuming RESTful APIs and integrating applications with relational databases",
       "Developing AI-powered chatbot solutions and intelligent automation prototypes using modern AI tools and APIs",
       "Participating in internal innovation initiatives and hackathons, collaborating with multidisciplinary teams to design and deliver proof-of-concept solutions within tight deadlines",
@@ -28,7 +28,6 @@ export const experience: Experience[] = [
       "Working with SQL databases to query, manipulate, and validate application data",
     ],
     technologies: [
-      "Java",
       "SQL",
       "RESTful APIs",
       "AI Tools",

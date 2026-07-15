@@ -1,15 +1,14 @@
 export const stats = {
-  programmingLanguages: "9+",
+  programmingLanguages: "8+",
   frameworksAndTools: "11+",
   databaseSystems: "6+",
-  certifications: "7+",
+  certifications: "6+",
 };
 
 export const skills = {
   programming: [
     "C#",
     "Python",
-    "Java",
     "JavaScript",
     "TypeScript",
     "Ruby",
@@ -60,7 +59,12 @@ export const skills = {
     "NumPy",
   ],
   practices: [
+    "Generative AI Integration",
+    "AI Workflow Automation",
+    "UX and Responsive UI Development",
     "Agile and Scrum",
+    "Software Delivery Coordination",
+    "Risk, Issue, and Dependency Tracking",
     "SDLC",
     "TDD",
     "Unit Testing",

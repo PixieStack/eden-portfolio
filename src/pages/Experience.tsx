@@ -29,8 +29,8 @@ export default function Experience() {
             <Briefcase className="text-primary" size={24} />
           </div>
           <div>
-            <div className="text-2xl font-display font-bold text-white">4+</div>
-            <div className="text-muted text-sm">Years Experience</div>
+            <div className="text-2xl font-display font-bold text-white">2+</div>
+            <div className="text-muted text-sm">Years of Experience</div>
           </div>
         </div>
         <div className="card px-8 py-6 flex items-center gap-4">
