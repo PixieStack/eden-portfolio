@@ -12,25 +12,27 @@ export default function Projects() {
     <section className="section" data-testid="projects-section">
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-16">
+        <span className="text-primary uppercase tracking-widest text-sm font-medium">
+          Portfolio
+        </span>
         <h2
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white"
+          className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white"
           data-testid="projects-title"
         >
           <span className="text-gradient">Application Portfolio</span>
         </h2>
         <p className="mt-6 text-lg text-muted">
-          A collection of launched applications and products currently in
-          development, built with thoughtful design, modern technology and
-          real-world purpose.
+          Delivering innovative solutions across EdTech, LegalTech, Healthcare,
+          and Productivity domains. Each project represents real-world impact
+          and technical excellence.
         </p>
       </div>
 
       <div className="space-y-16" data-testid="projects-grid">
         <section aria-labelledby="live-applications-heading">
           <div className="mb-8">
-            <h3 id="live-applications-heading" className="font-display text-3xl md:text-4xl font-bold text-white flex items-baseline gap-3">
-              <span className="text-primary text-lg md:text-xl font-medium">01.</span>
-              <span>Live <span className="text-gradient">Applications</span></span>
+            <h3 id="live-applications-heading" className="font-display text-3xl md:text-4xl font-bold text-white">
+              Live <span className="text-gradient">Applications</span>
             </h3>
             <p className="mt-3 text-lg text-muted">Launched and ready to explore.</p>
             <p className="mt-2 text-muted">These are completed applications that are deployed, publicly accessible and running in production.</p>
@@ -44,9 +46,8 @@ export default function Projects() {
 
         <section aria-labelledby="in-development-heading" className="pt-8 border-t border-white/10">
           <div className="mb-8">
-            <h3 id="in-development-heading" className="font-display text-3xl md:text-4xl font-bold text-white flex items-baseline gap-3">
-              <span className="text-primary text-lg md:text-xl font-medium">02.</span>
-              <span>In <span className="text-gradient">Development</span></span>
+            <h3 id="in-development-heading" className="font-display text-3xl md:text-4xl font-bold text-white">
+              In <span className="text-gradient">Development</span>
             </h3>
             <p className="mt-3 text-lg text-muted">Currently taking shape.</p>
             <p className="mt-2 text-muted">The core interface is complete, while backend development, integrations and testing are still in progress. Final designs may change before launch.</p>

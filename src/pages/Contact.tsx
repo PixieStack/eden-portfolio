@@ -11,14 +11,17 @@ import {
   Github,
   Linkedin,
   Download,
+  Paperclip,
 } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    requestType: "Project repository access",
     message: "",
   });
+  const [attachment, setAttachment] = useState<File | null>(null);
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -29,35 +32,46 @@ export default function Contact() {
     setStatus("loading");
     setErrorMessage("");
 
-    const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("message", formData.message);
-    formDataToSend.append("_subject", `Portfolio Contact: ${formData.name}`);
-    formDataToSend.append("_captcha", "false");
-    formDataToSend.append("_template", "table");
+    if (attachment && attachment.size > 8 * 1024 * 1024) {
+      setStatus("error");
+      setErrorMessage("Attachment must be 8 MB or smaller.");
+      return;
+    }
+
+    const apiBaseUrl = (import.meta.env.VITE_API_URL ?? "").replace(/\/$/, "");
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/thwalathembinkosi16@gmail.com",
-        {
-          method: "POST",
-          body: formDataToSend,
-        }
-      );
+      const payload = new FormData();
+      payload.append("name", formData.name);
+      payload.append("email", formData.email);
+      payload.append("request_type", formData.requestType);
+      payload.append("message", formData.message);
+      if (attachment) payload.append("attachment", attachment);
+
+      const response = await fetch(`${apiBaseUrl}/api/contact`, {
+        method: "POST",
+        body: payload,
+      });
 
       const result = await response.json();
 
-      if (result.success) {
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        throw new Error("Failed to send");
+      if (!response.ok) {
+        throw new Error(result.detail || "Failed to send");
       }
-    } catch {
+
+      setStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        requestType: "Project repository access",
+        message: "",
+      });
+    } catch (error) {
       setStatus("error");
       setErrorMessage(
-        "Failed to send. Please email me directly at thwalathembinkosi16@gmail.com"
+        error instanceof Error
+          ? error.message
+          : "Failed to send. Please email me directly at thwalathembinkosi16@gmail.com"
       );
     }
   };
@@ -229,6 +243,30 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Request Type */}
+                <div>
+                  <label className="block text-sm font-medium text-muted-light mb-2">
+                    What are you contacting me about?
+                  </label>
+                  <select
+                    name="requestType"
+                    required
+                    value={formData.requestType}
+                    onChange={(e) =>
+                      setFormData({ ...formData, requestType: e.target.value })
+                    }
+                    data-testid="contact-request-type-select"
+                    className="w-full px-5 py-4 rounded-xl bg-surface border border-white/10 text-white focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all"
+                  >
+                    <option value="Project repository access">Project repository access</option>
+                    <option value="Technical samples">Technical samples</option>
+                    <option value="Project walkthrough">Project walkthrough</option>
+                    <option value="Application demo">Application demo</option>
+                    <option value="Recruitment opportunity">Recruitment opportunity</option>
+                    <option value="Collaboration">Collaboration</option>
+                    <option value="General enquiry">General enquiry</option>
+                  </select>
+                </div>
                 {/* Message */}
                 <div>
                   <label className="block text-sm font-medium text-muted-light mb-2">
@@ -248,6 +286,28 @@ export default function Contact() {
                   />
                 </div>
 
+                {/* Optional Attachment */}
+                <div>
+                  <label className="block text-sm font-medium text-muted-light mb-2">
+                    Optional attachment
+                  </label>
+                  <label className="flex items-center gap-3 w-full px-5 py-4 rounded-xl bg-surface border border-dashed border-white/15 text-muted-light hover:border-primary/40 cursor-pointer transition-colors">
+                    <Paperclip size={20} className="text-primary flex-shrink-0" />
+                    <span className="min-w-0 truncate">
+                      {attachment ? attachment.name : "Attach a PDF, Word document or image"}
+                    </span>
+                    <input
+                      key={attachment?.name ?? "empty"}
+                      type="file"
+                      name="attachment"
+                      accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp"
+                      onChange={(e) => setAttachment(e.target.files?.[0] ?? null)}
+                      data-testid="contact-attachment-input"
+                      className="sr-only"
+                    />
+                  </label>
+                  <p className="mt-2 text-xs text-muted">PDF, DOC, DOCX, JPG, PNG or WebP. Maximum 8 MB.</p>
+                </div>
                 {/* Error */}
                 {status === "error" && (
                   <div

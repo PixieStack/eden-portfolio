@@ -70,3 +70,4 @@ dist-ssr
 # Environment files
 *.env
 *.env.*
+!backend/.env.example

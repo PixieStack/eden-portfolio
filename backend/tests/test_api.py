@@ -34,7 +34,7 @@ class TestContactEndpoint:
     def test_contact_requires_all_fields(self):
         """Contact endpoint should validate required fields"""
         # Missing message
-        response = client.post("/api/contact", json={
+        response = client.post("/api/contact", data={
             "name": "Test User",
             "email": "test@example.com"
         })
@@ -42,7 +42,7 @@ class TestContactEndpoint:
     
     def test_contact_validates_email_format(self):
         """Contact endpoint should validate email format"""
-        response = client.post("/api/contact", json={
+        response = client.post("/api/contact", data={
             "name": "Test User",
             "email": "invalid-email",
             "message": "Hello"
@@ -51,14 +51,28 @@ class TestContactEndpoint:
     
     def test_contact_with_valid_data_structure(self):
         """Contact endpoint should accept valid data structure"""
-        response = client.post("/api/contact", json={
+        response = client.post("/api/contact", data={
             "name": "Test User",
             "email": "test@example.com",
+            "request_type": "Project repository access",
             "message": "This is a test message"
         })
-        # Will return 500 if RESEND_API_KEY not set, but validates structure
-        assert response.status_code in [200, 500]
+        # Returns 503 when BREVO_API_KEY is not set, but validates structure
+        assert response.status_code in [200, 502, 503]
 
+    def test_contact_rejects_unsupported_attachment(self):
+        """Contact endpoint should reject unsupported attachment types"""
+        response = client.post(
+            "/api/contact",
+            data={
+                "name": "Test User",
+                "email": "test@example.com",
+                "request_type": "General enquiry",
+                "message": "This is a test message",
+            },
+            files={"attachment": ("unsafe.exe", b"not-an-executable", "application/octet-stream")},
+        )
+        assert response.status_code == 415
 
 class TestCORS:
     """Test CORS configuration"""

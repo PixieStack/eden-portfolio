@@ -1,206 +1,204 @@
-import os
 import asyncio
+import base64
+import html
+import json
 import logging
+import os
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
+
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
+from pydantic import EmailStr
 
 load_dotenv()
-
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Thembinkosi Portfolio API")
 
-# CORS for frontend
+allowed_origins = [
+    origin.strip()
+    for origin in os.environ.get(
+        "ALLOWED_ORIGINS",
+        "http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,https://pixiestack.github.io",
+    ).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=allowed_origins,
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
-# Resend setup
-RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
-SENDER_EMAIL = os.environ.get("SENDER_EMAIL", "onboarding@resend.dev")
-MY_EMAIL = "thwalathembinkosi16@gmail.com"
-MY_NAME = "Thembinkosi Eden Thwala"
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY")
+BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
+SENDER_EMAIL = os.environ.get("BREVO_SENDER_EMAIL", "edenthwala@gmail.com")
+SENDER_NAME = os.environ.get("BREVO_SENDER_NAME", "Thembinkosi Eden Thwala")
+RECIPIENT_EMAIL = os.environ.get("CONTACT_RECIPIENT_EMAIL", "thwalathembinkosi16@gmail.com")
+PORTFOLIO_URL = os.environ.get("PORTFOLIO_URL", "https://pixiestack.github.io/eden-portfolio/")
+MAX_ATTACHMENT_BYTES = 8 * 1024 * 1024
+ALLOWED_ATTACHMENT_TYPES = {
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+}
+ALLOWED_ATTACHMENT_EXTENSIONS = {".pdf", ".doc", ".docx", ".jpg", ".jpeg", ".png", ".webp"}
 
-class ContactRequest(BaseModel):
-    name: str
-    email: EmailStr
-    message: str
+
+def email_shell(title: str, subtitle: str, body: str) -> str:
+    return f"""
+    <!doctype html>
+    <html lang="en">
+      <head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head>
+      <body style="margin:0;background:#0a0a0f;font-family:Arial,'Segoe UI',sans-serif;color:#e5e7eb;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#0a0a0f;padding:32px 16px;">
+          <tr><td align="center">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#15151f;border:1px solid #2a2a3a;border-radius:20px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35);">
+              <tr><td style="padding:34px 32px;background:linear-gradient(135deg,#f97316,#c084fc);">
+                <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#fff7ed;margin-bottom:10px;">Thembinkosi Eden Thwala | Portfolio</div>
+                <h1 style="margin:0;color:#ffffff;font-size:28px;line-height:1.25;">{title}</h1>
+                <p style="margin:10px 0 0;color:#fff7ed;font-size:15px;">{subtitle}</p>
+              </td></tr>
+              <tr><td style="padding:32px;">{body}</td></tr>
+              <tr><td style="padding:22px 32px;background:#101018;border-top:1px solid #2a2a3a;color:#94a3b8;font-size:12px;text-align:center;">
+                Sent securely from <a href="{PORTFOLIO_URL}" style="color:#fb923c;text-decoration:none;">my portfolio</a>
+              </td></tr>
+            </table>
+          </td></tr>
+        </table>
+      </body>
+    </html>
+    """
+
+
+def send_brevo_email(payload: dict) -> None:
+    request = Request(
+        BREVO_API_URL,
+        data=json.dumps(payload).encode("utf-8"),
+        headers={"accept": "application/json", "api-key": BREVO_API_KEY or "", "content-type": "application/json"},
+        method="POST",
+    )
+    try:
+        with urlopen(request, timeout=20) as response:
+            if response.status not in (200, 201, 202):
+                raise RuntimeError(f"Brevo returned HTTP {response.status}")
+    except HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"Brevo returned HTTP {exc.code}: {detail}") from exc
+    except URLError as exc:
+        raise RuntimeError("Unable to connect to Brevo") from exc
+
 
 @app.get("/api/health")
 async def health_check():
     return {"status": "healthy", "message": "Portfolio API is running"}
 
+
 @app.post("/api/contact")
-async def send_contact_email(request: ContactRequest):
-    if not RESEND_API_KEY:
-        raise HTTPException(status_code=500, detail="Email service not configured. Please add RESEND_API_KEY.")
-    
-    import resend
-    resend.api_key = RESEND_API_KEY
-    
-    # Email 1: Notification to me
-    notification_html = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <style>
-            body {{ font-family: 'Segoe UI', Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; }}
-            .container {{ max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }}
-            .header {{ background: linear-gradient(135deg, #F97316 0%, #C084FC 100%); padding: 30px; text-align: center; }}
-            .header h1 {{ color: white; margin: 0; font-size: 24px; }}
-            .content {{ padding: 30px; }}
-            .field {{ margin-bottom: 20px; }}
-            .label {{ color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }}
-            .value {{ color: #1e293b; font-size: 16px; }}
-            .message-box {{ background: #f1f5f9; padding: 20px; border-radius: 8px; border-left: 4px solid #F97316; }}
-            .footer {{ background: #f8fafc; padding: 20px; text-align: center; color: #64748b; font-size: 12px; }}
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <h1>New Contact Form Submission</h1>
-            </div>
-            <div class="content">
-                <div class="field">
-                    <div class="label">From</div>
-                    <div class="value">{request.name}</div>
-                </div>
-                <div class="field">
-                    <div class="label">Email</div>
-                    <div class="value"><a href="mailto:{request.email}" style="color: #F97316;">{request.email}</a></div>
-                </div>
-                <div class="field">
-                    <div class="label">Message</div>
-                    <div class="message-box">{request.message}</div>
-                </div>
-            </div>
-            <div class="footer">
-                Sent from your portfolio contact form
-            </div>
-        </div>
-    </body>
-    </html>
+async def send_contact_email(
+    name: str = Form(..., min_length=2, max_length=100),
+    email: EmailStr = Form(...),
+    request_type: str = Form(..., min_length=2, max_length=100),
+    message: str = Form(..., min_length=5, max_length=5000),
+    attachment: UploadFile | None = File(default=None),
+):
+    attachment_payload = None
+    safe_attachment_name = None
+    if attachment and attachment.filename:
+        attachment_extension = os.path.splitext(attachment.filename)[1].lower()
+        if (
+            attachment.content_type not in ALLOWED_ATTACHMENT_TYPES
+            and attachment_extension not in ALLOWED_ATTACHMENT_EXTENSIONS
+        ):
+            raise HTTPException(status_code=415, detail="Attachment must be a PDF, Word document, JPG, PNG or WebP image.")
+        attachment_bytes = await attachment.read(MAX_ATTACHMENT_BYTES + 1)
+        if len(attachment_bytes) > MAX_ATTACHMENT_BYTES:
+            raise HTTPException(status_code=413, detail="Attachment must be 8 MB or smaller.")
+        safe_attachment_name = os.path.basename(attachment.filename).replace("\x00", "")[:180]
+        attachment_payload = {
+            "content": base64.b64encode(attachment_bytes).decode("ascii"),
+            "name": safe_attachment_name,
+        }
+
+    if not BREVO_API_KEY:
+        raise HTTPException(status_code=503, detail="Email service is not configured. Set BREVO_API_KEY on the server.")
+
+    safe_name = html.escape(name)
+    safe_email = html.escape(str(email))
+    safe_type = html.escape(request_type)
+    safe_message = html.escape(message).replace("\n", "<br>")
+    attachment_row = (
+        f'<tr><td style="color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:18px 0 6px;">Attachment</td></tr>'
+        f'<tr><td style="color:#fff;font-size:16px;">{html.escape(safe_attachment_name)}</td></tr>'
+        if safe_attachment_name
+        else ""
+    )
+
+    notification_body = f"""
+      <p style="margin:0 0 24px;color:#cbd5e1;line-height:1.7;">A new enquiry was submitted through your portfolio.</p>
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#1e1e2b;border-radius:14px;padding:20px;">
+        <tr><td style="color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding-bottom:6px;">Name</td></tr>
+        <tr><td style="color:#fff;font-size:17px;padding-bottom:18px;">{safe_name}</td></tr>
+        <tr><td style="color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding-bottom:6px;">Email</td></tr>
+        <tr><td style="padding-bottom:18px;"><a href="mailto:{safe_email}" style="color:#fb923c;">{safe_email}</a></td></tr>
+        <tr><td style="color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding-bottom:6px;">Request type</td></tr>
+        <tr><td style="color:#fff;font-size:16px;padding-bottom:18px;">{safe_type}</td></tr>
+        <tr><td style="color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:1px;padding-bottom:8px;">Message</td></tr>
+        <tr><td style="color:#e2e8f0;line-height:1.7;border-left:4px solid #f97316;padding:14px 16px;background:#181822;border-radius:8px;">{safe_message}</td></tr>
+        {attachment_row}
+      </table>
     """
-    
-    # Email 2: Receipt/Confirmation to sender
-    receipt_html = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <style>
-            body {{ font-family: 'Segoe UI', Arial, sans-serif; background: #f8fafc; margin: 0; padding: 20px; }}
-            .container {{ max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }}
-            .header {{ background: linear-gradient(135deg, #F97316 0%, #C084FC 100%); padding: 40px 30px; text-align: center; }}
-            .header h1 {{ color: white; margin: 0; font-size: 28px; font-weight: 600; }}
-            .header p {{ color: rgba(255,255,255,0.9); margin: 10px 0 0; font-size: 14px; }}
-            .content {{ padding: 40px 30px; }}
-            .greeting {{ font-size: 18px; color: #1e293b; margin-bottom: 20px; }}
-            .message {{ color: #475569; line-height: 1.7; margin-bottom: 25px; }}
-            .your-message {{ background: #f8fafc; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #F97316; }}
-            .your-message-label {{ color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }}
-            .your-message-text {{ color: #334155; font-style: italic; }}
-            .signature {{ margin-top: 35px; padding-top: 25px; border-top: 1px solid #e2e8f0; }}
-            .signature-name {{ color: #1e293b; font-weight: 600; font-size: 16px; margin-bottom: 5px; }}
-            .signature-title {{ color: #F97316; font-size: 14px; margin-bottom: 5px; }}
-            .signature-email {{ color: #64748b; font-size: 14px; }}
-            .footer {{ background: #0A0A0F; padding: 25px; text-align: center; }}
-            .footer p {{ color: #94a3b8; font-size: 12px; margin: 0; }}
-            .footer a {{ color: #F97316; text-decoration: none; }}
-            .social-links {{ margin-top: 15px; }}
-            .social-links a {{ display: inline-block; margin: 0 10px; color: #94a3b8; text-decoration: none; font-size: 12px; }}
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <h1>Thank You for Reaching Out!</h1>
-                <p>I've received your message</p>
-            </div>
-            <div class="content">
-                <p class="greeting">Hello {request.name},</p>
-                
-                <p class="message">
-                    Thank you so much for taking the time to contact me through my portfolio website. 
-                    I truly appreciate your interest and I'm excited to connect with you!
-                </p>
-                
-                <p class="message">
-                    I have received your message and will review it carefully. You can expect to hear 
-                    back from me within <strong>24-48 hours</strong>. If your matter is urgent, feel free 
-                    to reach out to me directly via phone.
-                </p>
-                
-                <div class="your-message">
-                    <div class="your-message-label">Your Message</div>
-                    <div class="your-message-text">"{request.message}"</div>
-                </div>
-                
-                <p class="message">
-                    In the meantime, feel free to explore more of my work on my 
-                    <a href="https://github.com/PixieStack" style="color: #F97316;">GitHub</a> or connect 
-                    with me on <a href="https://www.linkedin.com/in/thembinkosi-eden-thwala-69083a1a4" style="color: #F97316;">LinkedIn</a>.
-                </p>
-                
-                <div class="signature">
-                    <div class="signature-name">{MY_NAME}</div>
-                    <div class="signature-title">Junior Full-Stack Developer & Data Analyst</div>
-                    <div class="signature-email">
-                        <a href="mailto:{MY_EMAIL}" style="color: #64748b;">{MY_EMAIL}</a> | 
-                        <a href="tel:+27648023069" style="color: #64748b;">064 802 3069</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer">
-                <p>© 2026 {MY_NAME}. All rights reserved.</p>
-                <div class="social-links">
-                    <a href="https://github.com/PixieStack">GitHub</a> |
-                    <a href="https://www.linkedin.com/in/thembinkosi-eden-thwala-69083a1a4">LinkedIn</a> |
-                    <a href="https://pixiestack.github.io/porfolio/">Portfolio</a>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
+    receipt_attachment = (
+        f'<p style="margin:0 0 18px;color:#cbd5e1;line-height:1.7;">Attached file received: <strong style="color:#fff;">{html.escape(safe_attachment_name)}</strong></p>'
+        if safe_attachment_name
+        else ""
+    )
+    receipt_body = f"""
+      <p style="margin:0 0 18px;color:#fff;font-size:18px;">Hello {safe_name},</p>
+      <p style="margin:0 0 18px;color:#cbd5e1;line-height:1.7;">Thank you for getting in touch about <strong style="color:#fff;">{safe_type}</strong>. Your request has been received and I will respond within 24-48 hours.</p>
+      {receipt_attachment}
+      <div style="background:#1e1e2b;border-left:4px solid #c084fc;border-radius:10px;padding:18px;margin:24px 0;">
+        <div style="color:#94a3b8;font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Your message</div>
+        <div style="color:#e2e8f0;line-height:1.7;">{safe_message}</div>
+      </div>
+      <p style="margin:24px 0 5px;color:#fff;font-weight:700;">{SENDER_NAME}</p>
+      <p style="margin:0;color:#fb923c;">Full-Stack Developer & Data Analyst</p>
     """
-    
+
+    sender = {"name": SENDER_NAME, "email": SENDER_EMAIL}
+    notification = {
+        "sender": sender,
+        "to": [{"email": RECIPIENT_EMAIL, "name": SENDER_NAME}],
+        "replyTo": {"email": str(email), "name": name},
+        "subject": f"Portfolio | {request_type} | {name}",
+        "htmlContent": email_shell("New portfolio enquiry", request_type, notification_body),
+    }
+    if attachment_payload:
+        notification["attachment"] = [attachment_payload]
+
+    receipt = {
+        "sender": sender,
+        "to": [{"email": str(email), "name": name}],
+        "replyTo": {"email": RECIPIENT_EMAIL, "name": SENDER_NAME},
+        "subject": f"Your portfolio request was received, {name}",
+        "htmlContent": email_shell("Thank you for reaching out", "Your message has been received", receipt_body),
+    }
+
     try:
-        # Send notification to me
-        notification_params = {
-            "from": SENDER_EMAIL,
-            "to": [MY_EMAIL],
-            "reply_to": request.email,
-            "subject": f"Portfolio Contact: {request.name}",
-            "html": notification_html
-        }
-        await asyncio.to_thread(resend.Emails.send, notification_params)
-        logger.info(f"Notification email sent to {MY_EMAIL}")
-        
-        # Send receipt to sender
-        receipt_params = {
-            "from": SENDER_EMAIL,
-            "to": [request.email],
-            "subject": f"Thank You for Contacting Me, {request.name}!",
-            "html": receipt_html
-        }
-        await asyncio.to_thread(resend.Emails.send, receipt_params)
-        logger.info(f"Receipt email sent to {request.email}")
-        
-        return {
-            "status": "success",
-            "message": "Thank you! Your message has been sent and you'll receive a confirmation email shortly."
-        }
-    except Exception as e:
-        logger.error(f"Failed to send email: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Failed to send email: {str(e)}")
+        await asyncio.to_thread(send_brevo_email, notification)
+        await asyncio.to_thread(send_brevo_email, receipt)
+        return {"status": "success", "message": "Your message was sent successfully. A confirmation email is on its way."}
+    except Exception as exc:
+        logger.exception("Brevo email delivery failed")
+        raise HTTPException(status_code=502, detail="Email delivery failed. Please try again later.") from exc
+
 
 if __name__ == "__main__":
     import uvicorn
