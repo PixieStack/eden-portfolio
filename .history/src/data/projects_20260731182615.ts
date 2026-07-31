@@ -17,10 +17,12 @@ export interface Project {
   live?: string;
   stack?: Record<string, string[]>;
   imageFit?: "cover" | "contain" | "cover-padded";
-  imageScale?: number;
-  imagePosition?: string;
 }
 
+/*
+ * Creates the correct public image path in both development
+ * and the deployed GitHub Pages portfolio.
+ */
 const publicImage = (fileName: string): string =>
   `${import.meta.env.BASE_URL}${fileName}`;
 
@@ -57,8 +59,6 @@ export const projects: Project[] = [
     },
     image: budgetProImg,
     imageFit: "cover",
-    imageScale: 1.13,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/budget-pro",
     live: "https://budgetpro-afq2.onrender.com",
   },
@@ -95,8 +95,6 @@ export const projects: Project[] = [
     },
     image: attorneysImg,
     imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/thwala-attorneys-inc",
     live: "https://thwala-attorneys-web-ougs.onrender.com",
   },
@@ -132,8 +130,6 @@ export const projects: Project[] = [
     },
     image: minnieVerseImg,
     imageFit: "cover",
-    imageScale: 1.17,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/minnie-verse",
     live: "https://minnieverse-landing.onrender.com",
   },
@@ -182,8 +178,6 @@ export const projects: Project[] = [
     },
     image: publicImage("shuttle-bee.jpeg"),
     imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/shuttle-bee",
     live: "https://shuttle-bee.onrender.com/",
   },
@@ -229,8 +223,6 @@ export const projects: Project[] = [
     },
     image: publicImage("luna-rides.jpeg"),
     imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/luna-rides",
     live: "https://luna-rides.onrender.com/",
   },
@@ -276,8 +268,6 @@ export const projects: Project[] = [
     },
     image: publicImage("nkhensani.jpeg"),
     imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/nkhensani",
     live: "https://nkhensani.onrender.com/",
   },

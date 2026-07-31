@@ -32,9 +32,6 @@ export default function ProjectCard({
   const gradientClass =
     categoryColors[project.category] || "from-primary to-purple";
 
-  const imageScale = project.imageScale ?? 1;
-  const imagePosition = project.imagePosition ?? "center";
-
   const imageFitClass =
     project.imageFit === "contain"
       ? "object-contain"
@@ -50,30 +47,19 @@ export default function ProjectCard({
       className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
       data-testid={`project-card-${index}`}
     >
-      {/* Project image */}
+      {/* Image */}
       <div className={`relative ${reversed ? "lg:order-2" : ""}`}>
+        {/*
+         * Every project image uses exactly the same 4:3 container.
+         * w-full, h-full and object-cover keep every card the same size.
+         */}
         <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gradient-to-br from-dark-card to-dark border border-white/10 shadow-card group">
-          {/*
-           * The outer wrapper applies each project's permanent zoom.
-           * The image itself applies the additional hover zoom.
-           */}
-          <div
-            className="absolute inset-0"
-            style={{
-              transform: `scale(${imageScale})`,
-              transformOrigin: imagePosition,
-            }}
-          >
-            <img
-              src={project.image}
-              alt={`${project.title} project preview`}
-              loading="lazy"
-              style={{
-                objectPosition: imagePosition,
-              }}
-              className={`block w-full h-full ${imageFitClass} transition-transform duration-500 ease-out group-hover:scale-105`}
-            />
-          </div>
+          <img
+            src={project.image}
+            alt={`${project.title} project preview`}
+            loading="lazy"
+            className={`w-full h-full ${imageFitClass} transition-transform duration-500 group-hover:scale-105 rounded-2xl`}
+          />
 
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8">
@@ -86,7 +72,7 @@ export default function ProjectCard({
         </div>
       </div>
 
-      {/* Project content */}
+      {/* Content */}
       <div className={`${reversed ? "lg:order-1 lg:text-right" : ""}`}>
         <div
           className={`flex flex-wrap items-center gap-3 mb-4 ${
@@ -131,7 +117,9 @@ export default function ProjectCard({
                 <li
                   key={achievement}
                   className={`flex items-start gap-2 text-muted ${
-                    reversed ? "lg:flex-row-reverse lg:text-right" : ""
+                    reversed
+                      ? "lg:flex-row-reverse lg:text-right"
+                      : ""
                   }`}
                 >
                   <span
@@ -180,9 +168,7 @@ export default function ProjectCard({
               onClick={() => setShowStack((visible) => !visible)}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border border-white/10 text-white font-medium text-sm hover:border-primary/40 transition-colors"
               aria-expanded={showStack}
-              aria-label={`${showStack ? "Hide" : "Show"} ${
-                project.title
-              } technology stack`}
+              aria-label={`${showStack ? "Hide" : "Show"} ${project.title} technology stack`}
             >
               <Code2 size={16} />
 

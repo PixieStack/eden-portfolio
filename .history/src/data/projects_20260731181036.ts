@@ -17,10 +17,17 @@ export interface Project {
   live?: string;
   stack?: Record<string, string[]>;
   imageFit?: "cover" | "contain" | "cover-padded";
-  imageScale?: number;
-  imagePosition?: string;
 }
 
+/*
+ * Files inside the public folder must use Vite's BASE_URL.
+ *
+ * Development:
+ * /luna-rides.jpeg
+ *
+ * GitHub Pages production:
+ * /eden-portfolio/luna-rides.jpeg
+ */
 const publicImage = (fileName: string): string =>
   `${import.meta.env.BASE_URL}${fileName}`;
 
@@ -56,9 +63,6 @@ export const projects: Project[] = [
       Deployment: ["Docker", "Render"],
     },
     image: budgetProImg,
-    imageFit: "cover",
-    imageScale: 1.13,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/budget-pro",
     live: "https://budgetpro-afq2.onrender.com",
   },
@@ -86,6 +90,10 @@ export const projects: Project[] = [
       "Docker Compose",
       "SMTP",
     ],
+    image: attorneysImg,
+    imageFit: "cover-padded",
+    github: "https://github.com/PixieStack/thwala-attorneys-inc",
+    live: "https://thwala-attorneys-web-ougs.onrender.com",
     stack: {
       Frontend: ["React", "Tailwind CSS"],
       Backend: ["ASP.NET Core 8", "C#"],
@@ -93,12 +101,6 @@ export const projects: Project[] = [
       Security: ["JWT Authentication", "Role-Based Access Control"],
       Infrastructure: ["Docker", "Docker Compose", "SMTP", "Render"],
     },
-    image: attorneysImg,
-    imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
-    github: "https://github.com/PixieStack/thwala-attorneys-inc",
-    live: "https://thwala-attorneys-web-ougs.onrender.com",
   },
   {
     category: "Creative Web",
@@ -131,9 +133,6 @@ export const projects: Project[] = [
       Assets: ["Custom MinnieVerse branding and imagery"],
     },
     image: minnieVerseImg,
-    imageFit: "cover",
-    imageScale: 1.17,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/minnie-verse",
     live: "https://minnieverse-landing.onrender.com",
   },
@@ -182,8 +181,6 @@ export const projects: Project[] = [
     },
     image: publicImage("shuttle-bee.jpeg"),
     imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/shuttle-bee",
     live: "https://shuttle-bee.onrender.com/",
   },
@@ -229,8 +226,6 @@ export const projects: Project[] = [
     },
     image: publicImage("luna-rides.jpeg"),
     imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/luna-rides",
     live: "https://luna-rides.onrender.com/",
   },
@@ -276,8 +271,6 @@ export const projects: Project[] = [
     },
     image: publicImage("nkhensani.jpeg"),
     imageFit: "cover",
-    imageScale: 1,
-    imagePosition: "center",
     github: "https://github.com/PixieStack/nkhensani",
     live: "https://nkhensani.onrender.com/",
   },
