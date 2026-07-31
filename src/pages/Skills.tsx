@@ -7,6 +7,8 @@ import {
   Wrench,
   Brain,
   Cloud,
+  Cpu,
+  ShieldCheck,
 } from "lucide-react";
 import SkillCard from "../components/SkillCard";
 import { skills, softSkills, stats } from "../data/skills";
@@ -19,7 +21,7 @@ const skillCategories = [
     color: "primary",
   },
   {
-    title: "Frameworks & Libraries",
+    title: "Frameworks, APIs & Libraries",
     icon: <Layers size={24} />,
     items: skills.frameworks,
     color: "purple",
@@ -49,13 +51,25 @@ const skillCategories = [
     color: "cyan",
   },
   {
+    title: "Algorithms & Systems Engineering",
+    icon: <Cpu size={24} />,
+    items: skills.algorithms,
+    color: "violet",
+  },
+  {
     title: "Engineering Practices",
     icon: <Wrench size={24} />,
     items: skills.practices,
     color: "amber",
   },
   {
-    title: "Soft Skills",
+    title: "Security & Reliability",
+    icon: <ShieldCheck size={24} />,
+    items: skills.security,
+    color: "red",
+  },
+  {
+    title: "Professional Skills",
     icon: <Brain size={24} />,
     items: softSkills,
     color: "rose",
@@ -64,7 +78,7 @@ const skillCategories = [
 
 const statsArray = [
   { value: stats.programmingLanguages, label: "Programming Languages" },
-  { value: stats.frameworksAndTools, label: "Frameworks & Tools" },
+  { value: stats.frameworksAndTools, label: "Frameworks & APIs" },
   { value: stats.databaseSystems, label: "Database Systems" },
   { value: stats.certifications, label: "Certifications" },
 ];
@@ -84,7 +98,7 @@ export default function Skills() {
           Skills & <span className="text-gradient">Technologies</span>
         </h2>
         <p className="mt-6 text-lg text-muted">
-          A comprehensive toolkit developed through 2+ years of hands-on
+          A comprehensive toolkit developed through 3+ years of hands-on
           experience building modern, scalable applications.
         </p>
       </div>

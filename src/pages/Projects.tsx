@@ -2,6 +2,9 @@ import ProjectCard from "../components/ProjectCard";
 import { projects } from "../data/projects";
 import { ExternalLink } from "lucide-react";
 
+const projectOrder = ["Thwala Attorneys Web Application", "BudgetPro", "MinnieVerse"];
+const orderedProjects = [...projects].sort((a, b) => projectOrder.indexOf(a.title) - projectOrder.indexOf(b.title));
+
 export default function Projects() {
   return (
     <section className="section" data-testid="projects-section">
@@ -37,7 +40,7 @@ export default function Projects() {
 
       {/* Projects Grid */}
       <div className="space-y-20" data-testid="projects-grid">
-        {projects.map((project, index) => (
+        {orderedProjects.map((project, index) => (
           <ProjectCard
             key={project.title}
             project={project}

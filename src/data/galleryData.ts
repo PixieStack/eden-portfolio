@@ -7,7 +7,6 @@ import gradVideo from "../assets/gallery/My graduation.mp4";
 import cSharpVideo from "../assets/gallery/A little CSharp code.mp4";
 import dockerVideo from "../assets/gallery/Docker code.mp4";
 import codeBlockVideo from "../assets/gallery/When Code block hits.mp4";
-import taskManagerVideo from "../assets/gallery/Last Task Manager App.mp4";
 import portfolioVideo from "../assets/gallery/My portfolio.mp4";
 import kotaShopVideo from "../assets/gallery/Kota Shop Website.mp4";
 import thwalaAttorneysVideo from "../assets/gallery/Thwala Attorneys website.mp4";
@@ -103,15 +102,6 @@ export const galleryItems: GalleryItem[] = [
       "That feeling when the solution finally clicks after hours of debugging.",
     category: "Work",
     src: codeBlockVideo,
-    type: "video",
-  },
-  {
-    id: "task-manager",
-    title: "Task Manager App",
-    description:
-      "Showcase of my task management application with full functionality.",
-    category: "Work",
-    src: taskManagerVideo,
     type: "video",
   },
   {

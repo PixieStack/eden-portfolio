@@ -1,4 +1,5 @@
-import { Globe } from "lucide-react";
+import { ChevronDown, Code2, Globe } from "lucide-react";
+import { useState } from "react";
 import type { Project } from "../data/projects";
 
 interface ProjectCardProps {
@@ -21,6 +22,7 @@ export default function ProjectCard({
   reversed,
   index,
 }: ProjectCardProps) {
+  const [showStack, setShowStack] = useState(false);
   const gradientClass =
     categoryColors[project.category] || "from-primary to-purple";
 
@@ -35,7 +37,7 @@ export default function ProjectCard({
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className={`w-full h-full ${project.imageFit === "contain" ? "object-contain" : project.imageFit === "cover-padded" ? "object-cover p-2" : "object-cover"} transition-transform duration-500 group-hover:scale-105 rounded-2xl`}
           />
 
           {/* Hover overlay */}
@@ -61,7 +63,9 @@ export default function ProjectCard({
           {project.title}
         </h3>
 
-        <p className="text-muted text-sm mb-4">{project.period}</p>
+        {project.period && (
+          <p className="text-muted text-sm mb-4">{project.period}</p>
+        )}
 
         <p className="text-lg text-muted leading-relaxed mb-6">
           {project.description}
@@ -87,22 +91,33 @@ export default function ProjectCard({
           </div>
         )}
 
-        {/* Technologies */}
-        <div
-          className={`flex flex-wrap gap-2 mb-6 ${reversed ? "lg:justify-end" : ""}`}
-        >
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1.5 rounded-lg bg-surface border border-white/5 text-muted-light text-sm"
-            >
-              {tech}
-            </span>
-          ))}
+        {/* Stack */}
+        <div className="mb-6">
+{showStack && project.stack && (
+            <div className="mt-4 grid sm:grid-cols-2 gap-3">
+              {Object.entries(project.stack).map(([layer, technologies]) => (
+                <div key={layer} className="rounded-xl bg-surface/70 border border-white/5 p-3">
+                  <p className="text-xs uppercase tracking-wider text-primary font-semibold mb-2">{layer}</p>
+                  <p className="text-sm text-muted-light">{technologies.join(" · ")}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
+
+
         {/* Links */}
-        <div className={`flex gap-4 ${reversed ? "lg:justify-end" : ""}`}>
+        <div className={`flex flex-wrap items-center gap-4 ${reversed ? "lg:justify-end" : ""}`}>          <button
+            type="button"
+            onClick={() => setShowStack((visible) => !visible)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface border border-white/10 text-white font-medium text-sm hover:border-primary/40 transition-colors"
+            aria-expanded={showStack}
+          >
+            <Code2 size={16} />
+            View Stack
+            <ChevronDown size={16} className={`transition-transform ${showStack ? "rotate-180" : ""}`} />
+          </button>
           {project.live && (
             <a
               href={project.live}

@@ -15,7 +15,7 @@ import profile from "../assets/profile.jpeg";
 const stats = [
   { value: "8+", label: "Languages" },
   { value: "11+", label: "Frameworks" },
-  { value: "2+", label: "Years of Experience" },
+  { value: "3+", label: "Years of Experience" },
 ];
 
 const highlights = [
@@ -236,7 +236,7 @@ export default function Home() {
             </strong>
             , to gaining{" "}
             <strong className="text-white">
-              2+ years of professional experience
+              3+ years of professional experience
             </strong>{" "}
             has shaped me into a developer who does not just write code but
             builds solutions that are clean, scalable and made to serve real

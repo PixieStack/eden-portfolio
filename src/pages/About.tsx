@@ -278,14 +278,6 @@ export default function About() {
             <p>
               It also gave me a deep awareness of how many South Africans are underserved by the systems around them. I have seen communities where technology could make a real difference but the tools either do not exist or were not built with those communities in mind. That awareness sits behind the work I choose to do and the projects I choose to build.
             </p>
-            <div className="p-6 bg-surface rounded-lg border border-primary/20 mt-6">
-              <p className="text-white font-semibold mb-3">
-                Enrollify, a school application platform I am developing to digitize the admission process for South African primary and high schools, exists because I know what it looks like when a system fails the people it is supposed to serve.
-              </p>
-              <p className="text-muted">
-                Paper based applications, long queues, lost documents, parents who do not know the status of their child's application. That is a problem worth solving and I am building the solution.
-              </p>
-            </div>
             <p className="mt-6 text-primary font-semibold text-lg">
               Technology should serve people. All people. Every line of code I write carries that belief.
             </p>
