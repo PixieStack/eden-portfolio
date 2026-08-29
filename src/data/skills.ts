@@ -6,79 +6,87 @@ export interface SkillCategory {
 export const skillCategories: SkillCategory[] = [
   {
     title: "Programming Languages",
-    items: ["Python", "C#", "Java", "TypeScript", "JavaScript", "Ruby", "SQL"],
+    items: ["C#", "Java", "JavaScript", "Python", "Ruby", "SQL", "TypeScript"],
   },
   {
     title: "Frontend Development",
-    items: ["Angular", "React.js", "Vue.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+    items: ["Angular", "Bootstrap", "CSS3", "HTML5", "React.js", "Tailwind CSS", "Vue.js"],
   },
   {
     title: "Backend Development",
-    items: ["ASP.NET Core", "Spring Boot", "Ruby on Rails", "Node.js", "FastAPI", "Flask"],
+    items: ["ASP.NET Core", "FastAPI", "Flask", "Node.js", "Ruby on Rails", "Spring Boot"],
   },
   {
     title: "APIs & System Integration",
     items: [
-      "RESTful APIs", "GraphQL", "SOAP Services", "Third-Party API Integration",
-      "Asynchronous Processing", "Background Jobs",
+      "Asynchronous Processing", "Background Jobs", "GraphQL", "RESTful APIs",
+      "SOAP Services", "Third-Party API Integration",
     ],
   },
   {
     title: "Databases",
     items: [
-      "PostgreSQL", "Microsoft SQL Server", "MySQL", "Oracle SQL", "Redis", "SQLite", "Supabase",
+      "Microsoft SQL Server", "MySQL", "Oracle SQL", "PostgreSQL", "Redis", "SQLite", "Supabase",
     ],
   },
   {
     title: "Cloud & Enterprise Platforms",
-    items: ["AWS", "Microsoft Azure", "ServiceNow", "Databricks", "Docker", "Kubernetes"],
+    items: ["AWS", "Databricks", "Docker", "Kubernetes", "Microsoft Azure", "ServiceNow"],
   },
   {
     title: "Algorithms & Problem-Solving",
     items: [
-      "Algorithmic Thinking", "Data Structures", "Problem Decomposition", "Logical Reasoning",
-      "Root-Cause Analysis", "Performance Optimisation",
+      "Algorithmic Thinking", "Data Structures", "Logical Reasoning", "Performance Optimisation",
+      "Problem Decomposition", "Root-Cause Analysis",
     ],
   },
   {
     title: "Data Engineering & Analytics",
-    items: ["Python", "Pandas", "NumPy", "SQL", "ETL Pipelines", "Data Validation", "Data Visualisation"],
+    items: ["Data Validation", "Data Visualisation", "ETL Pipelines", "NumPy", "Pandas", "Python", "SQL"],
   },
   {
     title: "Software Engineering",
     items: [
-      "Object-Oriented Programming", "Procedural Programming", "Design Patterns", "SDLC",
-      "Agile Scrum", "System Design", "Application Support", "Technical Documentation",
+      "Agile Scrum", "Application Support", "Design Patterns", "Object-Oriented Programming",
+      "Procedural Programming", "SDLC", "System Design", "Technical Documentation",
     ],
   },
   {
     title: "Testing & Reliability",
     items: [
-      "Unit Testing", "Integration Testing", "API Testing", "Debugging", "Troubleshooting",
-      "Error Handling", "Logging", "Root-Cause Analysis",
+      "API Testing", "Debugging", "Error Handling", "Integration Testing", "Logging",
+      "Root-Cause Analysis", "RSpec", "Test-Driven Development", "Troubleshooting", "Unit Testing",
     ],
   },
   {
     title: "Security",
-    items: ["JWT Authentication", "OAuth 2.0", "Role-Based Access Control", "Authentication and Authorisation"],
+    items: [
+      "Access Control Lists", "Authentication and Authorisation", "Column-Level Encryption",
+      "JWT Authentication", "OAuth 2.0", "Role-Based Access Control", "Row-Level Security",
+      "SAML 2.0", "Session-Based Authentication",
+    ],
   },
   {
     title: "DevOps & Version Control",
     items: [
-      "Git", "GitHub", "GitHub Actions", "CI/CD", "Docker", "Branching Strategies",
-      "Pull Requests", "Code Reviews",
+      "Actions", "Branching Strategies", "CI/CD", "Code Reviews", "Events", "Git", "Git Commands",
+      "GitHub", "GitHub Actions", "GitHub Pages", "Jobs", "Least-Privilege Workflow Permissions",
+      "OpenID Connect", "Runners", "Workflows",
     ],
   },
   {
     title: "Tools & IDEs",
-    items: ["Visual Studio", "Visual Studio Code", "Postman", "Jira", "Confluence", "Anaconda"],
+    items: [
+      "Anaconda", "Confluence", "DBeaver", "Eclipse / NetBeans", "Jira", "Miro", "Notion",
+      "Postman", "Visual Studio", "Visual Studio Code",
+    ],
   },
 ];
 
 export const softSkills = [
-  "Analytical Thinking", "Structured Problem-Solving", "Technical Communication", "Team Collaboration",
-  "Learning Agility", "Adaptability", "Attention to Detail", "Requirements Analysis", "Knowledge Sharing",
-  "Constructive Feedback", "Stakeholder Communication", "Time and Priority Management",
+  "Adaptability", "Analytical Thinking", "Attention to Detail", "Constructive Feedback", "Knowledge Sharing",
+  "Learning Agility", "Requirements Analysis", "Stakeholder Communication", "Structured Problem-Solving",
+  "Team Collaboration", "Technical Communication", "Time and Priority Management",
 ];
 
 const uniqueSkills = new Set(skillCategories.flatMap((category) => category.items));
