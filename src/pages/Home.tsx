@@ -250,7 +250,10 @@ export default function Home() {
                 </div>
 
                 <Link
-                  to="/skills"
+                  to={{
+                    pathname: "/skills",
+                    hash: "#professional-development",
+                  }}
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 py-2.5 text-sm font-semibold text-white transition-all hover:border-primary/40 hover:text-primary"
                 >
                   Explore My Credentials

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Code2,
   Layers,
@@ -100,6 +102,21 @@ const certifications = qualifications.filter(
 );
 
 export default function Skills() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash !== "#professional-development") return;
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById("professional-development")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.hash]);
+
   return (
     <section className="section" data-testid="skills-section">
       {/* Header */}
@@ -147,7 +164,8 @@ export default function Skills() {
 
       {/* Certifications and professional credentials */}
       <div
-        className="mt-24"
+        id="professional-development"
+        className="mt-24 scroll-mt-28"
         data-testid="skills-certifications-and-credentials"
       >
         <div className="text-center max-w-3xl mx-auto mb-12">
