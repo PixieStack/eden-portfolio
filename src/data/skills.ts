@@ -26,7 +26,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Databases",
     items: [
-      "Microsoft SQL Server", "MySQL", "Oracle SQL", "PostgreSQL", "Redis", "SQLite", "Supabase",
+      "Microsoft SQL Server", "MySQL", "PostgreSQL", "Redis", "SQLite", "Supabase",
     ],
   },
   {
@@ -59,6 +59,22 @@ export const skillCategories: SkillCategory[] = [
     items: [
       "API Testing", "Debugging", "Error Handling", "Integration Testing", "Logging",
       "Root-Cause Analysis", "RSpec", "Test-Driven Development", "Troubleshooting", "Unit Testing",
+    ],
+  },
+  {
+    title: "AI & Intelligent Automation",
+    items: [
+      "AI API Integration", "AI Application Deployment & Monitoring",
+      "AI Application Evaluation & Governance", "AI Chatbot Development", "Conversational AI",
+      "Generative AI", "Intelligent Automation Prototyping", "Prompt Engineering",
+      "Retrieval Agents", "Single-Agent Applications", "Website Chatbot Integration",
+    ],
+  },
+  {
+    title: "Mobile Development",
+    items: [
+      ".NET MAUI", "Android Studio", "Expo", "Flutter", "Mobile UI Design",
+      "MVVM Architecture", "Push Notifications", "React Native",
     ],
   },
   {
