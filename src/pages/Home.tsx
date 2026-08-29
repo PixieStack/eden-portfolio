@@ -11,6 +11,8 @@ import {
   MapPin,
   BadgeCheck,
   CalendarDays,
+  Award,
+  ShieldCheck,
 } from "lucide-react";
 import profile from "../assets/profile.jpeg";
 import { stats as skillStats } from "../data/skills";
@@ -40,7 +42,7 @@ export default function Home() {
         className="relative min-h-[95vh] flex items-center overflow-hidden"
         data-testid="hero-section"
       >
-        <div className="section grid lg:grid-cols-2 gap-16 items-center">
+        <div className="section grid lg:grid-cols-[1.08fr_0.92fr] gap-14 xl:gap-20 items-center">
           {/* LEFT - Content */}
           <div className="animate-fade-in">
             {/* Badges */}
@@ -163,43 +165,117 @@ export default function Home() {
             </button>
           </div>
 
-          {/* RIGHT - Profile Image - Moved up more */}
-          <div className="relative flex justify-center lg:justify-end animate-slide-in-right -mt-20 lg:-mt-32">
-            {/* Background glow */}
-            <div className="absolute w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 to-purple/20 blur-3xl" />
+          {/* RIGHT - Portrait and professional recognition */}
+          <div className="relative flex justify-center lg:justify-end animate-slide-in-right">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-purple/10 to-transparent blur-3xl" />
 
-            {/* Profile container */}
-            <div className="relative">
-              {/* Rotating ring */}
+            <div className="relative w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-white/10 bg-dark-card/75 p-5 shadow-2xl backdrop-blur-xl sm:p-7">
+              <div className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-purple/15 blur-3xl" />
+              <div className="absolute -bottom-28 -left-20 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
+
+              <div className="relative mb-6 flex items-center justify-between gap-4">
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-[0.22em] text-purple">
+                    Professional Recognition
+                  </span>
+                  <p className="mt-1 text-sm text-muted-light">
+                    SAQA-recognised professional standing
+                  </p>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple to-primary shadow-glow-purple">
+                  <Award size={25} />
+                </div>
+              </div>
+
+              <div className="relative flex justify-center py-2">
+                <div className="relative">
+                  <div
+                    className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30 animate-spin"
+                    style={{ animationDuration: "20s" }}
+                  />
+                  <div className="profile-ring border-4 border-primary shadow-glow animate-pulse-glow">
+                    <img
+                      src={profile}
+                      alt="Thembinkosi Eden Thwala"
+                      data-testid="hero-profile-image"
+                      className="h-full w-full rounded-full object-cover"
+                    />
+
+                    <div className="absolute -right-3 top-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white shadow-glow animate-float sm:h-14 sm:w-14">
+                      <Code2 size={23} />
+                    </div>
+                    <div className="absolute -left-3 top-1/2 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple to-purple-dark text-white shadow-glow-purple animate-float-delayed sm:h-14 sm:w-14">
+                      <Database size={23} />
+                    </div>
+                    <div
+                      className="absolute -bottom-2 right-1/4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-lg animate-float sm:h-14 sm:w-14"
+                      style={{ animationDelay: "1s" }}
+                    >
+                      <Cloud size={23} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30 animate-spin"
-                style={{ animationDuration: "20s" }}
-              />
-
-              {/* Main profile ring */}
-              <div className="profile-ring border-4 border-primary shadow-glow animate-pulse-glow">
-                <img
-                  src={profile}
-                  alt="Thembinkosi Eden Thwala"
-                  data-testid="hero-profile-image"
-                  className="w-full h-full rounded-full object-cover"
-                />
-
-                {/* Floating icons */}
-                <div className="absolute -right-4 top-8 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white shadow-glow animate-float">
-                  <Code2 size={24} />
+                className="relative mt-7 grid gap-3"
+                data-testid="hero-professional-credentials"
+              >
+                <div className="group rounded-2xl border border-purple/25 bg-purple/10 p-4 transition-all hover:border-purple/50 hover:bg-purple/15">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-purple/20 text-purple">
+                      <BadgeCheck size={22} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <h2 className="font-display font-bold text-white">
+                          AMICITP-SA
+                        </h2>
+                        <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-emerald-400">
+                          Awarded
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm text-muted-light">
+                        Associate Member · Professional Designation
+                      </p>
+                      <p className="mt-2 text-xs text-muted">
+                        SAQA Designation ID 1043 · Java & .NET competencies
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="absolute -left-4 top-1/2 w-14 h-14 rounded-2xl bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-white shadow-glow-purple animate-float-delayed">
-                  <Database size={24} />
+                <div className="group rounded-2xl border border-primary/25 bg-primary/10 p-4 transition-all hover:border-primary/50 hover:bg-primary/15">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                      <ShieldCheck size={22} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <h2 className="font-display font-bold text-white">
+                          ICITP-SA Member
+                        </h2>
+                        <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-primary-light">
+                          Active
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm text-muted-light">
+                        Institute of Chartered IT Professionals SA
+                      </p>
+                      <p className="mt-2 text-xs text-muted">
+                        Professional membership · Jul 2026 – Jul 2027
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div
-                  className="absolute -bottom-2 right-1/4 w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white shadow-lg animate-float"
-                  style={{ animationDelay: "1s" }}
+                <Link
+                  to="/skills"
+                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-sm font-semibold text-white transition-all hover:border-primary/40 hover:text-primary"
                 >
-                  <Cloud size={24} />
-                </div>
+                  Explore My Credentials
+                  <ChevronRight size={17} />
+                </Link>
               </div>
             </div>
           </div>
