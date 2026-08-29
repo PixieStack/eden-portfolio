@@ -37,7 +37,7 @@ export default function PdfViewerModal({ title, src, onClose }: PdfViewerModalPr
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="flex h-[94vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-surface shadow-2xl shadow-black/60">
+      <div className="flex h-[96dvh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-white/10 bg-surface shadow-2xl shadow-black/60 sm:h-[94vh] sm:rounded-2xl">
         <div className="flex items-center justify-between gap-4 border-b border-white/10 bg-surface-light/90 px-4 py-3 sm:px-6">
           <div className="flex min-w-0 items-center gap-3">
             <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-purple/15 text-purple">

@@ -1,12 +1,13 @@
 export interface PortfolioDocument {
   title: string;
   issuer: string;
-  type: "Professional Designation" | "Professional Membership" | "Certification" | "Academic Achievement" | "Academic Record";
+  type: "Professional Designation" | "Professional Membership" | "Certification" | "Certification Programme" | "Academic Achievement" | "Academic Record";
   issued: string;
+  issuedLabel?: "Issued" | "Started";
   expires?: string;
-  status?: "Active" | "Awarded" | "Expired";
+  status?: "Active" | "Awarded" | "Expired" | "In Progress";
   description: string;
-  documentPath: string;
+  documentPath?: string;
   details?: { label: string; value: string }[];
 }
 
@@ -37,15 +38,6 @@ export const professionalDocuments: PortfolioDocument[] = [
     details: [{ label: "Membership ID", value: "A0001349" }],
   },
   {
-    title: "Welcome to ServiceNow",
-    issuer: "ServiceNow University",
-    type: "Certification",
-    issued: "16 April 2026",
-    status: "Awarded",
-    description: "Micro-certification demonstrating foundational knowledge of the ServiceNow platform and learning ecosystem.",
-    documentPath: "certificates/servicenow-welcome-micro-certification.pdf",
-  },
-  {
     title: "Databricks Certified Data Engineer Professional",
     issuer: "Databricks",
     type: "Certification",
@@ -68,6 +60,15 @@ export const professionalDocuments: PortfolioDocument[] = [
     details: [{ label: "Credential ID", value: "175798881" }],
   },
   {
+    title: "Welcome to ServiceNow",
+    issuer: "ServiceNow University",
+    type: "Certification",
+    issued: "16 April 2026",
+    status: "Awarded",
+    description: "Micro-certification demonstrating foundational knowledge of the ServiceNow platform and learning ecosystem.",
+    documentPath: "certificates/servicenow-welcome-micro-certification.pdf",
+  },
+  {
     title: "Certified Java Developer Professional",
     issuer: "W3Schools",
     type: "Certification",
@@ -76,17 +77,6 @@ export const professionalDocuments: PortfolioDocument[] = [
     description: "Professional certification validating practical Java programming knowledge.",
     documentPath: "certificates/w3schools-certified-java-developer.pdf",
     details: [{ label: "Verification ID", value: "1QC1OY6WL0" }],
-  },
-  {
-    title: "AWS Certified Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    type: "Certification",
-    issued: "12 December 2022",
-    expires: "12 December 2025",
-    status: "Expired",
-    description: "Foundational certification covering AWS Cloud concepts, security, technology, billing and support.",
-    documentPath: "certificates/aws-certified-cloud-practitioner.pdf",
-    details: [{ label: "Validation Number", value: "SG96R2LKYEB11FWH" }],
   },
   {
     title: "CCNA: Introduction to Networks",
@@ -110,6 +100,16 @@ export const professionalDocuments: PortfolioDocument[] = [
 
 export const academicDocuments: PortfolioDocument[] = [
   {
+    title: "ServiceNow Certified System Administrator (CSA)",
+    issuer: "ServiceNow University",
+    type: "Certification Programme",
+    issued: "June 2026",
+    issuedLabel: "Started",
+    status: "In Progress",
+    description: "Currently studying remotely through ServiceNow University toward the Certified System Administrator qualification.",
+    details: [{ label: "Study Mode", value: "Remote / Online" }],
+  },
+  {
     title: "Diploma in Information Technology — Software Development",
     issuer: "Nelson Mandela University",
     type: "Academic Achievement",
@@ -120,14 +120,6 @@ export const academicDocuments: PortfolioDocument[] = [
     details: [{ label: "Certificate Number", value: "20245438" }],
   },
   {
-    title: "Academic Transcript",
-    issuer: "Nelson Mandela University",
-    type: "Academic Record",
-    issued: "18 March 2024",
-    description: "Official academic results for the Higher Certificate and Diploma programmes. Personal identifiers are redacted for public viewing.",
-    documentPath: "certificates/academic-transcript-redacted.pdf",
-  },
-  {
     title: "Higher Certificate in IT — User Support Services",
     issuer: "Nelson Mandela University",
     type: "Academic Achievement",
@@ -136,5 +128,13 @@ export const academicDocuments: PortfolioDocument[] = [
     description: "Higher Certificate in Information Technology in User Support Services, awarded Cum Laude.",
     documentPath: "certificates/higher-certificate-it-cum-laude.pdf",
     details: [{ label: "Certificate Number", value: "20215849" }],
+  },
+  {
+    title: "Academic Transcript",
+    issuer: "Nelson Mandela University",
+    type: "Academic Record",
+    issued: "18 March 2024",
+    description: "Official academic results for the Higher Certificate and Diploma programmes. Personal identifiers are redacted for public viewing.",
+    documentPath: "certificates/academic-transcript-redacted.pdf",
   },
 ];

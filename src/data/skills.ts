@@ -105,6 +105,6 @@ export const stats = {
   programmingLanguages: String(skillCategories[0].items.length),
   frameworksAndTools: `${uniqueSkills.size}+`,
   databaseSystems: String(skillCategories[4].items.length),
-  certifications: "9",
+  certifications: "8",
   badges: "19",
 };

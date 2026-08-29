@@ -75,18 +75,18 @@ export default function SkillCard({
 
   return (
     <div
-      className="card p-8 card-hover"
+      className="card card-hover min-w-0 p-5 sm:p-8"
       style={{ animationDelay: `${index * 0.1}s` }}
       data-testid={`skill-card-${title.toLowerCase().replace(/\s+/g, "-")}`}
     >
       {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
+      <div className="mb-5 flex items-start gap-3 sm:mb-6 sm:items-center sm:gap-4">
         <div
-          className={`w-14 h-14 rounded-2xl ${colors.bg} ${colors.text} flex items-center justify-center`}
+          className={`h-12 w-12 flex-none rounded-2xl sm:h-14 sm:w-14 ${colors.bg} ${colors.text} flex items-center justify-center`}
         >
           {icon}
         </div>
-        <h3 className="text-xl font-display font-semibold text-white">
+        <h3 className="min-w-0 break-words font-display text-lg font-semibold leading-snug text-white sm:text-xl">
           {title}
         </h3>
       </div>
@@ -96,7 +96,7 @@ export default function SkillCard({
         {items.map((item) => (
           <span
             key={item}
-            className={`px-4 py-2 rounded-lg ${colors.bg} ${colors.text} text-sm font-medium border ${colors.border} hover:scale-105 transition-transform cursor-default`}
+            className={`max-w-full break-words rounded-lg px-3 py-2 sm:px-4 ${colors.bg} ${colors.text} text-xs sm:text-sm font-medium border ${colors.border} hover:scale-105 transition-transform cursor-default`}
           >
             {item}
           </span>
