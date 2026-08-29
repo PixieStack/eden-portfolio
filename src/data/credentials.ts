@@ -8,6 +8,8 @@ export interface PortfolioDocument {
   status?: "Active" | "Awarded" | "Expired" | "In Progress";
   description: string;
   documentPath?: string;
+  actionUrl?: string;
+  actionLabel?: string;
   details?: { label: string; value: string }[];
 }
 
@@ -100,14 +102,19 @@ export const professionalDocuments: PortfolioDocument[] = [
 
 export const academicDocuments: PortfolioDocument[] = [
   {
-    title: "ServiceNow Certified System Administrator (CSA)",
+    title: "ServiceNow Administration Fundamentals",
     issuer: "ServiceNow University",
     type: "Certification Programme",
     issued: "June 2026",
     issuedLabel: "Started",
     status: "In Progress",
-    description: "Currently studying remotely through ServiceNow University toward the Certified System Administrator qualification.",
-    details: [{ label: "Study Mode", value: "Remote / Online" }],
+    description: "Currently studying remotely through ServiceNow University to prepare for the ServiceNow Certified System Administrator (CSA) certification.",
+    actionUrl: "https://learninguat.servicenow.com/lxp?id=learning_course_prev&course_id=fbb6cc4847f5dd505cbdaf44846d436a",
+    actionLabel: "View course on ServiceNow",
+    details: [
+      { label: "Study Mode", value: "Remote / Online" },
+      { label: "Target Credential", value: "Certified System Administrator (CSA)" },
+    ],
   },
   {
     title: "Diploma in Information Technology — Software Development",

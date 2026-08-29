@@ -1,4 +1,4 @@
-import { Award, BadgeCheck, BookOpenCheck, CalendarDays, Eye, FileCheck2 } from "lucide-react";
+import { Award, BadgeCheck, BookOpenCheck, CalendarDays, ExternalLink, Eye, FileCheck2 } from "lucide-react";
 import type { PortfolioDocument } from "../data/credentials";
 
 interface CredentialCardProps {
@@ -74,6 +74,22 @@ export default function CredentialCard({ document, onView }: CredentialCardProps
             <span>View PDF on this page</span>
             <Eye size={16} className="flex-none" />
           </button>
+        </div>
+      )}
+
+      {!document.documentPath && document.actionUrl && (
+        <div className="mt-auto pt-7 sm:pt-8">
+          <a
+            href={document.actionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-blue-400/25 bg-blue-400/10 px-3 py-3 text-center text-sm font-semibold leading-snug text-white transition hover:border-blue-300/50 hover:bg-blue-400/15 focus:outline-none focus:ring-2 focus:ring-blue-400 sm:px-4"
+            aria-label={`${document.actionLabel ?? "Learn more"} (opens in a new tab)`}
+          >
+            <BookOpenCheck size={17} className="flex-none text-blue-300" />
+            <span>{document.actionLabel ?? "Learn more"}</span>
+            <ExternalLink size={16} className="flex-none" />
+          </a>
         </div>
       )}
     </article>

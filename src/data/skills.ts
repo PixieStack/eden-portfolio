@@ -80,7 +80,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Architecture & Design",
     items: [
-      "Clean Architecture", "Event-Driven Architecture", "Microservices", "Monolithic Architecture",
+      "Event-Driven Architecture", "Microservices", "Monolithic Architecture",
       "MVC (Model-View-Controller)", "Serverless Architecture",
     ],
   },

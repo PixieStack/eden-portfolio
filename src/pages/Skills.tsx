@@ -9,6 +9,9 @@ import {
   Code2,
   Database,
   GitBranch,
+  Handshake,
+  Lightbulb,
+  MessageCircleMore,
   Monitor,
   Network,
   Server,
@@ -51,6 +54,33 @@ const statsArray = [
   { value: stats.frameworksAndTools, label: "Skills & Technologies" },
   { value: stats.certifications, label: "Certifications & Credentials" },
   { value: stats.badges, label: "Verified Digital Badges" },
+];
+
+const professionalSkillGroups = [
+  {
+    eyebrow: "Think & solve",
+    title: "Turn ambiguity into direction",
+    description: "I break complex needs into clear, testable decisions.",
+    icon: <Lightbulb size={21} />,
+    skills: ["Analytical Thinking", "Attention to Detail", "Requirements Analysis", "Structured Problem-Solving"],
+    accent: "primary",
+  },
+  {
+    eyebrow: "Communicate & align",
+    title: "Keep people in the loop",
+    description: "I make technical work understandable and feedback useful.",
+    icon: <MessageCircleMore size={21} />,
+    skills: ["Constructive Feedback", "Knowledge Sharing", "Stakeholder Communication", "Technical Communication"],
+    accent: "purple",
+  },
+  {
+    eyebrow: "Collaborate & deliver",
+    title: "Move work forward together",
+    description: "I adapt, prioritise and contribute reliably within a team.",
+    icon: <Handshake size={21} />,
+    skills: ["Adaptability", "Learning Agility", "Team Collaboration", "Time and Priority Management"],
+    accent: "emerald",
+  },
 ];
 
 export default function Skills() {
@@ -112,25 +142,52 @@ export default function Skills() {
         ))}
       </div>
 
-      <div className="mt-16 rounded-3xl border border-white/10 bg-gradient-to-br from-purple/10 via-surface to-primary/5 p-6 sm:p-8">
-        <div className="flex items-start gap-4">
-          <span className="grid h-14 w-14 flex-none place-items-center rounded-2xl bg-purple/15 text-purple">
-            <Users size={25} />
-          </span>
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-purple">Professional Skills</span>
-            <h2 className="mt-2 font-display text-2xl font-bold text-white md:text-3xl">How I work with people and problems</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted">
-              The communication, collaboration and problem-solving habits that support my technical delivery.
-            </p>
-          </div>
-        </div>
-        <div className="mt-6 flex flex-wrap gap-2.5">
-          {softSkills.map((skill) => (
-            <span key={skill} className="rounded-xl border border-purple/20 bg-purple/10 px-4 py-2 text-sm font-medium text-purple">
-              {skill}
+      <div className="relative mt-16 overflow-hidden rounded-3xl border border-white/10 bg-surface p-5 sm:p-8 lg:p-10">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-purple/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+
+        <div className="relative grid gap-6 border-b border-white/10 pb-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+          <div className="flex items-start gap-4">
+            <span className="grid h-14 w-14 flex-none place-items-center rounded-2xl bg-gradient-to-br from-purple/25 to-primary/15 text-purple shadow-lg shadow-purple/10">
+              <Users size={25} />
             </span>
-          ))}
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-purple">Professional Skills</span>
+              <h2 className="mt-2 max-w-2xl font-display text-2xl font-bold text-white md:text-4xl">The human skills behind dependable delivery</h2>
+            </div>
+          </div>
+          <p className="max-w-xl text-sm leading-relaxed text-muted lg:justify-self-end">
+            Strong technical work also depends on how I listen, frame problems, share context and help a team move from ideas to outcomes.
+          </p>
+        </div>
+
+        <div className="relative mt-8 grid gap-4 lg:grid-cols-3">
+          {professionalSkillGroups.map((group, index) => {
+            const styles = group.accent === "primary"
+              ? "border-primary/20 bg-primary/[0.06] text-primary"
+              : group.accent === "emerald"
+                ? "border-emerald-400/20 bg-emerald-400/[0.06] text-emerald-300"
+                : "border-purple/20 bg-purple/[0.06] text-purple";
+
+            return (
+              <article key={group.title} className={`relative overflow-hidden rounded-2xl border p-5 ${styles}`}>
+                <span className="absolute right-4 top-3 font-display text-5xl font-bold text-white/[0.04]">0{index + 1}</span>
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-black/10">{group.icon}</span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em]">{group.eyebrow}</span>
+                </div>
+                <h3 className="mt-5 font-display text-xl font-semibold text-white">{group.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{group.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {group.skills.filter((skill) => softSkills.includes(skill)).map((skill) => (
+                    <span key={skill} className="rounded-lg border border-white/10 bg-black/20 px-3 py-1.5 text-xs font-medium text-white/80">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
 
@@ -179,7 +236,7 @@ export default function Skills() {
             Verified learning achievements grouped by issuer, with every badge linked to its official credential record. Newest badges appear first.
           </p>
         </div>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-4">
           {badgeGroups.map((group) => <BadgeGroupCard key={group.issuer} group={group} />)}
         </div>
       </div>
