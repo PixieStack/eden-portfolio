@@ -39,10 +39,10 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section
-        className="relative min-h-[95vh] flex items-center overflow-hidden"
+        className="relative min-h-[95vh] flex items-start overflow-hidden"
         data-testid="hero-section"
       >
-        <div className="section grid lg:grid-cols-[1.08fr_0.92fr] gap-14 xl:gap-20 items-center">
+        <div className="section hero-layout grid lg:grid-cols-[1.08fr_0.92fr] gap-14 xl:gap-20 items-center">
           {/* LEFT - Content */}
           <div className="animate-fade-in">
             {/* Main Heading */}

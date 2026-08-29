@@ -99,9 +99,20 @@ body {
   margin: 0 auto;
 }
 
+/* Keep the home hero close to the fixed navbar, matching the opening view. */
+.section.hero-layout {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 4rem 1.25rem;
+  }
+
+  .section.hero-layout {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
   }
 }
 
