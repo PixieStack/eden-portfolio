@@ -6,17 +6,13 @@ import {
   Code2,
   Database,
   Cloud,
-  Sparkles,
   ChevronRight,
-  MapPin,
   BadgeCheck,
-  CalendarDays,
   Award,
   ShieldCheck,
 } from "lucide-react";
 import profile from "../assets/profile.jpeg";
 import { stats as skillStats } from "../data/skills";
-import { professionalCredentials } from "../data/professionalCredentials";
 
 const stats = [
   { value: skillStats.programmingLanguages, label: "Programming Languages" },
@@ -42,7 +38,7 @@ export default function Home() {
         className="relative min-h-[95vh] flex items-start overflow-hidden"
         data-testid="hero-section"
       >
-        <div className="section hero-layout grid lg:grid-cols-[1.08fr_0.92fr] gap-14 xl:gap-20 items-center">
+        <div className="section hero-layout grid lg:grid-cols-[1.08fr_0.92fr] gap-14 xl:gap-20 items-start">
           {/* LEFT - Content */}
           <div className="animate-fade-in">
             {/* Main Heading */}
@@ -153,11 +149,11 @@ export default function Home() {
           <div className="relative flex justify-center lg:justify-end animate-slide-in-right">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-purple/10 to-transparent blur-3xl" />
 
-            <div className="relative w-full max-w-[34rem] overflow-hidden rounded-[2rem] border border-white/10 bg-dark-card/75 p-5 shadow-2xl backdrop-blur-xl sm:p-7">
+            <div className="relative w-full max-w-[31rem] overflow-hidden rounded-[2rem] border border-white/10 bg-dark-card/75 p-4 shadow-2xl backdrop-blur-xl sm:p-5">
               <div className="absolute -right-20 -top-24 h-64 w-64 rounded-full bg-purple/15 blur-3xl" />
               <div className="absolute -bottom-28 -left-20 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
 
-              <div className="relative mb-6 flex items-center justify-between gap-4">
+              <div className="relative mb-4 flex items-center justify-between gap-4">
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-[0.22em] text-purple">
                     Professional Recognition
@@ -166,8 +162,8 @@ export default function Home() {
                     SAQA-recognised professional standing
                   </p>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple to-primary shadow-glow-purple">
-                  <Award size={25} />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple to-primary shadow-glow-purple">
+                  <Award size={22} />
                 </div>
               </div>
 
@@ -177,7 +173,7 @@ export default function Home() {
                     className="absolute inset-0 rounded-full border-2 border-dashed border-primary/30 animate-spin"
                     style={{ animationDuration: "20s" }}
                   />
-                  <div className="profile-ring border-4 border-primary shadow-glow animate-pulse-glow">
+                  <div className="profile-ring hero-profile-ring border-4 border-primary shadow-glow animate-pulse-glow">
                     <img
                       src={profile}
                       alt="Thembinkosi Eden Thwala"
@@ -202,13 +198,13 @@ export default function Home() {
               </div>
 
               <div
-                className="relative mt-7 grid gap-3"
+                className="relative mt-5 grid gap-2.5"
                 data-testid="hero-professional-credentials"
               >
-                <div className="group rounded-2xl border border-purple/25 bg-purple/10 p-4 transition-all hover:border-purple/50 hover:bg-purple/15">
+                <div className="group rounded-2xl border border-purple/25 bg-purple/10 p-3.5 transition-all hover:border-purple/50 hover:bg-purple/15">
                   <div className="flex items-start gap-3">
-                    <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-purple/20 text-purple">
-                      <BadgeCheck size={22} />
+                    <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-purple/20 text-purple">
+                      <BadgeCheck size={20} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -229,10 +225,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="group rounded-2xl border border-primary/25 bg-primary/10 p-4 transition-all hover:border-primary/50 hover:bg-primary/15">
+                <div className="group rounded-2xl border border-primary/25 bg-primary/10 p-3.5 transition-all hover:border-primary/50 hover:bg-primary/15">
                   <div className="flex items-start gap-3">
-                    <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
-                      <ShieldCheck size={22} />
+                    <div className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-primary/20 text-primary">
+                      <ShieldCheck size={20} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -255,50 +251,12 @@ export default function Home() {
 
                 <Link
                   to="/skills"
-                  className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-sm font-semibold text-white transition-all hover:border-primary/40 hover:text-primary"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 py-2.5 text-sm font-semibold text-white transition-all hover:border-primary/40 hover:text-primary"
                 >
                   Explore My Credentials
                   <ChevronRight size={17} />
                 </Link>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Availability Banner */}
-      <section
-        className="mx-auto max-w-[1400px] px-5 pb-12 md:px-8"
-        data-testid="availability-section"
-      >
-        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-dark-card/80 px-5 py-5 backdrop-blur-xl md:px-7">
-          <div className="absolute -right-16 -top-20 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
-          <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="font-display text-lg font-bold text-white">
-                Open to meaningful work and ambitious teams
-              </p>
-              <p className="mt-1 text-sm text-muted">
-                Available for junior development, data and ServiceNow opportunities.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-                <Sparkles size={17} />
-                Available for Opportunities
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-400">
-                <MapPin size={17} />
-                Willing to Relocate — SA & Internationally
-              </span>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white transition-all hover:border-primary/40 hover:text-primary"
-              >
-                Contact Me
-                <ChevronRight size={16} />
-              </Link>
             </div>
           </div>
         </div>
@@ -317,89 +275,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Professional Memberships */}
-      <section
-        className="section pt-0"
-        data-testid="professional-memberships-section"
-      >
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-purple uppercase tracking-widest text-sm font-medium">
-            Professional Recognition
-          </span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold text-white">
-            Memberships &{" "}
-            <span className="text-gradient-purple">Professional Credentials</span>
-          </h2>
-          <p className="mt-5 text-lg text-muted">
-            Recognised professional standing and an active commitment to
-            accountable, continuously developing IT practice.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {professionalCredentials.map((credential) => (
-            <article
-              key={credential.title}
-              className="card p-7 card-hover border border-purple/15"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-white flex-shrink-0 shadow-glow-purple">
-                  <BadgeCheck size={27} />
-                </div>
-                <div>
-                  <span className="text-purple text-xs font-semibold uppercase tracking-wider">
-                    {credential.type}
-                  </span>
-                  <h3 className="mt-2 font-display text-xl font-bold text-white">
-                    {credential.title}
-                  </h3>
-                  <p className="mt-1 text-muted-light text-sm">
-                    {credential.organization}
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-5 text-muted leading-relaxed">
-                {credential.description}
-              </p>
-
-              {credential.competencies && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {credential.competencies.map((competency) => (
-                    <span
-                      key={competency}
-                      className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-sm border border-primary/20"
-                    >
-                      {competency}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-sm">
-                <span className="inline-flex items-center gap-2 text-muted-light">
-                  <CalendarDays size={16} className="text-purple" />
-                  {credential.period}
-                </span>
-                {credential.designation && (
-                  <span className="text-muted">{credential.designation}</span>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-8 text-center">
-          <Link
-            to="/skills"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all"
-          >
-            View All Certifications & Skills
-            <ChevronRight size={18} />
-          </Link>
         </div>
       </section>
 

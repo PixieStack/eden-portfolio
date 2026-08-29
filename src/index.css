@@ -228,10 +228,20 @@ body {
   position: relative;
 }
 
+.profile-ring.hero-profile-ring {
+  width: 18rem;
+  height: 18rem;
+}
+
 @media (max-width: 768px) {
   .profile-ring {
     width: 16rem;
     height: 16rem;
+  }
+
+  .profile-ring.hero-profile-ring {
+    width: 15rem;
+    height: 15rem;
   }
 }
 
