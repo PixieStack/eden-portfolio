@@ -49,16 +49,17 @@ This portfolio showcases my skills, projects, and professional experience. It fe
 
 ## 🚀 Deploy to GitHub Pages (FREE)
 
-This project deploys directly from the `docs` folder - **no GitHub Actions needed!**
+The production build is generated in the `docs` folder and published by the
+GitHub Pages deployment workflow.
 
-### Setup Steps:
+### Deployment Steps:
 
-1. Push code to GitHub
+1. Run `npm run build`
 2. Go to repo **Settings** → **Pages**
-3. Source: **Deploy from a branch**
-4. Branch: **main** | Folder: **/docs**
-5. Click **Save**
-6. Wait 2 minutes - my portfolio site is live!
+3. Source: **GitHub Actions**
+4. Commit the updated source and `docs` output
+5. Push to `main`
+6. Monitor the **Deploy portfolio to GitHub Pages** workflow
 
 ---
 
