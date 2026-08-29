@@ -62,11 +62,13 @@ export default function PdfViewerModal({ title, src, onClose }: PdfViewerModalPr
           </button>
         </div>
 
-        <iframe
-          src={`${src}#view=FitH&toolbar=1&navpanes=0`}
-          title={`${title} PDF`}
-          className="min-h-0 flex-1 bg-white"
-        />
+        <div className="min-h-0 flex-1 bg-black/25 p-2 sm:p-4 lg:p-5">
+          <iframe
+            src={`${src}#view=Fit&toolbar=1&navpanes=0&pagemode=none`}
+            title={`${title} PDF`}
+            className="h-full w-full rounded-lg border border-white/10 bg-neutral-800 shadow-inner"
+          />
+        </div>
       </div>
     </div>,
     document.body,
