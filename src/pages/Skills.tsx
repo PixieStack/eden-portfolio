@@ -56,28 +56,44 @@ const proofPoints = [
     title: "Full-stack to cloud",
     detail: "Frontend, backend, APIs, data and cloud delivery.",
     icon: <Layers3 size={22} />,
-    style: "from-primary/15 to-transparent text-primary",
+    card: "border-primary/20 hover:border-primary/40 hover:shadow-primary/10",
+    iconStyle: "bg-primary/10 text-primary",
+    accent: "text-primary",
+    line: "via-primary/70",
+    glow: "bg-primary/10",
   },
   {
     eyebrow: "Applied AI",
     title: "Chatbots to automation",
     detail: "AI experiences integrated into real web products.",
     icon: <Bot size={22} />,
-    style: "from-purple/15 to-transparent text-purple",
+    card: "border-purple/20 hover:border-purple/40 hover:shadow-purple/10",
+    iconStyle: "bg-purple/10 text-purple",
+    accent: "text-purple",
+    line: "via-purple/70",
+    glow: "bg-purple/10",
   },
   {
     eyebrow: "Data credentials",
     title: "Databricks certified",
     detail: "Professional engineering and associate analytics credentials.",
     icon: <Database size={22} />,
-    style: "from-cyan-500/15 to-transparent text-cyan-300",
+    card: "border-cyan-400/20 hover:border-cyan-400/40 hover:shadow-cyan-500/10",
+    iconStyle: "bg-cyan-400/10 text-cyan-300",
+    accent: "text-cyan-300",
+    line: "via-cyan-400/70",
+    glow: "bg-cyan-400/10",
   },
   {
     eyebrow: "Professional standing",
     title: "AMICITP-SA",
     detail: "SAQA-recognised designation with Java and .NET competencies.",
     icon: <Award size={22} />,
-    style: "from-emerald-500/15 to-transparent text-emerald-300",
+    card: "border-emerald-400/20 hover:border-emerald-400/40 hover:shadow-emerald-500/10",
+    iconStyle: "bg-emerald-400/10 text-emerald-300",
+    accent: "text-emerald-300",
+    line: "via-emerald-400/70",
+    glow: "bg-emerald-400/10",
   },
 ];
 
@@ -194,22 +210,31 @@ export default function Skills() {
         </p>
       </div>
 
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/10 shadow-2xl shadow-black/20">
-        <div className="grid gap-px sm:grid-cols-2 xl:grid-cols-4">
-          {proofPoints.map((point) => (
-            <article key={point.title} className={`relative min-h-48 bg-gradient-to-br ${point.style} bg-surface p-6`}>
-              <div className="flex items-center justify-between gap-4">
-                <span className="grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-black/20">
-                  {point.icon}
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">Proof point</span>
-              </div>
-              <p className="mt-7 text-[11px] font-semibold uppercase tracking-[0.18em]">{point.eyebrow}</p>
-              <h2 className="mt-2 font-display text-xl font-bold text-white">{point.title}</h2>
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {proofPoints.map((point) => (
+          <article
+            key={point.title}
+            className={`group relative h-full overflow-hidden rounded-2xl border bg-surface/80 p-4 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-5 ${point.card}`}
+          >
+            <div className={`absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${point.line}`} />
+            <div className={`pointer-events-none absolute -right-8 -top-10 h-24 w-24 rounded-full blur-2xl transition group-hover:scale-125 ${point.glow}`} />
+
+            <div className="relative flex items-center justify-between gap-3">
+              <span className={`grid h-10 w-10 place-items-center rounded-xl border border-white/10 ${point.iconStyle}`}>
+                {point.icon}
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">
+                Proof point
+              </span>
+            </div>
+
+            <div className="relative mt-4">
+              <p className={`text-[10px] font-semibold uppercase tracking-[0.17em] ${point.accent}`}>{point.eyebrow}</p>
+              <h2 className="mt-1.5 font-display text-lg font-bold leading-snug text-white">{point.title}</h2>
               <p className="mt-2 text-sm leading-relaxed text-muted">{point.detail}</p>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
 
       <div className="mx-auto mt-16 grid max-w-5xl gap-5 text-center lg:grid-cols-[0.7fr_1.3fr] lg:items-end lg:text-left">
