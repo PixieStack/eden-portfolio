@@ -10,6 +10,7 @@ interface PdfViewerModalProps {
 
 export default function PdfViewerModal({ title, src, onClose }: PdfViewerModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const versionedSrc = `${src}${src.includes("?") ? "&" : "?"}v=20260830`;
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -64,7 +65,7 @@ export default function PdfViewerModal({ title, src, onClose }: PdfViewerModalPr
 
         <div className="min-h-0 flex-1 bg-black/25 p-2 sm:p-4 lg:p-5">
           <iframe
-            src={`${src}#view=Fit&toolbar=1&navpanes=0&pagemode=none`}
+            src={`${versionedSrc}#view=Fit&toolbar=1&navpanes=0&pagemode=none`}
             title={`${title} PDF`}
             className="h-full w-full rounded-lg border border-white/10 bg-neutral-800 shadow-inner"
           />
