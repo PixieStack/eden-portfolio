@@ -37,6 +37,14 @@ export const qualifications: Qualification[] = [
   },
   // Certifications
   {
+    title: "Welcome to ServiceNow Micro-Certification",
+    institution: "ServiceNow",
+    description:
+      "Micro-certification covering the ServiceNow platform, its core capabilities, user experience and role in digital workflow transformation.",
+    year: "2026",
+    type: "Certification",
+  },
+  {
     title: "Databricks Certified Data Engineer Professional",
     institution: "Databricks",
     description:

@@ -1,16 +1,10 @@
-export const stats = {
-  programmingLanguages: "6",
-  frameworksAndTools: "11+",
-  databaseSystems: "6",
-  certifications: "6+",
-};
-
 export const skills = {
-  programming: ["C#", "Python", "JavaScript", "TypeScript", "Ruby", "SQL"],
+  programming: ["C#", "Java", "Python", "JavaScript", "TypeScript", "Ruby", "SQL"],
   frameworks: [
-    "ASP.NET Core MVC", ".NET", "Ruby on Rails", "FastAPI", "Flask", "Node.js",
-    "Angular", "React.js", "Tailwind CSS", "GraphQL", "RESTful APIs",
+    "ASP.NET Core MVC", ".NET", "Spring Boot", "Ruby on Rails", "FastAPI", "Flask", "Node.js",
+    "Angular", "React.js", "Tailwind CSS", "Bootstrap", "GraphQL", "RESTful APIs",
   ],
+  web: ["HTML5", "CSS3"],
   databases: ["Microsoft SQL Server", "PostgreSQL", "MySQL", "Supabase", "SQLite", "Redis"],
   devops: ["Docker", "Kubernetes", "Git and GitHub", "CI/CD Pipelines", "Postman", "Jira", "Confluence"],
   platforms: ["ServiceNow", "Databricks", "AWS"],
@@ -34,6 +28,13 @@ export const skills = {
     "AWS IAM", "Secure System Integration", "Error Handling", "Logging and Monitoring", "Retry Handling",
     "Data Validation", "Application Reliability", "Root-Cause Analysis",
   ],
+};
+
+export const stats = {
+  programmingLanguages: String(skills.programming.length),
+  frameworksAndTools: `${skills.frameworks.length}+`,
+  databaseSystems: String(skills.databases.length),
+  certifications: "8+",
 };
 
 export const softSkills = [

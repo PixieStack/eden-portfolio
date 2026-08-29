@@ -9,12 +9,17 @@ import {
   Sparkles,
   ChevronRight,
   MapPin,
+  BadgeCheck,
+  CalendarDays,
 } from "lucide-react";
 import profile from "../assets/profile.jpeg";
+import { stats as skillStats } from "../data/skills";
+import { professionalCredentials } from "../data/professionalCredentials";
 
 const stats = [
-  { value: "8+", label: "Languages" },
-  { value: "11+", label: "Frameworks" },
+  { value: skillStats.programmingLanguages, label: "Programming Languages" },
+  { value: skillStats.frameworksAndTools, label: "Frameworks & APIs" },
+  { value: skillStats.certifications, label: "Certifications & Credentials" },
   { value: "3+", label: "Years of Experience" },
 ];
 
@@ -214,6 +219,89 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Professional Memberships */}
+      <section
+        className="section pt-0"
+        data-testid="professional-memberships-section"
+      >
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="text-purple uppercase tracking-widest text-sm font-medium">
+            Professional Recognition
+          </span>
+          <h2 className="mt-4 font-display text-4xl md:text-5xl font-bold text-white">
+            Memberships &{" "}
+            <span className="text-gradient-purple">Professional Credentials</span>
+          </h2>
+          <p className="mt-5 text-lg text-muted">
+            Recognised professional standing and an active commitment to
+            accountable, continuously developing IT practice.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {professionalCredentials.map((credential) => (
+            <article
+              key={credential.title}
+              className="card p-7 card-hover border border-purple/15"
+            >
+              <div className="flex items-start gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-white flex-shrink-0 shadow-glow-purple">
+                  <BadgeCheck size={27} />
+                </div>
+                <div>
+                  <span className="text-purple text-xs font-semibold uppercase tracking-wider">
+                    {credential.type}
+                  </span>
+                  <h3 className="mt-2 font-display text-xl font-bold text-white">
+                    {credential.title}
+                  </h3>
+                  <p className="mt-1 text-muted-light text-sm">
+                    {credential.organization}
+                  </p>
+                </div>
+              </div>
+
+              <p className="mt-5 text-muted leading-relaxed">
+                {credential.description}
+              </p>
+
+              {credential.competencies && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {credential.competencies.map((competency) => (
+                    <span
+                      key={competency}
+                      className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-sm border border-primary/20"
+                    >
+                      {competency}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-sm">
+                <span className="inline-flex items-center gap-2 text-muted-light">
+                  <CalendarDays size={16} className="text-purple" />
+                  {credential.period}
+                </span>
+                {credential.designation && (
+                  <span className="text-muted">{credential.designation}</span>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            to="/skills"
+            className="inline-flex items-center gap-2 text-primary font-medium hover:gap-4 transition-all"
+          >
+            View All Certifications & Skills
+            <ChevronRight size={18} />
+          </Link>
         </div>
       </section>
 
