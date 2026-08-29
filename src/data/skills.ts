@@ -72,9 +72,8 @@ export const skillCategories: SkillCategory[] = [
     title: "AI & Intelligent Automation",
     items: [
       "AI API Integration", "AI Application Deployment & Monitoring",
-      "AI Application Evaluation & Governance", "AI Chatbot Development", "Conversational AI",
-      "Generative AI", "Intelligent Automation Prototyping", "Prompt Engineering",
-      "Retrieval Agents", "Single-Agent Applications", "Website Chatbot Integration",
+      "AI Chatbot Development", "Conversational AI", "Prompt Engineering", "Retrieval Agents",
+      "Single-Agent Applications", "Website Chatbot Integration",
     ],
   },
   {

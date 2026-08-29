@@ -97,37 +97,13 @@ const proofPoints = [
   },
 ];
 
-const professionalPresentations = [
-  {
-    icon: <Lightbulb size={21} />,
-    card: "border-primary/20 bg-primary/[0.06]",
-    accent: "text-primary",
-  },
-  {
-    icon: <MessageCircleMore size={21} />,
-    card: "border-purple/20 bg-purple/[0.06]",
-    accent: "text-purple",
-  },
-  {
-    icon: <Handshake size={21} />,
-    card: "border-emerald-400/20 bg-emerald-400/[0.06]",
-    accent: "text-emerald-300",
-  },
-  {
-    icon: <ListChecks size={21} />,
-    card: "border-blue-400/20 bg-blue-400/[0.06]",
-    accent: "text-blue-300",
-  },
-  {
-    icon: <RefreshCw size={21} />,
-    card: "border-amber-400/20 bg-amber-400/[0.06]",
-    accent: "text-amber-300",
-  },
-  {
-    icon: <HeartHandshake size={21} />,
-    card: "border-rose-400/20 bg-rose-400/[0.06]",
-    accent: "text-rose-300",
-  },
+const professionalIcons = [
+  <Lightbulb size={21} />,
+  <MessageCircleMore size={21} />,
+  <Handshake size={21} />,
+  <ListChecks size={21} />,
+  <RefreshCw size={21} />,
+  <HeartHandshake size={21} />,
 ];
 
 interface SkillSectionAccordionProps {
@@ -138,7 +114,8 @@ interface SkillSectionAccordionProps {
   summary: string;
   icon: ReactNode;
   accent: "primary" | "purple";
-  defaultOpen?: boolean;
+  isOpen: boolean;
+  onToggle: () => void;
   children: ReactNode;
 }
 
@@ -150,10 +127,10 @@ function SkillSectionAccordion({
   summary,
   icon,
   accent,
-  defaultOpen = false,
+  isOpen,
+  onToggle,
   children,
 }: SkillSectionAccordionProps) {
-  const [isOpen, setIsOpen] = useState(defaultOpen);
   const panelId = `${id}-panel`;
   const isPrimary = accent === "primary";
 
@@ -161,7 +138,7 @@ function SkillSectionAccordion({
     <section className={`overflow-hidden rounded-3xl border bg-surface/90 transition ${isOpen ? (isPrimary ? "border-primary/30 shadow-xl shadow-primary/5" : "border-purple/30 shadow-xl shadow-purple/5") : "border-white/10 hover:border-white/20"}`}>
       <button
         type="button"
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={onToggle}
         className={`group flex w-full flex-col gap-5 bg-gradient-to-r p-5 text-left transition sm:p-7 lg:flex-row lg:items-center lg:justify-between ${isPrimary ? "from-primary/10 via-transparent to-purple/5 hover:from-primary/15" : "from-purple/10 via-transparent to-primary/5 hover:from-purple/15"}`}
         aria-expanded={isOpen}
         aria-controls={panelId}
@@ -198,6 +175,8 @@ function SkillSectionAccordion({
 }
 
 export default function Skills() {
+  const [openSection, setOpenSection] = useState<"technical" | "professional" | null>("technical");
+
   return (
     <section className="section" data-testid="skills-section">
       <div className="mx-auto mb-14 max-w-3xl text-center">
@@ -256,7 +235,8 @@ export default function Skills() {
           summary={`${skillCategories.length} capability areas`}
           icon={<Code2 size={25} />}
           accent="primary"
-          defaultOpen
+          isOpen={openSection === "technical"}
+          onToggle={() => setOpenSection((current) => current === "technical" ? null : "technical")}
         >
           <div className="grid gap-6 md:grid-cols-2" data-testid="skills-grid">
             {skillCategories.map((category, index) => (
@@ -280,20 +260,17 @@ export default function Skills() {
           summary="6 ways I add value"
           icon={<Users size={25} />}
           accent="purple"
+          isOpen={openSection === "professional"}
+          onToggle={() => setOpenSection((current) => current === "professional" ? null : "professional")}
         >
           <div className="relative overflow-hidden rounded-2xl">
-            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-purple/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-32 -left-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
-
             <div className="relative grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {professionalSkillCategories.map((group, index) => {
-                const presentation = professionalPresentations[index];
-
                 return (
-                  <article key={group.title} className={`relative flex h-full flex-col overflow-hidden rounded-2xl border p-5 ${presentation.card}`}>
-                    <span className="absolute right-4 top-3 font-display text-5xl font-bold text-white/[0.04]">0{index + 1}</span>
-                    <div className={`flex items-center gap-3 ${presentation.accent}`}>
-                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-black/10">{presentation.icon}</span>
+                  <article key={group.title} className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition hover:border-purple/20 hover:bg-white/[0.04]">
+                    <span className="absolute right-4 top-3 font-display text-5xl font-bold text-white/[0.035]">0{index + 1}</span>
+                    <div className="flex items-center gap-3 text-purple/80">
+                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-purple/15 bg-purple/[0.07]">{professionalIcons[index]}</span>
                       <span className="text-[11px] font-semibold uppercase tracking-[0.18em]">{group.eyebrow}</span>
                     </div>
                     <h3 className="mt-5 font-display text-xl font-semibold text-white">{group.title}</h3>
@@ -301,7 +278,7 @@ export default function Skills() {
                     <ul className="mt-5 grid grid-cols-2 gap-2">
                       {group.items.map((skill) => (
                         <li key={skill} className="flex min-h-14 items-start gap-2 rounded-xl border border-white/10 bg-black/20 p-3 text-xs font-medium leading-snug text-white/80">
-                          <Check size={14} className={`mt-0.5 flex-none ${presentation.accent}`} />
+                          <Check size={14} className="mt-0.5 flex-none text-purple/70" />
                           <span>{skill}</span>
                         </li>
                       ))}
