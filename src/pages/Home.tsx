@@ -17,7 +17,7 @@ import { professionalCredentials } from "../data/professionalCredentials";
 
 const stats = [
   { value: skillStats.programmingLanguages, label: "Programming Languages" },
-  { value: skillStats.frameworksAndTools, label: "Frameworks & APIs" },
+  { value: skillStats.frameworksAndTools, label: "Skills & Technologies" },
   { value: skillStats.certifications, label: "Certifications & Credentials" },
   { value: "3+", label: "Years of Experience" },
 ];

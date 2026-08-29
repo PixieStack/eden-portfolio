@@ -47,6 +47,21 @@ const colorClasses: Record<
     text: "text-rose-400",
     border: "border-rose-500/20",
   },
+  indigo: {
+    bg: "bg-indigo-500/10",
+    text: "text-indigo-400",
+    border: "border-indigo-500/20",
+  },
+  violet: {
+    bg: "bg-violet-500/10",
+    text: "text-violet-400",
+    border: "border-violet-500/20",
+  },
+  red: {
+    bg: "bg-red-500/10",
+    text: "text-red-400",
+    border: "border-red-500/20",
+  },
 };
 
 export default function SkillCard({
