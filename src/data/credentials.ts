@@ -21,8 +21,8 @@ export const professionalDocuments: PortfolioDocument[] = [
     documentPath: "certificates/amicitp-sa-professional-certification.pdf",
     details: [
       { label: "Practice Number", value: "ITP2023465" },
-      { label: "SAQA Designation ID", value: "1043" },
       { label: "Competencies", value: "Java & .NET" },
+      { label: "SAQA Designation ID", value: "1043" },
     ],
   },
   {

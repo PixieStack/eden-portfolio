@@ -53,7 +53,7 @@ export default function CredentialCard({ document, onView }: CredentialCardProps
           </div>
         )}
         {document.details?.map((detail) => (
-          <div key={detail.label} className={detail.label === "Competencies" ? "col-span-2" : ""}>
+          <div key={detail.label}>
             <dt className="text-[11px] uppercase tracking-wider text-muted">{detail.label}</dt>
             <dd className="mt-1 break-words text-sm font-semibold text-white">{detail.value}</dd>
           </div>
