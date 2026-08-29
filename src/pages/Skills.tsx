@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import {
   BarChart3,
   Blocks,
+  Boxes,
   Brain,
   Cloud,
   Code2,
@@ -41,6 +42,7 @@ const presentations = [
   { icon: <TestTube2 size={24} />, color: "rose" },
   { icon: <ShieldCheck size={24} />, color: "red" },
   { icon: <GitBranch size={24} />, color: "blue" },
+  { icon: <Boxes size={24} />, color: "violet" },
   { icon: <Wrench size={24} />, color: "emerald" },
 ];
 

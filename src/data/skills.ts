@@ -78,6 +78,13 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
+    title: "Architecture & Design",
+    items: [
+      "Clean Architecture", "Event-Driven Architecture", "Microservices", "Monolithic Architecture",
+      "MVC (Model-View-Controller)", "Serverless Architecture",
+    ],
+  },
+  {
     title: "Tools & IDEs",
     items: [
       "Anaconda", "Confluence", "DBeaver", "Eclipse / NetBeans", "Jira", "Miro", "Notion",
