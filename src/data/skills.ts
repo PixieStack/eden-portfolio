@@ -3,6 +3,13 @@ export interface SkillCategory {
   items: string[];
 }
 
+export interface ProfessionalSkillCategory {
+  eyebrow: string;
+  title: string;
+  description: string;
+  items: string[];
+}
+
 export const skillCategories: SkillCategory[] = [
   {
     title: "Programming Languages",
@@ -71,18 +78,19 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "Mobile Development",
-    items: [
-      ".NET MAUI", "Android Studio", "Expo", "Flutter", "Mobile UI Design",
-      "MVVM Architecture", "Push Notifications", "React Native",
-    ],
-  },
-  {
     title: "Security",
     items: [
       "Access Control Lists", "Authentication and Authorisation", "Column-Level Encryption",
       "JWT Authentication", "OAuth 2.0", "Role-Based Access Control", "Row-Level Security",
       "SAML 2.0", "Session-Based Authentication",
+    ],
+  },
+  {
+    title: "Mobile Development",
+    items: [
+      ".NET MAUI", "Android Studio", "API Integration", "Biometric Authentication", "Expo",
+      "Firebase", "Flutter", "Local Data Storage", "Mobile UI Design", "MVVM Architecture",
+      "Platform Lifecycles", "Push Notifications", "React Native",
     ],
   },
   {
@@ -109,10 +117,61 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
-export const softSkills = [
-  "Adaptability", "Analytical Thinking", "Attention to Detail", "Constructive Feedback", "Knowledge Sharing",
-  "Learning Agility", "Requirements Analysis", "Stakeholder Communication", "Structured Problem-Solving",
-  "Team Collaboration", "Technical Communication", "Time and Priority Management",
+export const professionalSkillCategories: ProfessionalSkillCategory[] = [
+  {
+    eyebrow: "Think & solve",
+    title: "Turn ambiguity into direction",
+    description: "Turn complex requirements into clear, testable decisions.",
+    items: [
+      "Analytical Thinking", "Attention to Detail", "Critical Thinking", "Decision-Making",
+      "Requirements Analysis", "Structured Problem-Solving",
+    ],
+  },
+  {
+    eyebrow: "Communicate & align",
+    title: "Keep people in the loop",
+    description: "Make technical work understandable and feedback actionable.",
+    items: [
+      "Active Listening", "Constructive Feedback", "Knowledge Sharing", "Presentation Skills",
+      "Stakeholder Communication", "Technical Communication",
+    ],
+  },
+  {
+    eyebrow: "Collaborate & deliver",
+    title: "Move work forward together",
+    description: "Contribute reliably across teams, roles and changing priorities.",
+    items: [
+      "Adaptability", "Cross-Functional Collaboration", "Learning Agility",
+      "Ownership and Accountability", "Team Collaboration", "Time and Priority Management",
+    ],
+  },
+  {
+    eyebrow: "Organise & execute",
+    title: "Create momentum with discipline",
+    description: "Protect quality while moving important work forward.",
+    items: [
+      "Delivery Focus", "Initiative", "Prioritisation", "Quality Focus", "Risk Awareness",
+      "Self-Management",
+    ],
+  },
+  {
+    eyebrow: "Learn & improve",
+    title: "Keep getting better",
+    description: "Turn feedback, curiosity and reflection into stronger practice.",
+    items: [
+      "Coachability", "Continuous Improvement", "Curiosity", "Growth Mindset",
+      "Reflective Practice", "Resilience",
+    ],
+  },
+  {
+    eyebrow: "Understand & support",
+    title: "Design with the user in view",
+    description: "Balance user needs, operational context and ownership.",
+    items: [
+      "Customer Focus", "Documentation Discipline", "Empathy", "Incident Communication",
+      "Problem Ownership", "User-Centred Thinking",
+    ],
+  },
 ];
 
 const uniqueSkills = new Set(skillCategories.flatMap((category) => category.items));
