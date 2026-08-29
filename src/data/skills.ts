@@ -42,7 +42,10 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     title: "Data Engineering & Analytics",
-    items: ["Data Validation", "Data Visualisation", "ETL Pipelines", "NumPy", "Pandas", "Python", "SQL"],
+    items: [
+      "Apache Spark (PySpark)", "Data Catalogs", "Data Lakes", "Data Validation", "Data Visualisation",
+      "ETL Pipelines", "NumPy", "Pandas", "Pydantic", "Python", "SQL",
+    ],
   },
   {
     title: "Software Engineering",
