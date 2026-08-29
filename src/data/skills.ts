@@ -106,5 +106,4 @@ export const stats = {
   frameworksAndTools: `${uniqueSkills.size}+`,
   databaseSystems: String(skillCategories[4].items.length),
   certifications: "8",
-  badges: "19",
 };

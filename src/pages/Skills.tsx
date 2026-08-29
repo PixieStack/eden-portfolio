@@ -1,5 +1,3 @@
-import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import {
   BarChart3,
   Blocks,
@@ -20,16 +18,7 @@ import {
   Users,
   Wrench,
 } from "lucide-react";
-import BadgeGroupCard from "../components/BadgeGroupCard";
-import CredentialCard from "../components/CredentialCard";
-import PdfViewerModal from "../components/PdfViewerModal";
 import SkillCard from "../components/SkillCard";
-import { badgeGroups } from "../data/badges";
-import {
-  academicDocuments,
-  professionalDocuments,
-  type PortfolioDocument,
-} from "../data/credentials";
 import { skillCategories, softSkills, stats } from "../data/skills";
 
 const presentations = [
@@ -52,8 +41,8 @@ const presentations = [
 const statsArray = [
   { value: `${skillCategories.length}`, label: "Technical Categories" },
   { value: stats.frameworksAndTools, label: "Skills & Technologies" },
-  { value: stats.certifications, label: "Certifications & Credentials" },
-  { value: stats.badges, label: "Verified Digital Badges" },
+  { value: stats.programmingLanguages, label: "Programming Languages" },
+  { value: stats.databaseSystems, label: "Database Systems" },
 ];
 
 const professionalSkillGroups = [
@@ -84,23 +73,6 @@ const professionalSkillGroups = [
 ];
 
 export default function Skills() {
-  const location = useLocation();
-  const [selectedDocument, setSelectedDocument] = useState<PortfolioDocument | null>(null);
-  const closePdf = useCallback(() => setSelectedDocument(null), []);
-
-  useEffect(() => {
-    if (!location.hash) return;
-
-    const frame = window.requestAnimationFrame(() => {
-      document.getElementById(location.hash.slice(1))?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, [location.hash]);
-
   return (
     <section className="section" data-testid="skills-section">
       <div className="mx-auto mb-16 max-w-3xl text-center">
@@ -191,56 +163,6 @@ export default function Skills() {
         </div>
       </div>
 
-      <div id="professional-development" className="mt-24 scroll-mt-28" data-testid="skills-certifications-and-credentials">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <span className="text-sm font-medium uppercase tracking-widest text-purple">Professional Development</span>
-          <h2 className="mt-4 font-display text-3xl font-bold text-white md:text-5xl">
-            Certifications & <span className="text-gradient-purple">Professional Credentials</span>
-          </h2>
-          <p className="mt-5 text-muted">
-            Industry certifications, professional recognition and active membership supporting my technical practice. Newest credentials appear first.
-          </p>
-        </div>
-
-        <div className="grid items-stretch gap-6 md:grid-cols-2">
-          {professionalDocuments.map((document) => (
-            <CredentialCard key={document.title} document={document} onView={setSelectedDocument} />
-          ))}
-        </div>
-      </div>
-
-      <div id="academic-documents" className="mt-24 scroll-mt-28">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <span className="text-sm font-medium uppercase tracking-widest text-primary">Academic Foundation</span>
-          <h2 className="mt-4 font-display text-3xl font-bold text-white md:text-5xl">
-            Qualifications & <span className="text-gradient">Academic Documents</span>
-          </h2>
-          <p className="mt-5 text-muted">
-            Cum Laude qualifications and the supporting academic record. Sensitive personal identifiers are removed from public copies.
-          </p>
-        </div>
-        <div className="grid items-stretch gap-6 md:grid-cols-2">
-          {academicDocuments.map((document) => (
-            <CredentialCard key={document.title} document={document} onView={setSelectedDocument} />
-          ))}
-        </div>
-      </div>
-
-      <div id="digital-badges" className="mt-24 scroll-mt-28">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <span className="text-sm font-medium uppercase tracking-widest text-emerald-400">Verified Learning</span>
-          <h2 className="mt-4 font-display text-3xl font-bold text-white md:text-5xl">
-            Digital <span className="text-gradient">Badges</span>
-          </h2>
-          <p className="mt-5 text-muted">
-            Verified learning achievements grouped by issuer, with every badge linked to its official credential record. Newest badges appear first.
-          </p>
-        </div>
-        <div className="grid gap-4">
-          {badgeGroups.map((group) => <BadgeGroupCard key={group.issuer} group={group} />)}
-        </div>
-      </div>
-
       <div className="mt-16 text-center">
         <p className="mb-6 text-muted">Always learning, always growing. This toolkit evolves with every project and credential.</p>
         <a
@@ -254,13 +176,6 @@ export default function Skills() {
         </a>
       </div>
 
-      {selectedDocument && (
-        <PdfViewerModal
-          title={selectedDocument.title}
-          src={`${import.meta.env.BASE_URL}${selectedDocument.documentPath}`}
-          onClose={closePdf}
-        />
-      )}
     </section>
   );
 }
