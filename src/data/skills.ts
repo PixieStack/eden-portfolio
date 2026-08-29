@@ -10,7 +10,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     title: "Frontend Development",
-    items: ["Angular", "React.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
+    items: ["Angular", "React.js", "Vue.js", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"],
   },
   {
     title: "Backend Development",
