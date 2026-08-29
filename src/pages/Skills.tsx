@@ -13,7 +13,8 @@ import {
   ShieldCheck,
   Globe2,
   BadgeCheck,
-  CalendarDays,
+  ExternalLink,
+  FileText,
 } from "lucide-react";
 import SkillCard from "../components/SkillCard";
 import QualificationCard from "../components/QualificationCard";
@@ -186,7 +187,7 @@ export default function Skills() {
           {professionalCredentials.map((credential) => (
             <article
               key={credential.title}
-              className="card p-6 card-hover border border-purple/15"
+              className="card card-hover flex h-full flex-col border border-purple/15 p-6"
             >
               <div className="flex items-start gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple to-purple-dark flex items-center justify-center text-white flex-shrink-0">
@@ -205,31 +206,91 @@ export default function Skills() {
                 </div>
               </div>
 
-              <p className="mt-5 text-muted text-sm leading-relaxed">
+              <p className="mt-5 text-sm leading-relaxed text-muted">
                 {credential.description}
               </p>
 
-              {credential.competencies && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {credential.competencies.map((competency) => (
-                    <span
-                      key={competency}
-                      className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-sm border border-primary/20"
-                    >
-                      {competency}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-sm">
-                <span className="inline-flex items-center gap-2 text-muted-light">
-                  <CalendarDays size={16} className="text-purple" />
-                  {credential.period}
-                </span>
-                {credential.designation && (
-                  <span className="text-muted">{credential.designation}</span>
+              <div className="mt-4 min-h-9">
+                {credential.competencies && (
+                  <div className="flex flex-wrap gap-2">
+                    {credential.competencies.map((competency) => (
+                      <span
+                        key={competency}
+                        className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-sm border border-primary/20"
+                      >
+                        {competency}
+                      </span>
+                    ))}
+                  </div>
                 )}
+              </div>
+
+              <div className="mt-auto pt-5">
+                <dl className="grid grid-cols-2 gap-3 border-t border-white/5 pt-4 sm:grid-cols-3">
+                  <div>
+                    <dt className="text-xs uppercase tracking-wider text-muted">
+                      {credential.credentialNumberLabel}
+                    </dt>
+                    <dd className="mt-1 text-sm font-semibold text-white">
+                      {credential.credentialNumber}
+                    </dd>
+                  </div>
+
+                  {credential.issuedDate && (
+                    <div>
+                      <dt className="text-xs uppercase tracking-wider text-muted">
+                        Issued
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-white">
+                        {credential.issuedDate}
+                      </dd>
+                    </div>
+                  )}
+
+                  {credential.validFrom && (
+                    <div>
+                      <dt className="text-xs uppercase tracking-wider text-muted">
+                        Valid From
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-white">
+                        {credential.validFrom}
+                      </dd>
+                    </div>
+                  )}
+
+                  {credential.expiryDate && (
+                    <div>
+                      <dt className="text-xs uppercase tracking-wider text-muted">
+                        Expires
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-white">
+                        {credential.expiryDate}
+                      </dd>
+                    </div>
+                  )}
+
+                  {credential.designation && (
+                    <div>
+                      <dt className="text-xs uppercase tracking-wider text-muted">
+                        SAQA Designation
+                      </dt>
+                      <dd className="mt-1 text-sm font-semibold text-white">
+                        1043
+                      </dd>
+                    </div>
+                  )}
+                </dl>
+
+                <a
+                  href={`${import.meta.env.BASE_URL}${credential.documentPath}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-purple/25 bg-purple/10 px-4 py-3 text-sm font-semibold text-white transition-all hover:border-purple/50 hover:bg-purple/15"
+                >
+                  <FileText size={17} className="text-purple" />
+                  View Credential PDF
+                  <ExternalLink size={15} />
+                </a>
               </div>
             </article>
           ))}

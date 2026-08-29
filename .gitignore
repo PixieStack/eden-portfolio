@@ -71,3 +71,7 @@ dist-ssr
 *.env
 *.env.*
 !backend/.env.example
+
+# Locally generated and intermediate document artifacts
+/output/
+/tmp/

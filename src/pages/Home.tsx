@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import profile from "../assets/profile.jpeg";
 import { stats as skillStats } from "../data/skills";
+import { professionalCredentials } from "../data/professionalCredentials";
 
 const stats = [
   { value: skillStats.programmingLanguages, label: "Programming Languages" },
@@ -29,6 +30,13 @@ const highlights = [
   "ServiceNow Administration",
   "Cloud and DevOps",
 ];
+
+const designationCredential = professionalCredentials.find(
+  (credential) => credential.type === "Professional Designation",
+)!;
+const membershipCredential = professionalCredentials.find(
+  (credential) => credential.type === "Professional Membership",
+)!;
 
 export default function Home() {
   return (
@@ -209,17 +217,19 @@ export default function Home() {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <h2 className="font-display font-bold text-white">
-                          AMICITP-SA
+                          {designationCredential.shortTitle}
                         </h2>
                         <span className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-emerald-400">
                           Awarded
                         </span>
                       </div>
                       <p className="mt-1 text-sm text-muted-light">
-                        Associate Member · Professional Designation
+                        Associate Member · {designationCredential.type}
                       </p>
                       <p className="mt-2 text-xs text-muted">
-                        SAQA Designation ID 1043 · Java & .NET competencies
+                        {designationCredential.credentialNumberLabel}{" "}
+                        {designationCredential.credentialNumber} · Issued 30 Jul
+                        2026
                       </p>
                     </div>
                   </div>
@@ -233,17 +243,19 @@ export default function Home() {
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <h2 className="font-display font-bold text-white">
-                          ICITP-SA Member
+                          {membershipCredential.shortTitle}
                         </h2>
                         <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wider text-primary-light">
                           Active
                         </span>
                       </div>
                       <p className="mt-1 text-sm text-muted-light">
-                        Institute of Chartered IT Professionals SA
+                        {membershipCredential.organization}
                       </p>
                       <p className="mt-2 text-xs text-muted">
-                        Professional membership · Jul 2026 – Jul 2027
+                        {membershipCredential.credentialNumberLabel}{" "}
+                        {membershipCredential.credentialNumber} · Jul 2026 – Jul
+                        2027
                       </p>
                     </div>
                   </div>
