@@ -45,22 +45,6 @@ export default function Home() {
         <div className="section grid lg:grid-cols-[1.08fr_0.92fr] gap-14 xl:gap-20 items-center">
           {/* LEFT - Content */}
           <div className="animate-fade-in">
-            {/* Badges */}
-            <div className="flex flex-wrap items-center gap-3 mb-8">
-              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20">
-                <Sparkles className="text-primary" size={18} />
-                <span className="text-primary font-medium text-sm">
-                  Available for Opportunities
-                </span>
-              </div>
-              <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                <MapPin className="text-emerald-400" size={18} />
-                <span className="text-emerald-400 font-medium text-sm">
-                  Willing to Relocate — SA & Internationally
-                </span>
-              </div>
-            </div>
-
             {/* Main Heading */}
             <h1
               className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight"
@@ -277,6 +261,44 @@ export default function Home() {
                   <ChevronRight size={17} />
                 </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Availability Banner */}
+      <section
+        className="mx-auto max-w-[1400px] px-5 pb-12 md:px-8"
+        data-testid="availability-section"
+      >
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-dark-card/80 px-5 py-5 backdrop-blur-xl md:px-7">
+          <div className="absolute -right-16 -top-20 h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
+          <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="font-display text-lg font-bold text-white">
+                Open to meaningful work and ambitious teams
+              </p>
+              <p className="mt-1 text-sm text-muted">
+                Available for junior development, data and ServiceNow opportunities.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+                <Sparkles size={17} />
+                Available for Opportunities
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-400">
+                <MapPin size={17} />
+                Willing to Relocate — SA & Internationally
+              </span>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-1.5 rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white transition-all hover:border-primary/40 hover:text-primary"
+              >
+                Contact Me
+                <ChevronRight size={16} />
+              </Link>
             </div>
           </div>
         </div>
