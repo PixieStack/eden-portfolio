@@ -94,7 +94,7 @@ export default function Navbar() {
         scrolled ? "glass shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-[1600px] mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link
           to="/"
