@@ -232,12 +232,6 @@ const capabilityImpactTitles = [
   "A focused environment for better delivery.",
 ];
 
-const experienceCoverage = [
-  { label: "3+ year areas", value: Object.values(skillExperience).filter((item) => item.overall === "3+ Years").length },
-  { label: "2+ year areas", value: Object.values(skillExperience).filter((item) => item.overall === "2+ Years").length },
-  { label: "1+ year areas", value: Object.values(skillExperience).filter((item) => item.overall === "1+ Year").length },
-];
-
 const capabilityMatters = [
   { title: "Whole System Thinking", copy: "I design with the whole system in mind, not just isolated features.", icon: <Network size={20} /> },
   { title: "Better Engineering Decisions", copy: "Understanding each layer helps me choose what improves the entire product.", icon: <Sparkles size={20} /> },
@@ -729,15 +723,6 @@ export default function Skills() {
               <strong>See My Engineering in Action <ArrowRight size={16} /></strong>
             </a>
 
-            <article className="capability-coverage-card">
-              <div className="capability-coverage-heading"><span><BarChart3 size={22} /></span><div><p>Capability coverage</p><h3>Depth around a full-stack core.</h3></div></div>
-              <p className="capability-coverage-copy">My strongest experience sits across the software build, with growing depth in data, cloud, mobile and applied AI.</p>
-              <div className="capability-coverage-stats">
-                {experienceCoverage.map((item) => <div key={item.label}><strong>{item.value}</strong><span>{item.label}</span></div>)}
-              </div>
-              <div className="capability-coverage-line" aria-hidden="true"><span /><span /><span /><span /></div>
-              <small>{skillCategories.length} connected capability areas &middot; 100+ technologies and practices</small>
-            </article>
           </aside>
         </div>
       </section>
