@@ -81,6 +81,28 @@ const proofPoints = [
   },
 ];
 
+const proofPointPositions = [
+  "left-1/2 top-0 -translate-x-1/2 text-center",
+  "right-0 top-1/2 -translate-y-1/2 text-right",
+  "bottom-0 left-1/2 -translate-x-1/2 text-center",
+  "left-0 top-1/2 -translate-y-1/2 text-left",
+];
+
+const teamBenefits = [
+  {
+    title: "Fewer gaps between disciplines",
+    detail: "I carry context from the interface through APIs, data and delivery—helping teams make faster, better-connected decisions.",
+  },
+  {
+    title: "Production thinking from the start",
+    detail: "Testing, security, reliability and support shape how I build, not what gets added after the feature is finished.",
+  },
+  {
+    title: "Capability you can verify",
+    detail: "Databricks certifications and an SAQA-recognised professional designation reinforce the practical work behind the toolkit.",
+  },
+];
+
 const professionalIcons = [
   <Lightbulb size={21} />,
   <MessageCircleMore size={21} />,
@@ -160,7 +182,7 @@ function SkillSectionAccordion({
   const isPrimary = accent === "primary";
 
   return (
-    <section ref={sectionRef} className={`scroll-mt-24 overflow-hidden rounded-3xl border bg-surface/90 transition ${isOpen ? (isPrimary ? "border-primary/30 shadow-xl shadow-primary/5" : "border-purple/30 shadow-xl shadow-purple/5") : "border-white/10 hover:border-white/20"}`}>
+    <section id={id} ref={sectionRef} className={`scroll-mt-24 overflow-hidden rounded-3xl border bg-surface/90 transition ${isOpen ? (isPrimary ? "border-primary/30 shadow-xl shadow-primary/5" : "border-purple/30 shadow-xl shadow-purple/5") : "border-white/10 hover:border-white/20"}`}>
       <button
         type="button"
         onClick={onToggle}
@@ -228,36 +250,72 @@ export default function Skills() {
       <section aria-labelledby="skills-title" className="relative mb-16 overflow-hidden">
         <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.055] blur-3xl" />
 
-        <div className="relative max-w-5xl">
-          <div className="flex items-center gap-4">
-            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
-            <span className="h-px w-14 bg-primary/50" />
+        <div className="relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12 xl:gap-20">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-4">
+              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
+              <span className="h-px w-14 bg-primary/50" />
+            </div>
+            <h1 id="skills-title" className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
+              Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
+            </h1>
+            <p className="mt-7 text-lg leading-8 text-muted-light/80 sm:text-xl sm:leading-9">
+              Not a checklist of tools. A working range built to turn ambitious ideas into dependable products—from the interface people touch to the data, cloud and intelligence behind it.
+            </p>
+            <p className="mt-5 text-base leading-8 text-muted sm:text-lg">
+              I work across the whole product: shaping interfaces, engineering APIs, moving and validating data, integrating AI and supporting what reaches production. That breadth means clearer decisions, fewer hand-offs and reliable delivery from the first question to the final release.
+            </p>
           </div>
-          <h1 id="skills-title" className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
-            Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
-          </h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted-light/80 sm:text-xl sm:leading-9">
-            Not a checklist of tools. A working range built to turn ambitious ideas into dependable products—from the interface people touch to the data, cloud and intelligence behind it.
-          </p>
+
+          <div className="relative mx-auto hidden aspect-square w-full max-w-[34rem] lg:block" aria-label="Interactive four pillars of my practice">
+            <div className="absolute left-0 top-3 w-44">
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45">Four pillars of my practice</span>
+              <p className="mt-1 text-[10px] leading-4 text-white/35">Range, innovation, verified depth and professional accountability.</p>
+            </div>
+            <span className="absolute right-0 top-3 text-[9px] uppercase tracking-[0.16em] text-white/25">Select to explore</span>
+            <div className="pointer-events-none absolute inset-[4.5rem] rounded-full border border-white/10" />
+            <div className="pointer-events-none absolute inset-[6.25rem] rounded-full border border-dashed border-white/[0.08] [animation:spin_28s_linear_infinite] motion-reduce:animate-none" />
+            <div className="pointer-events-none absolute bottom-16 left-1/2 top-16 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+            <div className="pointer-events-none absolute left-16 right-16 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div className="absolute left-1/2 top-1/2 grid h-60 w-60 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-7 text-center shadow-2xl shadow-black/40">
+              <div key={activeProof.title} className="animate-fade-in motion-reduce:animate-none">
+                <span className="mx-auto block w-fit text-primary [&>svg]:h-7 [&>svg]:w-7">{activeProof.icon}</span>
+                <p className="mt-4 text-[9px] font-semibold uppercase tracking-[0.2em] text-primary">{activeProof.eyebrow}</p>
+                <h2 className="mt-2 font-display text-xl font-semibold leading-tight text-white">{activeProof.title}</h2>
+                <p className="mt-3 text-xs leading-5 text-muted">{activeProof.impact}</p>
+              </div>
+            </div>
+
+            {proofPoints.map((point, index) => {
+              const isActive = activeProofPoint === index;
+
+              return (
+                <button
+                  key={point.title}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => setActiveProofPoint(index)}
+                  onMouseEnter={() => setActiveProofPoint(index)}
+                  onFocus={() => setActiveProofPoint(index)}
+                  className={`absolute z-10 w-40 bg-dark/90 px-3 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
+                >
+                  <span className={`block text-[9px] font-semibold uppercase tracking-[0.16em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
+                  <span className="mt-1 block font-display text-sm font-semibold leading-snug">{point.title}</span>
+                </button>
+              );
+            })}
+
+            <span className="pointer-events-none absolute left-1/2 top-[4.25rem] h-2 w-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)] [animation:pulse_2.8s_ease-in-out_infinite] motion-reduce:animate-none" />
+          </div>
         </div>
 
-        <div className="relative mt-14 max-w-5xl sm:mt-16">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
-          <h2 className="mt-4 max-w-4xl font-display text-4xl font-semibold leading-[1.06] text-white sm:text-5xl lg:text-6xl">
-            The range to build it. <span className="text-white/45">The discipline to make it last.</span>
-          </h2>
-          <p className="mt-7 max-w-3xl text-base leading-8 text-muted sm:text-lg">
-            I work across the whole product: shaping interfaces, engineering APIs, moving and validating data, integrating AI and supporting what reaches production. That breadth means clearer decisions, fewer hand-offs and reliable delivery from the first question to the final release.
-          </p>
-        </div>
-
-        <div className="relative mt-14 border-y border-white/10 sm:mt-16">
-          <div className="flex flex-col gap-2 py-5 sm:flex-row sm:items-end sm:justify-between">
+        <div className="relative mt-12 border-y border-white/10 lg:hidden">
+          <div className="py-5">
             <div>
               <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">Four pillars of my practice</span>
               <p className="mt-1 text-sm text-white/65">Range, innovation, verified depth and professional accountability.</p>
             </div>
-            <span className="hidden text-[10px] uppercase tracking-[0.16em] text-white/30 sm:block">Select a pillar to explore</span>
           </div>
 
           <div className="grid grid-cols-2 border-t border-white/10 lg:grid-cols-4">
@@ -269,11 +327,9 @@ export default function Skills() {
                   key={point.title}
                   type="button"
                   aria-pressed={isActive}
-                  aria-controls="active-proof-point"
                   onClick={() => setActiveProofPoint(index)}
-                  onMouseEnter={() => setActiveProofPoint(index)}
                   onFocus={() => setActiveProofPoint(index)}
-                  className={`group relative min-w-0 border-b border-white/10 px-3 py-5 text-left transition-colors sm:px-5 lg:border-b-0 lg:border-r lg:last:border-r-0 ${isActive ? "text-white" : "text-white/45 hover:text-white/75"}`}
+                  className={`group relative min-w-0 border-b border-white/10 px-3 py-5 text-left transition-colors sm:px-5 ${isActive ? "text-white" : "text-white/45 hover:text-white/75"}`}
                 >
                   <span className={`absolute inset-x-3 bottom-0 h-px origin-left bg-primary transition-transform duration-300 sm:inset-x-5 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
                   <span className="block text-[9px] font-semibold uppercase tracking-[0.16em]">{point.eyebrow}</span>
@@ -283,7 +339,7 @@ export default function Skills() {
             })}
           </div>
 
-          <div id="active-proof-point" key={activeProof.title} className="relative grid min-h-64 gap-8 overflow-hidden border-t border-white/10 py-9 animate-fade-in motion-reduce:animate-none lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-16 lg:py-12">
+          <div key={activeProof.title} className="relative grid min-h-64 gap-8 overflow-hidden border-t border-white/10 py-9 animate-fade-in motion-reduce:animate-none sm:grid-cols-[0.8fr_1.2fr] sm:items-center sm:gap-12">
             <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-white/[0.025] [&>svg]:h-52 [&>svg]:w-52" aria-hidden="true">
               {activeProof.icon}
             </span>
@@ -301,6 +357,33 @@ export default function Skills() {
               {activeProof.impact}
             </p>
           </div>
+        </div>
+
+        <div className="relative mt-14 sm:mt-16">
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">What a team gains</span>
+            <span className="h-px flex-1 bg-white/10" />
+          </div>
+
+          <div className="mt-2 grid md:grid-cols-3">
+            {teamBenefits.map((benefit, index) => (
+              <article key={benefit.title} className={`border-b border-white/10 py-7 md:border-b-0 ${index > 0 ? "md:border-l md:pl-7" : ""} ${index < teamBenefits.length - 1 ? "md:pr-7" : ""}`}>
+                <h2 className="font-display text-lg font-semibold text-white">{benefit.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-muted">{benefit.detail}</p>
+              </article>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              setOpenSection("technical");
+              window.requestAnimationFrame(() => technicalSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+            }}
+            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:text-primary-light"
+          >
+            Explore the technical evidence <ChevronDown size={16} />
+          </button>
         </div>
       </section>
 
