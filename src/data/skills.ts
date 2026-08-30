@@ -10,6 +10,16 @@ export interface ProfessionalSkillCategory {
   items: string[];
 }
 
+export interface SkillExperienceGroup {
+  label: string;
+  items: string[];
+}
+
+export interface SkillExperience {
+  overall: string;
+  groups: SkillExperienceGroup[];
+}
+
 export const skillCategories: SkillCategory[] = [
   {
     title: "Programming Languages",
@@ -172,6 +182,184 @@ export const professionalSkillCategories: ProfessionalSkillCategory[] = [
     ],
   },
 ];
+
+export const skillExperience: Record<string, SkillExperience> = {
+  "Programming Languages": {
+    overall: "3+ Years",
+    groups: [
+      { label: "3+ Years Experience", items: ["Python", "SQL", "TypeScript"] },
+      { label: "2+ Years Experience", items: ["C#", "Java", "JavaScript", "Ruby"] },
+    ],
+  },
+  "Frontend Development": {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: ["Angular", "Bootstrap", "CSS3", "HTML5", "React.js", "Tailwind CSS", "Vue.js"],
+      },
+    ],
+  },
+  "Backend Development": {
+    overall: "3+ Years",
+    groups: [
+      { label: "3+ Years Experience", items: ["FastAPI", "Flask", "Node.js"] },
+      { label: "2+ Years Experience", items: ["ASP.NET Core", "Ruby on Rails", "Spring Boot"] },
+    ],
+  },
+  "APIs & System Integration": {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: [
+          "Asynchronous Processing", "Background Jobs", "RESTful APIs", "SOAP Services",
+          "Third-Party API Integration",
+        ],
+      },
+      { label: "2+ Years Experience", items: ["GraphQL"] },
+    ],
+  },
+  Databases: {
+    overall: "3+ Years",
+    groups: [
+      { label: "3+ Years Experience", items: ["PostgreSQL", "Redis", "SQLite", "Supabase"] },
+      { label: "2+ Years Experience", items: ["Microsoft SQL Server", "MySQL"] },
+    ],
+  },
+  "Cloud & Enterprise Platforms": {
+    overall: "2+ Years",
+    groups: [
+      { label: "2+ Years Experience", items: ["Docker", "Kubernetes"] },
+      { label: "1+ Year Experience", items: ["AWS", "Databricks", "Microsoft Azure", "ServiceNow"] },
+    ],
+  },
+  "Algorithms & Problem-Solving": {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: [
+          "Algorithmic Thinking", "Data Structures", "Logical Reasoning", "Performance Optimisation",
+          "Problem Decomposition", "Root-Cause Analysis",
+        ],
+      },
+    ],
+  },
+  "Data Engineering & Analytics": {
+    overall: "2+ Years",
+    groups: [
+      {
+        label: "2+ Years Experience",
+        items: [
+          "Apache Spark (PySpark)", "Data Catalogs", "Data Lakes", "Data Validation",
+          "Data Visualisation", "ETL Pipelines", "NumPy", "Pandas", "Pydantic", "Python", "SQL",
+        ],
+      },
+    ],
+  },
+  "Software Engineering": {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: [
+          "Agile Scrum", "Application Support", "Design Patterns", "Object-Oriented Programming",
+          "Procedural Programming", "SDLC", "System Design", "Technical Documentation",
+        ],
+      },
+    ],
+  },
+  "Testing & Reliability": {
+    overall: "2+ Years",
+    groups: [
+      {
+        label: "2+ Years Experience",
+        items: [
+          "API Testing", "Debugging", "Error Handling", "Integration Testing", "Logging",
+          "Root-Cause Analysis", "RSpec", "Test-Driven Development", "Troubleshooting", "Unit Testing",
+        ],
+      },
+    ],
+  },
+  "AI & Intelligent Automation": {
+    overall: "1+ Year",
+    groups: [
+      {
+        label: "1+ Year Experience",
+        items: [
+          "AI API Integration", "AI Application Deployment & Monitoring", "AI Chatbot Development",
+          "Conversational AI", "Prompt Engineering", "Retrieval Agents", "Single-Agent Applications",
+          "Website Chatbot Integration",
+        ],
+      },
+    ],
+  },
+  Security: {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: [
+          "Access Control Lists", "Authentication and Authorisation", "Column-Level Encryption",
+          "JWT Authentication", "OAuth 2.0", "Role-Based Access Control", "Row-Level Security",
+          "SAML 2.0", "Session-Based Authentication",
+        ],
+      },
+    ],
+  },
+  "Mobile Development": {
+    overall: "1+ Year",
+    groups: [
+      {
+        label: "1+ Year Experience",
+        items: [
+          ".NET MAUI", "Android Studio", "API Integration", "Biometric Authentication", "Expo",
+          "Firebase", "Flutter", "Local Data Storage", "Mobile UI Design", "MVVM Architecture",
+          "Platform Lifecycles", "Push Notifications", "React Native",
+        ],
+      },
+    ],
+  },
+  "DevOps & Version Control": {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: [
+          "Actions", "Branching Strategies", "CI/CD", "Code Reviews", "Events", "Git", "Git Commands",
+          "GitHub", "GitHub Actions", "GitHub Pages", "Jobs", "Least-Privilege Workflow Permissions",
+          "OpenID Connect", "Runners", "Workflows",
+        ],
+      },
+    ],
+  },
+  "Architecture & Design": {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: [
+          "Event-Driven Architecture", "Microservices", "Monolithic Architecture",
+          "MVC (Model-View-Controller)", "Serverless Architecture",
+        ],
+      },
+    ],
+  },
+  "Tools & IDEs": {
+    overall: "3+ Years",
+    groups: [
+      {
+        label: "3+ Years Experience",
+        items: [
+          "Confluence", "Eclipse / NetBeans", "Jira", "Miro", "Postman", "Visual Studio",
+          "Visual Studio Code",
+        ],
+      },
+      { label: "2+ Years Experience", items: ["Anaconda", "DBeaver", "Notion"] },
+    ],
+  },
+};
 
 const uniqueSkills = new Set(skillCategories.flatMap((category) => category.items));
 

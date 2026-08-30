@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode, type RefObject } from "react";
 import {
   Award,
   BarChart3,
@@ -29,7 +29,7 @@ import {
   Wrench,
 } from "lucide-react";
 import SkillCard from "../components/SkillCard";
-import { professionalSkillCategories, skillCategories } from "../data/skills";
+import { professionalSkillCategories, skillCategories, skillExperience } from "../data/skills";
 
 const presentations = [
   { icon: <Code2 size={24} />, color: "primary" },
@@ -106,6 +106,45 @@ const professionalIcons = [
   <HeartHandshake size={21} />,
 ];
 
+const professionalThemes = [
+  {
+    accent: "text-primary",
+    icon: "border-primary/20 bg-primary/[0.08]",
+    hover: "hover:border-primary/25",
+    line: "via-primary/65",
+  },
+  {
+    accent: "text-purple",
+    icon: "border-purple/20 bg-purple/[0.08]",
+    hover: "hover:border-purple/25",
+    line: "via-purple/65",
+  },
+  {
+    accent: "text-emerald-300",
+    icon: "border-emerald-400/20 bg-emerald-400/[0.07]",
+    hover: "hover:border-emerald-400/25",
+    line: "via-emerald-400/65",
+  },
+  {
+    accent: "text-blue-300",
+    icon: "border-blue-400/20 bg-blue-400/[0.07]",
+    hover: "hover:border-blue-400/25",
+    line: "via-blue-400/65",
+  },
+  {
+    accent: "text-amber-300",
+    icon: "border-amber-400/20 bg-amber-400/[0.07]",
+    hover: "hover:border-amber-400/25",
+    line: "via-amber-400/65",
+  },
+  {
+    accent: "text-rose-300",
+    icon: "border-rose-400/20 bg-rose-400/[0.07]",
+    hover: "hover:border-rose-400/25",
+    line: "via-rose-400/65",
+  },
+];
+
 interface SkillSectionAccordionProps {
   id: string;
   eyebrow: string;
@@ -116,6 +155,7 @@ interface SkillSectionAccordionProps {
   accent: "primary" | "purple";
   isOpen: boolean;
   onToggle: () => void;
+  sectionRef: RefObject<HTMLElement | null>;
   children: ReactNode;
 }
 
@@ -129,13 +169,14 @@ function SkillSectionAccordion({
   accent,
   isOpen,
   onToggle,
+  sectionRef,
   children,
 }: SkillSectionAccordionProps) {
   const panelId = `${id}-panel`;
   const isPrimary = accent === "primary";
 
   return (
-    <section className={`overflow-hidden rounded-3xl border bg-surface/90 transition ${isOpen ? (isPrimary ? "border-primary/30 shadow-xl shadow-primary/5" : "border-purple/30 shadow-xl shadow-purple/5") : "border-white/10 hover:border-white/20"}`}>
+    <section ref={sectionRef} className={`scroll-mt-24 overflow-hidden rounded-3xl border bg-surface/90 transition ${isOpen ? (isPrimary ? "border-primary/30 shadow-xl shadow-primary/5" : "border-purple/30 shadow-xl shadow-purple/5") : "border-white/10 hover:border-white/20"}`}>
       <button
         type="button"
         onClick={onToggle}
@@ -176,6 +217,24 @@ function SkillSectionAccordion({
 
 export default function Skills() {
   const [openSection, setOpenSection] = useState<"technical" | "professional" | null>("technical");
+  const [flippedSkill, setFlippedSkill] = useState<string | null>(null);
+  const technicalSectionRef = useRef<HTMLElement>(null);
+  const professionalSectionRef = useRef<HTMLElement>(null);
+
+  const toggleSection = (section: "technical" | "professional") => {
+    const isOpening = openSection !== section;
+    setFlippedSkill(null);
+    setOpenSection((current) => current === section ? null : section);
+
+    if (isOpening) {
+      const targetRef = section === "technical" ? technicalSectionRef : professionalSectionRef;
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          targetRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    }
+  };
 
   return (
     <section className="section" data-testid="skills-section">
@@ -216,17 +275,32 @@ export default function Skills() {
         ))}
       </div>
 
-      <div className="mx-auto mt-16 grid max-w-5xl gap-5 text-center lg:grid-cols-[0.7fr_1.3fr] lg:items-end lg:text-left">
-        <div>
-          <span className="text-sm font-medium uppercase tracking-widest text-primary">Skills Summary</span>
-          <h2 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">Built to contribute across the whole product</h2>
+      <div className="relative mt-14 overflow-hidden rounded-2xl border border-white/10 bg-surface/70 p-5 shadow-xl shadow-black/10 sm:p-6 lg:p-7">
+        <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary via-primary/60 to-purple/70" />
+        <div className="pointer-events-none absolute -left-16 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-primary/[0.06] blur-3xl" />
+
+        <div className="relative grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+          <div className="flex items-start gap-4">
+            <span className="grid h-12 w-12 flex-none place-items-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
+              <Layers3 size={22} />
+            </span>
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Skills Summary</span>
+              <h2 className="mt-2 max-w-xl font-display text-2xl font-bold leading-tight text-white sm:text-3xl">
+                Built to contribute across the whole product
+              </h2>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+            <p className="text-sm leading-relaxed text-muted sm:text-base">
+              More than a list of technologies, this is the toolkit I use to move from an ambiguous problem to a reliable product. I work across interfaces, APIs, data pipelines, cloud services and AI-powered experiences, with the testing, security and communication discipline needed to support what I build.
+            </p>
+          </div>
         </div>
-        <p className="text-base leading-relaxed text-muted">
-          More than a list of technologies, this is the toolkit I use to move from an ambiguous problem to a reliable product. I work across interfaces, APIs, data pipelines, cloud services and AI-powered experiences, with the testing, security and communication discipline needed to support what I build.
-        </p>
       </div>
 
-      <div className="mt-10 space-y-6">
+      <div className="mt-5 space-y-5">
         <SkillSectionAccordion
           id="technical-capabilities"
           eyebrow="Technical Capabilities"
@@ -236,7 +310,8 @@ export default function Skills() {
           icon={<Code2 size={25} />}
           accent="primary"
           isOpen={openSection === "technical"}
-          onToggle={() => setOpenSection((current) => current === "technical" ? null : "technical")}
+          onToggle={() => toggleSection("technical")}
+          sectionRef={technicalSectionRef}
         >
           <div className="grid gap-6 md:grid-cols-2" data-testid="skills-grid">
             {skillCategories.map((category, index) => (
@@ -247,6 +322,9 @@ export default function Skills() {
                 items={category.items}
                 color={presentations[index].color}
                 index={index}
+                experience={skillExperience[category.title]}
+                isFlipped={flippedSkill === category.title}
+                onFlip={() => setFlippedSkill((current) => current === category.title ? null : category.title)}
               />
             ))}
           </div>
@@ -261,16 +339,20 @@ export default function Skills() {
           icon={<Users size={25} />}
           accent="purple"
           isOpen={openSection === "professional"}
-          onToggle={() => setOpenSection((current) => current === "professional" ? null : "professional")}
+          onToggle={() => toggleSection("professional")}
+          sectionRef={professionalSectionRef}
         >
           <div className="relative overflow-hidden rounded-2xl">
             <div className="relative grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {professionalSkillCategories.map((group, index) => {
+                const theme = professionalThemes[index];
+
                 return (
-                  <article key={group.title} className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition hover:border-purple/20 hover:bg-white/[0.04]">
+                  <article key={group.title} className={`relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition hover:bg-white/[0.04] ${theme.hover}`}>
+                    <div className={`absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${theme.line}`} />
                     <span className="absolute right-4 top-3 font-display text-5xl font-bold text-white/[0.035]">0{index + 1}</span>
-                    <div className="flex items-center gap-3 text-purple/80">
-                      <span className="grid h-10 w-10 place-items-center rounded-xl border border-purple/15 bg-purple/[0.07]">{professionalIcons[index]}</span>
+                    <div className={`flex items-center gap-3 ${theme.accent}`}>
+                      <span className={`grid h-10 w-10 place-items-center rounded-xl border ${theme.icon}`}>{professionalIcons[index]}</span>
                       <span className="text-[11px] font-semibold uppercase tracking-[0.18em]">{group.eyebrow}</span>
                     </div>
                     <h3 className="mt-5 font-display text-xl font-semibold text-white">{group.title}</h3>
@@ -278,7 +360,7 @@ export default function Skills() {
                     <ul className="mt-5 grid grid-cols-2 gap-2">
                       {group.items.map((skill) => (
                         <li key={skill} className="flex min-h-14 items-start gap-2 rounded-xl border border-white/10 bg-black/20 p-3 text-xs font-medium leading-snug text-white/80">
-                          <Check size={14} className="mt-0.5 flex-none text-purple/70" />
+                          <Check size={14} className={`mt-0.5 flex-none ${theme.accent}`} />
                           <span>{skill}</span>
                         </li>
                       ))}

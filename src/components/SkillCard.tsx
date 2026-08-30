@@ -1,4 +1,6 @@
-import type { ReactNode } from "react";
+import { FlipHorizontal2, RotateCcw } from "lucide-react";
+import type { KeyboardEvent, ReactNode } from "react";
+import type { SkillExperience } from "../data/skills";
 
 interface SkillCardProps {
   title: string;
@@ -6,6 +8,9 @@ interface SkillCardProps {
   items: string[];
   color: string;
   index: number;
+  experience: SkillExperience;
+  isFlipped: boolean;
+  onFlip: () => void;
 }
 
 const colorClasses: Record<
@@ -70,43 +75,100 @@ export default function SkillCard({
   items,
   color,
   index,
+  experience,
+  isFlipped,
+  onFlip,
 }: SkillCardProps) {
   const colors = colorClasses[color] || colorClasses.primary;
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onFlip();
+    }
+  };
+
   return (
-    <div
-      className="card card-hover min-w-0 p-5 sm:p-8"
+    <article
+      role="button"
+      tabIndex={0}
+      aria-pressed={isFlipped}
+      aria-label={`${isFlipped ? "Show skills for" : "Show experience for"} ${title}`}
+      onClick={onFlip}
+      onKeyDown={handleKeyDown}
+      className="min-w-0 rounded-3xl outline-none [perspective:1400px] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background"
       style={{ animationDelay: `${index * 0.1}s` }}
       data-testid={`skill-card-${title.toLowerCase().replace(/\s+/g, "-")}`}
     >
-      {/* Header */}
-      <div className="mb-5 flex items-start gap-3 sm:mb-6 sm:items-center sm:gap-4">
-        <div
-          className={`h-12 w-12 flex-none rounded-2xl sm:h-14 sm:w-14 ${colors.bg} ${colors.text} flex items-center justify-center`}
-        >
-          {icon}
+      <div className={`grid h-full transition-transform duration-700 ease-out [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`}>
+        <div aria-hidden={isFlipped} className="card card-hover flex h-full min-h-[22rem] flex-col p-5 [backface-visibility:hidden] [grid-area:1/1] sm:p-8">
+          <div className="mb-5 flex items-start gap-3 sm:mb-6 sm:items-center sm:gap-4">
+            <div className={`flex h-12 w-12 flex-none items-center justify-center rounded-2xl sm:h-14 sm:w-14 ${colors.bg} ${colors.text}`}>
+              {icon}
+            </div>
+            <h3 className="min-w-0 break-words font-display text-lg font-semibold leading-snug text-white sm:text-xl">
+              {title}
+            </h3>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {items.map((item) => (
+              <span
+                key={item}
+                className={`max-w-full cursor-default break-words rounded-lg border px-3 py-2 text-xs font-medium transition-transform hover:scale-105 sm:px-4 sm:text-sm ${colors.bg} ${colors.text} ${colors.border}`}
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-white/5 pt-4 text-sm">
+            <span className="text-muted">{items.length} skills</span>
+            <span className={`inline-flex items-center gap-1.5 font-medium ${colors.text}`}>
+              {experience.overall} overall <FlipHorizontal2 size={15} />
+            </span>
+          </div>
         </div>
-        <h3 className="min-w-0 break-words font-display text-lg font-semibold leading-snug text-white sm:text-xl">
-          {title}
-        </h3>
-      </div>
 
-      {/* Skills */}
-      <div className="flex flex-wrap gap-2">
-        {items.map((item) => (
-          <span
-            key={item}
-            className={`max-w-full break-words rounded-lg px-3 py-2 sm:px-4 ${colors.bg} ${colors.text} text-xs sm:text-sm font-medium border ${colors.border} hover:scale-105 transition-transform cursor-default`}
-          >
-            {item}
-          </span>
-        ))}
-      </div>
+        <div aria-hidden={!isFlipped} className="card flex h-full min-h-[22rem] flex-col border border-white/10 p-5 [backface-visibility:hidden] [grid-area:1/1] [transform:rotateY(180deg)] sm:p-8">
+          <div className="flex items-start justify-between gap-4 border-b border-white/5 pb-5">
+            <div className="flex min-w-0 items-center gap-3">
+              <span className={`grid h-11 w-11 flex-none place-items-center rounded-xl ${colors.bg} ${colors.text}`}>
+                {icon}
+              </span>
+              <div className="min-w-0">
+                <p className={`text-[10px] font-semibold uppercase tracking-[0.18em] ${colors.text}`}>Experience view</p>
+                <h3 className="mt-1 break-words font-display text-lg font-semibold leading-snug text-white">{title}</h3>
+              </div>
+            </div>
+            <span className={`flex-none rounded-full border px-2.5 py-1 text-[10px] font-semibold ${colors.bg} ${colors.text} ${colors.border}`}>
+              {experience.overall}
+            </span>
+          </div>
 
-      {/* Skill count */}
-      <div className="mt-6 pt-4 border-t border-white/5">
-        <span className="text-muted text-sm">{items.length} skills</span>
+          <div className="flex-1 space-y-5 py-5">
+            {experience.groups.map((group) => (
+              <div key={group.label}>
+                <h4 className={`text-xs font-semibold uppercase tracking-[0.14em] ${colors.text}`}>{group.label}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-white/75">
+                  {group.items.map((item, itemIndex) => (
+                    <span key={item}>
+                      {itemIndex > 0 && <span className="px-1.5 text-white/25">&bull;</span>}
+                      {item}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-end border-t border-white/5 pt-4">
+            <span className={`inline-flex items-center gap-1.5 text-sm font-medium ${colors.text}`}>
+              <RotateCcw size={15} /> Return to skills
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
+    </article>
   );
 }
