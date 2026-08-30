@@ -288,7 +288,7 @@ export const skillExperience: Record<string, SkillExperience> = {
       {
         label: "1+ Year Experience",
         items: [
-          "AI API Integration", "AI Application Deployment & Monitoring", "AI Chatbot Development",
+          "AI Application Deployment & Monitoring", "AI API Integration", "AI Chatbot Development",
           "Conversational AI", "Prompt Engineering", "Retrieval Agents", "Single-Agent Applications",
           "Website Chatbot Integration",
         ],
