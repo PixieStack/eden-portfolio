@@ -260,11 +260,10 @@ const professionalPracticeOutcomes = [
   ["Understanding real user needs", "Designing solutions that help", "Supporting users every step of the way"],
 ];
 
-const professionalValuePoints = [
-  { title: "Clearer Decisions", copy: "Complexity becomes direction.", icon: <Lightbulb size={18} /> },
-  { title: "Better Communication", copy: "Ideas become understandable and actionable.", icon: <MessageCircleMore size={18} /> },
-  { title: "Reliable Collaboration", copy: "Work moves forward, even when priorities shift.", icon: <Users size={18} /> },
-  { title: "User-Aware Delivery", copy: "Technical choices stay connected to real people.", icon: <HeartHandshake size={18} /> },
+const professionalSignaturePoints = [
+  { title: "Clarity before complexity", copy: "I ask better questions, make decisions visible and turn ambiguity into direction.", icon: <Lightbulb size={18} /> },
+  { title: "Ownership through delivery", copy: "I look beyond my part, communicate early and stay accountable until the loop is closed.", icon: <ShieldCheck size={18} /> },
+  { title: "Growth without ego", copy: "I stay teachable, seek feedback and turn every lesson into stronger practice.", icon: <TrendingUp size={18} /> },
 ];
 
 export default function Skills() {
@@ -672,16 +671,21 @@ export default function Skills() {
             </div>
           </article>
 
-          <aside className="professional-value-panel">
-            <h3>Why teams value this</h3>
-            <div className="professional-value-list">
-              {professionalValuePoints.map((point, index) => (
-                <article key={point.title} className={`professional-value-item professional-tone-${professionalToneNames[index]}`}>
+          <aside className="professional-signature-panel">
+            <div className="professional-signature-intro">
+              <span><Sparkles size={22} /></span>
+              <p>My professional signature</p>
+              <h3>The way I work is part of the work.</h3>
+              <small>Technical ability matters. So does the judgement, ownership and self-awareness I bring to every decision around it.</small>
+            </div>
+            <div className="professional-signature-list">
+              {professionalSignaturePoints.map((point, index) => (
+                <article key={point.title} className={`professional-signature-item professional-tone-${professionalToneNames[index]}`}>
                   <span>{point.icon}</span><div><h4>{point.title}</h4><p>{point.copy}</p></div>
                 </article>
               ))}
             </div>
-            <blockquote><span>Technical skills build the solution.</span><strong>Professional skills make the solution dependable.</strong></blockquote>
+            <blockquote><span>The standard I hold</span><strong>I want my code to be dependable&mdash;and the way I think, communicate and deliver to be dependable too.</strong></blockquote>
           </aside>
         </div>
       </section>
