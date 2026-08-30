@@ -56,44 +56,40 @@ const proofPoints = [
     title: "Full-stack to cloud",
     detail: "Frontend, backend, APIs, data and cloud delivery.",
     icon: <Layers3 size={22} />,
-    card: "border-primary/20 hover:border-primary/40 hover:shadow-primary/10",
-    iconStyle: "bg-primary/10 text-primary",
+    iconStyle: "border-primary/30 bg-primary/10 text-primary shadow-primary/20",
     accent: "text-primary",
-    line: "via-primary/70",
-    glow: "bg-primary/10",
+    marker: "bg-primary shadow-primary/50",
+    rule: "from-primary/70",
   },
   {
     eyebrow: "Applied AI",
     title: "Chatbots to automation",
     detail: "AI experiences integrated into real web products.",
     icon: <Bot size={22} />,
-    card: "border-purple/20 hover:border-purple/40 hover:shadow-purple/10",
-    iconStyle: "bg-purple/10 text-purple",
+    iconStyle: "border-purple/30 bg-purple/10 text-purple shadow-purple/20",
     accent: "text-purple",
-    line: "via-purple/70",
-    glow: "bg-purple/10",
+    marker: "bg-purple shadow-purple/50",
+    rule: "from-purple/70",
   },
   {
     eyebrow: "Data credentials",
     title: "Databricks certified",
     detail: "Professional engineering and associate analytics credentials.",
     icon: <Database size={22} />,
-    card: "border-cyan-400/20 hover:border-cyan-400/40 hover:shadow-cyan-500/10",
-    iconStyle: "bg-cyan-400/10 text-cyan-300",
+    iconStyle: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-cyan-500/20",
     accent: "text-cyan-300",
-    line: "via-cyan-400/70",
-    glow: "bg-cyan-400/10",
+    marker: "bg-cyan-300 shadow-cyan-400/50",
+    rule: "from-cyan-400/70",
   },
   {
     eyebrow: "Professional standing",
     title: "AMICITP-SA",
     detail: "SAQA-recognised designation with Java and .NET competencies.",
     icon: <Award size={22} />,
-    card: "border-emerald-400/20 hover:border-emerald-400/40 hover:shadow-emerald-500/10",
-    iconStyle: "bg-emerald-400/10 text-emerald-300",
+    iconStyle: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300 shadow-emerald-500/20",
     accent: "text-emerald-300",
-    line: "via-emerald-400/70",
-    glow: "bg-emerald-400/10",
+    marker: "bg-emerald-300 shadow-emerald-400/50",
+    rule: "from-emerald-400/70",
   },
 ];
 
@@ -248,57 +244,65 @@ export default function Skills() {
         </p>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        {proofPoints.map((point) => (
-          <article
-            key={point.title}
-            className={`group relative h-full overflow-hidden rounded-2xl border bg-surface/80 p-4 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-5 ${point.card}`}
-          >
-            <div className={`absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${point.line}`} />
-            <div className={`pointer-events-none absolute -right-8 -top-10 h-24 w-24 rounded-full blur-2xl transition group-hover:scale-125 ${point.glow}`} />
+      <section aria-label="Professional proof points" className="relative mt-2">
+        <div className="pointer-events-none absolute left-6 right-6 top-[1.4rem] hidden h-px bg-gradient-to-r from-primary/60 via-purple/50 to-emerald-400/60 xl:block" />
 
-            <div className="relative flex items-center justify-between gap-3">
-              <span className={`grid h-10 w-10 place-items-center rounded-xl border border-white/10 ${point.iconStyle}`}>
-                {point.icon}
-              </span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">
-                Proof point
-              </span>
-            </div>
+        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
+          {proofPoints.map((point, index) => (
+            <article
+              key={point.title}
+              className="group relative min-w-0"
+            >
+              <div className="relative flex items-center gap-4">
+                <span className={`relative z-10 grid h-11 w-11 flex-none place-items-center rounded-full border shadow-lg ring-8 ring-dark transition duration-300 group-hover:scale-110 ${point.iconStyle}`}>
+                  {point.icon}
+                </span>
+                <span className={`h-px flex-1 bg-gradient-to-r to-transparent xl:opacity-0 ${point.rule}`} />
+                <span className="font-display text-4xl font-bold leading-none text-white/[0.07] transition group-hover:text-white/[0.12]">
+                  0{index + 1}
+                </span>
+              </div>
 
-            <div className="relative mt-4">
-              <p className={`text-[10px] font-semibold uppercase tracking-[0.17em] ${point.accent}`}>{point.eyebrow}</p>
-              <h2 className="mt-1.5 font-display text-lg font-bold leading-snug text-white">{point.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{point.detail}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+              <div className="relative mt-6 border-l border-white/10 pl-4">
+                <span className={`absolute -left-[3px] top-1.5 h-1.5 w-1.5 rounded-full shadow-[0_0_12px_currentColor] ${point.marker}`} />
+                <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">Proof point</p>
+                <p className={`mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] ${point.accent}`}>{point.eyebrow}</p>
+                <h2 className="mt-2 font-display text-xl font-bold leading-snug text-white transition group-hover:translate-x-1">{point.title}</h2>
+                <p className="mt-2 max-w-[17rem] text-sm leading-relaxed text-muted">{point.detail}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <div className="relative mt-14 overflow-hidden rounded-2xl border border-white/10 bg-surface/70 p-5 shadow-xl shadow-black/10 sm:p-6 lg:p-7">
-        <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary via-primary/60 to-purple/70" />
-        <div className="pointer-events-none absolute -left-16 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full bg-primary/[0.06] blur-3xl" />
+      <section aria-labelledby="skills-summary-title" className="relative mt-20 py-10 sm:py-12">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-primary/60 via-purple/35 to-transparent" />
+        <div className="pointer-events-none absolute -left-24 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-primary/[0.07] blur-3xl" />
 
-        <div className="relative grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-          <div className="flex items-start gap-4">
-            <span className="grid h-12 w-12 flex-none place-items-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
-              <Layers3 size={22} />
-            </span>
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Skills Summary</span>
-              <h2 className="mt-2 max-w-xl font-display text-2xl font-bold leading-tight text-white sm:text-3xl">
-                Built to contribute across the whole product
-              </h2>
-            </div>
+        <div className="relative grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+          <div className="relative pl-6 sm:pl-8">
+            <span className="absolute inset-y-1 left-0 w-px bg-gradient-to-b from-primary via-primary/70 to-purple/60" />
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
+            <h2 id="skills-summary-title" className="mt-3 max-w-xl font-display text-3xl font-bold leading-[1.12] text-white sm:text-4xl">
+              Built to contribute across <span className="text-gradient">the whole product</span>
+            </h2>
           </div>
 
-          <div className="border-t border-white/10 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-            <p className="text-sm leading-relaxed text-muted sm:text-base">
+          <div>
+            <p className="max-w-2xl text-sm leading-7 text-muted sm:text-base">
               More than a list of technologies, this is the toolkit I use to move from an ambiguous problem to a reliable product. I work across interfaces, APIs, data pipelines, cloud services and AI-powered experiences, with the testing, security and communication discipline needed to support what I build.
             </p>
+
+            <div className="mt-7 flex items-center gap-2 overflow-hidden" aria-hidden="true">
+              <span className="flex-none text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35">Ambiguous problem</span>
+              <span className="h-px min-w-5 flex-1 bg-gradient-to-r from-primary/70 via-purple/60 to-cyan-400/60" />
+              <span className="h-2 w-2 flex-none rotate-45 border-r border-t border-cyan-300/70" />
+              <span className="flex-none text-[9px] font-semibold uppercase tracking-[0.2em] text-white/60">Reliable product</span>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <div className="mt-5 space-y-5">
         <SkillSectionAccordion
