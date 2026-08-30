@@ -231,13 +231,6 @@ const capabilityImpactTitles = [
   "A focused environment for better delivery.",
 ];
 
-const capabilityMatters = [
-  { title: "Whole System Thinking", copy: "I design with the whole system in mind, not just isolated features.", icon: <Network size={20} /> },
-  { title: "Better Engineering Decisions", copy: "Understanding each layer helps me choose what improves the entire product.", icon: <Sparkles size={20} /> },
-  { title: "Reliable, Scalable Solutions", copy: "Performance, security and maintainability shape the work from day one.", icon: <ShieldCheck size={20} /> },
-  { title: "Always Evolving", copy: "I keep learning, adapting and applying what matters.", icon: <TrendingUp size={20} /> },
-];
-
 const professionalIcons = [
   <Lightbulb size={21} />,
   <MessageCircleMore size={21} />,
@@ -547,21 +540,6 @@ export default function Skills() {
                 <p>This is the toolkit I work with across the stack — the technologies, platforms and engineering practices I use to design, build, integrate and deliver software that solves real problems.</p>
               </div>
 
-              <div className="capability-system-map" aria-label="My full-stack capability connects four parts of the product">
-                <div className="capability-system-map-orbit" aria-hidden="true">
-                  <span className="capability-system-map-ring" />
-                  <span className="capability-system-map-core"><Boxes size={25} /></span>
-                  <span className="capability-system-map-node capability-system-map-node--top"><Monitor size={17} /></span>
-                  <span className="capability-system-map-node capability-system-map-node--right"><Server size={17} /></span>
-                  <span className="capability-system-map-node capability-system-map-node--bottom"><Database size={17} /></span>
-                  <span className="capability-system-map-node capability-system-map-node--left"><Cloud size={17} /></span>
-                </div>
-                <div className="capability-system-map-copy">
-                  <p>Connected capability</p>
-                  <h3>One product.<br />Four connected layers.</h3>
-                  <div><span>Interface</span><span>Logic</span><span>Data</span><span>Delivery</span></div>
-                </div>
-              </div>
             </div>
 
             <div className="capability-card-grid" data-testid="skills-grid">
@@ -609,37 +587,27 @@ export default function Skills() {
               <div><h3>Full-Stack Perspective</h3><p>I understand how each layer works — and how they connect. That wider view helps me build solutions that are scalable, secure and ready for real-world use.</p></div>
             </article>
 
-            <article className="capability-matters-card">
-              <p className="capability-aside-kicker">Why this matters</p>
-              <div>
-                {capabilityMatters.map((item) => (
-                  <div key={item.title} className="capability-matter-item">
-                    <span>{item.icon}</span>
-                    <div><h3>{item.title}</h3><p>{item.copy}</p></div>
-                  </div>
-                ))}
+            <div className="capability-system-map capability-system-map--aside" aria-label="My full-stack capability connects four parts of the product">
+              <div className="capability-system-map-orbit" aria-hidden="true">
+                <span className="capability-system-map-ring" />
+                <span className="capability-system-map-core"><Boxes size={25} /></span>
+                <span className="capability-system-map-node capability-system-map-node--top"><Monitor size={17} /></span>
+                <span className="capability-system-map-node capability-system-map-node--right"><Server size={17} /></span>
+                <span className="capability-system-map-node capability-system-map-node--bottom"><Database size={17} /></span>
+                <span className="capability-system-map-node capability-system-map-node--left"><Cloud size={17} /></span>
               </div>
-            </article>
+              <div className="capability-system-map-copy">
+                <p>Connected capability</p>
+                <h3>One product.<br />Four connected layers.</h3>
+                <div><span>Interface</span><span>Logic</span><span>Data</span><span>Delivery</span></div>
+              </div>
+            </div>
 
             <a className="capability-project-card" href="https://github.com/PixieStack" target="_blank" rel="noopener noreferrer">
               <span><Award size={28} /></span>
               <div><h3>Curious about how I use these?</h3><p>See the projects where these technologies come together to solve real problems.</p></div>
               <strong>See My Engineering in Action <ArrowRight size={16} /></strong>
             </a>
-
-            <article className="capability-recruiter-card">
-              <div className="capability-recruiter-heading">
-                <span><Handshake size={24} /></span>
-                <div><p>For hiring teams</p><h3>Ready to contribute across the build.</h3></div>
-              </div>
-              <p className="capability-recruiter-copy">I bring 3+ years of hands-on full-stack experience, cross-layer judgement and the ability to learn quickly without losing sight of delivery.</p>
-              <div className="capability-recruiter-signals" aria-label="Professional contribution highlights">
-                <span><Check size={12} /> End-to-end mindset</span>
-                <span><Check size={12} /> Production aware</span>
-                <span><Check size={12} /> Built to grow</span>
-              </div>
-              <a href="#/contact">Start a conversation <ArrowRight size={15} /></a>
-            </article>
 
           </aside>
         </div>
