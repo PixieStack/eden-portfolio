@@ -326,6 +326,7 @@ body {
 
 .skills-showcase-hero {
   isolation: isolate;
+  margin-bottom: max(7rem, calc(100svh - 50rem));
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
 }
 
@@ -655,6 +656,10 @@ body {
 }
 
 @media (max-width: 1180px) {
+  .skills-showcase-hero {
+    margin-bottom: 5rem;
+  }
+
   .skills-showcase-grid {
     grid-template-columns: minmax(0, 1fr) minmax(20rem, 1fr);
   }

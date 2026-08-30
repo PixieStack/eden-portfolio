@@ -339,7 +339,7 @@ export default function Skills() {
 
   return (
     <section className="section skills-page-section" data-testid="skills-section">
-      <section aria-labelledby="skills-title" className="skills-showcase-hero relative mb-10 overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#080a0f]" data-testid="skills-hero">
+      <section aria-labelledby="skills-title" className="skills-showcase-hero relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#080a0f]" data-testid="skills-hero">
         <div className="skills-showcase-grid relative z-10">
           <section className="skills-identity-panel relative min-w-0 overflow-hidden" aria-label="Technical expertise introduction">
             <div className="relative z-20">
