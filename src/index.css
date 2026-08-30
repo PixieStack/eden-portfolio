@@ -324,106 +324,414 @@ body {
   animation: principle-stroke-draw 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.skills-editorial {
-  background:
-    linear-gradient(90deg, rgba(249, 115, 22, 0.035), transparent 34%),
-    radial-gradient(420px circle at 0% 18%, rgba(249, 115, 22, 0.055), transparent 62%);
-}
-
-.skills-philosophy {
-  background: radial-gradient(680px circle at 42% 62%, rgba(255, 255, 255, 0.018), transparent 66%);
-}
-
-.pillar-instrument {
-  --pillar-x: 50%;
-  --pillar-y: 50%;
+.skills-showcase-hero {
   isolation: isolate;
-  transform-style: preserve-3d;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
 }
 
-.pillar-instrument-glow {
-  background:
-    radial-gradient(180px circle at var(--pillar-x) var(--pillar-y), rgba(249, 115, 22, 0.095), transparent 72%),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 58%);
-  transition: background-position 180ms ease-out;
+.section.skills-page-section {
+  max-width: 1600px;
+  padding-top: 2rem;
 }
 
-.pillar-instrument-ticks {
-  background: repeating-conic-gradient(
-    from 0deg,
-    rgba(255, 255, 255, 0.24) 0deg 0.45deg,
-    transparent 0.45deg 5deg
-  );
-  -webkit-mask: radial-gradient(circle, transparent 0 78%, #000 78.4% 80%, transparent 80.5%);
-  mask: radial-gradient(circle, transparent 0 78%, #000 78.4% 80%, transparent 80.5%);
-  animation: pillar-calibration-spin 70s linear infinite reverse;
-}
-
-.pillar-active-sector {
-  background: conic-gradient(
-    from -18deg,
-    transparent 0deg,
-    rgba(249, 115, 22, 0.2) 18deg,
-    rgba(249, 115, 22, 0.035) 38deg,
-    transparent 60deg
-  );
-  -webkit-mask: radial-gradient(circle, transparent 0 61%, #000 61.5% 79%, transparent 79.5%);
-  mask: radial-gradient(circle, transparent 0 61%, #000 61.5% 79%, transparent 79.5%);
-  filter: drop-shadow(0 0 14px rgba(249, 115, 22, 0.12));
-}
-
-.pillar-core {
-  background:
-    radial-gradient(circle at 50% 30%, rgba(249, 115, 22, 0.075), transparent 46%),
-    rgba(13, 13, 18, 0.97);
-  box-shadow:
-    0 26px 70px rgba(0, 0, 0, 0.52),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
-    0 0 0 12px rgba(255, 255, 255, 0.012);
-  animation: pillar-core-breathe 4.8s ease-in-out infinite;
-}
-
-.pillar-insight {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.022), transparent 58%),
-    radial-gradient(260px circle at 85% 20%, rgba(249, 115, 22, 0.035), transparent 68%);
-}
-
-.pillar-insight::before {
+.skills-showcase-hero::before {
   content: "";
   position: absolute;
-  inset-block: 1.5rem;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(520px circle at 19% 55%, rgba(249, 115, 22, 0.1), transparent 68%),
+    radial-gradient(480px circle at 52% 44%, rgba(168, 85, 247, 0.055), transparent 67%),
+    linear-gradient(112deg, rgba(255, 255, 255, 0.015), transparent 42%, rgba(249, 115, 22, 0.02));
+  z-index: 0;
+}
+
+.skills-showcase-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.98fr) minmax(26rem, 1.08fr) minmax(20rem, 0.94fr);
+  gap: 1rem;
+  min-height: 35.5rem;
+  padding: 1.5rem;
+}
+
+.skills-identity-panel {
+  min-height: 32.5rem;
+  padding-right: 0.5rem;
+}
+
+.skills-gradient-title {
+  width: fit-content;
+  color: transparent;
+  background: linear-gradient(92deg, #ffffff 0%, #f8a36d 48%, #b36cff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.skills-signature p {
+  color: transparent;
+  background: linear-gradient(92deg, #ff8b57 5%, #f08b91 46%, #a873ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 0 0 22px rgba(249, 115, 22, 0.12);
+}
+
+.skills-portrait-wrap {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 82%, transparent 100%);
+}
+
+.skills-portrait-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #080a0f 0%, transparent 24%, transparent 72%, #080a0f 100%),
+    linear-gradient(to top, #080a0f 0%, transparent 35%);
+}
+
+.skills-portrait {
+  object-position: 50% 29%;
+  filter: saturate(0.76) contrast(1.12) brightness(0.63);
+  transform: scale(1.04);
+}
+
+.skills-wheel-panel {
+  display: grid;
+  place-items: center;
+  min-height: 32.5rem;
+}
+
+.skills-orbit-wheel {
+  --pillar-x: 50%;
+  --pillar-y: 50%;
+  --active-angle: 180deg;
+  width: min(100%, 33rem);
+  aspect-ratio: 1;
+  isolation: isolate;
+}
+
+.skills-orbit-glow {
+  border-radius: 999px;
+  background:
+    radial-gradient(150px circle at var(--pillar-x) var(--pillar-y), rgba(249, 115, 22, 0.11), transparent 72%),
+    radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.06), transparent 53%);
+}
+
+.skills-orbit-ring {
+  border: 1px solid rgba(249, 115, 22, 0.27);
+  box-shadow: inset 0 0 32px rgba(249, 115, 22, 0.018);
+}
+
+.skills-orbit-ring--outer {
+  inset: 18%;
+}
+
+.skills-orbit-ring--middle {
+  inset: 25%;
+  border-style: dashed;
+  border-color: rgba(168, 85, 247, 0.2);
+  animation: spin 32s linear infinite;
+}
+
+.skills-orbit-ring--inner {
+  inset: 35%;
+  border-color: rgba(249, 115, 22, 0.38);
+}
+
+.skills-orbit-ticks {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(249, 115, 22, 0.52) 0deg 0.7deg,
+    transparent 0.7deg 7.5deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 0 72%, #000 72.5% 73.5%, transparent 74%);
+  mask: radial-gradient(circle, transparent 0 72%, #000 72.5% 73.5%, transparent 74%);
+  opacity: 0.38;
+  animation: skills-orbit-calibrate 54s linear infinite reverse;
+}
+
+.skills-orbit-cross::before,
+.skills-orbit-cross::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.7), transparent);
+}
+
+.skills-orbit-cross::before {
   left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+}
+
+.skills-orbit-cross::after {
+  bottom: 0;
+  left: 50%;
+  top: 0;
   width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(249, 115, 22, 0.72), transparent);
-  transform: scaleY(0.62);
-  transform-origin: center;
-  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  background: linear-gradient(to bottom, transparent, rgba(249, 115, 22, 0.7), transparent);
 }
 
-.pillar-insight:hover::before {
-  transform: scaleY(1);
+.skills-orbit-active-arc {
+  background: conic-gradient(from -14deg, rgba(249, 115, 22, 0.85), rgba(249, 115, 22, 0.05) 38deg, transparent 68deg);
+  -webkit-mask: radial-gradient(circle, transparent 0 82%, #000 82.5% 84%, transparent 84.5%);
+  mask: radial-gradient(circle, transparent 0 82%, #000 82.5% 84%, transparent 84.5%);
+  filter: drop-shadow(0 0 9px rgba(249, 115, 22, 0.7));
+  transform: rotate(var(--active-angle));
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes pillar-calibration-spin {
+.skills-orbit-core {
+  width: 29%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(249, 115, 22, 0.72);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(249, 115, 22, 0.16), transparent 48%),
+    rgba(14, 15, 20, 0.97);
+  box-shadow:
+    0 0 28px rgba(249, 115, 22, 0.2),
+    0 24px 58px rgba(0, 0, 0, 0.5),
+    inset 0 0 32px rgba(249, 115, 22, 0.05);
+  animation: skills-core-pulse 4.5s ease-in-out infinite;
+}
+
+.skills-orbit-node {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: left;
+  transition: color 260ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skills-orbit-node:hover,
+.skills-orbit-node:focus-visible,
+.skills-orbit-node.is-active {
+  color: #fff;
+}
+
+.skills-orbit-node:focus-visible {
+  outline: none;
+}
+
+.skills-orbit-node-icon {
+  display: grid;
+  flex: none;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: 1px solid rgba(168, 85, 247, 0.58);
+  border-radius: 999px;
+  color: #b979ff;
+  background: rgba(18, 14, 28, 0.92);
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.17), inset 0 0 16px rgba(168, 85, 247, 0.06);
+  transition: border-color 260ms ease, color 260ms ease, background 260ms ease, box-shadow 260ms ease, transform 260ms ease;
+}
+
+.skills-orbit-node:hover .skills-orbit-node-icon,
+.skills-orbit-node:focus-visible .skills-orbit-node-icon {
+  transform: scale(1.07);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.28), inset 0 0 18px rgba(168, 85, 247, 0.1);
+}
+
+.skills-orbit-node.is-active .skills-orbit-node-icon {
+  border-color: rgba(249, 115, 22, 0.9);
+  color: #ff8a3d;
+  background: rgba(35, 20, 12, 0.95);
+  box-shadow: 0 0 26px rgba(249, 115, 22, 0.35), inset 0 0 18px rgba(249, 115, 22, 0.1);
+}
+
+.skills-orbit-node-copy {
+  display: block;
+  width: 7.8rem;
+}
+
+.skills-orbit-node-label,
+.skills-orbit-node-detail {
+  display: block;
+}
+
+.skills-orbit-node-label {
+  color: #c287ff;
+  font-size: 0.43rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 0.72rem;
+  text-transform: uppercase;
+}
+
+.skills-orbit-node.is-active .skills-orbit-node-label {
+  color: #ff8a3d;
+}
+
+.skills-orbit-node-detail {
+  margin-top: 0.22rem;
+  font-size: 0.62rem;
+  line-height: 0.9rem;
+}
+
+.skills-orbit-node--top {
+  top: 0;
+  left: 50%;
+  flex-direction: column-reverse;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.skills-orbit-node--top .skills-orbit-node-copy,
+.skills-orbit-node--bottom .skills-orbit-node-copy {
+  text-align: center;
+}
+
+.skills-orbit-node--right {
+  top: 50%;
+  right: -1%;
+  flex-direction: row;
+  transform: translateY(-50%);
+}
+
+.skills-orbit-node--left {
+  top: 50%;
+  left: -1%;
+  flex-direction: row-reverse;
+  transform: translateY(-50%);
+}
+
+.skills-orbit-node--left .skills-orbit-node-copy {
+  text-align: right;
+}
+
+.skills-orbit-node--bottom {
+  bottom: 8%;
+  left: 50%;
+  flex-direction: column;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.skills-orbit-hint::after {
+  content: "";
+  display: block;
+  width: 11rem;
+  height: 1px;
+  margin: 0.65rem auto 0;
+  background: linear-gradient(90deg, transparent, #f97316, rgba(168, 85, 247, 0.4), transparent);
+}
+
+.skills-evidence-panel {
+  align-self: stretch;
+}
+
+.skills-evidence-panel::before {
+  content: "";
+  position: absolute;
+  top: 44%;
+  left: -0.52rem;
+  width: 1rem;
+  height: 1rem;
+  border-bottom: 1px solid rgba(249, 115, 22, 0.5);
+  border-left: 1px solid rgba(249, 115, 22, 0.5);
+  background: #111319;
+  transform: rotate(45deg);
+}
+
+@keyframes skills-orbit-calibrate {
   to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes pillar-core-breathe {
+@keyframes skills-core-pulse {
   0%,
   100% {
-    box-shadow:
-      0 26px 70px rgba(0, 0, 0, 0.52),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.025),
-      0 0 0 12px rgba(255, 255, 255, 0.012);
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.16), 0 24px 58px rgba(0, 0, 0, 0.5), inset 0 0 32px rgba(249, 115, 22, 0.04);
   }
   50% {
-    box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.58),
-      inset 0 0 0 1px rgba(249, 115, 22, 0.08),
-      0 0 0 15px rgba(249, 115, 22, 0.018);
+    box-shadow: 0 0 38px rgba(249, 115, 22, 0.28), 0 28px 68px rgba(0, 0, 0, 0.56), inset 0 0 38px rgba(249, 115, 22, 0.08);
+  }
+}
+
+@media (max-width: 1180px) {
+  .skills-showcase-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 1fr);
+  }
+
+  .skills-identity-panel {
+    grid-column: 1 / -1;
+    min-height: 31rem;
+  }
+
+  .skills-portrait-wrap {
+    right: 0;
+    left: auto;
+    width: 54%;
+    height: 88%;
+  }
+
+  .skills-wheel-panel,
+  .skills-evidence-panel {
+    min-height: 34rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .skills-showcase-grid {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1rem;
+  }
+
+  .skills-identity-panel {
+    grid-column: auto;
+    min-height: 41rem;
+  }
+
+  .skills-portrait-wrap {
+    width: 100%;
+    height: 58%;
+  }
+
+  .skills-builder-card {
+    bottom: 4.5rem;
+  }
+
+  .skills-wheel-panel {
+    min-height: auto;
+  }
+
+  .skills-orbit-wheel {
+    width: min(100%, 29rem);
+  }
+
+  .skills-orbit-node-copy {
+    width: 6rem;
+  }
+
+  .skills-orbit-node-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .skills-orbit-node--left {
+    left: -2%;
+  }
+
+  .skills-orbit-node--right {
+    right: -2%;
+  }
+
+  .skills-evidence-panel {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-orbit-ring--middle,
+  .skills-orbit-ticks,
+  .skills-orbit-core {
+    animation: none;
   }
 }
 
@@ -470,9 +778,7 @@ body {
   .pillar-story-icon,
   .pillar-story-kicker,
   .pillar-story-heading,
-  .pillar-story-copy,
-  .pillar-instrument-ticks,
-  .pillar-core {
+  .pillar-story-copy {
     animation: none;
   }
 }

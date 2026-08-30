@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode, type RefObject } from "react";
 import {
   Award,
   BarChart3,
@@ -21,15 +21,21 @@ import {
   Monitor,
   Network,
   RefreshCw,
+  Rocket,
   Server,
   ShieldCheck,
   Smartphone,
+  Sparkles,
+  Star,
   TestTube2,
+  TrendingUp,
+  Trophy,
   Users,
   Wrench,
 } from "lucide-react";
 import SkillCard from "../components/SkillCard";
 import { professionalSkillCategories, skillCategories, skillExperience } from "../data/skills";
+import profilePortrait from "../assets/gallery/Profile.jpeg";
 
 const presentations = [
   { icon: <Code2 size={24} />, color: "primary" },
@@ -54,88 +60,105 @@ const proofPoints = [
   {
     eyebrow: "Engineering range",
     navLabel: "Full-stack to cloud",
-    centreTitle: "I Build Across the System",
-    centreLead: "I don’t stop where one layer ends.",
-    centreStory: "I work across the application—shaping the experience people use, engineering the logic behind it, connecting systems and data, and understanding the infrastructure that carries it into production.",
-    headline: "One feature.",
-    headlineAccent: "Every layer considered.",
-    story: "My strongest advantage is seeing the connections others can miss between interface, logic, APIs, data and deployment. That wider view helps me make better decisions earlier—before gaps become problems.",
-    signals: ["Interface", "Logic", "APIs", "Data", "Delivery"],
+    panelTitle: "Engineering Range",
+    story: "I work across the application—from the experience people use to the logic, APIs, data and infrastructure that carry it into production.",
+    workItems: [
+      { title: "I connect the layers", copy: "Interface, backend, APIs and data are engineered as one system.", icon: <Boxes size={17} /> },
+      { title: "I catch gaps earlier", copy: "A wider view exposes hand-off risks before they become delivery problems.", icon: <Sparkles size={17} /> },
+      { title: "I design for production", copy: "Security, testing and maintainability shape the build from the start.", icon: <ShieldCheck size={17} /> },
+    ],
+    evidence: [
+      { name: "Full-stack", detail: "Core practice" },
+      { name: "APIs", detail: "Integration" },
+      { name: "Cloud", detail: "Delivery" },
+      { name: "Data", detail: "Connected systems" },
+    ],
+    quote: "One feature should feel like one system.",
     icon: <Layers3 size={22} />,
   },
   {
     eyebrow: "Applied AI",
-    navLabel: "Applied intelligence",
-    centreTitle: "I Learn What Changes the Build",
-    centreLead: "AI is changing how software is designed, built and experienced.",
-    centreStory: "I don’t want to watch that shift from the sidelines—I want to understand it well enough to build with it responsibly.",
-    headline: "Curiosity becomes",
-    headlineAccent: "capability.",
-    story: "I experiment with emerging AI capabilities by asking the question that matters to an engineer: where does this genuinely make the product better? I learn through building, integration and practical use—not hype.",
-    signals: ["Experiment", "Integrate", "Evaluate", "Apply"],
+    navLabel: "Building with what’s next",
+    panelTitle: "Applied AI",
+    story: "I explore emerging AI capabilities by asking where they genuinely improve the product, then learn through practical building and integration.",
+    workItems: [
+      { title: "I build to understand", copy: "Experiments become working prototypes, not notes left in a course.", icon: <Bot size={17} /> },
+      { title: "I integrate with purpose", copy: "AI belongs where it makes an experience clearer, faster or more useful.", icon: <Sparkles size={17} /> },
+      { title: "I evaluate responsibly", copy: "Useful capability still needs testing, monitoring and sound judgement.", icon: <ShieldCheck size={17} /> },
+    ],
+    evidence: [
+      { name: "AI APIs", detail: "Integration" },
+      { name: "Chatbots", detail: "Web products" },
+      { name: "Agents", detail: "Applied learning" },
+      { name: "Automation", detail: "Prototypes" },
+    ],
+    quote: "Emerging capability matters when it improves the product.",
     icon: <Bot size={22} />,
   },
   {
     eyebrow: "Professional standing",
-    navLabel: "Credibility earned",
-    centreTitle: "I Hold My Work to a Higher Standard",
-    centreLead: "I want the engineer behind the work to be as credible as the work itself.",
-    centreStory: "That means accountability, professional growth and standards that extend beyond completing the next ticket.",
-    headline: "Recognition follows",
-    headlineAccent: "the standard.",
-    story: "My AMICITP-SA professional designation reflects something I intend to keep earning: credibility built through competence, continued development and responsibility for the work I put my name behind.",
-    signals: ["Competence", "Accountability", "Growth"],
+    navLabel: "Ambition with accountability",
+    panelTitle: "Professional Standing",
+    story: "I want the engineer behind the work to be as credible as the work itself—accountable, developing continuously and working to a higher standard.",
+    workItems: [
+      { title: "I work to standards", copy: "Professional responsibility extends beyond completing the next ticket.", icon: <Award size={17} /> },
+      { title: "I keep earning trust", copy: "Competence is strengthened through delivery, reflection and continued development.", icon: <TrendingUp size={17} /> },
+      { title: "I own the outcome", copy: "I put my name behind work that is considered, supportable and responsible.", icon: <ShieldCheck size={17} /> },
+    ],
+    evidence: [
+      { name: "AMICITP-SA", detail: "Designation" },
+      { name: "Java & .NET", detail: "Competencies" },
+      { name: "SAQA", detail: "Recognised" },
+      { name: "Active", detail: "Development" },
+    ],
+    quote: "Credibility is something I intend to keep earning.",
     icon: <Award size={22} />,
   },
   {
     eyebrow: "Continuous growth",
     navLabel: "Learning with evidence",
-    centreTitle: "Learning With Evidence",
-    centreLead: "I don’t learn to collect technologies. I learn to expand what I can solve.",
-    centreStory: "Courses and credentials can mark progress, but the real measure is whether new knowledge becomes better judgement, stronger engineering and more capable software.",
-    headline: "Knowledge should",
-    headlineAccent: "compound.",
-    story: "From data engineering and analytics to cloud, platforms and emerging technologies, I keep widening the knowledge around my core development experience—then bring what matters back into the way I build.",
-    signals: ["Learn", "Validate", "Compound"],
+    panelTitle: "Continuous Growth",
+    story: "I treat learning as part of the job. I don’t collect certifications—I use them to go deeper, build smarter and stay ahead of what’s next.",
+    workItems: [
+      { title: "I learn with intention", copy: "Focused on skills that solve real problems and create real impact.", icon: <Lightbulb size={17} /> },
+      { title: "I apply immediately", copy: "New knowledge gets tested in projects, systems and daily engineering decisions.", icon: <Sparkles size={17} /> },
+      { title: "I share & strengthen", copy: "Teaching, documenting and collaborating forces me to grow—and helps others.", icon: <TrendingUp size={17} /> },
+    ],
+    evidence: [
+      { name: "databricks", detail: "Data Engineering" },
+      { name: "serviceNow", detail: "CSA Candidate" },
+      { name: "CISCO", detail: "Networking" },
+      { name: "& More", detail: "Always Learning" },
+    ],
+    quote: "Growth isn’t a phase. It’s my standard. I build better by learning better.",
     icon: <Database size={22} />,
   },
 ];
 
-const proofPointPositions = [
-  "left-1/2 top-0 -translate-x-1/2 text-center",
-  "right-0 top-1/2 -translate-y-1/2 text-right",
-  "left-0 top-1/2 -translate-y-1/2 text-left",
-  "bottom-0 left-1/2 -translate-x-1/2 text-center",
-];
+const proofPointPositions = ["top", "right", "left", "bottom"];
 
 const proofIndicatorRotations = [0, 90, -90, 180];
 
-const deliveryPath = ["Interface", "Logic", "APIs", "Data", "Cloud"];
-
-const teamBenefits = [
+const heroValues = [
   {
-    microLabel: "End-to-end thinking",
-    title: "I connect decisions across the build.",
-    titleLead: "I connect decisions across the ",
-    titleAccent: "build.",
-    detail: "Frontend, backend, APIs and data aren’t separate problems to me. I think about how one decision travels through the system—and catch the gaps that appear between layers.",
-    icon: <Network size={23} />,
+    title: "Full-Stack Perspective",
+    copy: "I see the whole system—design, code, data, APIs, infrastructure and the experience in between.",
+    icon: <Boxes size={25} />,
   },
   {
-    microLabel: "Production mindset",
-    title: "Working is the baseline.",
-    titleLead: "Working is the ",
-    titleAccent: "baseline.",
-    detail: "I think about what happens next: maintainability, validation, security, failure states and the developer who inherits the code after me.",
-    icon: <ShieldCheck size={23} />,
+    title: "Clean. Scalable. Maintainable.",
+    copy: "I write code that’s easy to understand, easy to extend and built to survive beyond the first release.",
+    icon: <ShieldCheck size={25} />,
   },
   {
-    microLabel: "Proven + progressing",
-    title: "I build first. I validate what I know.",
-    titleLead: "I build first. I validate ",
-    titleAccent: "what I know.",
-    detail: "Production experience proves the practice; professional recognition and certifications reinforce the depth behind it. I use both to keep raising my standard.",
-    icon: <Award size={23} />,
+    title: "Human-Centered Engineering",
+    copy: "I build for people, not just for specs. Usability, clarity and impact guide every decision I make.",
+    icon: <Users size={25} />,
+  },
+  {
+    title: "Impact > Output",
+    copy: "I care less about how much I build, and more about the difference it makes.",
+    icon: <Rocket size={25} />,
   },
 ];
 
@@ -260,10 +283,9 @@ function SkillSectionAccordion({
 export default function Skills() {
   const [openSection, setOpenSection] = useState<"technical" | "professional" | null>("technical");
   const [flippedSkills, setFlippedSkills] = useState<Set<string>>(() => new Set());
-  const [activeProofPoint, setActiveProofPoint] = useState(0);
-  const [displayedProofPoint, setDisplayedProofPoint] = useState(0);
+  const [activeProofPoint, setActiveProofPoint] = useState(3);
+  const [displayedProofPoint, setDisplayedProofPoint] = useState(3);
   const [isProofTransitioning, setIsProofTransitioning] = useState(false);
-  const [activePrinciple, setActivePrinciple] = useState(0);
   const proofTransitionTimeout = useRef<number | null>(null);
   const technicalSectionRef = useRef<HTMLElement>(null);
   const professionalSectionRef = useRef<HTMLElement>(null);
@@ -314,206 +336,152 @@ export default function Skills() {
   };
 
   const activeProof = proofPoints[displayedProofPoint];
-  const activeTeamBenefit = teamBenefits[activePrinciple];
 
   return (
-    <section className="section" data-testid="skills-section">
-      <section aria-labelledby="skills-title" className="relative mb-8 overflow-hidden">
-        <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.05] blur-3xl" />
-
-        <div className="relative grid gap-10 xl:grid-cols-[0.7fr_1.3fr] xl:gap-8 2xl:gap-10">
-          <div className="skills-editorial relative min-w-0 border-y border-white/[0.07] py-7 xl:pr-2">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">Technical expertise</span>
-                <span className="h-px w-12 bg-primary/50" />
+    <section className="section skills-page-section" data-testid="skills-section">
+      <section aria-labelledby="skills-title" className="skills-showcase-hero relative mb-10 overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#080a0f]" data-testid="skills-hero">
+        <div className="skills-showcase-grid relative z-10">
+          <section className="skills-identity-panel relative min-w-0 overflow-hidden" aria-label="Technical expertise introduction">
+            <div className="relative z-20">
+              <div className="flex items-center gap-3">
+                <span className="text-[9px] font-semibold uppercase tracking-[0.21em] text-primary">Technical expertise</span>
+                <span className="h-px w-10 bg-gradient-to-r from-primary/70 to-transparent" />
+                <span className="h-1 w-1 rounded-full bg-primary shadow-[0_0_10px_rgba(249,115,22,0.8)]" />
               </div>
-              <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-white/25">End-to-end practice</span>
+              <h1 id="skills-title" className="mt-4 font-display text-[2.55rem] font-bold leading-[0.92] text-white sm:text-5xl xl:text-[3.1rem]" data-testid="skills-title">
+                Skills &
+                <span className="skills-gradient-title mt-1 block">Technologies</span>
+              </h1>
+              <p className="mt-5 max-w-[19rem] font-display text-lg leading-6 text-white/80">I don’t just work across the stack &mdash;<br />I <span className="font-semibold text-primary">connect it.</span></p>
+              <p className="mt-4 max-w-[19rem] text-[11px] leading-[1.1rem] text-white/50">Strong software isn’t built by knowing more technologies &mdash; it’s built by understanding how each piece influences the next.</p>
+              <p className="mt-2 text-[11px] font-medium text-white/55">That’s where I operate.</p>
             </div>
 
-            <h1 id="skills-title" className="mt-5 font-display text-4xl font-bold leading-[0.95] text-white sm:text-5xl xl:text-[3.25rem]" data-testid="skills-title">
-              Skills <span className="text-white/35">&</span>
-              <span className="mt-1 block text-white">Technologies<span className="ml-2 inline-block h-2 w-2 rounded-full bg-primary shadow-[0_0_16px_rgba(249,115,22,0.65)]" /></span>
-            </h1>
-
-            <div className="mt-7 grid grid-cols-[5.25rem_1fr] gap-4 border-t border-white/[0.07] pt-5">
-              <div className="border-r border-white/10 pr-4">
-                <span className="font-display text-4xl font-semibold leading-none text-primary">3+</span>
-                <span className="mt-2 block text-[8px] font-semibold uppercase leading-4 tracking-[0.16em] text-white/40">Years building</span>
-              </div>
-              <p className="text-[13px] leading-[1.4rem] text-muted-light/85">
-                I’ve learned that strong software is not defined by how many technologies sit behind it, but by how well the pieces work together. My strongest ground is full-stack development: connecting interfaces, backend logic, APIs, data and cloud services into software that is useful, maintainable and ready beyond development.
-              </p>
+            <div className="skills-signature relative z-20 mt-8 w-fit">
+              <p className="font-serif text-base italic">Thembinkosi Eden Thwala</p>
+              <span className="mt-1 block text-[7px] font-semibold uppercase tracking-[0.18em] text-white/45">Full-stack developer</span>
             </div>
 
-            <p className="mt-5 border-l border-primary/55 pl-4 text-[13px] leading-[1.4rem] text-muted">
-              I work across the build with an end-to-end mindset &mdash; understanding how decisions travel through a system, anticipating what can break, and engineering beyond &ldquo;it works.&rdquo; <span className="font-medium text-white/85">The technologies are the toolkit. The real skill is making them work as one.</span>
-            </p>
+            <div className="skills-portrait-wrap pointer-events-none absolute inset-x-0 bottom-12 z-0 h-[58%]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_55%,rgba(249,115,22,0.22),transparent_54%)]" />
+              <img src={profilePortrait} alt="Thembinkosi Eden Thwala" className="skills-portrait h-full w-full object-cover" />
+            </div>
 
-            <div className="mt-7">
-              <span className="text-[7px] font-semibold uppercase tracking-[0.2em] text-white/30">Context carried across the build</span>
-              <div className="mt-3 flex items-center" aria-label="End-to-end delivery path">
-                {deliveryPath.map((step, index) => (
-                  <div key={step} className="flex min-w-0 flex-1 items-center last:flex-none">
-                    <span className="relative flex flex-col gap-1.5">
-                      <span className={`h-1.5 w-1.5 rounded-full ${index === 0 ? "bg-primary shadow-[0_0_12px_rgba(249,115,22,0.7)]" : "bg-white/30"}`} />
-                      <span className="text-[7px] font-semibold uppercase tracking-[0.12em] text-white/40">{step}</span>
+            <div className="skills-builder-card absolute bottom-[4.25rem] left-0 z-20 max-w-[13rem] rounded-xl border border-primary/35 bg-[#101117]/90 p-3 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-md">
+              <div className="flex items-start gap-2.5">
+                <span className="grid h-8 w-8 flex-none place-items-center rounded-full border border-primary/35 bg-primary/10 text-primary"><Star size={15} /></span>
+                <div>
+                  <p className="text-[10px] font-semibold leading-4 text-primary">Builder. Problem-solver.<br />System thinker.</p>
+                  <p className="mt-1 text-[8px] leading-3.5 text-white/50">I turn ideas, data and logic into software that solves real problems for real people.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="skills-stat-strip absolute inset-x-0 bottom-0 z-20 grid grid-cols-4 border-y border-white/[0.08] bg-[#0e1016]/90 backdrop-blur-md">
+              {[
+                { value: "3+", label: "Years of experience", icon: <Code2 size={14} /> },
+                { value: "100+", label: "Technologies & tools", icon: <Wrench size={14} /> },
+                { value: "20+", label: "Projects delivered", icon: <Rocket size={14} /> },
+                { value: "8", label: "Certifications earned", icon: <Trophy size={14} /> },
+              ].map((stat) => (
+                <div key={stat.label} className="flex min-w-0 gap-1.5 border-r border-white/[0.07] px-2 py-2.5 last:border-r-0">
+                  <span className="mt-0.5 text-purple">{stat.icon}</span>
+                  <span className="min-w-0"><span className="block font-display text-sm font-semibold leading-none text-primary">{stat.value}</span><span className="mt-1 block text-[6px] uppercase leading-2.5 tracking-[0.08em] text-white/40">{stat.label}</span></span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="skills-wheel-panel relative min-w-0" aria-label="Interactive engineering pillars">
+            <div onMouseMove={handlePillarPointerMove} className="skills-orbit-wheel relative mx-auto" style={{ "--active-angle": `${proofIndicatorRotations[activeProofPoint]}deg` } as CSSProperties}>
+              <div className="skills-orbit-glow pointer-events-none absolute inset-0" />
+              <div className="skills-orbit-ticks pointer-events-none absolute inset-[12%] rounded-full" />
+              <div className="skills-orbit-ring skills-orbit-ring--outer pointer-events-none absolute rounded-full" />
+              <div className="skills-orbit-ring skills-orbit-ring--middle pointer-events-none absolute rounded-full" />
+              <div className="skills-orbit-ring skills-orbit-ring--inner pointer-events-none absolute rounded-full" />
+              <div className="skills-orbit-cross pointer-events-none absolute inset-[18%]" />
+              <div className="skills-orbit-active-arc pointer-events-none absolute inset-[14%] rounded-full" />
+
+              <div className={`skills-orbit-core absolute left-1/2 top-1/2 grid -translate-x-1/2 -translate-y-1/2 place-items-center text-center transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
+                <span className="grid h-9 w-9 place-items-center text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
+                <p className="mt-2 text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">Active pillar</p>
+                <h2 className="mt-1.5 font-display text-lg font-semibold leading-5 text-white">{activeProof.panelTitle}</h2>
+                <p className="mt-2 max-w-[8rem] text-[9px] leading-3.5 text-white/55">{activeProof.navLabel}</p>
+              </div>
+
+              {proofPoints.map((point, index) => {
+                const isActive = activeProofPoint === index;
+                const position = proofPointPositions[index];
+
+                return (
+                  <button
+                    key={point.eyebrow}
+                    type="button"
+                    aria-pressed={isActive}
+                    onClick={() => selectProofPoint(index)}
+                    onMouseEnter={() => selectProofPoint(index)}
+                    onFocus={() => selectProofPoint(index)}
+                    className={`skills-orbit-node skills-orbit-node--${position} ${isActive ? "is-active" : ""}`}
+                  >
+                    <span className="skills-orbit-node-icon">{point.icon}</span>
+                    <span className="skills-orbit-node-copy">
+                      <span className="skills-orbit-node-label">{point.eyebrow}</span>
+                      <span className="skills-orbit-node-detail">{point.navLabel}</span>
                     </span>
-                    {index < deliveryPath.length - 1 && <span className="mb-4 ml-2 h-px min-w-3 flex-1 bg-gradient-to-r from-white/20 to-white/[0.05]" />}
-                  </div>
-                ))}
-              </div>
+                  </button>
+                );
+              })}
+
+              <p className="skills-orbit-hint absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] text-white/35">Hover or focus a pillar to explore how it shapes my work</p>
             </div>
-          </div>
+          </section>
 
-        <section aria-labelledby="pillar-philosophy-title" className="skills-philosophy relative min-w-0 xl:border-l xl:border-white/[0.06] xl:pl-8 2xl:pl-10">
-          <div className="max-w-3xl border-t border-white/[0.07] pt-4">
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">The engineer behind the toolkit</span>
-              <span className="flex items-center gap-2 text-[7px] font-semibold uppercase tracking-[0.16em] text-white/30"><span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_rgba(249,115,22,0.7)]" />Interactive model</span>
-            </div>
-            <h2 id="pillar-philosophy-title" className="mt-2.5 font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">Four things shape <span className="text-white/45">how I build.</span></h2>
-            <div className="mt-3 flex items-start gap-4">
-              <span className="mt-2 h-px w-8 flex-none bg-primary/60" />
-              <p className="max-w-2xl text-[13px] leading-[1.35rem] text-muted">Range to see the system. Curiosity to keep evolving. Standards that hold me accountable. And a habit of turning learning into better work.</p>
-            </div>
-            <p className="mt-3 text-[7px] font-semibold uppercase tracking-[0.18em] text-white/30">Hover, focus or select a pillar</p>
-          </div>
+          <article className={`skills-evidence-panel relative min-w-0 rounded-2xl border border-primary/35 bg-[#111319]/95 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.48),0_0_35px_rgba(249,115,22,0.08)] transition duration-150 ${isProofTransitioning ? "translate-y-1 opacity-0" : "translate-y-0 opacity-100"}`} aria-live="polite">
+            <div key={activeProof.panelTitle}>
+              <p className="pillar-story-kicker text-[8px] font-semibold uppercase tracking-[0.18em] text-primary">Active pillar</p>
+              <h2 className="pillar-story-heading mt-2 font-display text-2xl font-semibold leading-tight text-white">{activeProof.panelTitle}</h2>
+              <p className="mt-1 text-sm text-white/75">{activeProof.navLabel}</p>
+              <p className="pillar-story-copy mt-4 text-[11px] leading-[1.1rem] text-white/48">{activeProof.story}</p>
 
-          <div className="mt-3 grid gap-6 md:grid-cols-[1.42fr_0.58fr] md:items-center md:gap-5">
-            <div>
-              <div onMouseMove={handlePillarPointerMove} className="pillar-instrument relative -ml-2 hidden aspect-square w-full max-w-[32rem] sm:block" aria-label="Interactive pillar navigation">
-                <div className="pillar-instrument-glow pointer-events-none absolute inset-0 rounded-full" />
-                <div className="pillar-instrument-ticks pointer-events-none absolute inset-6 rounded-full opacity-35" />
-                <div className="pointer-events-none absolute inset-12 rounded-full border border-white/[0.06]" />
-                <div className="pointer-events-none absolute inset-16 rounded-full border border-white/15 shadow-[inset_0_0_48px_rgba(255,255,255,0.015)]" />
-                <div className="pointer-events-none absolute inset-[5.5rem] rounded-full border border-dashed border-white/[0.1] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
-                <div className="pillar-active-sector pointer-events-none absolute inset-12 rounded-full transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }} />
-                <div className="pointer-events-none absolute bottom-12 left-1/2 top-12 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/[0.04] via-50% to-transparent" />
-                <div className="pointer-events-none absolute left-12 right-12 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/[0.04] via-50% to-transparent" />
-
-                <div className="pointer-events-none absolute inset-16 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
-                  <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dark bg-primary shadow-[0_0_22px_rgba(249,115,22,0.8)]" />
-                  <span className="absolute left-1/2 top-0 h-10 w-px -translate-x-1/2 bg-gradient-to-b from-primary/80 to-transparent" />
-                </div>
-
-                <div className="pillar-core absolute left-1/2 top-1/2 grid h-44 w-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-dark/95 p-5 text-center shadow-2xl shadow-black/50">
-                  <div className={`transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
-                    <span className="mx-auto grid h-10 w-10 place-items-center rounded-full border border-primary/25 bg-primary/[0.08] text-primary [&>svg]:h-5 [&>svg]:w-5">{activeProof.icon}</span>
-                    <p className="mt-3 text-[7px] font-semibold uppercase tracking-[0.2em] text-white/35">Active pillar &middot; 0{displayedProofPoint + 1}</p>
-                    <p className="mt-2 font-display text-sm font-semibold leading-snug text-white">{activeProof.navLabel}</p>
-                    <span className="mx-auto mt-3 block h-px w-8 bg-primary/60" />
-                  </div>
-                </div>
-
-                {proofPoints.map((point, index) => {
-                  const isActive = activeProofPoint === index;
-
-                  return (
-                    <button
-                      key={point.eyebrow}
-                      type="button"
-                      aria-pressed={isActive}
-                      onClick={() => selectProofPoint(index)}
-                      onMouseEnter={() => selectProofPoint(index)}
-                      onFocus={() => selectProofPoint(index)}
-                      className={`group absolute z-10 w-40 rounded-2xl border px-3 py-3 backdrop-blur-md transition duration-300 ${proofPointPositions[index]} ${isActive ? "border-primary/35 bg-[linear-gradient(135deg,rgba(249,115,22,0.14),rgba(13,13,18,0.94)_58%)] text-white shadow-[0_16px_45px_rgba(0,0,0,0.38)]" : "border-white/[0.07] bg-dark/80 text-white/45 hover:scale-[1.02] hover:border-white/15 hover:bg-dark/95 hover:text-white/80"}`}
-                    >
-                      <span className="flex items-center gap-2 text-left">
-                        <span className={`grid h-8 w-8 flex-none place-items-center rounded-lg border transition-colors [&>svg]:h-4 [&>svg]:w-4 ${isActive ? "border-primary/25 bg-primary/10 text-primary" : "border-white/10 text-white/35 group-hover:text-white/70"}`}>{point.icon}</span>
-                        <span className="min-w-0">
-                          <span className={`block text-[7px] font-semibold uppercase tracking-[0.14em] ${isActive ? "text-primary" : ""}`}>0{index + 1} &middot; {point.eyebrow}</span>
-                          <span className="mt-1 block font-display text-[11px] font-semibold leading-snug">{point.navLabel}</span>
-                        </span>
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="grid grid-cols-2 border-y border-white/10 sm:hidden">
-                {proofPoints.map((point, index) => {
-                  const isActive = activeProofPoint === index;
-
-                  return (
-                    <button key={point.eyebrow} type="button" aria-pressed={isActive} onClick={() => selectProofPoint(index)} onFocus={() => selectProofPoint(index)} className={`relative min-w-0 border-b border-white/10 px-3 py-4 text-left transition-colors ${isActive ? "text-white" : "text-white/45"}`}>
-                      <span className={`absolute inset-x-3 bottom-0 h-px bg-primary transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
-                      <span className="block text-[8px] font-semibold uppercase tracking-[0.14em]">{point.eyebrow}</span>
-                      <span className="mt-1.5 block font-display text-xs font-semibold">{point.navLabel}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <article className={`pillar-insight relative min-h-[24rem] overflow-hidden border-y border-white/10 px-1 py-6 transition duration-150 md:px-5 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
-              <div key={activeProof.eyebrow}>
-                <span className="pointer-events-none absolute right-2 top-3 font-display text-7xl font-semibold leading-none text-white/[0.025]" aria-hidden="true">0{displayedProofPoint + 1}</span>
-                <span className="pillar-story-icon pointer-events-none absolute right-2 top-10 -rotate-6 text-white/[0.09] [&>svg]:h-28 [&>svg]:w-28 sm:[&>svg]:h-36 sm:[&>svg]:w-36" aria-hidden="true">{activeProof.icon}</span>
-                <div className="relative max-w-xl pt-24 sm:pt-28">
-                  <p className="pillar-story-kicker text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">Selected insight &middot; 0{displayedProofPoint + 1}</p>
-                  <p className="mt-2 text-[7px] font-semibold uppercase tracking-[0.15em] text-white/30">{activeProof.eyebrow}</p>
-                  <h3 className="pillar-story-heading mt-3 font-display text-2xl font-semibold leading-[1.04] text-white">
-                    {activeProof.headline}<span className="block text-white/55">{activeProof.headlineAccent}</span>
-                  </h3>
-                  <p className="pillar-story-copy mt-4 text-xs leading-5 text-muted-light/75">{activeProof.story}</p>
-                  <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 border-t border-white/[0.07] pt-4">
-                    {activeProof.signals.map((signal) => (
-                      <span key={signal} className="flex items-center gap-1.5 text-[7px] font-semibold uppercase tracking-[0.13em] text-white/35">
-                        <span className="h-1 w-1 rounded-full bg-primary/75" />{signal}
-                      </span>
-                    ))}
-                  </div>
+              <div className="mt-5 border-t border-white/[0.08] pt-4">
+                <p className="text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">How this shows up in my work</p>
+                <div className="mt-3 space-y-3">
+                  {activeProof.workItems.map((item) => (
+                    <div key={item.title} className="group flex gap-3">
+                      <span className="grid h-9 w-9 flex-none place-items-center rounded-full border border-primary/30 bg-primary/[0.06] text-primary transition group-hover:bg-primary/10">{item.icon}</span>
+                      <div><h3 className="text-[11px] font-semibold text-white/90">{item.title}</h3><p className="mt-0.5 text-[9px] leading-3.5 text-white/45">{item.copy}</p></div>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              <div className="mt-5 border-t border-white/[0.08] pt-4">
+                <p className="text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">Evidence in progress</p>
+                <div className="mt-3 grid grid-cols-4 gap-2">
+                  {activeProof.evidence.map((item) => (
+                    <div key={item.name} className="rounded-lg border border-white/[0.07] bg-white/[0.025] px-1.5 py-2 text-center">
+                      <span className="block text-[8px] font-semibold text-white/75">{item.name}</span>
+                      <span className="mt-1 block text-[6px] leading-2.5 text-white/35">{item.detail}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <blockquote className="mt-5 flex gap-3 rounded-xl border border-primary/10 bg-[linear-gradient(105deg,rgba(249,115,22,0.08),rgba(255,255,255,0.025))] p-4">
+                <span className="font-serif text-3xl leading-none text-primary">&ldquo;</span>
+                <p className="text-xs leading-5 text-white/60">{activeProof.quote}</p>
+              </blockquote>
+            </div>
+          </article>
+        </div>
+
+        <div className="skills-value-strip relative z-10 grid border-t border-white/[0.08] bg-[linear-gradient(90deg,rgba(249,115,22,0.07),rgba(255,255,255,0.018),rgba(249,115,22,0.05))] sm:grid-cols-2 xl:grid-cols-4">
+          {heroValues.map((value) => (
+            <article key={value.title} className="group flex gap-3 border-b border-r border-white/[0.07] p-5 transition hover:bg-white/[0.025] last:border-r-0 xl:border-b-0">
+              <span className="mt-0.5 flex-none text-primary transition group-hover:scale-110">{value.icon}</span>
+              <div><h2 className="font-display text-sm font-semibold text-white/90">{value.title}</h2><p className="mt-2 text-[9px] leading-4 text-white/45">{value.copy}</p></div>
             </article>
-          </div>
-
-        </section>
-        </div>
-      </section>
-
-      <section aria-labelledby="engineering-principles-title" className="relative mb-8 border-y border-white/[0.07] py-5 sm:py-6">
-        <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-10">
-          <div>
-            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">Engineering principles</span>
-            <h2 id="engineering-principles-title" className="mt-1.5 font-display text-xl font-semibold text-white sm:text-2xl">More Than a Stack. A Way of Engineering.</h2>
-          </div>
-
-          <div className="grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Engineering principles">
-            {teamBenefits.map((benefit, index) => {
-              const isActive = activePrinciple === index;
-
-              return (
-                <button
-                  key={benefit.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-controls="active-principle-panel"
-                  onClick={() => setActivePrinciple(index)}
-                  onMouseEnter={() => setActivePrinciple(index)}
-                  onFocus={() => setActivePrinciple(index)}
-                  className={`principle-card group relative min-h-[4.75rem] overflow-hidden rounded-xl border px-3 py-3 text-left transition duration-300 hover:-translate-y-0.5 ${isActive ? "border-primary/35 bg-primary/[0.07] shadow-lg shadow-primary/[0.04]" : "border-white/10 bg-white/[0.018] hover:border-white/20 hover:bg-white/[0.03]"}`}
-                >
-                  <span className={`absolute inset-x-3 bottom-0 h-px origin-left bg-primary transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
-                  <div className="relative flex items-start gap-2.5">
-                    <span className={`principle-icon grid h-8 w-8 flex-none place-items-center rounded-lg border transition-colors [&>svg]:h-4 [&>svg]:w-4 ${isActive ? "border-primary/30 bg-primary/10 text-primary" : "border-white/10 text-white/45 group-hover:text-primary"}`}>{benefit.icon}</span>
-                    <span className="min-w-0">
-                      <span className={`block text-[6px] font-semibold uppercase tracking-[0.16em] transition-colors ${isActive ? "text-primary" : "text-white/35"}`}>{benefit.microLabel}</span>
-                      <span className="mt-1.5 block font-display text-[13px] font-semibold leading-[1.15] text-white">{benefit.title}</span>
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div id="active-principle-panel" role="tabpanel" className="relative mt-3 overflow-hidden border-t border-white/[0.06] pt-3">
-          <div key={activeTeamBenefit.title} className="pillar-story-copy">
-            <p className="max-w-5xl text-xs leading-5 text-muted"><span className="mr-2 font-semibold text-white/85">{activeTeamBenefit.title}</span>{activeTeamBenefit.detail}</p>
-          </div>
+          ))}
         </div>
       </section>
 
