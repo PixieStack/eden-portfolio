@@ -56,36 +56,24 @@ const proofPoints = [
     title: "Full-stack to cloud",
     detail: "Frontend, backend, APIs, data and cloud delivery.",
     icon: <Layers3 size={22} />,
-    iconStyle: "border-primary/30 bg-primary/10 text-primary shadow-primary/20",
-    accent: "text-primary",
-    bar: "from-primary via-primary/60",
   },
   {
     eyebrow: "Applied AI",
     title: "Chatbots to automation",
     detail: "AI experiences integrated into real web products.",
     icon: <Bot size={22} />,
-    iconStyle: "border-purple/30 bg-purple/10 text-purple shadow-purple/20",
-    accent: "text-purple",
-    bar: "from-purple via-purple/60",
   },
   {
     eyebrow: "Data credentials",
     title: "Databricks certified",
     detail: "Professional engineering and associate analytics credentials.",
     icon: <Database size={22} />,
-    iconStyle: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-cyan-500/20",
-    accent: "text-cyan-300",
-    bar: "from-cyan-400 via-cyan-400/60",
   },
   {
     eyebrow: "Professional standing",
     title: "AMICITP-SA",
     detail: "SAQA-recognised designation with Java and .NET competencies.",
     icon: <Award size={22} />,
-    iconStyle: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300 shadow-emerald-500/20",
-    accent: "text-emerald-300",
-    bar: "from-emerald-400 via-emerald-400/60",
   },
 ];
 
@@ -230,65 +218,51 @@ export default function Skills() {
 
   return (
     <section className="section" data-testid="skills-section">
-      <div className="mx-auto mb-14 max-w-3xl text-center">
-        <span className="text-sm font-medium uppercase tracking-widest text-primary">Technical Expertise</span>
-        <h1 className="mt-4 font-display text-4xl font-bold text-white md:text-5xl lg:text-6xl" data-testid="skills-title">
-          Skills & <span className="text-gradient">Technologies</span>
+      <div className="mb-12 max-w-5xl sm:mb-14">
+        <div className="flex items-center gap-4">
+          <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
+          <span className="h-px w-14 bg-primary/50" />
+        </div>
+        <h1 className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
+          Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
         </h1>
-        <p className="mt-6 text-lg text-muted">
+        <p className="mt-7 max-w-2xl text-base leading-7 text-muted sm:text-lg">
           A structured view of the languages, platforms and engineering practices I use to build reliable software and data solutions.
         </p>
       </div>
 
-      <section aria-labelledby="skills-summary-title" className="relative mt-2 overflow-hidden py-10 sm:py-12">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-        <div className="pointer-events-none absolute -left-20 top-1/2 h-52 w-52 -translate-y-1/2 rounded-full bg-primary/[0.07] blur-3xl" />
-        <div className="pointer-events-none absolute -right-24 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-purple/[0.05] blur-3xl" />
-
-        <div className="relative grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-16">
-          <div className="flex items-start gap-4 sm:gap-5">
-            <span className="grid h-12 w-12 flex-none place-items-center rounded-full border border-primary/25 bg-primary/[0.08] text-primary shadow-lg shadow-primary/10">
-              <Layers3 size={21} />
-            </span>
-            <div>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
-              <h2 id="skills-summary-title" className="mt-3 max-w-xl font-display text-3xl font-bold leading-[1.12] text-white sm:text-4xl">
-                Built to contribute across <span className="text-gradient">the whole product</span>
-              </h2>
-            </div>
+      <section aria-labelledby="skills-summary-title" className="relative border-y border-white/10 py-10 sm:py-12 lg:py-14">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-20">
+          <div>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
+            <h2 id="skills-summary-title" className="mt-4 max-w-2xl font-display text-3xl font-semibold leading-[1.08] text-white sm:text-4xl lg:text-5xl">
+              Built to contribute across <span className="sm:whitespace-nowrap">the whole product.</span>
+            </h2>
           </div>
 
-          <p className="border-l border-white/10 pl-5 text-sm leading-7 text-muted sm:pl-7 sm:text-base">
+          <p className="max-w-2xl text-sm leading-7 text-muted-light/70 sm:text-base lg:border-l lg:border-white/10 lg:pl-8">
             More than a list of technologies, this is the toolkit I use to move from an ambiguous problem to a reliable product. I work across interfaces, APIs, data pipelines, cloud services and AI-powered experiences, with the testing, security and communication discipline needed to support what I build.
           </p>
         </div>
-
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-primary/60 via-purple/35 to-transparent" />
       </section>
 
-      <section aria-label="Professional proof points" className="relative mt-10 mb-14">
-        <div className="grid gap-10 sm:grid-cols-2 sm:gap-x-8 xl:grid-cols-4 xl:gap-0">
-          {proofPoints.map((point, index) => (
-            <article
-              key={point.title}
-              className={`group relative min-w-0 pt-5 ${index > 0 ? "xl:border-l xl:border-white/10 xl:pl-7" : ""} ${index < proofPoints.length - 1 ? "xl:pr-7" : ""}`}
-            >
-              <span className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r to-transparent ${point.bar}`} />
+      <section aria-label="Professional proof points" className="mb-16 mt-10 sm:mt-12">
+        <div className="flex items-center gap-4">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/45">Proof points</span>
+          <span className="h-px flex-1 bg-white/10" />
+        </div>
 
-              <div className="flex items-center justify-between gap-4">
-                <span className={`grid h-10 w-10 place-items-center rounded-full border shadow-md ${point.iconStyle}`}>
-                  {point.icon}
-                </span>
-                <span className={`font-display text-3xl font-bold leading-none opacity-25 ${point.accent}`}>
-                  0{index + 1}
-                </span>
-              </div>
+        <div className="mt-2 grid gap-x-12 md:grid-cols-2">
+          {proofPoints.map((point) => (
+            <article key={point.title} className="group grid min-w-0 grid-cols-[auto_1fr] gap-4 border-b border-white/10 py-7 sm:gap-5">
+              <span className="mt-0.5 text-primary/80 transition-colors group-hover:text-primary">
+                {point.icon}
+              </span>
 
-              <div className="mt-5">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">Proof point</p>
-                <p className={`mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] ${point.accent}`}>{point.eyebrow}</p>
-                <h2 className="mt-2 font-display text-xl font-bold leading-snug text-white">{point.title}</h2>
-                <p className="mt-2 max-w-[18rem] text-sm leading-relaxed text-muted">{point.detail}</p>
+              <div className="min-w-0">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">{point.eyebrow}</p>
+                <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{point.title}</h2>
+                <p className="mt-2 max-w-xl text-sm leading-6 text-muted">{point.detail}</p>
               </div>
             </article>
           ))}
