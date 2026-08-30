@@ -1122,11 +1122,15 @@ body {
 
 /* Skills: technical capability index */
 .technical-capabilities-section {
+  display: flex;
+  min-height: calc(100svh - 7rem);
+  flex-direction: column;
   padding: clamp(1.35rem, 2.2vw, 2rem);
 }
 
 .technical-capabilities-layout {
   display: grid;
+  flex: 1;
   grid-template-columns: minmax(0, 3.1fr) minmax(17rem, 1fr);
   gap: 1rem;
 }
@@ -1531,6 +1535,120 @@ body {
 .capability-project-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(168, 85, 247, 0.12), inset 0 0 28px rgba(168, 85, 247, 0.08); }
 .capability-project-card > span { display: grid; width: 2.6rem; height: 2.6rem; place-items: center; border: 1px solid rgba(168, 85, 247, 0.42); border-radius: 999px; color: #c084fc; }
 .capability-project-card strong { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 0.55rem; border-radius: 999px; padding: 0.52rem; color: #fff; background: linear-gradient(90deg, #f97316, #7c3aed); font-size: 0.58rem; }
+
+.capability-recruiter-card {
+  position: relative;
+  display: flex;
+  min-height: 8.75rem;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.9rem;
+  overflow: hidden;
+  border: 1px solid rgba(249, 115, 22, 0.22);
+  border-radius: 1rem;
+  background:
+    radial-gradient(240px circle at 100% 100%, rgba(168, 85, 247, 0.1), transparent 70%),
+    linear-gradient(135deg, rgba(249, 115, 22, 0.055), rgba(9, 12, 18, 0.94) 48%);
+}
+
+.capability-recruiter-card::after {
+  content: "";
+  position: absolute;
+  right: -2.5rem;
+  bottom: -3rem;
+  width: 8.5rem;
+  height: 8.5rem;
+  border: 1px solid rgba(168, 85, 247, 0.12);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1.6rem rgba(249, 115, 22, 0.018), 0 0 0 3rem rgba(168, 85, 247, 0.012);
+  pointer-events: none;
+}
+
+.capability-recruiter-heading {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.capability-recruiter-heading > span {
+  display: grid;
+  width: 2.55rem;
+  height: 2.55rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(249, 115, 22, 0.34);
+  border-radius: 0.75rem;
+  color: #fb7a1c;
+  background: rgba(249, 115, 22, 0.06);
+  box-shadow: 0 0 22px rgba(249, 115, 22, 0.08);
+}
+
+.capability-recruiter-heading p {
+  color: #fb7a1c;
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.capability-recruiter-heading h3 {
+  margin-top: 0.25rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.capability-recruiter-copy {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.65rem;
+  color: rgba(203, 213, 225, 0.52);
+  font-size: 0.53rem;
+  line-height: 1.5;
+}
+
+.capability-recruiter-signals {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+}
+
+.capability-recruiter-signals span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 999px;
+  padding: 0.3rem 0.48rem;
+  color: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.025);
+  font-size: 0.45rem;
+}
+
+.capability-recruiter-signals svg { color: #34d399; }
+
+.capability-recruiter-card > a {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+  color: #fb7a1c;
+  font-size: 0.55rem;
+  font-weight: 650;
+  transition: gap 220ms ease, color 220ms ease;
+}
+
+.capability-recruiter-card > a:hover { gap: 0.7rem; color: #fff; }
 
 .capability-coverage-card {
   position: relative;
@@ -2121,6 +2239,106 @@ body {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* Skills: closing GitHub statement */
+.skills-continuum-banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: clamp(3rem, 5vw, 5rem);
+  padding: 1.4rem 1.6rem;
+  overflow: hidden;
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(320px circle at 84% 20%, rgba(168, 85, 247, 0.13), transparent 68%),
+    radial-gradient(260px circle at 12% 90%, rgba(249, 115, 22, 0.11), transparent 70%),
+    rgba(9, 11, 17, 0.95);
+  box-shadow: inset 0 0 35px rgba(168, 85, 247, 0.035), 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.skills-continuum-banner::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, #f97316 28%, #a855f7 66%, transparent 95%);
+  opacity: 0.65;
+}
+
+.skills-continuum-mark {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  border-radius: 999px;
+  color: #fb7a1c;
+  background: rgba(249, 115, 22, 0.06);
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.12);
+  font-size: 1.3rem;
+}
+
+.skills-continuum-copy,
+.skills-continuum-action { position: relative; z-index: 1; }
+
+.skills-continuum-copy > p {
+  color: #fb7a1c;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.skills-continuum-copy h2 {
+  margin-top: 0.28rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.6rem);
+  font-weight: 650;
+}
+
+.skills-continuum-copy > span {
+  display: block;
+  max-width: 48rem;
+  margin-top: 0.3rem;
+  color: rgba(203, 213, 225, 0.48);
+  font-size: 0.64rem;
+  line-height: 1.5;
+}
+
+.skills-continuum-action {
+  display: grid;
+  justify-items: end;
+  gap: 0.55rem;
+}
+
+.skills-continuum-action small {
+  color: rgba(203, 213, 225, 0.42);
+  font-size: 0.5rem;
+  letter-spacing: 0.06em;
+}
+
+.skills-continuum-action a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(249, 115, 22, 0.45);
+  border-radius: 999px;
+  padding: 0.75rem 1.15rem;
+  color: #fff;
+  background: linear-gradient(90deg, #f97316, #a855f7);
+  box-shadow: 0 12px 30px rgba(168, 85, 247, 0.16);
+  font-size: 0.66rem;
+  font-weight: 650;
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.skills-continuum-action a:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(168, 85, 247, 0.24); }
+
 /* Skills: experience modal */
 .capability-modal-backdrop {
   position: fixed;
@@ -2435,6 +2653,7 @@ body {
   .engineering-stack-stage { margin-top: 1rem; }
   .technical-capabilities-layout { grid-template-columns: minmax(0, 1fr); }
   .technical-capabilities-aside { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .capability-recruiter-card { grid-column: 1 / -1; min-height: 0; }
   .capability-coverage-card { grid-column: 1 / -1; }
   .professional-strengths-layout { grid-template-columns: minmax(14rem, 0.72fr) minmax(0, 1.5fr); }
   .professional-value-panel { grid-column: 1 / -1; }
@@ -2455,6 +2674,8 @@ body {
   .professional-strength-selector::before { display: none; }
   .professional-value-panel { grid-column: auto; }
   .professional-value-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skills-continuum-banner { grid-template-columns: auto minmax(0, 1fr); }
+  .skills-continuum-action { grid-column: 1 / -1; justify-items: start; padding-left: 4.65rem; }
 }
 
 @media (max-width: 640px) {
@@ -2483,6 +2704,9 @@ body {
   .capability-modal-footer { align-items: flex-start; flex-direction: column; }
   .professional-strengths-nav,
   .professional-value-list { grid-template-columns: minmax(0, 1fr); }
+  .skills-continuum-banner { grid-template-columns: minmax(0, 1fr); padding: 1.25rem; text-align: center; }
+  .skills-continuum-mark { margin: 0 auto; }
+  .skills-continuum-action { grid-column: auto; justify-items: center; padding-left: 0; }
   .professional-strength-detail > h3,
   .professional-strength-narrative { max-width: 100%; }
   .professional-strength-detail-visual { opacity: 0.06; }

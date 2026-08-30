@@ -627,6 +627,20 @@ export default function Skills() {
               <strong>See My Engineering in Action <ArrowRight size={16} /></strong>
             </a>
 
+            <article className="capability-recruiter-card">
+              <div className="capability-recruiter-heading">
+                <span><Handshake size={24} /></span>
+                <div><p>For hiring teams</p><h3>Ready to contribute across the build.</h3></div>
+              </div>
+              <p className="capability-recruiter-copy">I bring 3+ years of hands-on full-stack experience, cross-layer judgement and the ability to learn quickly without losing sight of delivery.</p>
+              <div className="capability-recruiter-signals" aria-label="Professional contribution highlights">
+                <span><Check size={12} /> End-to-end mindset</span>
+                <span><Check size={12} /> Production aware</span>
+                <span><Check size={12} /> Built to grow</span>
+              </div>
+              <a href="#/contact">Start a conversation <ArrowRight size={15} /></a>
+            </article>
+
           </aside>
         </div>
       </section>
@@ -704,18 +718,25 @@ export default function Skills() {
         </div>
       </section>
 
-      <div className="mt-16 text-center">
-        <p className="mb-6 text-muted">Always learning, always growing. This toolkit evolves with every project and credential.</p>
-        <a
-          href="https://github.com/PixieStack"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-testid="skills-github-cta"
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface px-6 py-3 font-medium text-white transition-all hover:border-primary/30"
-        >
-          <i className="fab fa-github" /> See My Work on GitHub
-        </a>
-      </div>
+      <section className="skills-continuum-banner" aria-label="GitHub portfolio">
+        <div className="skills-continuum-mark" aria-hidden="true"><i className="fab fa-github" /></div>
+        <div className="skills-continuum-copy">
+          <p>The toolkit keeps moving</p>
+          <h2>Always learning. Always growing.</h2>
+          <span>This toolkit evolves with every project and credential&mdash;then shows up in stronger code, better judgement and more capable products.</span>
+        </div>
+        <div className="skills-continuum-action">
+          <small>Code. Experiments. Work in progress.</small>
+          <a
+            href="https://github.com/PixieStack"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="skills-github-cta"
+          >
+            Explore My Work on GitHub <ArrowRight size={17} />
+          </a>
+        </div>
+      </section>
 
       {activeCapability && activeCapabilityExperience && activeCapabilityIndex !== null && (
         <div
