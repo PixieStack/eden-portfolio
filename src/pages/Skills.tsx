@@ -55,24 +55,28 @@ const proofPoints = [
     eyebrow: "Engineering range",
     title: "Full-stack to cloud",
     detail: "Frontend, backend, APIs, data and cloud delivery.",
+    impact: "One connected view from interface to infrastructure.",
     icon: <Layers3 size={22} />,
   },
   {
     eyebrow: "Applied AI",
     title: "Chatbots to automation",
     detail: "AI experiences integrated into real web products.",
+    impact: "Intelligence designed into real workflows—not added for show.",
     icon: <Bot size={22} />,
   },
   {
     eyebrow: "Data credentials",
     title: "Databricks certified",
     detail: "Professional engineering and associate analytics credentials.",
+    impact: "Certified depth where dependable products meet trustworthy data.",
     icon: <Database size={22} />,
   },
   {
     eyebrow: "Professional standing",
     title: "AMICITP-SA",
     detail: "SAQA-recognised designation with Java and .NET competencies.",
+    impact: "Assessed capability backed by recognised professional practice.",
     icon: <Award size={22} />,
   },
 ];
@@ -198,6 +202,7 @@ function SkillSectionAccordion({
 export default function Skills() {
   const [openSection, setOpenSection] = useState<"technical" | "professional" | null>("technical");
   const [flippedSkills, setFlippedSkills] = useState<Set<string>>(() => new Set());
+  const [activeProofPoint, setActiveProofPoint] = useState(0);
   const technicalSectionRef = useRef<HTMLElement>(null);
   const professionalSectionRef = useRef<HTMLElement>(null);
 
@@ -216,56 +221,86 @@ export default function Skills() {
     }
   };
 
+  const activeProof = proofPoints[activeProofPoint];
+
   return (
     <section className="section" data-testid="skills-section">
-      <div className="mb-12 max-w-5xl sm:mb-14">
-        <div className="flex items-center gap-4">
-          <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
-          <span className="h-px w-14 bg-primary/50" />
-        </div>
-        <h1 className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
-          Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
-        </h1>
-        <p className="mt-7 max-w-2xl text-base leading-7 text-muted sm:text-lg">
-          A structured view of the languages, platforms and engineering practices I use to build reliable software and data solutions.
-        </p>
-      </div>
+      <section aria-labelledby="skills-title" className="relative mb-16 overflow-hidden">
+        <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.055] blur-3xl" />
 
-      <section aria-labelledby="skills-summary-title" className="relative border-y border-white/10 py-10 sm:py-12 lg:py-14">
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-20">
-          <div>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
-            <h2 id="skills-summary-title" className="mt-4 max-w-2xl font-display text-3xl font-semibold leading-[1.08] text-white sm:text-4xl lg:text-5xl">
-              Built to contribute across <span className="sm:whitespace-nowrap">the whole product.</span>
-            </h2>
+        <div className="relative max-w-5xl">
+          <div className="flex items-center gap-4">
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
+            <span className="h-px w-14 bg-primary/50" />
           </div>
-
-          <p className="max-w-2xl text-sm leading-7 text-muted-light/70 sm:text-base lg:border-l lg:border-white/10 lg:pl-8">
-            More than a list of technologies, this is the toolkit I use to move from an ambiguous problem to a reliable product. I work across interfaces, APIs, data pipelines, cloud services and AI-powered experiences, with the testing, security and communication discipline needed to support what I build.
+          <h1 id="skills-title" className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
+            Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
+          </h1>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted-light/80 sm:text-xl sm:leading-9">
+            Not a checklist of tools. A working range built to turn ambitious ideas into dependable products—from the interface people touch to the data, cloud and intelligence behind it.
           </p>
         </div>
-      </section>
 
-      <section aria-label="Professional proof points" className="mb-16 mt-10 sm:mt-12">
-        <div className="flex items-center gap-4">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/45">Proof points</span>
-          <span className="h-px flex-1 bg-white/10" />
+        <div className="relative mt-14 max-w-5xl sm:mt-16">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
+          <h2 className="mt-4 max-w-4xl font-display text-4xl font-semibold leading-[1.06] text-white sm:text-5xl lg:text-6xl">
+            The range to build it. <span className="text-white/45">The discipline to make it last.</span>
+          </h2>
+          <p className="mt-7 max-w-3xl text-base leading-8 text-muted sm:text-lg">
+            I work across the whole product: shaping interfaces, engineering APIs, moving and validating data, integrating AI and supporting what reaches production. That breadth means clearer decisions, fewer hand-offs and reliable delivery from the first question to the final release.
+          </p>
         </div>
 
-        <div className="mt-2 grid gap-x-12 md:grid-cols-2">
-          {proofPoints.map((point) => (
-            <article key={point.title} className="group grid min-w-0 grid-cols-[auto_1fr] gap-4 border-b border-white/10 py-7 sm:gap-5">
-              <span className="mt-0.5 text-primary/80 transition-colors group-hover:text-primary">
-                {point.icon}
-              </span>
+        <div className="relative mt-14 border-y border-white/10 sm:mt-16">
+          <div className="flex flex-col gap-2 py-5 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">Four pillars of my practice</span>
+              <p className="mt-1 text-sm text-white/65">Range, innovation, verified depth and professional accountability.</p>
+            </div>
+            <span className="hidden text-[10px] uppercase tracking-[0.16em] text-white/30 sm:block">Select a pillar to explore</span>
+          </div>
 
-              <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">{point.eyebrow}</p>
-                <h2 className="mt-2 font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{point.title}</h2>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-muted">{point.detail}</p>
+          <div className="grid grid-cols-2 border-t border-white/10 lg:grid-cols-4">
+            {proofPoints.map((point, index) => {
+              const isActive = activeProofPoint === index;
+
+              return (
+                <button
+                  key={point.title}
+                  type="button"
+                  aria-pressed={isActive}
+                  aria-controls="active-proof-point"
+                  onClick={() => setActiveProofPoint(index)}
+                  onMouseEnter={() => setActiveProofPoint(index)}
+                  onFocus={() => setActiveProofPoint(index)}
+                  className={`group relative min-w-0 border-b border-white/10 px-3 py-5 text-left transition-colors sm:px-5 lg:border-b-0 lg:border-r lg:last:border-r-0 ${isActive ? "text-white" : "text-white/45 hover:text-white/75"}`}
+                >
+                  <span className={`absolute inset-x-3 bottom-0 h-px origin-left bg-primary transition-transform duration-300 sm:inset-x-5 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
+                  <span className="block text-[9px] font-semibold uppercase tracking-[0.16em]">{point.eyebrow}</span>
+                  <span className="mt-2 block font-display text-sm font-semibold leading-snug sm:text-base">{point.title}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div id="active-proof-point" key={activeProof.title} className="relative grid min-h-64 gap-8 overflow-hidden border-t border-white/10 py-9 animate-fade-in motion-reduce:animate-none lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-16 lg:py-12">
+            <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-white/[0.025] [&>svg]:h-52 [&>svg]:w-52" aria-hidden="true">
+              {activeProof.icon}
+            </span>
+
+            <div className="relative flex items-start gap-5">
+              <span className="mt-1 text-primary [&>svg]:h-8 [&>svg]:w-8">{activeProof.icon}</span>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">{activeProof.eyebrow}</p>
+                <h3 className="mt-2 font-display text-3xl font-semibold text-white sm:text-4xl">{activeProof.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted">{activeProof.detail}</p>
               </div>
-            </article>
-          ))}
+            </div>
+
+            <p className="relative max-w-2xl font-display text-2xl font-medium leading-snug text-white/85 sm:text-3xl">
+              {activeProof.impact}
+            </p>
+          </div>
         </div>
       </section>
 
