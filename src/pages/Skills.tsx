@@ -54,33 +54,45 @@ const proofPoints = [
   {
     eyebrow: "Engineering range",
     navLabel: "Full-stack to cloud",
+    centreTitle: "I Build Across the System",
+    centreLead: "I don’t stop where one layer ends.",
+    centreStory: "I work across the application—shaping the experience people use, engineering the logic behind it, connecting systems and data, and understanding the infrastructure that carries it into production.",
     headline: "One feature.",
     headlineAccent: "Every layer considered.",
-    story: "My strongest advantage is seeing beyond the layer I’m working in. I understand how decisions move through the interface, application logic, APIs, data and cloud—giving me the range to connect the build, catch gaps earlier and engineer with the whole system in mind.",
+    story: "My strongest advantage is seeing the connections others can miss between interface, logic, APIs, data and deployment. That wider view helps me make better decisions earlier—before gaps become problems.",
     icon: <Layers3 size={22} />,
   },
   {
     eyebrow: "Applied AI",
     navLabel: "Applied intelligence",
+    centreTitle: "I Learn What Changes the Build",
+    centreLead: "AI is changing how software is designed, built and experienced.",
+    centreStory: "I don’t want to watch that shift from the sidelines—I want to understand it well enough to build with it responsibly.",
     headline: "Curiosity becomes",
     headlineAccent: "capability.",
-    story: "I’m not interested in AI because it is trending. I’m interested in what it changes about the products we can build. I learn it through experimentation, integration and practical application—turning emerging capability into something useful.",
+    story: "I experiment with emerging AI capabilities by asking the question that matters to an engineer: where does this genuinely make the product better? I learn through building, integration and practical use—not hype.",
     icon: <Bot size={22} />,
   },
   {
     eyebrow: "Professional standing",
     navLabel: "Credibility earned",
+    centreTitle: "I Hold My Work to a Higher Standard",
+    centreLead: "I want the engineer behind the work to be as credible as the work itself.",
+    centreStory: "That means accountability, professional growth and standards that extend beyond completing the next ticket.",
     headline: "Recognition follows",
     headlineAccent: "the standard.",
-    story: "I want the engineer behind the work to be as credible as the work itself. My AMICITP-SA professional designation reflects a commitment to competence, accountability and a career built to standards that extend beyond the next ticket.",
+    story: "My AMICITP-SA professional designation reflects something I intend to keep earning: credibility built through competence, continued development and responsibility for the work I put my name behind.",
     icon: <Award size={22} />,
   },
   {
     eyebrow: "Continuous growth",
     navLabel: "Learning with evidence",
+    centreTitle: "Learning With Evidence",
+    centreLead: "I don’t learn to collect technologies. I learn to expand what I can solve.",
+    centreStory: "Courses and credentials can mark progress, but the real measure is whether new knowledge becomes better judgement, stronger engineering and more capable software.",
     headline: "Knowledge should",
     headlineAccent: "compound.",
-    story: "I don’t learn to make my skills list longer. I learn to expand what I can solve. Every new discipline I explore should sharpen my judgement, deepen my engineering range and eventually show up in better work.",
+    story: "From data engineering and analytics to cloud, platforms and emerging technologies, I keep widening the knowledge around my core development experience—then bring what matters back into the way I build.",
     icon: <Database size={22} />,
   },
 ];
@@ -292,17 +304,17 @@ export default function Skills() {
 
   return (
     <section className="section" data-testid="skills-section">
-      <section aria-labelledby="skills-title" className="relative mb-12 overflow-hidden">
+      <section aria-labelledby="skills-title" className="relative mb-8 overflow-hidden">
         <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.05] blur-3xl" />
 
-        <div className="relative grid gap-12 xl:grid-cols-[0.96fr_1.04fr] xl:gap-14 2xl:gap-20">
+        <div className="relative grid gap-10 xl:grid-cols-[0.7fr_1.3fr] xl:gap-8 2xl:gap-10">
           <div className="min-w-0">
         <div className="relative max-w-3xl">
           <div className="flex items-center gap-4">
             <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary sm:text-xs">Technical Expertise</span>
             <span className="h-px w-12 bg-primary/50" />
           </div>
-          <h1 id="skills-title" className="mt-4 font-display text-4xl font-bold leading-[0.98] text-white sm:text-5xl xl:text-[3.35rem]" data-testid="skills-title">
+          <h1 id="skills-title" className="mt-4 font-display text-4xl font-bold leading-[0.98] text-white sm:text-5xl xl:text-5xl" data-testid="skills-title">
             Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-14 bg-primary" /></span>
           </h1>
           <p className="mt-5 max-w-3xl text-sm leading-6 text-muted-light/85">
@@ -313,49 +325,9 @@ export default function Skills() {
           </p>
         </div>
 
-        <section aria-labelledby="engineering-principles-title" className="relative mt-6 sm:mt-7">
-          <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">Engineering principles</span>
-          <h2 id="engineering-principles-title" className="mt-1.5 font-display text-xl font-semibold text-white sm:text-2xl">More Than a Stack. A Way of Engineering.</h2>
-
-          <div className="mt-4 grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Engineering principles">
-            {teamBenefits.map((benefit, index) => {
-              const isActive = activePrinciple === index;
-
-              return (
-                <button
-                  key={benefit.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  aria-controls="active-principle-panel"
-                  onClick={() => setActivePrinciple(index)}
-                  onMouseEnter={() => setActivePrinciple(index)}
-                  onFocus={() => setActivePrinciple(index)}
-                  className={`principle-card group relative min-h-[5.25rem] overflow-hidden rounded-xl border px-3 py-3 text-left transition duration-300 hover:-translate-y-0.5 ${isActive ? "border-primary/35 bg-primary/[0.07] shadow-lg shadow-primary/[0.04]" : "border-white/10 bg-white/[0.018] hover:border-white/20 hover:bg-white/[0.03]"}`}
-                >
-                  <span className={`absolute inset-x-3 bottom-0 h-px origin-left bg-primary transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
-                  <div className="relative flex items-start gap-2.5">
-                    <span className={`principle-icon grid h-8 w-8 flex-none place-items-center rounded-lg border transition-colors [&>svg]:h-4 [&>svg]:w-4 ${isActive ? "border-primary/30 bg-primary/10 text-primary" : "border-white/10 text-white/45 group-hover:text-primary"}`}>{benefit.icon}</span>
-                    <span className="min-w-0">
-                      <span className={`block text-[6px] font-semibold uppercase tracking-[0.16em] transition-colors ${isActive ? "text-primary" : "text-white/35"}`}>{benefit.microLabel}</span>
-                      <span className="mt-1.5 block font-display text-[13px] font-semibold leading-[1.15] text-white">{benefit.title}</span>
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
           </div>
 
-          <div id="active-principle-panel" role="tabpanel" className="relative mt-2.5 min-h-[4rem] overflow-hidden rounded-lg border border-white/[0.07] bg-white/[0.015] px-4 py-3">
-            <div key={activeTeamBenefit.title} className="pillar-story-copy">
-              <p className="text-[11px] leading-[1.15rem] text-muted"><span className="mr-2 font-semibold text-white/85">{activeTeamBenefit.title}</span>{activeTeamBenefit.detail}</p>
-            </div>
-          </div>
-        </section>
-
-          </div>
-
-        <section aria-labelledby="pillar-philosophy-title" className="relative min-w-0 xl:border-l xl:border-white/[0.06] xl:pl-12 2xl:pl-16">
+        <section aria-labelledby="pillar-philosophy-title" className="relative min-w-0 xl:border-l xl:border-white/[0.06] xl:pl-8 2xl:pl-10">
           <div className="max-w-3xl">
             <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">The engineer behind the toolkit</span>
             <h2 id="pillar-philosophy-title" className="mt-2 font-display text-2xl font-semibold text-white sm:text-3xl">Four things shape how I build.</h2>
@@ -363,23 +335,25 @@ export default function Skills() {
             <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.18em] text-white/35">Explore the four pillars ↓</p>
           </div>
 
-          <div className="mt-4 grid gap-6 md:grid-cols-[1.32fr_0.68fr] md:items-center md:gap-5">
+          <div className="mt-3 grid gap-6 md:grid-cols-[1.42fr_0.58fr] md:items-center md:gap-5">
             <div>
-              <div className="relative mx-auto hidden aspect-square w-full max-w-[25rem] sm:block" aria-label="Interactive pillar navigation">
-                <div className="pointer-events-none absolute inset-14 rounded-full border border-white/10" />
-                <div className="pointer-events-none absolute inset-[4.8rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
-                <div className="pointer-events-none absolute bottom-12 left-1/2 top-12 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-                <div className="pointer-events-none absolute left-12 right-12 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div className="relative -ml-2 hidden aspect-square w-full max-w-[32rem] sm:block" aria-label="Interactive pillar navigation">
+                <div className="pointer-events-none absolute inset-16 rounded-full border border-white/10" />
+                <div className="pointer-events-none absolute inset-[5.5rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
+                <div className="pointer-events-none absolute bottom-14 left-1/2 top-14 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                <div className="pointer-events-none absolute left-14 right-14 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-                <div className="pointer-events-none absolute inset-14 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
+                <div className="pointer-events-none absolute inset-16 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
                   <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)]" />
                 </div>
 
-                <div className="absolute left-1/2 top-1/2 grid h-36 w-36 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-4 text-center shadow-2xl shadow-black/40">
+                <div className="absolute left-1/2 top-1/2 grid h-60 w-60 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-5 text-center shadow-2xl shadow-black/40">
                   <div className={`transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
                     <span className="mx-auto block w-fit text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
-                    <p className="mt-2.5 text-[7px] font-semibold uppercase tracking-[0.18em] text-white/35">Active pillar</p>
-                    <p className="mt-1.5 font-display text-xs font-semibold leading-snug text-white">{activeProof.navLabel}</p>
+                    <p className="mt-2 text-[6px] font-semibold uppercase tracking-[0.18em] text-primary/80">Pillar 0{displayedProofPoint + 1} &mdash; {activeProof.eyebrow}</p>
+                    <h3 className="mt-2 font-display text-sm font-semibold leading-tight text-white">{activeProof.centreTitle}</h3>
+                    <p className="mt-2 text-[10px] font-semibold leading-[0.9rem] text-white/85">{activeProof.centreLead}</p>
+                    <p className="mt-1.5 text-[9px] leading-[0.85rem] text-muted">{activeProof.centreStory}</p>
                   </div>
                 </div>
 
@@ -394,10 +368,10 @@ export default function Skills() {
                       onClick={() => selectProofPoint(index)}
                       onMouseEnter={() => selectProofPoint(index)}
                       onFocus={() => selectProofPoint(index)}
-                      className={`absolute z-10 w-32 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
+                      className={`absolute z-10 w-36 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
                     >
                       <span className={`block text-[8px] font-semibold uppercase tracking-[0.14em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
-                      <span className="mt-1 block font-display text-[11px] font-semibold leading-snug">{point.navLabel}</span>
+                      <span className="mt-1 block font-display text-xs font-semibold leading-snug">{point.navLabel}</span>
                     </button>
                   );
                 })}
@@ -418,11 +392,11 @@ export default function Skills() {
               </div>
             </div>
 
-            <article className={`relative min-h-[18rem] overflow-hidden border-t border-white/10 py-6 transition duration-150 md:border-l md:border-t-0 md:py-4 md:pl-5 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
+            <article className={`relative min-h-[22rem] overflow-hidden border-t border-white/10 py-6 transition duration-150 md:border-l md:border-t-0 md:py-4 md:pl-5 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
               <div key={activeProof.eyebrow}>
-                <span className="pillar-story-icon pointer-events-none absolute right-0 top-0 -rotate-6 text-white/[0.09] [&>svg]:h-24 [&>svg]:w-24 sm:[&>svg]:h-28 sm:[&>svg]:w-28" aria-hidden="true">{activeProof.icon}</span>
-                <div className="relative max-w-xl pt-20 sm:pt-24">
-                  <p className="pillar-story-kicker text-[8px] font-semibold uppercase tracking-[0.18em] text-primary">0{displayedProofPoint + 1} / {activeProof.eyebrow}</p>
+                <span className="pillar-story-icon pointer-events-none absolute right-0 top-0 -rotate-6 text-white/[0.1] [&>svg]:h-32 [&>svg]:w-32 sm:[&>svg]:h-40 sm:[&>svg]:w-40" aria-hidden="true">{activeProof.icon}</span>
+                <div className="relative max-w-xl pt-24 sm:pt-28">
+                  <p className="pillar-story-kicker text-[8px] font-semibold uppercase tracking-[0.18em] text-primary">Pillar 0{displayedProofPoint + 1} &mdash; {activeProof.eyebrow}</p>
                   <h3 className="pillar-story-heading mt-2.5 font-display text-2xl font-semibold leading-[1.04] text-white">
                     {activeProof.headline}<span className="block text-white/55">{activeProof.headlineAccent}</span>
                   </h3>
@@ -433,6 +407,50 @@ export default function Skills() {
           </div>
 
         </section>
+        </div>
+      </section>
+
+      <section aria-labelledby="engineering-principles-title" className="relative mb-8 border-y border-white/[0.07] py-5 sm:py-6">
+        <div className="grid gap-4 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-10">
+          <div>
+            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">Engineering principles</span>
+            <h2 id="engineering-principles-title" className="mt-1.5 font-display text-xl font-semibold text-white sm:text-2xl">More Than a Stack. A Way of Engineering.</h2>
+          </div>
+
+          <div className="grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Engineering principles">
+            {teamBenefits.map((benefit, index) => {
+              const isActive = activePrinciple === index;
+
+              return (
+                <button
+                  key={benefit.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls="active-principle-panel"
+                  onClick={() => setActivePrinciple(index)}
+                  onMouseEnter={() => setActivePrinciple(index)}
+                  onFocus={() => setActivePrinciple(index)}
+                  className={`principle-card group relative min-h-[4.75rem] overflow-hidden rounded-xl border px-3 py-3 text-left transition duration-300 hover:-translate-y-0.5 ${isActive ? "border-primary/35 bg-primary/[0.07] shadow-lg shadow-primary/[0.04]" : "border-white/10 bg-white/[0.018] hover:border-white/20 hover:bg-white/[0.03]"}`}
+                >
+                  <span className={`absolute inset-x-3 bottom-0 h-px origin-left bg-primary transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
+                  <div className="relative flex items-start gap-2.5">
+                    <span className={`principle-icon grid h-8 w-8 flex-none place-items-center rounded-lg border transition-colors [&>svg]:h-4 [&>svg]:w-4 ${isActive ? "border-primary/30 bg-primary/10 text-primary" : "border-white/10 text-white/45 group-hover:text-primary"}`}>{benefit.icon}</span>
+                    <span className="min-w-0">
+                      <span className={`block text-[6px] font-semibold uppercase tracking-[0.16em] transition-colors ${isActive ? "text-primary" : "text-white/35"}`}>{benefit.microLabel}</span>
+                      <span className="mt-1.5 block font-display text-[13px] font-semibold leading-[1.15] text-white">{benefit.title}</span>
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div id="active-principle-panel" role="tabpanel" className="relative mt-3 overflow-hidden border-t border-white/[0.06] pt-3">
+          <div key={activeTeamBenefit.title} className="pillar-story-copy">
+            <p className="max-w-5xl text-xs leading-5 text-muted"><span className="mr-2 font-semibold text-white/85">{activeTeamBenefit.title}</span>{activeTeamBenefit.detail}</p>
+          </div>
         </div>
       </section>
 
