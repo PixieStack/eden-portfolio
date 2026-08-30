@@ -91,14 +91,14 @@ export const skillCategories: SkillCategory[] = [
     items: [
       "Access Control Lists", "Authentication and Authorisation", "Column-Level Encryption",
       "JWT Authentication", "OAuth 2.0", "Role-Based Access Control", "Row-Level Security",
-      "SAML 2.0", "Session-Based Authentication",
+      "Session-Based Authentication",
     ],
   },
   {
     title: "Mobile Development",
     items: [
       ".NET MAUI", "Android Studio", "API Integration", "Biometric Authentication", "Expo",
-      "Firebase", "Flutter", "Local Data Storage", "Mobile UI Design", "MVVM Architecture",
+      "Flutter", "Local Data Storage", "Mobile UI Design", "MVVM Architecture",
       "Platform Lifecycles", "Push Notifications", "React Native",
     ],
   },
@@ -303,7 +303,7 @@ export const skillExperience: Record<string, SkillExperience> = {
         items: [
           "Access Control Lists", "Authentication and Authorisation", "Column-Level Encryption",
           "JWT Authentication", "OAuth 2.0", "Role-Based Access Control", "Row-Level Security",
-          "SAML 2.0", "Session-Based Authentication",
+          "Session-Based Authentication",
         ],
       },
     ],
@@ -315,7 +315,7 @@ export const skillExperience: Record<string, SkillExperience> = {
         label: "1+ Year Experience",
         items: [
           ".NET MAUI", "Android Studio", "API Integration", "Biometric Authentication", "Expo",
-          "Firebase", "Flutter", "Local Data Storage", "Mobile UI Design", "MVVM Architecture",
+          "Flutter", "Local Data Storage", "Mobile UI Design", "MVVM Architecture",
           "Platform Lifecycles", "Push Notifications", "React Native",
         ],
       },
