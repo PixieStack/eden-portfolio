@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode, type RefObject } from "react";
 import {
+  ArrowRight,
   Award,
   BarChart3,
   Blocks,
@@ -8,6 +9,7 @@ import {
   Brain,
   Check,
   ChevronDown,
+  ChevronRight,
   Cloud,
   Code2,
   Database,
@@ -32,8 +34,8 @@ import {
   Trophy,
   Users,
   Wrench,
+  X,
 } from "lucide-react";
-import SkillCard from "../components/SkillCard";
 import { professionalSkillCategories, skillCategories, skillExperience } from "../data/skills";
 import profilePortrait from "../assets/gallery/Profile.jpeg";
 
@@ -162,6 +164,62 @@ const heroValues = [
   },
 ];
 
+const engineeringPrinciples = [
+  {
+    number: "01",
+    eyebrow: "Systems thinking",
+    title: "I connect decisions across the build.",
+    copy: "Frontend, backend, APIs and data aren’t separate problems to me. I follow how one decision travels through the system, catch the gaps between layers and build with the whole product in view.",
+    tags: ["Full-Stack Awareness", "Data Flow", "Integration Mindset"],
+    icon: <Network size={48} />,
+    tone: "orange",
+  },
+  {
+    number: "02",
+    eyebrow: "Production mindset",
+    title: "“It works” is where the conversation starts.",
+    copy: "I think past the happy path — validation, security, failure states, maintainability, debugging and the developer who may inherit the code after me.",
+    tags: ["Quality First", "Security Aware", "Future Developer"],
+    icon: <ShieldCheck size={54} />,
+    tone: "purple",
+  },
+  {
+    number: "03",
+    eyebrow: "Proof over claims",
+    title: "I build first. Then I validate what I know.",
+    copy: "Certifications strengthen my foundation, but working software is the standard I measure myself against. I learn, apply, test, refine — and let the result carry the claim.",
+    tags: ["Build", "Test", "Refine", "Deliver"],
+    icon: <Boxes size={50} />,
+    tone: "orange",
+  },
+];
+
+const capabilityDescriptions = [
+  "Languages I use to build and solve problems.",
+  "Building responsive, accessible and polished user experiences.",
+  "Building robust APIs and server-side logic that powers applications.",
+  "Connecting systems and services to automate real-world workflows.",
+  "Designing schemas and working with data that drives decisions.",
+  "Deploying, monitoring and scaling applications with confidence.",
+  "Breaking complex requirements into clear, efficient solutions.",
+  "Turning raw data into trusted, useful insight.",
+  "Writing clean, maintainable code that stands the test of time.",
+  "Building quality in, catching issues early and ensuring reliability.",
+  "Building intelligent features and automating real work.",
+  "Protecting systems, identities and data from the start.",
+  "Building cross-platform mobile experiences that deliver.",
+  "Automating delivery and keeping codebases healthy.",
+  "Designing systems that are scalable, maintainable and future-ready.",
+  "The tools that help me build, debug and ship.",
+];
+
+const capabilityMatters = [
+  { title: "Whole System Thinking", copy: "I design with the whole system in mind, not just isolated features.", icon: <Network size={20} /> },
+  { title: "Better Engineering Decisions", copy: "Understanding each layer helps me choose what improves the entire product.", icon: <Sparkles size={20} /> },
+  { title: "Reliable, Scalable Solutions", copy: "Performance, security and maintainability shape the work from day one.", icon: <ShieldCheck size={20} /> },
+  { title: "Always Evolving", copy: "I keep learning, adapting and applying what matters.", icon: <TrendingUp size={20} /> },
+];
+
 const professionalIcons = [
   <Lightbulb size={21} />,
   <MessageCircleMore size={21} />,
@@ -281,8 +339,8 @@ function SkillSectionAccordion({
 }
 
 export default function Skills() {
-  const [openSection, setOpenSection] = useState<"technical" | "professional" | null>("technical");
-  const [flippedSkills, setFlippedSkills] = useState<Set<string>>(() => new Set());
+  const [openSection, setOpenSection] = useState<"professional" | null>(null);
+  const [activeCapabilityIndex, setActiveCapabilityIndex] = useState<number | null>(null);
   const [activeProofPoint, setActiveProofPoint] = useState(3);
   const [displayedProofPoint, setDisplayedProofPoint] = useState(3);
   const [isProofTransitioning, setIsProofTransitioning] = useState(false);
@@ -296,20 +354,35 @@ export default function Skills() {
     }
   }, []);
 
-  const toggleSection = (section: "technical" | "professional") => {
+  const toggleSection = (section: "professional") => {
     const isOpening = openSection !== section;
-    setFlippedSkills(new Set<string>());
     setOpenSection((current) => current === section ? null : section);
 
     if (isOpening) {
-      const targetRef = section === "technical" ? technicalSectionRef : professionalSectionRef;
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
-          targetRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+          professionalSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
     }
   };
+
+  useEffect(() => {
+    if (activeCapabilityIndex === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveCapabilityIndex(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [activeCapabilityIndex]);
 
   const selectProofPoint = (index: number) => {
     if (index === activeProofPoint) return;
@@ -336,6 +409,12 @@ export default function Skills() {
   };
 
   const activeProof = proofPoints[displayedProofPoint];
+  const activeCapability = activeCapabilityIndex === null ? null : skillCategories[activeCapabilityIndex];
+  const activeCapabilityExperience = activeCapability ? skillExperience[activeCapability.title] : null;
+
+  const scrollToCapabilities = () => {
+    technicalSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section className="section skills-page-section" data-testid="skills-section">
@@ -485,44 +564,118 @@ export default function Skills() {
         </div>
       </section>
 
-      <div className="space-y-5">
-        <SkillSectionAccordion
-          id="technical-capabilities"
-          eyebrow="Technical Capabilities"
-          title="The engineering toolkit behind my work"
-          description="Explore the technologies, platforms and engineering practices I use across the product lifecycle."
-          summary={`${skillCategories.length} capability areas`}
-          icon={<Code2 size={25} />}
-          accent="primary"
-          isOpen={openSection === "technical"}
-          onToggle={() => toggleSection("technical")}
-          sectionRef={technicalSectionRef}
-        >
-          <div className="grid gap-6 md:grid-cols-2" data-testid="skills-grid">
-            {skillCategories.map((category, index) => (
-              <SkillCard
-                key={category.title}
-                title={category.title}
-                icon={presentations[index].icon}
-                items={category.items}
-                color={presentations[index].color}
-                index={index}
-                experience={skillExperience[category.title]}
-                isFlipped={flippedSkills.has(category.title)}
-                onFlip={() => setFlippedSkills((current) => {
-                  const next = new Set(current);
-                  if (next.has(category.title)) {
-                    next.delete(category.title);
-                  } else {
-                    next.add(category.title);
-                  }
-                  return next;
-                })}
-              />
-            ))}
+      <section className="engineering-method-section" aria-labelledby="engineering-method-title">
+        <div className="engineering-method-top">
+          <div className="engineering-method-intro">
+            <div className="engineering-section-kicker"><span>How I engineer</span><i /></div>
+            <h2 id="engineering-method-title">The stack tells you what I use.<br /><span>This is how I use it.</span></h2>
+            <p>Technology gives me options. Engineering judgement tells me which ones matter. Across the stack, three principles shape the way I turn requirements into software that can survive beyond the demo.</p>
           </div>
-        </SkillSectionAccordion>
 
+          <div className="engineering-stack-stage" aria-hidden="true">
+            <div className="engineering-stack-layers">
+              <span className="engineering-stack-sparks" />
+              <div className="engineering-stack-layer engineering-stack-layer--top"><Cloud size={34} /></div>
+              <div className="engineering-stack-layer engineering-stack-layer--middle"><ShieldCheck size={32} /></div>
+              <div className="engineering-stack-layer engineering-stack-layer--bottom"><Code2 size={34} /></div>
+            </div>
+            <div className="engineering-stack-notes">
+              <div><Cloud size={20} /><span><strong>Production ready</strong><small>Built to scale and endure.</small></span></div>
+              <div><ShieldCheck size={20} /><span><strong>Engineering judgement</strong><small>Choosing what matters.</small></span></div>
+              <div><Code2 size={20} /><span><strong>Intent to impact</strong><small>Solving real problems.</small></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="engineering-principle-grid">
+          {engineeringPrinciples.map((principle) => (
+            <article key={principle.number} className={`engineering-principle-card engineering-principle-card--${principle.tone}`}>
+              <span className="engineering-principle-number">{principle.number}</span>
+              <div className="engineering-principle-body">
+                <div className="engineering-principle-graphic">{principle.icon}</div>
+                <div>
+                  <p className="engineering-principle-eyebrow">{principle.eyebrow}</p>
+                  <h3>{principle.title}</h3>
+                  <i />
+                  <p className="engineering-principle-copy">{principle.copy}</p>
+                </div>
+              </div>
+              <div className="engineering-principle-tags">
+                {principle.tags.map((tag) => <span key={tag}>{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="engineering-result-strip">
+          <span className="engineering-result-icon"><Rocket size={27} /></span>
+          <div><p>The result</p><h3>Principles in practice. Impact in the product.</h3><span>Now let’s look at the technical capabilities behind the work.</span></div>
+          <button type="button" onClick={scrollToCapabilities}>Explore Technical Capabilities <ArrowRight size={18} /></button>
+        </div>
+      </section>
+
+      <section id="technical-capabilities" ref={technicalSectionRef} className="technical-capabilities-section scroll-mt-24" aria-labelledby="technical-capabilities-title">
+        <div className="technical-capabilities-layout">
+          <div className="technical-capabilities-main">
+            <div className="technical-capabilities-heading">
+              <div className="engineering-section-kicker"><span>Technical capabilities</span><i /></div>
+              <h2 id="technical-capabilities-title">The capabilities<br />behind <span>the build.</span></h2>
+              <p>This is the toolkit I work with across the stack — the technologies, platforms and engineering practices I use to design, build, integrate and deliver software that solves real problems.</p>
+            </div>
+
+            <div className="capability-card-grid" data-testid="skills-grid">
+              {skillCategories.map((category, index) => (
+                <button
+                  key={category.title}
+                  type="button"
+                  className={`capability-card capability-tone-${presentations[index].color}`}
+                  onClick={() => setActiveCapabilityIndex(index)}
+                  aria-label={`Open ${category.title} skills grouped by experience`}
+                  data-testid={`skill-card-${category.title.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  <span className="capability-card-icon">{presentations[index].icon}</span>
+                  <span className="capability-card-copy"><strong>{category.title}</strong><small>{capabilityDescriptions[index]}</small></span>
+                  <ChevronRight className="capability-card-arrow" size={19} />
+                </button>
+              ))}
+            </div>
+
+            <div className="capability-toolkit-note">
+              <span><Star size={22} /></span>
+              <div><small>These tools are powerful.</small><strong>What matters is how I use them together.</strong></div>
+              <i />
+              <p>I connect interfaces, logic, APIs, data and cloud to build products that are reliable, useful and made to grow.</p>
+            </div>
+          </div>
+
+          <aside className="technical-capabilities-aside">
+            <article className="capability-perspective-card">
+              <span><Boxes size={34} /></span>
+              <div><h3>Full-Stack Perspective</h3><p>I understand how each layer works — and how they connect. That wider view helps me build solutions that are scalable, secure and ready for real-world use.</p></div>
+            </article>
+
+            <article className="capability-matters-card">
+              <p className="capability-aside-kicker">Why this matters</p>
+              <div>
+                {capabilityMatters.map((item) => (
+                  <div key={item.title} className="capability-matter-item">
+                    <span>{item.icon}</span>
+                    <div><h3>{item.title}</h3><p>{item.copy}</p></div>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <a className="capability-project-card" href="https://github.com/PixieStack" target="_blank" rel="noopener noreferrer">
+              <span><Award size={28} /></span>
+              <div><h3>Curious about how I use these?</h3><p>See the projects where these technologies come together to solve real problems.</p></div>
+              <strong>See My Engineering in Action <ArrowRight size={16} /></strong>
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <div className="mt-24">
         <SkillSectionAccordion
           id="professional-skills"
           eyebrow="Professional Skills"
@@ -578,6 +731,55 @@ export default function Skills() {
           <i className="fab fa-github" /> See My Work on GitHub
         </a>
       </div>
+
+      {activeCapability && activeCapabilityExperience && activeCapabilityIndex !== null && (
+        <div
+          className="capability-modal-backdrop"
+          onMouseDown={(event) => {
+            if (event.currentTarget === event.target) setActiveCapabilityIndex(null);
+          }}
+        >
+          <article
+            className={`capability-modal capability-tone-${presentations[activeCapabilityIndex].color}`}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="capability-modal-title"
+          >
+            <button type="button" className="capability-modal-close" onClick={() => setActiveCapabilityIndex(null)} aria-label="Close capability details">
+              <X size={20} />
+            </button>
+
+            <div className="capability-modal-header">
+              <span className="capability-modal-icon">{presentations[activeCapabilityIndex].icon}</span>
+              <div>
+                <p>Experience view</p>
+                <h2 id="capability-modal-title">{activeCapability.title}</h2>
+              </div>
+              <span className="capability-modal-overall">{activeCapabilityExperience.overall}</span>
+            </div>
+
+            <p className="capability-modal-intro">Every skill currently listed in this capability, grouped by hands-on experience.</p>
+
+            <div className="capability-modal-groups">
+              {activeCapabilityExperience.groups.map((group) => (
+                <section key={group.label}>
+                  <div className="capability-modal-group-heading"><h3>{group.label}</h3><span>{group.items.length} {group.items.length === 1 ? "skill" : "skills"}</span></div>
+                  <ul>
+                    {group.items.map((item) => (
+                      <li key={item}><Check size={14} /><span>{item}</span></li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+
+            <div className="capability-modal-footer">
+              <span>{activeCapability.items.length} skills represented</span>
+              <button type="button" onClick={() => setActiveCapabilityIndex(null)}>Return to capabilities</button>
+            </div>
+          </article>
+        </div>
+      )}
     </section>
   );
 }
