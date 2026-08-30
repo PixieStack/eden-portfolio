@@ -54,29 +54,29 @@ const proofPoints = [
   {
     eyebrow: "Engineering range",
     title: "Full-stack to cloud",
-    detail: "Frontend, backend, APIs, data and cloud delivery.",
-    impact: "One connected view from interface to infrastructure.",
+    detail: "My strongest ground is seeing the whole build—from the interface and API to the data, logic and cloud behind it.",
+    impact: "I connect decisions across layers, spot gaps earlier and engineer software as one system.",
     icon: <Layers3 size={22} />,
   },
   {
     eyebrow: "Applied AI",
-    title: "Chatbots to automation",
-    detail: "AI experiences integrated into real web products.",
-    impact: "Intelligence designed into real workflows—not added for show.",
+    title: "Building with what’s next",
+    detail: "AI is changing how software is imagined and delivered, so I keep learning, experimenting and integrating it into real products.",
+    impact: "I choose to grow with the technology—turning change into capability instead of waiting to catch up.",
     icon: <Bot size={22} />,
   },
   {
-    eyebrow: "Data credentials",
-    title: "Databricks certified",
-    detail: "Professional engineering and associate analytics credentials.",
-    impact: "Certified depth where dependable products meet trustworthy data.",
+    eyebrow: "Continuous growth",
+    title: "Learning with evidence",
+    detail: "My Databricks certifications are part of a wider habit: keep learning, test that knowledge and turn it into stronger work.",
+    impact: "Credentials mark the progress; what that learning enables me to build is the real result.",
     icon: <Database size={22} />,
   },
   {
     eyebrow: "Professional standing",
-    title: "AMICITP-SA",
-    detail: "SAQA-recognised designation with Java and .NET competencies.",
-    impact: "Assessed capability backed by recognised professional practice.",
+    title: "Ambition with accountability",
+    detail: "Earning AMICITP-SA reflects the standard I set for my career: keep growing and pursue recognised professional practice.",
+    impact: "I want my work—and the career behind it—to stand up to expectations beyond the immediate task.",
     icon: <Award size={22} />,
   },
 ];
@@ -90,16 +90,16 @@ const proofPointPositions = [
 
 const teamBenefits = [
   {
-    title: "Fewer gaps between disciplines",
-    detail: "I carry context from the interface through APIs, data and delivery—helping teams make faster, better-connected decisions.",
+    title: "I Connect the Whole Build",
+    detail: "Frontend, backend, APIs and data are not separate worlds to me. I understand how decisions in one layer affect the next, which helps me spot gaps earlier, communicate across disciplines and build features that work as one system rather than disconnected pieces.",
   },
   {
-    title: "Production thinking from the start",
-    detail: "Testing, security, reliability and support shape how I build, not what gets added after the feature is finished.",
+    title: "I Build Past ‘It Works’",
+    detail: "Getting something running is the starting point, not the finish line. I think about maintainability, validation, security, failure states, testing and the developer who may need to work on the same code months later. I build with the next problem in mind, not only the current ticket.",
   },
   {
-    title: "Capability you can verify",
-    detail: "Databricks certifications and an SAQA-recognised professional designation reinforce the practical work behind the toolkit.",
+    title: "My Skills Have Receipts",
+    detail: "The strongest proof of my ability is the software I build, but I also continue to validate and sharpen that knowledge through recognised certifications and professional development. My credentials support the experience—they don’t replace it.",
   },
 ];
 
@@ -260,19 +260,15 @@ export default function Skills() {
               Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
             </h1>
             <p className="mt-7 text-lg leading-8 text-muted-light/80 sm:text-xl sm:leading-9">
-              Not a checklist of tools. A working range built to turn ambitious ideas into dependable products—from the interface people touch to the data, cloud and intelligence behind it.
+              I don’t collect technologies just to fill a skills grid. I use them to solve problems, connect systems and turn ideas into software that people can actually use. My strongest ground is full-stack development &mdash; moving comfortably between the interface, the API, the database and the logic that holds everything together.
             </p>
             <p className="mt-5 text-base leading-8 text-muted sm:text-lg">
-              I work across the whole product: shaping interfaces, engineering APIs, moving and validating data, integrating AI and supporting what reaches production. That breadth means clearer decisions, fewer hand-offs and reliable delivery from the first question to the final release.
+              With 3+ years of hands-on development experience, I’ve learned to think beyond getting a feature to work. I think about how it behaves in production, how easily another developer can understand it, how securely systems communicate, how data moves, and what happens when something breaks. That end-to-end perspective is what I bring to every build.
             </p>
           </div>
 
-          <div className="relative mx-auto hidden aspect-square w-full max-w-[34rem] lg:block" aria-label="Interactive four pillars of my practice">
-            <div className="absolute left-0 top-3 w-44">
-              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45">Four pillars of my practice</span>
-              <p className="mt-1 text-[10px] leading-4 text-white/35">Range, innovation, verified depth and professional accountability.</p>
-            </div>
-            <span className="absolute right-0 top-3 text-[9px] uppercase tracking-[0.16em] text-white/25">Select to explore</span>
+          <div className="relative mx-auto hidden aspect-square w-full max-w-[31rem] lg:block" aria-label="Interactive pillars describing how I build and grow">
+            <span className="absolute right-0 top-3 max-w-36 text-right text-[10px] leading-4 text-white/50">Hover or focus a pillar to reveal what it represents in my work.</span>
             <div className="pointer-events-none absolute inset-[4.5rem] rounded-full border border-white/10" />
             <div className="pointer-events-none absolute inset-[6.25rem] rounded-full border border-dashed border-white/[0.08] [animation:spin_28s_linear_infinite] motion-reduce:animate-none" />
             <div className="pointer-events-none absolute bottom-16 left-1/2 top-16 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
@@ -298,7 +294,7 @@ export default function Skills() {
                   onClick={() => setActiveProofPoint(index)}
                   onMouseEnter={() => setActiveProofPoint(index)}
                   onFocus={() => setActiveProofPoint(index)}
-                  className={`absolute z-10 w-40 bg-dark/90 px-3 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
+                  className={`absolute z-10 w-36 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
                 >
                   <span className={`block text-[9px] font-semibold uppercase tracking-[0.16em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
                   <span className="mt-1 block font-display text-sm font-semibold leading-snug">{point.title}</span>
@@ -307,16 +303,16 @@ export default function Skills() {
             })}
 
             <span className="pointer-events-none absolute left-1/2 top-[4.25rem] h-2 w-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)] [animation:pulse_2.8s_ease-in-out_infinite] motion-reduce:animate-none" />
+
+            <div key={`${activeProof.title}-annotation`} className="pointer-events-none absolute bottom-5 right-0 w-40 animate-fade-in text-right motion-reduce:animate-none">
+              <span className="ml-auto block w-fit -rotate-6 text-white/[0.07] [&>svg]:h-20 [&>svg]:w-20">{activeProof.icon}</span>
+              <p className="mt-1 text-[10px] leading-4 text-white/40">{activeProof.detail}</p>
+            </div>
           </div>
         </div>
 
         <div className="relative mt-12 border-y border-white/10 lg:hidden">
-          <div className="py-5">
-            <div>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">Four pillars of my practice</span>
-              <p className="mt-1 text-sm text-white/65">Range, innovation, verified depth and professional accountability.</p>
-            </div>
-          </div>
+          <p className="py-5 text-sm leading-6 text-white/60">Choose a pillar to see what it represents in my work, growth and professional direction.</p>
 
           <div className="grid grid-cols-2 border-t border-white/10 lg:grid-cols-4">
             {proofPoints.map((point, index) => {
@@ -359,17 +355,20 @@ export default function Skills() {
           </div>
         </div>
 
-        <div className="relative mt-14 sm:mt-16">
+        <div className="relative mt-8 sm:mt-10 lg:mt-4">
           <div className="flex items-center gap-4">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/40">What a team gains</span>
+            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/50">What I Bring Into the Room</span>
             <span className="h-px flex-1 bg-white/10" />
           </div>
 
           <div className="mt-2 grid md:grid-cols-3">
             {teamBenefits.map((benefit, index) => (
-              <article key={benefit.title} className={`border-b border-white/10 py-7 md:border-b-0 ${index > 0 ? "md:border-l md:pl-7" : ""} ${index < teamBenefits.length - 1 ? "md:pr-7" : ""}`}>
-                <h2 className="font-display text-lg font-semibold text-white">{benefit.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-muted">{benefit.detail}</p>
+              <article key={benefit.title} className={`group relative border-b border-white/10 py-7 transition-colors md:border-b-0 ${index > 0 ? "md:border-l md:pl-7" : ""} ${index < teamBenefits.length - 1 ? "md:pr-7" : ""}`}>
+                <span className="absolute left-0 top-0 h-px w-8 bg-primary/70 transition-all duration-500 group-hover:w-16" />
+                <div className="transition-transform duration-300 group-hover:translate-x-1">
+                  <h2 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-primary-light">{benefit.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-muted transition-colors group-hover:text-muted-light/80">{benefit.detail}</p>
+                </div>
               </article>
             ))}
           </div>
