@@ -58,8 +58,7 @@ const proofPoints = [
     icon: <Layers3 size={22} />,
     iconStyle: "border-primary/30 bg-primary/10 text-primary shadow-primary/20",
     accent: "text-primary",
-    marker: "bg-primary shadow-primary/50",
-    rule: "from-primary/70",
+    bar: "from-primary via-primary/60",
   },
   {
     eyebrow: "Applied AI",
@@ -68,8 +67,7 @@ const proofPoints = [
     icon: <Bot size={22} />,
     iconStyle: "border-purple/30 bg-purple/10 text-purple shadow-purple/20",
     accent: "text-purple",
-    marker: "bg-purple shadow-purple/50",
-    rule: "from-purple/70",
+    bar: "from-purple via-purple/60",
   },
   {
     eyebrow: "Data credentials",
@@ -78,8 +76,7 @@ const proofPoints = [
     icon: <Database size={22} />,
     iconStyle: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-cyan-500/20",
     accent: "text-cyan-300",
-    marker: "bg-cyan-300 shadow-cyan-400/50",
-    rule: "from-cyan-400/70",
+    bar: "from-cyan-400 via-cyan-400/60",
   },
   {
     eyebrow: "Professional standing",
@@ -88,8 +85,7 @@ const proofPoints = [
     icon: <Award size={22} />,
     iconStyle: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300 shadow-emerald-500/20",
     accent: "text-emerald-300",
-    marker: "bg-emerald-300 shadow-emerald-400/50",
-    rule: "from-emerald-400/70",
+    bar: "from-emerald-400 via-emerald-400/60",
   },
 ];
 
@@ -244,67 +240,62 @@ export default function Skills() {
         </p>
       </div>
 
-      <section aria-label="Professional proof points" className="relative mt-2">
-        <div className="pointer-events-none absolute left-6 right-6 top-[1.4rem] hidden h-px bg-gradient-to-r from-primary/60 via-purple/50 to-emerald-400/60 xl:block" />
+      <section aria-labelledby="skills-summary-title" className="relative mt-2 overflow-hidden py-10 sm:py-12">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div className="pointer-events-none absolute -left-20 top-1/2 h-52 w-52 -translate-y-1/2 rounded-full bg-primary/[0.07] blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-purple/[0.05] blur-3xl" />
 
-        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="relative grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-16">
+          <div className="flex items-start gap-4 sm:gap-5">
+            <span className="grid h-12 w-12 flex-none place-items-center rounded-full border border-primary/25 bg-primary/[0.08] text-primary shadow-lg shadow-primary/10">
+              <Layers3 size={21} />
+            </span>
+            <div>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
+              <h2 id="skills-summary-title" className="mt-3 max-w-xl font-display text-3xl font-bold leading-[1.12] text-white sm:text-4xl">
+                Built to contribute across <span className="text-gradient">the whole product</span>
+              </h2>
+            </div>
+          </div>
+
+          <p className="border-l border-white/10 pl-5 text-sm leading-7 text-muted sm:pl-7 sm:text-base">
+            More than a list of technologies, this is the toolkit I use to move from an ambiguous problem to a reliable product. I work across interfaces, APIs, data pipelines, cloud services and AI-powered experiences, with the testing, security and communication discipline needed to support what I build.
+          </p>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-primary/60 via-purple/35 to-transparent" />
+      </section>
+
+      <section aria-label="Professional proof points" className="relative mt-10 mb-14">
+        <div className="grid gap-10 sm:grid-cols-2 sm:gap-x-8 xl:grid-cols-4 xl:gap-0">
           {proofPoints.map((point, index) => (
             <article
               key={point.title}
-              className="group relative min-w-0"
+              className={`group relative min-w-0 pt-5 ${index > 0 ? "xl:border-l xl:border-white/10 xl:pl-7" : ""} ${index < proofPoints.length - 1 ? "xl:pr-7" : ""}`}
             >
-              <div className="relative flex items-center gap-4">
-                <span className={`relative z-10 grid h-11 w-11 flex-none place-items-center rounded-full border shadow-lg ring-8 ring-dark transition duration-300 group-hover:scale-110 ${point.iconStyle}`}>
+              <span className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r to-transparent ${point.bar}`} />
+
+              <div className="flex items-center justify-between gap-4">
+                <span className={`grid h-10 w-10 place-items-center rounded-full border shadow-md ${point.iconStyle}`}>
                   {point.icon}
                 </span>
-                <span className={`h-px flex-1 bg-gradient-to-r to-transparent xl:opacity-0 ${point.rule}`} />
-                <span className="font-display text-4xl font-bold leading-none text-white/[0.07] transition group-hover:text-white/[0.12]">
+                <span className={`font-display text-3xl font-bold leading-none opacity-25 ${point.accent}`}>
                   0{index + 1}
                 </span>
               </div>
 
-              <div className="relative mt-6 border-l border-white/10 pl-4">
-                <span className={`absolute -left-[3px] top-1.5 h-1.5 w-1.5 rounded-full shadow-[0_0_12px_currentColor] ${point.marker}`} />
+              <div className="mt-5">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.22em] text-white/40">Proof point</p>
                 <p className={`mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] ${point.accent}`}>{point.eyebrow}</p>
-                <h2 className="mt-2 font-display text-xl font-bold leading-snug text-white transition group-hover:translate-x-1">{point.title}</h2>
-                <p className="mt-2 max-w-[17rem] text-sm leading-relaxed text-muted">{point.detail}</p>
+                <h2 className="mt-2 font-display text-xl font-bold leading-snug text-white">{point.title}</h2>
+                <p className="mt-2 max-w-[18rem] text-sm leading-relaxed text-muted">{point.detail}</p>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section aria-labelledby="skills-summary-title" className="relative mt-20 py-10 sm:py-12">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-primary/60 via-purple/35 to-transparent" />
-        <div className="pointer-events-none absolute -left-24 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full bg-primary/[0.07] blur-3xl" />
-
-        <div className="relative grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-          <div className="relative pl-6 sm:pl-8">
-            <span className="absolute inset-y-1 left-0 w-px bg-gradient-to-b from-primary via-primary/70 to-purple/60" />
-            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Skills Summary</span>
-            <h2 id="skills-summary-title" className="mt-3 max-w-xl font-display text-3xl font-bold leading-[1.12] text-white sm:text-4xl">
-              Built to contribute across <span className="text-gradient">the whole product</span>
-            </h2>
-          </div>
-
-          <div>
-            <p className="max-w-2xl text-sm leading-7 text-muted sm:text-base">
-              More than a list of technologies, this is the toolkit I use to move from an ambiguous problem to a reliable product. I work across interfaces, APIs, data pipelines, cloud services and AI-powered experiences, with the testing, security and communication discipline needed to support what I build.
-            </p>
-
-            <div className="mt-7 flex items-center gap-2 overflow-hidden" aria-hidden="true">
-              <span className="flex-none text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35">Ambiguous problem</span>
-              <span className="h-px min-w-5 flex-1 bg-gradient-to-r from-primary/70 via-purple/60 to-cyan-400/60" />
-              <span className="h-2 w-2 flex-none rotate-45 border-r border-t border-cyan-300/70" />
-              <span className="flex-none text-[9px] font-semibold uppercase tracking-[0.2em] text-white/60">Reliable product</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="mt-5 space-y-5">
+      <div className="space-y-5">
         <SkillSectionAccordion
           id="technical-capabilities"
           eyebrow="Technical Capabilities"
