@@ -212,12 +212,12 @@ export const skillExperience: Record<string, SkillExperience> = {
     groups: [
       {
         label: "3+ Years Experience",
-        items: [
-          "Asynchronous Processing", "Background Jobs", "RESTful APIs", "SOAP Services",
-          "Third-Party API Integration",
-        ],
+        items: ["Asynchronous Processing", "Background Jobs", "RESTful APIs"],
       },
-      { label: "2+ Years Experience", items: ["GraphQL"] },
+      {
+        label: "2+ Years Experience",
+        items: ["GraphQL", "SOAP Services", "Third-Party API Integration"],
+      },
     ],
   },
   Databases: {
@@ -247,10 +247,10 @@ export const skillExperience: Record<string, SkillExperience> = {
     ],
   },
   "Data Engineering & Analytics": {
-    overall: "2+ Years",
+    overall: "1+ Year",
     groups: [
       {
-        label: "2+ Years Experience",
+        label: "1+ Year Experience",
         items: [
           "Apache Spark (PySpark)", "Data Catalogs", "Data Lakes", "Data Validation",
           "Data Visualisation", "ETL Pipelines", "NumPy", "Pandas", "Pydantic", "Python", "SQL",
@@ -351,12 +351,13 @@ export const skillExperience: Record<string, SkillExperience> = {
     groups: [
       {
         label: "3+ Years Experience",
-        items: [
-          "Confluence", "Eclipse / NetBeans", "Jira", "Miro", "Postman", "Visual Studio",
-          "Visual Studio Code",
-        ],
+        items: ["Confluence", "Jira", "Visual Studio", "Visual Studio Code"],
       },
-      { label: "2+ Years Experience", items: ["Anaconda", "DBeaver", "Notion"] },
+      {
+        label: "2+ Years Experience",
+        items: ["Eclipse / NetBeans", "Miro", "Postman"],
+      },
+      { label: "1+ Year Experience", items: ["Anaconda", "DBeaver", "Notion"] },
     ],
   },
 };

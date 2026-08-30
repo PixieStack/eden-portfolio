@@ -213,13 +213,13 @@ function SkillSectionAccordion({
 
 export default function Skills() {
   const [openSection, setOpenSection] = useState<"technical" | "professional" | null>("technical");
-  const [flippedSkill, setFlippedSkill] = useState<string | null>(null);
+  const [flippedSkills, setFlippedSkills] = useState<Set<string>>(() => new Set());
   const technicalSectionRef = useRef<HTMLElement>(null);
   const professionalSectionRef = useRef<HTMLElement>(null);
 
   const toggleSection = (section: "technical" | "professional") => {
     const isOpening = openSection !== section;
-    setFlippedSkill(null);
+    setFlippedSkills(new Set<string>());
     setOpenSection((current) => current === section ? null : section);
 
     if (isOpening) {
@@ -327,8 +327,16 @@ export default function Skills() {
                 color={presentations[index].color}
                 index={index}
                 experience={skillExperience[category.title]}
-                isFlipped={flippedSkill === category.title}
-                onFlip={() => setFlippedSkill((current) => current === category.title ? null : category.title)}
+                isFlipped={flippedSkills.has(category.title)}
+                onFlip={() => setFlippedSkills((current) => {
+                  const next = new Set(current);
+                  if (next.has(category.title)) {
+                    next.delete(category.title);
+                  } else {
+                    next.add(category.title);
+                  }
+                  return next;
+                })}
               />
             ))}
           </div>

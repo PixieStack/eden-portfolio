@@ -100,8 +100,8 @@ export default function SkillCard({
       style={{ animationDelay: `${index * 0.1}s` }}
       data-testid={`skill-card-${title.toLowerCase().replace(/\s+/g, "-")}`}
     >
-      <div className={`grid h-full transition-transform duration-700 ease-out [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`}>
-        <div aria-hidden={isFlipped} className="card card-hover flex h-full min-h-[22rem] flex-col p-5 [backface-visibility:hidden] [grid-area:1/1] sm:p-8">
+      <div className={`grid h-full transform-gpu transition-transform duration-500 [transform-style:preserve-3d] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] [will-change:transform] motion-reduce:transition-none ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`}>
+        <div aria-hidden={isFlipped} className="card flex h-full min-h-[22rem] flex-col p-5 transition-[border-color,box-shadow] duration-300 [backface-visibility:hidden] [grid-area:1/1] hover:border-white/15 hover:shadow-xl hover:shadow-black/20 sm:p-8">
           <div className="mb-5 flex items-start gap-3 sm:mb-6 sm:items-center sm:gap-4">
             <div className={`flex h-12 w-12 flex-none items-center justify-center rounded-2xl sm:h-14 sm:w-14 ${colors.bg} ${colors.text}`}>
               {icon}
@@ -150,14 +150,14 @@ export default function SkillCard({
             {experience.groups.map((group) => (
               <div key={group.label}>
                 <h4 className={`text-xs font-semibold uppercase tracking-[0.14em] ${colors.text}`}>{group.label}</h4>
-                <p className="mt-2 text-sm leading-relaxed text-white/75">
-                  {group.items.map((item, itemIndex) => (
-                    <span key={item}>
-                      {itemIndex > 0 && <span className="px-1.5 text-white/25">&bull;</span>}
-                      {item}
-                    </span>
+                <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 min-[430px]:grid-cols-2">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex min-w-0 items-start gap-2 text-sm leading-snug text-white/75">
+                      <span className={`mt-[0.42rem] h-1.5 w-1.5 flex-none rounded-full bg-current opacity-75 ${colors.text}`} />
+                      <span className="min-w-0 break-words">{item}</span>
+                    </li>
                   ))}
-                </p>
+                </ul>
               </div>
             ))}
           </div>
