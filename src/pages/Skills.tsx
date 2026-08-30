@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from "react";
 import {
   Award,
   BarChart3,
@@ -60,6 +60,7 @@ const proofPoints = [
     headline: "One feature.",
     headlineAccent: "Every layer considered.",
     story: "My strongest advantage is seeing the connections others can miss between interface, logic, APIs, data and deployment. That wider view helps me make better decisions earlier—before gaps become problems.",
+    signals: ["Interface", "Logic", "APIs", "Data", "Delivery"],
     icon: <Layers3 size={22} />,
   },
   {
@@ -71,6 +72,7 @@ const proofPoints = [
     headline: "Curiosity becomes",
     headlineAccent: "capability.",
     story: "I experiment with emerging AI capabilities by asking the question that matters to an engineer: where does this genuinely make the product better? I learn through building, integration and practical use—not hype.",
+    signals: ["Experiment", "Integrate", "Evaluate", "Apply"],
     icon: <Bot size={22} />,
   },
   {
@@ -82,6 +84,7 @@ const proofPoints = [
     headline: "Recognition follows",
     headlineAccent: "the standard.",
     story: "My AMICITP-SA professional designation reflects something I intend to keep earning: credibility built through competence, continued development and responsibility for the work I put my name behind.",
+    signals: ["Competence", "Accountability", "Growth"],
     icon: <Award size={22} />,
   },
   {
@@ -93,6 +96,7 @@ const proofPoints = [
     headline: "Knowledge should",
     headlineAccent: "compound.",
     story: "From data engineering and analytics to cloud, platforms and emerging technologies, I keep widening the knowledge around my core development experience—then bring what matters back into the way I build.",
+    signals: ["Learn", "Validate", "Compound"],
     icon: <Database size={22} />,
   },
 ];
@@ -105,6 +109,8 @@ const proofPointPositions = [
 ];
 
 const proofIndicatorRotations = [0, 90, -90, 180];
+
+const deliveryPath = ["Interface", "Logic", "APIs", "Data", "Cloud"];
 
 const teamBenefits = [
   {
@@ -299,6 +305,14 @@ export default function Skills() {
     }, 140);
   };
 
+  const handlePillarPointerMove = (event: MouseEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+    const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+    event.currentTarget.style.setProperty("--pillar-x", `${x}%`);
+    event.currentTarget.style.setProperty("--pillar-y", `${y}%`);
+  };
+
   const activeProof = proofPoints[displayedProofPoint];
   const activeTeamBenefit = teamBenefits[activePrinciple];
 
@@ -308,50 +322,87 @@ export default function Skills() {
         <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.05] blur-3xl" />
 
         <div className="relative grid gap-10 xl:grid-cols-[0.7fr_1.3fr] xl:gap-8 2xl:gap-10">
-          <div className="min-w-0">
-        <div className="relative max-w-3xl">
-          <div className="flex items-center gap-4">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary sm:text-xs">Technical Expertise</span>
-            <span className="h-px w-12 bg-primary/50" />
-          </div>
-          <h1 id="skills-title" className="mt-4 font-display text-4xl font-bold leading-[0.98] text-white sm:text-5xl xl:text-5xl" data-testid="skills-title">
-            Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-14 bg-primary" /></span>
-          </h1>
-          <p className="mt-5 max-w-3xl text-sm leading-6 text-muted-light/85">
-            With 3+ years of hands-on development experience, I’ve learned that strong software is not defined by how many technologies sit behind it, but by how well the pieces work together. My strongest ground is full-stack development: connecting interfaces, backend logic, APIs, data and cloud services into software that is useful, maintainable and ready for the realities beyond development.
-          </p>
-          <p className="mt-3.5 max-w-3xl text-sm leading-6 text-muted">
-            I work across the build with an end-to-end mindset &mdash; understanding how decisions travel through a system, anticipating what can break, and engineering beyond &ldquo;it works.&rdquo; <span className="text-white/85">The technologies below are the toolkit. The real skill is knowing how to make them work as one.</span>
-          </p>
-        </div>
+          <div className="skills-editorial relative min-w-0 border-y border-white/[0.07] py-7 xl:pr-2">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">Technical expertise</span>
+                <span className="h-px w-12 bg-primary/50" />
+              </div>
+              <span className="text-[8px] font-semibold uppercase tracking-[0.2em] text-white/25">End-to-end practice</span>
+            </div>
 
+            <h1 id="skills-title" className="mt-5 font-display text-4xl font-bold leading-[0.95] text-white sm:text-5xl xl:text-[3.25rem]" data-testid="skills-title">
+              Skills <span className="text-white/35">&</span>
+              <span className="mt-1 block text-white">Technologies<span className="ml-2 inline-block h-2 w-2 rounded-full bg-primary shadow-[0_0_16px_rgba(249,115,22,0.65)]" /></span>
+            </h1>
+
+            <div className="mt-7 grid grid-cols-[5.25rem_1fr] gap-4 border-t border-white/[0.07] pt-5">
+              <div className="border-r border-white/10 pr-4">
+                <span className="font-display text-4xl font-semibold leading-none text-primary">3+</span>
+                <span className="mt-2 block text-[8px] font-semibold uppercase leading-4 tracking-[0.16em] text-white/40">Years building</span>
+              </div>
+              <p className="text-[13px] leading-[1.4rem] text-muted-light/85">
+                I’ve learned that strong software is not defined by how many technologies sit behind it, but by how well the pieces work together. My strongest ground is full-stack development: connecting interfaces, backend logic, APIs, data and cloud services into software that is useful, maintainable and ready beyond development.
+              </p>
+            </div>
+
+            <p className="mt-5 border-l border-primary/55 pl-4 text-[13px] leading-[1.4rem] text-muted">
+              I work across the build with an end-to-end mindset &mdash; understanding how decisions travel through a system, anticipating what can break, and engineering beyond &ldquo;it works.&rdquo; <span className="font-medium text-white/85">The technologies are the toolkit. The real skill is making them work as one.</span>
+            </p>
+
+            <div className="mt-7">
+              <span className="text-[7px] font-semibold uppercase tracking-[0.2em] text-white/30">Context carried across the build</span>
+              <div className="mt-3 flex items-center" aria-label="End-to-end delivery path">
+                {deliveryPath.map((step, index) => (
+                  <div key={step} className="flex min-w-0 flex-1 items-center last:flex-none">
+                    <span className="relative flex flex-col gap-1.5">
+                      <span className={`h-1.5 w-1.5 rounded-full ${index === 0 ? "bg-primary shadow-[0_0_12px_rgba(249,115,22,0.7)]" : "bg-white/30"}`} />
+                      <span className="text-[7px] font-semibold uppercase tracking-[0.12em] text-white/40">{step}</span>
+                    </span>
+                    {index < deliveryPath.length - 1 && <span className="mb-4 ml-2 h-px min-w-3 flex-1 bg-gradient-to-r from-white/20 to-white/[0.05]" />}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-        <section aria-labelledby="pillar-philosophy-title" className="relative min-w-0 xl:border-l xl:border-white/[0.06] xl:pl-8 2xl:pl-10">
-          <div className="max-w-3xl">
-            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">The engineer behind the toolkit</span>
-            <h2 id="pillar-philosophy-title" className="mt-2 font-display text-2xl font-semibold text-white sm:text-3xl">Four things shape how I build.</h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">Range to see the system. Curiosity to keep evolving. Standards that hold me accountable. And a habit of turning learning into better work.</p>
-            <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.18em] text-white/35">Explore the four pillars ↓</p>
+        <section aria-labelledby="pillar-philosophy-title" className="skills-philosophy relative min-w-0 xl:border-l xl:border-white/[0.06] xl:pl-8 2xl:pl-10">
+          <div className="max-w-3xl border-t border-white/[0.07] pt-4">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">The engineer behind the toolkit</span>
+              <span className="flex items-center gap-2 text-[7px] font-semibold uppercase tracking-[0.16em] text-white/30"><span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_rgba(249,115,22,0.7)]" />Interactive model</span>
+            </div>
+            <h2 id="pillar-philosophy-title" className="mt-2.5 font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">Four things shape <span className="text-white/45">how I build.</span></h2>
+            <div className="mt-3 flex items-start gap-4">
+              <span className="mt-2 h-px w-8 flex-none bg-primary/60" />
+              <p className="max-w-2xl text-[13px] leading-[1.35rem] text-muted">Range to see the system. Curiosity to keep evolving. Standards that hold me accountable. And a habit of turning learning into better work.</p>
+            </div>
+            <p className="mt-3 text-[7px] font-semibold uppercase tracking-[0.18em] text-white/30">Hover, focus or select a pillar</p>
           </div>
 
           <div className="mt-3 grid gap-6 md:grid-cols-[1.42fr_0.58fr] md:items-center md:gap-5">
             <div>
-              <div className="relative -ml-2 hidden aspect-square w-full max-w-[32rem] sm:block" aria-label="Interactive pillar navigation">
-                <div className="pointer-events-none absolute inset-16 rounded-full border border-white/10" />
-                <div className="pointer-events-none absolute inset-[5.5rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
-                <div className="pointer-events-none absolute bottom-14 left-1/2 top-14 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-                <div className="pointer-events-none absolute left-14 right-14 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div onMouseMove={handlePillarPointerMove} className="pillar-instrument relative -ml-2 hidden aspect-square w-full max-w-[32rem] sm:block" aria-label="Interactive pillar navigation">
+                <div className="pillar-instrument-glow pointer-events-none absolute inset-0 rounded-full" />
+                <div className="pillar-instrument-ticks pointer-events-none absolute inset-6 rounded-full opacity-35" />
+                <div className="pointer-events-none absolute inset-12 rounded-full border border-white/[0.06]" />
+                <div className="pointer-events-none absolute inset-16 rounded-full border border-white/15 shadow-[inset_0_0_48px_rgba(255,255,255,0.015)]" />
+                <div className="pointer-events-none absolute inset-[5.5rem] rounded-full border border-dashed border-white/[0.1] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
+                <div className="pillar-active-sector pointer-events-none absolute inset-12 rounded-full transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }} />
+                <div className="pointer-events-none absolute bottom-12 left-1/2 top-12 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/[0.04] via-50% to-transparent" />
+                <div className="pointer-events-none absolute left-12 right-12 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/[0.04] via-50% to-transparent" />
 
                 <div className="pointer-events-none absolute inset-16 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
-                  <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)]" />
+                  <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dark bg-primary shadow-[0_0_22px_rgba(249,115,22,0.8)]" />
+                  <span className="absolute left-1/2 top-0 h-10 w-px -translate-x-1/2 bg-gradient-to-b from-primary/80 to-transparent" />
                 </div>
 
-                <div className="absolute left-1/2 top-1/2 grid h-44 w-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-5 text-center shadow-2xl shadow-black/40">
+                <div className="pillar-core absolute left-1/2 top-1/2 grid h-44 w-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/15 bg-dark/95 p-5 text-center shadow-2xl shadow-black/50">
                   <div className={`transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
-                    <span className="mx-auto block w-fit text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
-                    <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.2em] text-white/35">Active pillar</p>
+                    <span className="mx-auto grid h-10 w-10 place-items-center rounded-full border border-primary/25 bg-primary/[0.08] text-primary [&>svg]:h-5 [&>svg]:w-5">{activeProof.icon}</span>
+                    <p className="mt-3 text-[7px] font-semibold uppercase tracking-[0.2em] text-white/35">Active pillar &middot; 0{displayedProofPoint + 1}</p>
                     <p className="mt-2 font-display text-sm font-semibold leading-snug text-white">{activeProof.navLabel}</p>
+                    <span className="mx-auto mt-3 block h-px w-8 bg-primary/60" />
                   </div>
                 </div>
 
@@ -366,10 +417,15 @@ export default function Skills() {
                       onClick={() => selectProofPoint(index)}
                       onMouseEnter={() => selectProofPoint(index)}
                       onFocus={() => selectProofPoint(index)}
-                      className={`absolute z-10 w-36 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
+                      className={`group absolute z-10 w-40 rounded-2xl border px-3 py-3 backdrop-blur-md transition duration-300 ${proofPointPositions[index]} ${isActive ? "border-primary/35 bg-[linear-gradient(135deg,rgba(249,115,22,0.14),rgba(13,13,18,0.94)_58%)] text-white shadow-[0_16px_45px_rgba(0,0,0,0.38)]" : "border-white/[0.07] bg-dark/80 text-white/45 hover:scale-[1.02] hover:border-white/15 hover:bg-dark/95 hover:text-white/80"}`}
                     >
-                      <span className={`block text-[8px] font-semibold uppercase tracking-[0.14em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
-                      <span className="mt-1 block font-display text-xs font-semibold leading-snug">{point.navLabel}</span>
+                      <span className="flex items-center gap-2 text-left">
+                        <span className={`grid h-8 w-8 flex-none place-items-center rounded-lg border transition-colors [&>svg]:h-4 [&>svg]:w-4 ${isActive ? "border-primary/25 bg-primary/10 text-primary" : "border-white/10 text-white/35 group-hover:text-white/70"}`}>{point.icon}</span>
+                        <span className="min-w-0">
+                          <span className={`block text-[7px] font-semibold uppercase tracking-[0.14em] ${isActive ? "text-primary" : ""}`}>0{index + 1} &middot; {point.eyebrow}</span>
+                          <span className="mt-1 block font-display text-[11px] font-semibold leading-snug">{point.navLabel}</span>
+                        </span>
+                      </span>
                     </button>
                   );
                 })}
@@ -390,15 +446,24 @@ export default function Skills() {
               </div>
             </div>
 
-            <article className={`relative min-h-[22rem] overflow-hidden border-t border-white/10 py-6 transition duration-150 md:border-l md:border-t-0 md:py-4 md:pl-5 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
+            <article className={`pillar-insight relative min-h-[24rem] overflow-hidden border-y border-white/10 px-1 py-6 transition duration-150 md:px-5 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
               <div key={activeProof.eyebrow}>
-                <span className="pillar-story-icon pointer-events-none absolute right-0 top-0 -rotate-6 text-white/[0.1] [&>svg]:h-32 [&>svg]:w-32 sm:[&>svg]:h-40 sm:[&>svg]:w-40" aria-hidden="true">{activeProof.icon}</span>
+                <span className="pointer-events-none absolute right-2 top-3 font-display text-7xl font-semibold leading-none text-white/[0.025]" aria-hidden="true">0{displayedProofPoint + 1}</span>
+                <span className="pillar-story-icon pointer-events-none absolute right-2 top-10 -rotate-6 text-white/[0.09] [&>svg]:h-28 [&>svg]:w-28 sm:[&>svg]:h-36 sm:[&>svg]:w-36" aria-hidden="true">{activeProof.icon}</span>
                 <div className="relative max-w-xl pt-24 sm:pt-28">
-                  <p className="pillar-story-kicker text-[8px] font-semibold uppercase tracking-[0.18em] text-primary">Pillar 0{displayedProofPoint + 1} &mdash; {activeProof.eyebrow}</p>
-                  <h3 className="pillar-story-heading mt-2.5 font-display text-2xl font-semibold leading-[1.04] text-white">
+                  <p className="pillar-story-kicker text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">Selected insight &middot; 0{displayedProofPoint + 1}</p>
+                  <p className="mt-2 text-[7px] font-semibold uppercase tracking-[0.15em] text-white/30">{activeProof.eyebrow}</p>
+                  <h3 className="pillar-story-heading mt-3 font-display text-2xl font-semibold leading-[1.04] text-white">
                     {activeProof.headline}<span className="block text-white/55">{activeProof.headlineAccent}</span>
                   </h3>
-                  <p className="pillar-story-copy mt-3.5 text-xs leading-5 text-muted-light/75">{activeProof.story}</p>
+                  <p className="pillar-story-copy mt-4 text-xs leading-5 text-muted-light/75">{activeProof.story}</p>
+                  <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 border-t border-white/[0.07] pt-4">
+                    {activeProof.signals.map((signal) => (
+                      <span key={signal} className="flex items-center gap-1.5 text-[7px] font-semibold uppercase tracking-[0.13em] text-white/35">
+                        <span className="h-1 w-1 rounded-full bg-primary/75" />{signal}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </article>

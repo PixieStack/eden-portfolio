@@ -324,6 +324,109 @@ body {
   animation: principle-stroke-draw 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.skills-editorial {
+  background:
+    linear-gradient(90deg, rgba(249, 115, 22, 0.035), transparent 34%),
+    radial-gradient(420px circle at 0% 18%, rgba(249, 115, 22, 0.055), transparent 62%);
+}
+
+.skills-philosophy {
+  background: radial-gradient(680px circle at 42% 62%, rgba(255, 255, 255, 0.018), transparent 66%);
+}
+
+.pillar-instrument {
+  --pillar-x: 50%;
+  --pillar-y: 50%;
+  isolation: isolate;
+  transform-style: preserve-3d;
+}
+
+.pillar-instrument-glow {
+  background:
+    radial-gradient(180px circle at var(--pillar-x) var(--pillar-y), rgba(249, 115, 22, 0.095), transparent 72%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 58%);
+  transition: background-position 180ms ease-out;
+}
+
+.pillar-instrument-ticks {
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.24) 0deg 0.45deg,
+    transparent 0.45deg 5deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 0 78%, #000 78.4% 80%, transparent 80.5%);
+  mask: radial-gradient(circle, transparent 0 78%, #000 78.4% 80%, transparent 80.5%);
+  animation: pillar-calibration-spin 70s linear infinite reverse;
+}
+
+.pillar-active-sector {
+  background: conic-gradient(
+    from -18deg,
+    transparent 0deg,
+    rgba(249, 115, 22, 0.2) 18deg,
+    rgba(249, 115, 22, 0.035) 38deg,
+    transparent 60deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 0 61%, #000 61.5% 79%, transparent 79.5%);
+  mask: radial-gradient(circle, transparent 0 61%, #000 61.5% 79%, transparent 79.5%);
+  filter: drop-shadow(0 0 14px rgba(249, 115, 22, 0.12));
+}
+
+.pillar-core {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(249, 115, 22, 0.075), transparent 46%),
+    rgba(13, 13, 18, 0.97);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.52),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+    0 0 0 12px rgba(255, 255, 255, 0.012);
+  animation: pillar-core-breathe 4.8s ease-in-out infinite;
+}
+
+.pillar-insight {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.022), transparent 58%),
+    radial-gradient(260px circle at 85% 20%, rgba(249, 115, 22, 0.035), transparent 68%);
+}
+
+.pillar-insight::before {
+  content: "";
+  position: absolute;
+  inset-block: 1.5rem;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(249, 115, 22, 0.72), transparent);
+  transform: scaleY(0.62);
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pillar-insight:hover::before {
+  transform: scaleY(1);
+}
+
+@keyframes pillar-calibration-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pillar-core-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 26px 70px rgba(0, 0, 0, 0.52),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+      0 0 0 12px rgba(255, 255, 255, 0.012);
+  }
+  50% {
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.58),
+      inset 0 0 0 1px rgba(249, 115, 22, 0.08),
+      0 0 0 15px rgba(249, 115, 22, 0.018);
+  }
+}
+
 @keyframes pillar-icon-enter {
   from {
     opacity: 0;
@@ -367,7 +470,9 @@ body {
   .pillar-story-icon,
   .pillar-story-kicker,
   .pillar-story-heading,
-  .pillar-story-copy {
+  .pillar-story-copy,
+  .pillar-instrument-ticks,
+  .pillar-core {
     animation: none;
   }
 }
