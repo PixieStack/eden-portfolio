@@ -1,200 +1,94 @@
-import { NavLink, Link, useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
-import {
-  Home,
-  GraduationCap,
-  Code,
-  Briefcase,
-  Trophy,
-  Mail,
-  Menu,
-  X,
-  Download,
-  User,
-} from "lucide-react";
-import profile from "../assets/profile.jpeg";
+import { useEffect, useRef, useState } from "react";
+import { Download, Menu, X } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 const links = [
-  { to: "/", label: "Home", icon: Home },
-  { to: "/skills", label: "Skills", icon: Code },
-  { to: "/experience", label: "Experience", icon: Trophy },
-  { to: "/education", label: "Education", icon: GraduationCap },
-  { to: "/projects", label: "Projects", icon: Briefcase },
-  { to: "/about", label: "About", icon: User },
-  { to: "/contact", label: "Contact", icon: Mail },
+  { to: "/", label: "Home" },
+  { to: "/skills", label: "Skills" },
+  { to: "/experience", label: "Experience" },
+  { to: "/education", label: "Education" },
+  { to: "/projects", label: "Projects" },
+  { to: "/about", label: "About" },
+  { to: "/contact", label: "Contact" },
 ];
 
-const scrollToHero = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+const scrollToPageStart = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const scrollToHomeAfterNavigation = useRef(false);
+  const scrollHomeAfterNavigation = useRef(false);
+  const resumeUrl = `${import.meta.env.BASE_URL}cv/Thembinkosi-Eden-Thwala-Resume.pdf`;
 
   const handleLogoClick = () => {
     setIsOpen(false);
+    if (location.pathname === "/") scrollToPageStart();
+    else scrollHomeAfterNavigation.current = true;
+  };
 
-    if (location.pathname === "/") {
-      scrollToHero();
-      return;
-    }
-
-    scrollToHomeAfterNavigation.current = true;
+  const handleNavigation = () => {
+    setIsOpen(false);
+    window.requestAnimationFrame(scrollToPageStart);
   };
 
   useEffect(() => {
-    if (
-      location.pathname === "/" &&
-      scrollToHomeAfterNavigation.current
-    ) {
-      scrollToHomeAfterNavigation.current = false;
-      window.requestAnimationFrame(scrollToHero);
+    if (location.pathname === "/" && scrollHomeAfterNavigation.current) {
+      scrollHomeAfterNavigation.current = false;
+      window.requestAnimationFrame(scrollToPageStart);
     }
   }, [location.pathname]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 18);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when pressing Escape
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
-      }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
-
-  const resumeUrl = `${import.meta.env.BASE_URL}cv/Thembinkosi-Eden-Thwala-Resume.pdf`;
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-[1600px] mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          to="/"
-          onClick={handleLogoClick}
-          aria-label="Go to the Home hero section"
-          className="flex items-center gap-3 group"
-        >
-          <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-glow transition-transform group-hover:scale-105">
-            <img
-              src={profile}
-              alt="Thembinkosi"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-xl font-bold text-white">
-              Thembinkosi
-            </span>
-            <span className="text-muted text-sm">.dev</span>
-          </div>
+    <header className={`site-navbar ${scrolled ? "is-scrolled" : ""}`}>
+      <div className="site-navbar-shell">
+        <Link to="/" onClick={handleLogoClick} className="site-navbar-brand" aria-label="Go to the Home hero section">
+          <span>Thembinkosi</span><strong>.dev</strong>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1">
-          {links.map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to === "/"}
-              className={({ isActive }) =>
-                `nav-pill flex items-center gap-2 text-sm font-medium transition-all ${
-                  isActive
-                    ? "bg-primary text-white shadow-glow"
-                    : "text-muted hover:text-white hover:bg-white/5"
-                }`
-              }
-            >
-              <Icon size={16} />
+        <nav className="site-navbar-links" aria-label="Primary navigation">
+          {links.map(({ to, label }) => (
+            <NavLink key={to} to={to} end={to === "/"} onClick={handleNavigation} className={({ isActive }) => `site-navbar-link ${isActive ? "is-active" : ""}`}>
               {label}
             </NavLink>
           ))}
-
-          <a
-            href={resumeUrl}
-            download="Thembinkosi-Eden-Thwala-Resume.pdf"
-            className="ml-4 flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple to-purple-dark text-white font-medium text-sm shadow-glow-purple hover:scale-105 transition-transform"
-          >
-            <Download size={16} />
-            Download CV
-          </a>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 text-white hover:text-primary transition-colors"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        <a href={resumeUrl} download="Thembinkosi-Eden-Thwala-Resume.pdf" className="site-navbar-resume">
+          <Download size={16} /> Download CV
+        </a>
+
+        <button type="button" className="site-navbar-toggle" onClick={() => setIsOpen((value) => !value)} aria-expanded={isOpen} aria-label={isOpen ? "Close menu" : "Open menu"}>
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Navigation */}
-      <div
-        className={`lg:hidden absolute top-full left-0 right-0 glass border-t border-white/5 transition-all duration-300 ${
-          isOpen
-            ? "opacity-100 visible translate-y-0"
-            : "opacity-0 invisible -translate-y-2"
-        }`}
-      >
-        <div className="px-6 py-6 space-y-2">
-          {links.map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to === "/"}
-              onClick={() => setIsOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all ${
-                  isActive
-                    ? "bg-primary text-white"
-                    : "text-muted hover:text-white hover:bg-white/5"
-                }`
-              }
-            >
-              <Icon size={20} />
-              {label}
-            </NavLink>
-          ))}
-
-          <a
-            href={resumeUrl}
-            download="Thembinkosi-Eden-Thwala-Resume.pdf"
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-purple to-purple-dark text-white font-medium"
-          >
-            <Download size={20} />
-            Download CV
-          </a>
-        </div>
+      <div className={`site-navbar-mobile ${isOpen ? "is-open" : ""}`}>
+        {links.map(({ to, label }) => (
+          <NavLink key={to} to={to} end={to === "/"} onClick={handleNavigation} className={({ isActive }) => isActive ? "is-active" : ""}>
+            {label}
+          </NavLink>
+        ))}
+        <a href={resumeUrl} download="Thembinkosi-Eden-Thwala-Resume.pdf" onClick={() => setIsOpen(false)}><Download size={17} /> Download CV</a>
       </div>
     </header>
   );
