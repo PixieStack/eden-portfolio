@@ -296,78 +296,82 @@ export default function Skills() {
 
   return (
     <section className="section" data-testid="skills-section">
-      <section aria-labelledby="skills-title" className="relative mb-16 overflow-hidden">
+      <section aria-labelledby="skills-title" className="relative mb-12 overflow-hidden">
         <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.05] blur-3xl" />
 
-        <div className="relative max-w-5xl">
+        <div className="relative grid gap-12 xl:grid-cols-[0.96fr_1.04fr] xl:gap-14 2xl:gap-20">
+          <div className="min-w-0">
+        <div className="relative max-w-3xl">
           <div className="flex items-center gap-4">
-            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
-            <span className="h-px w-14 bg-primary/50" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-primary sm:text-xs">Technical Expertise</span>
+            <span className="h-px w-12 bg-primary/50" />
           </div>
-          <h1 id="skills-title" className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
-            Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
+          <h1 id="skills-title" className="mt-4 font-display text-4xl font-bold leading-[0.98] text-white sm:text-5xl xl:text-[3.35rem]" data-testid="skills-title">
+            Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-14 bg-primary" /></span>
           </h1>
-          <p className="mt-8 max-w-4xl text-lg leading-8 text-muted-light/85 sm:text-xl sm:leading-9">
+          <p className="mt-6 max-w-3xl text-sm leading-6 text-muted-light/85 sm:text-base sm:leading-7">
             With 3+ years of hands-on development experience, I’ve learned that strong software is not defined by how many technologies sit behind it, but by how well the pieces work together. My strongest ground is full-stack development: connecting interfaces, backend logic, APIs, data and cloud services into software that is useful, maintainable and ready for the realities beyond development.
           </p>
-          <p className="mt-5 max-w-4xl text-base leading-8 text-muted sm:text-lg">
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
             I work across the build with an end-to-end mindset &mdash; understanding how decisions travel through a system, anticipating what can break, and engineering beyond &ldquo;it works.&rdquo; <span className="text-white/85">The technologies below are the toolkit. The real skill is knowing how to make them work as one.</span>
           </p>
         </div>
 
-        <section aria-labelledby="engineering-principles-title" className="relative mt-14 sm:mt-16">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">Engineering principles</span>
-          <h2 id="engineering-principles-title" className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">More Than a Stack. A Way of Engineering.</h2>
+        <section aria-labelledby="engineering-principles-title" className="relative mt-8 sm:mt-10">
+          <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">Engineering principles</span>
+          <h2 id="engineering-principles-title" className="mt-2 font-display text-2xl font-semibold text-white sm:text-[1.75rem]">More Than a Stack. A Way of Engineering.</h2>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          <div className="mt-5 grid gap-3 sm:grid-cols-3">
             {teamBenefits.map((benefit) => (
               <article
                 key={benefit.title}
                 onMouseMove={handlePrinciplePointerMove}
-                className="principle-card group relative min-h-64 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition duration-300 hover:-translate-y-1.5 hover:border-white/15 hover:bg-white/[0.035] hover:shadow-xl hover:shadow-primary/[0.045] sm:p-7"
+                className="principle-card group relative min-h-52 overflow-hidden rounded-xl border border-white/10 bg-white/[0.02] p-4 transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.035] hover:shadow-xl hover:shadow-primary/[0.045]"
               >
-                <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: "radial-gradient(280px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(249, 115, 22, 0.08), transparent 68%)" }} />
+                <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: "radial-gradient(240px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(249, 115, 22, 0.07), transparent 68%)" }} />
                 <span className="absolute left-0 top-0 h-px w-0 bg-primary transition-[width] duration-500 group-hover:w-2/3" />
-                <span className="absolute right-0 top-0 h-0 w-px bg-primary/60 transition-[height] delay-150 duration-300 group-hover:h-16" />
+                <span className="absolute right-0 top-0 h-0 w-px bg-primary/60 transition-[height] delay-150 duration-300 group-hover:h-12" />
 
                 <div className="relative flex h-full flex-col">
-                  <span className="principle-icon grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-primary">{benefit.icon}</span>
-                  <span className="mt-7 translate-y-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35 opacity-70 transition duration-300 group-hover:translate-y-0 group-hover:text-primary group-hover:opacity-100">{benefit.microLabel}</span>
-                  <h3 className="mt-3 font-display text-xl font-semibold leading-snug text-white sm:text-2xl">
+                  <span className="principle-icon grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-primary [&>svg]:h-[18px] [&>svg]:w-[18px]">{benefit.icon}</span>
+                  <span className="mt-4 translate-y-1 text-[7px] font-semibold uppercase tracking-[0.18em] text-white/35 opacity-70 transition duration-300 group-hover:translate-y-0 group-hover:text-primary group-hover:opacity-100">{benefit.microLabel}</span>
+                  <h3 className="mt-2 font-display text-base font-semibold leading-snug text-white">
                     {benefit.titleLead}<span className="transition-colors duration-300 group-hover:text-primary">{benefit.titleAccent}</span>
                   </h3>
-                  <p className="mt-4 text-sm leading-6 text-muted">{benefit.detail}</p>
+                  <p className="mt-3 text-[11px] leading-[1.15rem] text-muted">{benefit.detail}</p>
                 </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section aria-labelledby="pillar-philosophy-title" className="relative mt-16 sm:mt-20">
-          <div className="max-w-4xl">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">The engineer behind the toolkit</span>
-            <h2 id="pillar-philosophy-title" className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">Four things shape how I build.</h2>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-muted sm:text-lg">Range to see the system. Curiosity to keep evolving. Standards that hold me accountable. And a habit of turning learning into better work.</p>
-            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">Explore the four pillars ↓</p>
           </div>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 xl:gap-20">
-            <div>
-              <div className="relative mx-auto hidden aspect-square w-full max-w-[29rem] sm:block" aria-label="Interactive pillar navigation">
-                <div className="pointer-events-none absolute inset-16 rounded-full border border-white/10" />
-                <div className="pointer-events-none absolute inset-[5.5rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
-                <div className="pointer-events-none absolute bottom-14 left-1/2 top-14 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-                <div className="pointer-events-none absolute left-14 right-14 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <section aria-labelledby="pillar-philosophy-title" className="relative min-w-0 xl:border-l xl:border-white/[0.06] xl:pl-12 2xl:pl-16">
+          <div className="max-w-3xl">
+            <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">The engineer behind the toolkit</span>
+            <h2 id="pillar-philosophy-title" className="mt-2 font-display text-2xl font-semibold text-white sm:text-3xl">Four things shape how I build.</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">Range to see the system. Curiosity to keep evolving. Standards that hold me accountable. And a habit of turning learning into better work.</p>
+            <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.18em] text-white/35">Explore the four pillars ↓</p>
+          </div>
 
-                <div className="pointer-events-none absolute inset-16 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
-                  <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_20px_rgba(249,115,22,0.7)]" />
+          <div className="mt-5 grid gap-7 md:grid-cols-[0.88fr_1.12fr] md:items-center md:gap-8">
+            <div>
+              <div className="relative mx-auto hidden aspect-square w-full max-w-[20rem] sm:block" aria-label="Interactive pillar navigation">
+                <div className="pointer-events-none absolute inset-12 rounded-full border border-white/10" />
+                <div className="pointer-events-none absolute inset-[4.1rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
+                <div className="pointer-events-none absolute bottom-10 left-1/2 top-10 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                <div className="pointer-events-none absolute left-10 right-10 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                <div className="pointer-events-none absolute inset-12 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
+                  <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)]" />
                 </div>
 
-                <div className="absolute left-1/2 top-1/2 grid h-44 w-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-5 text-center shadow-2xl shadow-black/40">
+                <div className="absolute left-1/2 top-1/2 grid h-28 w-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-3 text-center shadow-2xl shadow-black/40">
                   <div className={`transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
-                    <span className="mx-auto block w-fit text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
-                    <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.2em] text-white/35">Active pillar</p>
-                    <p className="mt-2 font-display text-sm font-semibold leading-snug text-white">{activeProof.navLabel}</p>
+                    <span className="mx-auto block w-fit text-primary [&>svg]:h-5 [&>svg]:w-5">{activeProof.icon}</span>
+                    <p className="mt-2 text-[6px] font-semibold uppercase tracking-[0.18em] text-white/35">Active pillar</p>
+                    <p className="mt-1.5 font-display text-[11px] font-semibold leading-snug text-white">{activeProof.navLabel}</p>
                   </div>
                 </div>
 
@@ -382,10 +386,10 @@ export default function Skills() {
                       onClick={() => selectProofPoint(index)}
                       onMouseEnter={() => selectProofPoint(index)}
                       onFocus={() => selectProofPoint(index)}
-                      className={`absolute z-10 w-36 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
+                      className={`absolute z-10 w-28 bg-dark/90 px-1.5 py-1.5 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
                     >
-                      <span className={`block text-[9px] font-semibold uppercase tracking-[0.16em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
-                      <span className="mt-1 block font-display text-xs font-semibold leading-snug">{point.navLabel}</span>
+                      <span className={`block text-[7px] font-semibold uppercase tracking-[0.13em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
+                      <span className="mt-1 block font-display text-[10px] font-semibold leading-snug">{point.navLabel}</span>
                     </button>
                   );
                 })}
@@ -396,41 +400,32 @@ export default function Skills() {
                   const isActive = activeProofPoint === index;
 
                   return (
-                    <button key={point.eyebrow} type="button" aria-pressed={isActive} onClick={() => selectProofPoint(index)} onFocus={() => selectProofPoint(index)} className={`relative min-w-0 border-b border-white/10 px-3 py-5 text-left transition-colors ${isActive ? "text-white" : "text-white/45"}`}>
+                    <button key={point.eyebrow} type="button" aria-pressed={isActive} onClick={() => selectProofPoint(index)} onFocus={() => selectProofPoint(index)} className={`relative min-w-0 border-b border-white/10 px-3 py-4 text-left transition-colors ${isActive ? "text-white" : "text-white/45"}`}>
                       <span className={`absolute inset-x-3 bottom-0 h-px bg-primary transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
-                      <span className="block text-[9px] font-semibold uppercase tracking-[0.15em]">{point.eyebrow}</span>
-                      <span className="mt-2 block font-display text-sm font-semibold">{point.navLabel}</span>
+                      <span className="block text-[8px] font-semibold uppercase tracking-[0.14em]">{point.eyebrow}</span>
+                      <span className="mt-1.5 block font-display text-xs font-semibold">{point.navLabel}</span>
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            <article className={`relative min-h-[29rem] overflow-hidden border-t border-white/10 py-10 transition duration-150 lg:border-l lg:border-t-0 lg:py-12 lg:pl-12 xl:pl-16 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
+            <article className={`relative min-h-[20rem] overflow-hidden border-t border-white/10 py-7 transition duration-150 md:border-l md:border-t-0 md:py-5 md:pl-7 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
               <div key={activeProof.eyebrow}>
-                <span className="pillar-story-icon pointer-events-none absolute right-0 top-4 -rotate-6 text-white/[0.11] [&>svg]:h-44 [&>svg]:w-44 sm:[&>svg]:h-52 sm:[&>svg]:w-52" aria-hidden="true">{activeProof.icon}</span>
-                <div className="relative max-w-2xl pt-32 sm:pt-36">
-                  <p className="pillar-story-kicker text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">0{displayedProofPoint + 1} / {activeProof.eyebrow}</p>
-                  <h3 className="pillar-story-heading mt-5 font-display text-4xl font-semibold leading-[1.06] text-white sm:text-5xl">
+                <span className="pillar-story-icon pointer-events-none absolute right-0 top-0 -rotate-6 text-white/[0.1] [&>svg]:h-32 [&>svg]:w-32 sm:[&>svg]:h-40 sm:[&>svg]:w-40" aria-hidden="true">{activeProof.icon}</span>
+                <div className="relative max-w-xl pt-24 sm:pt-28">
+                  <p className="pillar-story-kicker text-[8px] font-semibold uppercase tracking-[0.18em] text-primary">0{displayedProofPoint + 1} / {activeProof.eyebrow}</p>
+                  <h3 className="pillar-story-heading mt-3 font-display text-3xl font-semibold leading-[1.04] text-white">
                     {activeProof.headline}<span className="block text-white/55">{activeProof.headlineAccent}</span>
                   </h3>
-                  <p className="pillar-story-copy mt-7 text-base leading-8 text-muted-light/75 sm:text-lg">{activeProof.story}</p>
+                  <p className="pillar-story-copy mt-4 text-sm leading-6 text-muted-light/75">{activeProof.story}</p>
                 </div>
               </div>
             </article>
           </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              setOpenSection("technical");
-              window.requestAnimationFrame(() => technicalSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
-            }}
-            className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:text-primary-light"
-          >
-            Explore the technical evidence <ChevronDown size={16} />
-          </button>
         </section>
+        </div>
       </section>
 
       <div className="space-y-5">
