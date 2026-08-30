@@ -213,6 +213,31 @@ const capabilityDescriptions = [
   "The tools that help me build, debug and ship.",
 ];
 
+const capabilityImpactTitles = [
+  "Strong foundations for every build.",
+  "Clean interfaces people can use.",
+  "Reliable logic behind the experience.",
+  "Better connections. Bigger possibilities.",
+  "Data the product can rely on.",
+  "From working locally to working in production.",
+  "Complexity turned into clear decisions.",
+  "Raw data turned into trusted direction.",
+  "Code that remains useful after release.",
+  "Confidence built into every change.",
+  "Emerging capability made practical.",
+  "Trust designed into the system.",
+  "Useful experiences beyond the browser.",
+  "A healthier path from code to release.",
+  "Structure that supports what comes next.",
+  "A focused environment for better delivery.",
+];
+
+const experienceCoverage = [
+  { label: "3+ year areas", value: Object.values(skillExperience).filter((item) => item.overall === "3+ Years").length },
+  { label: "2+ year areas", value: Object.values(skillExperience).filter((item) => item.overall === "2+ Years").length },
+  { label: "1+ year areas", value: Object.values(skillExperience).filter((item) => item.overall === "1+ Year").length },
+];
+
 const capabilityMatters = [
   { title: "Whole System Thinking", copy: "I design with the whole system in mind, not just isolated features.", icon: <Network size={20} /> },
   { title: "Better Engineering Decisions", copy: "Understanding each layer helps me choose what improves the entire product.", icon: <Sparkles size={20} /> },
@@ -617,10 +642,28 @@ export default function Skills() {
       <section id="technical-capabilities" ref={technicalSectionRef} className="technical-capabilities-section scroll-mt-24" aria-labelledby="technical-capabilities-title">
         <div className="technical-capabilities-layout">
           <div className="technical-capabilities-main">
-            <div className="technical-capabilities-heading">
-              <div className="engineering-section-kicker"><span>Technical capabilities</span><i /></div>
-              <h2 id="technical-capabilities-title">The capabilities<br />behind <span>the build.</span></h2>
-              <p>This is the toolkit I work with across the stack — the technologies, platforms and engineering practices I use to design, build, integrate and deliver software that solves real problems.</p>
+            <div className="technical-capabilities-header">
+              <div className="technical-capabilities-heading">
+                <div className="engineering-section-kicker"><span>Technical capabilities</span><i /></div>
+                <h2 id="technical-capabilities-title">The capabilities<br />behind <span>the build.</span></h2>
+                <p>This is the toolkit I work with across the stack — the technologies, platforms and engineering practices I use to design, build, integrate and deliver software that solves real problems.</p>
+              </div>
+
+              <div className="capability-system-map" aria-label="My full-stack capability connects four parts of the product">
+                <div className="capability-system-map-orbit" aria-hidden="true">
+                  <span className="capability-system-map-ring" />
+                  <span className="capability-system-map-core"><Boxes size={25} /></span>
+                  <span className="capability-system-map-node capability-system-map-node--top"><Monitor size={17} /></span>
+                  <span className="capability-system-map-node capability-system-map-node--right"><Server size={17} /></span>
+                  <span className="capability-system-map-node capability-system-map-node--bottom"><Database size={17} /></span>
+                  <span className="capability-system-map-node capability-system-map-node--left"><Cloud size={17} /></span>
+                </div>
+                <div className="capability-system-map-copy">
+                  <p>Connected capability</p>
+                  <h3>One product.<br />Four connected layers.</h3>
+                  <div><span>Interface</span><span>Logic</span><span>Data</span><span>Delivery</span></div>
+                </div>
+              </div>
             </div>
 
             <div className="capability-card-grid" data-testid="skills-grid">
@@ -638,6 +681,20 @@ export default function Skills() {
                   <ChevronRight className="capability-card-arrow" size={19} />
                 </button>
               ))}
+
+              <div className="capability-workflow-card">
+                <div className="capability-workflow-copy">
+                  <p>Working environment</p>
+                  <h3>The tools support the flow. They never become the process.</h3>
+                  <span>I move from idea to implementation with a workflow that keeps context, quality and delivery connected.</span>
+                </div>
+                <div className="capability-workflow-track" aria-hidden="true">
+                  <span><Lightbulb size={16} /><small>Think</small></span><i />
+                  <span><Code2 size={16} /><small>Build</small></span><i />
+                  <span><TestTube2 size={16} /><small>Test</small></span><i />
+                  <span><Rocket size={16} /><small>Ship</small></span>
+                </div>
+              </div>
             </div>
 
             <div className="capability-toolkit-note">
@@ -671,6 +728,16 @@ export default function Skills() {
               <div><h3>Curious about how I use these?</h3><p>See the projects where these technologies come together to solve real problems.</p></div>
               <strong>See My Engineering in Action <ArrowRight size={16} /></strong>
             </a>
+
+            <article className="capability-coverage-card">
+              <div className="capability-coverage-heading"><span><BarChart3 size={22} /></span><div><p>Capability coverage</p><h3>Depth around a full-stack core.</h3></div></div>
+              <p className="capability-coverage-copy">My strongest experience sits across the software build, with growing depth in data, cloud, mobile and applied AI.</p>
+              <div className="capability-coverage-stats">
+                {experienceCoverage.map((item) => <div key={item.label}><strong>{item.value}</strong><span>{item.label}</span></div>)}
+              </div>
+              <div className="capability-coverage-line" aria-hidden="true"><span /><span /><span /><span /></div>
+              <small>{skillCategories.length} connected capability areas &middot; 100+ technologies and practices</small>
+            </article>
           </aside>
         </div>
       </section>
@@ -745,6 +812,9 @@ export default function Skills() {
             aria-modal="true"
             aria-labelledby="capability-modal-title"
           >
+            <button type="button" className="capability-modal-back" onClick={() => setActiveCapabilityIndex(null)}>
+              <ArrowRight size={13} /> Back to Technical Capabilities
+            </button>
             <button type="button" className="capability-modal-close" onClick={() => setActiveCapabilityIndex(null)} aria-label="Close capability details">
               <X size={20} />
             </button>
@@ -752,13 +822,12 @@ export default function Skills() {
             <div className="capability-modal-header">
               <span className="capability-modal-icon">{presentations[activeCapabilityIndex].icon}</span>
               <div>
-                <p>Experience view</p>
+                <p>Technical capability</p>
                 <h2 id="capability-modal-title">{activeCapability.title}</h2>
+                <span>{capabilityDescriptions[activeCapabilityIndex]}</span>
               </div>
-              <span className="capability-modal-overall">{activeCapabilityExperience.overall}</span>
+              <span className="capability-modal-overall"><strong>{activeCapabilityExperience.overall}</strong><small>Overall experience</small></span>
             </div>
-
-            <p className="capability-modal-intro">Every skill currently listed in this capability, grouped by hands-on experience.</p>
 
             <div className="capability-modal-groups">
               {activeCapabilityExperience.groups.map((group) => (
@@ -766,11 +835,21 @@ export default function Skills() {
                   <div className="capability-modal-group-heading"><h3>{group.label}</h3><span>{group.items.length} {group.items.length === 1 ? "skill" : "skills"}</span></div>
                   <ul>
                     {group.items.map((item) => (
-                      <li key={item}><Check size={14} /><span>{item}</span></li>
+                      <li key={item}>
+                        <span className="capability-skill-mark">{item.split(/[\s&/.()-]+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase()}</span>
+                        <span className="capability-skill-name">{item}</span>
+                        <small>{group.label.replace(" Experience", "").replace("Years", "yrs").replace("Year", "yr")}</small>
+                      </li>
                     ))}
                   </ul>
                 </section>
               ))}
+            </div>
+
+            <div className="capability-modal-impact">
+              <span><Lightbulb size={22} /></span>
+              <div><p>Why it matters</p><h3>{capabilityImpactTitles[activeCapabilityIndex]}</h3><small>{capabilityDescriptions[activeCapabilityIndex]} Together with the rest of the stack, it helps me deliver software that is useful, dependable and ready to grow.</small></div>
+              <div className="capability-modal-impact-visual" aria-hidden="true"><i /><i /><i /><Code2 size={26} /></div>
             </div>
 
             <div className="capability-modal-footer">
