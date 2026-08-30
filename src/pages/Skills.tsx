@@ -347,13 +347,11 @@ export default function Skills() {
                   <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)]" />
                 </div>
 
-                <div className="absolute left-1/2 top-1/2 grid h-60 w-60 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-5 text-center shadow-2xl shadow-black/40">
+                <div className="absolute left-1/2 top-1/2 grid h-44 w-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-5 text-center shadow-2xl shadow-black/40">
                   <div className={`transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
                     <span className="mx-auto block w-fit text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
-                    <p className="mt-2 text-[6px] font-semibold uppercase tracking-[0.18em] text-primary/80">Pillar 0{displayedProofPoint + 1} &mdash; {activeProof.eyebrow}</p>
-                    <h3 className="mt-2 font-display text-sm font-semibold leading-tight text-white">{activeProof.centreTitle}</h3>
-                    <p className="mt-2 text-[10px] font-semibold leading-[0.9rem] text-white/85">{activeProof.centreLead}</p>
-                    <p className="mt-1.5 text-[9px] leading-[0.85rem] text-muted">{activeProof.centreStory}</p>
+                    <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.2em] text-white/35">Active pillar</p>
+                    <p className="mt-2 font-display text-sm font-semibold leading-snug text-white">{activeProof.navLabel}</p>
                   </div>
                 </div>
 
