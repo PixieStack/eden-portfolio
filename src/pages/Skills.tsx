@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from "react";
 import {
   Award,
   BarChart3,
@@ -53,53 +53,71 @@ const presentations = [
 const proofPoints = [
   {
     eyebrow: "Engineering range",
-    title: "Full-stack to cloud",
-    detail: "My strongest ground is seeing the whole build—from the interface and API to the data, logic and cloud behind it.",
-    impact: "I connect decisions across layers, spot gaps earlier and engineer software as one system.",
+    navLabel: "Full-stack to cloud",
+    headline: "One feature.",
+    headlineAccent: "Every layer considered.",
+    story: "My strongest advantage is seeing beyond the layer I’m working in. I understand how decisions move through the interface, application logic, APIs, data and cloud—giving me the range to connect the build, catch gaps earlier and engineer with the whole system in mind.",
     icon: <Layers3 size={22} />,
   },
   {
     eyebrow: "Applied AI",
-    title: "Building with what’s next",
-    detail: "AI is changing how software is imagined and delivered, so I keep learning, experimenting and integrating it into real products.",
-    impact: "I choose to grow with the technology—turning change into capability instead of waiting to catch up.",
+    navLabel: "Applied intelligence",
+    headline: "Curiosity becomes",
+    headlineAccent: "capability.",
+    story: "I’m not interested in AI because it is trending. I’m interested in what it changes about the products we can build. I learn it through experimentation, integration and practical application—turning emerging capability into something useful.",
     icon: <Bot size={22} />,
   },
   {
-    eyebrow: "Continuous growth",
-    title: "Learning with evidence",
-    detail: "My Databricks certifications are part of a wider habit: keep learning, test that knowledge and turn it into stronger work.",
-    impact: "Credentials mark the progress; what that learning enables me to build is the real result.",
-    icon: <Database size={22} />,
+    eyebrow: "Professional standing",
+    navLabel: "Credibility earned",
+    headline: "Recognition follows",
+    headlineAccent: "the standard.",
+    story: "I want the engineer behind the work to be as credible as the work itself. My AMICITP-SA professional designation reflects a commitment to competence, accountability and a career built to standards that extend beyond the next ticket.",
+    icon: <Award size={22} />,
   },
   {
-    eyebrow: "Professional standing",
-    title: "Ambition with accountability",
-    detail: "Earning AMICITP-SA reflects the standard I set for my career: keep growing and pursue recognised professional practice.",
-    impact: "I want my work—and the career behind it—to stand up to expectations beyond the immediate task.",
-    icon: <Award size={22} />,
+    eyebrow: "Continuous growth",
+    navLabel: "Learning with evidence",
+    headline: "Knowledge should",
+    headlineAccent: "compound.",
+    story: "I don’t learn to make my skills list longer. I learn to expand what I can solve. Every new discipline I explore should sharpen my judgement, deepen my engineering range and eventually show up in better work.",
+    icon: <Database size={22} />,
   },
 ];
 
 const proofPointPositions = [
   "left-1/2 top-0 -translate-x-1/2 text-center",
   "right-0 top-1/2 -translate-y-1/2 text-right",
-  "bottom-0 left-1/2 -translate-x-1/2 text-center",
   "left-0 top-1/2 -translate-y-1/2 text-left",
+  "bottom-0 left-1/2 -translate-x-1/2 text-center",
 ];
+
+const proofIndicatorRotations = [0, 90, -90, 180];
 
 const teamBenefits = [
   {
-    title: "I Connect the Whole Build",
-    detail: "Frontend, backend, APIs and data are not separate worlds to me. I understand how decisions in one layer affect the next, which helps me spot gaps earlier, communicate across disciplines and build features that work as one system rather than disconnected pieces.",
+    microLabel: "End-to-end thinking",
+    title: "I connect decisions across the build.",
+    titleLead: "I connect decisions across the ",
+    titleAccent: "build.",
+    detail: "Frontend, backend, APIs and data aren’t separate problems to me. I think about how one decision travels through the system—and catch the gaps that appear between layers.",
+    icon: <Network size={23} />,
   },
   {
-    title: "I Build Past ‘It Works’",
-    detail: "Getting something running is the starting point, not the finish line. I think about maintainability, validation, security, failure states, testing and the developer who may need to work on the same code months later. I build with the next problem in mind, not only the current ticket.",
+    microLabel: "Production mindset",
+    title: "Working is the baseline.",
+    titleLead: "Working is the ",
+    titleAccent: "baseline.",
+    detail: "I think about what happens next: maintainability, validation, security, failure states and the developer who inherits the code after me.",
+    icon: <ShieldCheck size={23} />,
   },
   {
-    title: "My Skills Have Receipts",
-    detail: "The strongest proof of my ability is the software I build, but I also continue to validate and sharpen that knowledge through recognised certifications and professional development. My credentials support the experience—they don’t replace it.",
+    microLabel: "Proven + progressing",
+    title: "I build first. I validate what I know.",
+    titleLead: "I build first. I validate ",
+    titleAccent: "what I know.",
+    detail: "Production experience proves the practice; professional recognition and certifications reinforce the depth behind it. I use both to keep raising my standard.",
+    icon: <Award size={23} />,
   },
 ];
 
@@ -225,8 +243,17 @@ export default function Skills() {
   const [openSection, setOpenSection] = useState<"technical" | "professional" | null>("technical");
   const [flippedSkills, setFlippedSkills] = useState<Set<string>>(() => new Set());
   const [activeProofPoint, setActiveProofPoint] = useState(0);
+  const [displayedProofPoint, setDisplayedProofPoint] = useState(0);
+  const [isProofTransitioning, setIsProofTransitioning] = useState(false);
+  const proofTransitionTimeout = useRef<number | null>(null);
   const technicalSectionRef = useRef<HTMLElement>(null);
   const professionalSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => () => {
+    if (proofTransitionTimeout.current !== null) {
+      window.clearTimeout(proofTransitionTimeout.current);
+    }
+  }, []);
 
   const toggleSection = (section: "technical" | "professional") => {
     const isOpening = openSection !== section;
@@ -243,134 +270,154 @@ export default function Skills() {
     }
   };
 
-  const activeProof = proofPoints[activeProofPoint];
+  const selectProofPoint = (index: number) => {
+    if (index === activeProofPoint) return;
+
+    if (proofTransitionTimeout.current !== null) {
+      window.clearTimeout(proofTransitionTimeout.current);
+    }
+
+    setActiveProofPoint(index);
+    setIsProofTransitioning(true);
+    proofTransitionTimeout.current = window.setTimeout(() => {
+      setDisplayedProofPoint(index);
+      setIsProofTransitioning(false);
+      proofTransitionTimeout.current = null;
+    }, 140);
+  };
+
+  const handlePrinciplePointerMove = (event: MouseEvent<HTMLElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--spotlight-x", `${event.clientX - bounds.left}px`);
+    event.currentTarget.style.setProperty("--spotlight-y", `${event.clientY - bounds.top}px`);
+  };
+
+  const activeProof = proofPoints[displayedProofPoint];
 
   return (
     <section className="section" data-testid="skills-section">
       <section aria-labelledby="skills-title" className="relative mb-16 overflow-hidden">
-        <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.055] blur-3xl" />
+        <div className="pointer-events-none absolute -left-40 top-24 h-72 w-72 rounded-full bg-primary/[0.05] blur-3xl" />
 
-        <div className="relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12 xl:gap-20">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
-              <span className="h-px w-14 bg-primary/50" />
-            </div>
-            <h1 id="skills-title" className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
-              Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
-            </h1>
-            <p className="mt-7 text-lg leading-8 text-muted-light/80 sm:text-xl sm:leading-9">
-              I don’t collect technologies just to fill a skills grid. I use them to solve problems, connect systems and turn ideas into software that people can actually use. My strongest ground is full-stack development &mdash; moving comfortably between the interface, the API, the database and the logic that holds everything together.
-            </p>
-            <p className="mt-5 text-base leading-8 text-muted sm:text-lg">
-              With 3+ years of hands-on development experience, I’ve learned to think beyond getting a feature to work. I think about how it behaves in production, how easily another developer can understand it, how securely systems communicate, how data moves, and what happens when something breaks. That end-to-end perspective is what I bring to every build.
-            </p>
-          </div>
-
-          <div className="relative mx-auto hidden aspect-square w-full max-w-[31rem] lg:block" aria-label="Interactive pillars describing how I build and grow">
-            <span className="absolute right-0 top-3 max-w-36 text-right text-[10px] leading-4 text-white/50">Hover or focus a pillar to reveal what it represents in my work.</span>
-            <div className="pointer-events-none absolute inset-[4.5rem] rounded-full border border-white/10" />
-            <div className="pointer-events-none absolute inset-[6.25rem] rounded-full border border-dashed border-white/[0.08] [animation:spin_28s_linear_infinite] motion-reduce:animate-none" />
-            <div className="pointer-events-none absolute bottom-16 left-1/2 top-16 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-            <div className="pointer-events-none absolute left-16 right-16 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-            <div className="absolute left-1/2 top-1/2 grid h-60 w-60 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-7 text-center shadow-2xl shadow-black/40">
-              <div key={activeProof.title} className="animate-fade-in motion-reduce:animate-none">
-                <span className="mx-auto block w-fit text-primary [&>svg]:h-7 [&>svg]:w-7">{activeProof.icon}</span>
-                <p className="mt-4 text-[9px] font-semibold uppercase tracking-[0.2em] text-primary">{activeProof.eyebrow}</p>
-                <h2 className="mt-2 font-display text-xl font-semibold leading-tight text-white">{activeProof.title}</h2>
-                <p className="mt-3 text-xs leading-5 text-muted">{activeProof.impact}</p>
-              </div>
-            </div>
-
-            {proofPoints.map((point, index) => {
-              const isActive = activeProofPoint === index;
-
-              return (
-                <button
-                  key={point.title}
-                  type="button"
-                  aria-pressed={isActive}
-                  onClick={() => setActiveProofPoint(index)}
-                  onMouseEnter={() => setActiveProofPoint(index)}
-                  onFocus={() => setActiveProofPoint(index)}
-                  className={`absolute z-10 w-36 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
-                >
-                  <span className={`block text-[9px] font-semibold uppercase tracking-[0.16em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
-                  <span className="mt-1 block font-display text-sm font-semibold leading-snug">{point.title}</span>
-                </button>
-              );
-            })}
-
-            <span className="pointer-events-none absolute left-1/2 top-[4.25rem] h-2 w-2 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)] [animation:pulse_2.8s_ease-in-out_infinite] motion-reduce:animate-none" />
-
-            <div key={`${activeProof.title}-annotation`} className="pointer-events-none absolute bottom-5 right-0 w-40 animate-fade-in text-right motion-reduce:animate-none">
-              <span className="ml-auto block w-fit -rotate-6 text-white/[0.07] [&>svg]:h-20 [&>svg]:w-20">{activeProof.icon}</span>
-              <p className="mt-1 text-[10px] leading-4 text-white/40">{activeProof.detail}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative mt-12 border-y border-white/10 lg:hidden">
-          <p className="py-5 text-sm leading-6 text-white/60">Choose a pillar to see what it represents in my work, growth and professional direction.</p>
-
-          <div className="grid grid-cols-2 border-t border-white/10 lg:grid-cols-4">
-            {proofPoints.map((point, index) => {
-              const isActive = activeProofPoint === index;
-
-              return (
-                <button
-                  key={point.title}
-                  type="button"
-                  aria-pressed={isActive}
-                  onClick={() => setActiveProofPoint(index)}
-                  onFocus={() => setActiveProofPoint(index)}
-                  className={`group relative min-w-0 border-b border-white/10 px-3 py-5 text-left transition-colors sm:px-5 ${isActive ? "text-white" : "text-white/45 hover:text-white/75"}`}
-                >
-                  <span className={`absolute inset-x-3 bottom-0 h-px origin-left bg-primary transition-transform duration-300 sm:inset-x-5 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
-                  <span className="block text-[9px] font-semibold uppercase tracking-[0.16em]">{point.eyebrow}</span>
-                  <span className="mt-2 block font-display text-sm font-semibold leading-snug sm:text-base">{point.title}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          <div key={activeProof.title} className="relative grid min-h-64 gap-8 overflow-hidden border-t border-white/10 py-9 animate-fade-in motion-reduce:animate-none sm:grid-cols-[0.8fr_1.2fr] sm:items-center sm:gap-12">
-            <span className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-white/[0.025] [&>svg]:h-52 [&>svg]:w-52" aria-hidden="true">
-              {activeProof.icon}
-            </span>
-
-            <div className="relative flex items-start gap-5">
-              <span className="mt-1 text-primary [&>svg]:h-8 [&>svg]:w-8">{activeProof.icon}</span>
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">{activeProof.eyebrow}</p>
-                <h3 className="mt-2 font-display text-3xl font-semibold text-white sm:text-4xl">{activeProof.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">{activeProof.detail}</p>
-              </div>
-            </div>
-
-            <p className="relative max-w-2xl font-display text-2xl font-medium leading-snug text-white/85 sm:text-3xl">
-              {activeProof.impact}
-            </p>
-          </div>
-        </div>
-
-        <div className="relative mt-8 sm:mt-10 lg:mt-4">
+        <div className="relative max-w-5xl">
           <div className="flex items-center gap-4">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/50">What I Bring Into the Room</span>
-            <span className="h-px flex-1 bg-white/10" />
+            <span className="text-xs font-semibold uppercase tracking-[0.24em] text-primary">Technical Expertise</span>
+            <span className="h-px w-14 bg-primary/50" />
           </div>
+          <h1 id="skills-title" className="mt-5 font-display text-5xl font-bold leading-[0.98] text-white sm:text-6xl lg:text-7xl" data-testid="skills-title">
+            Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-16 bg-primary" /></span>
+          </h1>
+          <p className="mt-8 max-w-4xl text-lg leading-8 text-muted-light/85 sm:text-xl sm:leading-9">
+            With 3+ years of hands-on development experience, I’ve learned that strong software is not defined by how many technologies sit behind it, but by how well the pieces work together. My strongest ground is full-stack development: connecting interfaces, backend logic, APIs, data and cloud services into software that is useful, maintainable and ready for the realities beyond development.
+          </p>
+          <p className="mt-5 max-w-4xl text-base leading-8 text-muted sm:text-lg">
+            I work across the build with an end-to-end mindset &mdash; understanding how decisions travel through a system, anticipating what can break, and engineering beyond &ldquo;it works.&rdquo; <span className="text-white/85">The technologies below are the toolkit. The real skill is knowing how to make them work as one.</span>
+          </p>
+        </div>
 
-          <div className="mt-2 grid md:grid-cols-3">
-            {teamBenefits.map((benefit, index) => (
-              <article key={benefit.title} className={`group relative border-b border-white/10 py-7 transition-colors md:border-b-0 ${index > 0 ? "md:border-l md:pl-7" : ""} ${index < teamBenefits.length - 1 ? "md:pr-7" : ""}`}>
-                <span className="absolute left-0 top-0 h-px w-8 bg-primary/70 transition-all duration-500 group-hover:w-16" />
-                <div className="transition-transform duration-300 group-hover:translate-x-1">
-                  <h2 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-primary-light">{benefit.title}</h2>
-                  <p className="mt-3 text-sm leading-6 text-muted transition-colors group-hover:text-muted-light/80">{benefit.detail}</p>
+        <section aria-labelledby="engineering-principles-title" className="relative mt-14 sm:mt-16">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">Engineering principles</span>
+          <h2 id="engineering-principles-title" className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">More Than a Stack. A Way of Engineering.</h2>
+
+          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+            {teamBenefits.map((benefit) => (
+              <article
+                key={benefit.title}
+                onMouseMove={handlePrinciplePointerMove}
+                className="principle-card group relative min-h-64 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition duration-300 hover:-translate-y-1.5 hover:border-white/15 hover:bg-white/[0.035] hover:shadow-xl hover:shadow-primary/[0.045] sm:p-7"
+              >
+                <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: "radial-gradient(280px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(249, 115, 22, 0.08), transparent 68%)" }} />
+                <span className="absolute left-0 top-0 h-px w-0 bg-primary transition-[width] duration-500 group-hover:w-2/3" />
+                <span className="absolute right-0 top-0 h-0 w-px bg-primary/60 transition-[height] delay-150 duration-300 group-hover:h-16" />
+
+                <div className="relative flex h-full flex-col">
+                  <span className="principle-icon grid h-11 w-11 place-items-center rounded-xl border border-white/10 text-primary">{benefit.icon}</span>
+                  <span className="mt-7 translate-y-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35 opacity-70 transition duration-300 group-hover:translate-y-0 group-hover:text-primary group-hover:opacity-100">{benefit.microLabel}</span>
+                  <h3 className="mt-3 font-display text-xl font-semibold leading-snug text-white sm:text-2xl">
+                    {benefit.titleLead}<span className="transition-colors duration-300 group-hover:text-primary">{benefit.titleAccent}</span>
+                  </h3>
+                  <p className="mt-4 text-sm leading-6 text-muted">{benefit.detail}</p>
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="pillar-philosophy-title" className="relative mt-16 sm:mt-20">
+          <div className="max-w-4xl">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">The engineer behind the toolkit</span>
+            <h2 id="pillar-philosophy-title" className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl lg:text-5xl">Four things shape how I build.</h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-muted sm:text-lg">Range to see the system. Curiosity to keep evolving. Standards that hold me accountable. And a habit of turning learning into better work.</p>
+            <p className="mt-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">Explore the four pillars ↓</p>
+          </div>
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-14 xl:gap-20">
+            <div>
+              <div className="relative mx-auto hidden aspect-square w-full max-w-[29rem] sm:block" aria-label="Interactive pillar navigation">
+                <div className="pointer-events-none absolute inset-16 rounded-full border border-white/10" />
+                <div className="pointer-events-none absolute inset-[5.5rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
+                <div className="pointer-events-none absolute bottom-14 left-1/2 top-14 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                <div className="pointer-events-none absolute left-14 right-14 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                <div className="pointer-events-none absolute inset-16 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
+                  <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_20px_rgba(249,115,22,0.7)]" />
+                </div>
+
+                <div className="absolute left-1/2 top-1/2 grid h-44 w-44 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-5 text-center shadow-2xl shadow-black/40">
+                  <div className={`transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
+                    <span className="mx-auto block w-fit text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
+                    <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.2em] text-white/35">Active pillar</p>
+                    <p className="mt-2 font-display text-sm font-semibold leading-snug text-white">{activeProof.navLabel}</p>
+                  </div>
+                </div>
+
+                {proofPoints.map((point, index) => {
+                  const isActive = activeProofPoint === index;
+
+                  return (
+                    <button
+                      key={point.eyebrow}
+                      type="button"
+                      aria-pressed={isActive}
+                      onClick={() => selectProofPoint(index)}
+                      onMouseEnter={() => selectProofPoint(index)}
+                      onFocus={() => selectProofPoint(index)}
+                      className={`absolute z-10 w-36 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
+                    >
+                      <span className={`block text-[9px] font-semibold uppercase tracking-[0.16em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
+                      <span className="mt-1 block font-display text-xs font-semibold leading-snug">{point.navLabel}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="grid grid-cols-2 border-y border-white/10 sm:hidden">
+                {proofPoints.map((point, index) => {
+                  const isActive = activeProofPoint === index;
+
+                  return (
+                    <button key={point.eyebrow} type="button" aria-pressed={isActive} onClick={() => selectProofPoint(index)} onFocus={() => selectProofPoint(index)} className={`relative min-w-0 border-b border-white/10 px-3 py-5 text-left transition-colors ${isActive ? "text-white" : "text-white/45"}`}>
+                      <span className={`absolute inset-x-3 bottom-0 h-px bg-primary transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
+                      <span className="block text-[9px] font-semibold uppercase tracking-[0.15em]">{point.eyebrow}</span>
+                      <span className="mt-2 block font-display text-sm font-semibold">{point.navLabel}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <article className={`relative min-h-[29rem] overflow-hidden border-t border-white/10 py-10 transition duration-150 lg:border-l lg:border-t-0 lg:py-12 lg:pl-12 xl:pl-16 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
+              <div key={activeProof.eyebrow}>
+                <span className="pillar-story-icon pointer-events-none absolute right-0 top-4 -rotate-6 text-white/[0.11] [&>svg]:h-44 [&>svg]:w-44 sm:[&>svg]:h-52 sm:[&>svg]:w-52" aria-hidden="true">{activeProof.icon}</span>
+                <div className="relative max-w-2xl pt-32 sm:pt-36">
+                  <p className="pillar-story-kicker text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">0{displayedProofPoint + 1} / {activeProof.eyebrow}</p>
+                  <h3 className="pillar-story-heading mt-5 font-display text-4xl font-semibold leading-[1.06] text-white sm:text-5xl">
+                    {activeProof.headline}<span className="block text-white/55">{activeProof.headlineAccent}</span>
+                  </h3>
+                  <p className="pillar-story-copy mt-7 text-base leading-8 text-muted-light/75 sm:text-lg">{activeProof.story}</p>
+                </div>
+              </div>
+            </article>
           </div>
 
           <button
@@ -379,11 +426,11 @@ export default function Skills() {
               setOpenSection("technical");
               window.requestAnimationFrame(() => technicalSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
             }}
-            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:text-primary-light"
+            className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:text-primary-light"
           >
             Explore the technical evidence <ChevronDown size={16} />
           </button>
-        </div>
+        </section>
       </section>
 
       <div className="space-y-5">
