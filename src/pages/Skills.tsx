@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import {
   Award,
   BarChart3,
@@ -245,6 +245,7 @@ export default function Skills() {
   const [activeProofPoint, setActiveProofPoint] = useState(0);
   const [displayedProofPoint, setDisplayedProofPoint] = useState(0);
   const [isProofTransitioning, setIsProofTransitioning] = useState(false);
+  const [activePrinciple, setActivePrinciple] = useState(0);
   const proofTransitionTimeout = useRef<number | null>(null);
   const technicalSectionRef = useRef<HTMLElement>(null);
   const professionalSectionRef = useRef<HTMLElement>(null);
@@ -286,13 +287,8 @@ export default function Skills() {
     }, 140);
   };
 
-  const handlePrinciplePointerMove = (event: MouseEvent<HTMLElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--spotlight-x", `${event.clientX - bounds.left}px`);
-    event.currentTarget.style.setProperty("--spotlight-y", `${event.clientY - bounds.top}px`);
-  };
-
   const activeProof = proofPoints[displayedProofPoint];
+  const activeTeamBenefit = teamBenefits[activePrinciple];
 
   return (
     <section className="section" data-testid="skills-section">
@@ -309,39 +305,51 @@ export default function Skills() {
           <h1 id="skills-title" className="mt-4 font-display text-4xl font-bold leading-[0.98] text-white sm:text-5xl xl:text-[3.35rem]" data-testid="skills-title">
             Skills & <span className="relative inline-block text-white">Technologies<span className="absolute -bottom-2 left-0 h-0.5 w-14 bg-primary" /></span>
           </h1>
-          <p className="mt-6 max-w-3xl text-sm leading-6 text-muted-light/85 sm:text-base sm:leading-7">
+          <p className="mt-5 max-w-3xl text-sm leading-6 text-muted-light/85">
             With 3+ years of hands-on development experience, I’ve learned that strong software is not defined by how many technologies sit behind it, but by how well the pieces work together. My strongest ground is full-stack development: connecting interfaces, backend logic, APIs, data and cloud services into software that is useful, maintainable and ready for the realities beyond development.
           </p>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-muted sm:text-base sm:leading-7">
+          <p className="mt-3.5 max-w-3xl text-sm leading-6 text-muted">
             I work across the build with an end-to-end mindset &mdash; understanding how decisions travel through a system, anticipating what can break, and engineering beyond &ldquo;it works.&rdquo; <span className="text-white/85">The technologies below are the toolkit. The real skill is knowing how to make them work as one.</span>
           </p>
         </div>
 
-        <section aria-labelledby="engineering-principles-title" className="relative mt-8 sm:mt-10">
+        <section aria-labelledby="engineering-principles-title" className="relative mt-6 sm:mt-7">
           <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">Engineering principles</span>
-          <h2 id="engineering-principles-title" className="mt-2 font-display text-2xl font-semibold text-white sm:text-[1.75rem]">More Than a Stack. A Way of Engineering.</h2>
+          <h2 id="engineering-principles-title" className="mt-1.5 font-display text-xl font-semibold text-white sm:text-2xl">More Than a Stack. A Way of Engineering.</h2>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            {teamBenefits.map((benefit) => (
-              <article
-                key={benefit.title}
-                onMouseMove={handlePrinciplePointerMove}
-                className="principle-card group relative min-h-52 overflow-hidden rounded-xl border border-white/10 bg-white/[0.02] p-4 transition duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-white/[0.035] hover:shadow-xl hover:shadow-primary/[0.045]"
-              >
-                <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: "radial-gradient(240px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(249, 115, 22, 0.07), transparent 68%)" }} />
-                <span className="absolute left-0 top-0 h-px w-0 bg-primary transition-[width] duration-500 group-hover:w-2/3" />
-                <span className="absolute right-0 top-0 h-0 w-px bg-primary/60 transition-[height] delay-150 duration-300 group-hover:h-12" />
+          <div className="mt-4 grid gap-2 sm:grid-cols-3" role="tablist" aria-label="Engineering principles">
+            {teamBenefits.map((benefit, index) => {
+              const isActive = activePrinciple === index;
 
-                <div className="relative flex h-full flex-col">
-                  <span className="principle-icon grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-primary [&>svg]:h-[18px] [&>svg]:w-[18px]">{benefit.icon}</span>
-                  <span className="mt-4 translate-y-1 text-[7px] font-semibold uppercase tracking-[0.18em] text-white/35 opacity-70 transition duration-300 group-hover:translate-y-0 group-hover:text-primary group-hover:opacity-100">{benefit.microLabel}</span>
-                  <h3 className="mt-2 font-display text-base font-semibold leading-snug text-white">
-                    {benefit.titleLead}<span className="transition-colors duration-300 group-hover:text-primary">{benefit.titleAccent}</span>
-                  </h3>
-                  <p className="mt-3 text-[11px] leading-[1.15rem] text-muted">{benefit.detail}</p>
-                </div>
-              </article>
-            ))}
+              return (
+                <button
+                  key={benefit.title}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls="active-principle-panel"
+                  onClick={() => setActivePrinciple(index)}
+                  onMouseEnter={() => setActivePrinciple(index)}
+                  onFocus={() => setActivePrinciple(index)}
+                  className={`principle-card group relative min-h-[5.25rem] overflow-hidden rounded-xl border px-3 py-3 text-left transition duration-300 hover:-translate-y-0.5 ${isActive ? "border-primary/35 bg-primary/[0.07] shadow-lg shadow-primary/[0.04]" : "border-white/10 bg-white/[0.018] hover:border-white/20 hover:bg-white/[0.03]"}`}
+                >
+                  <span className={`absolute inset-x-3 bottom-0 h-px origin-left bg-primary transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"}`} />
+                  <div className="relative flex items-start gap-2.5">
+                    <span className={`principle-icon grid h-8 w-8 flex-none place-items-center rounded-lg border transition-colors [&>svg]:h-4 [&>svg]:w-4 ${isActive ? "border-primary/30 bg-primary/10 text-primary" : "border-white/10 text-white/45 group-hover:text-primary"}`}>{benefit.icon}</span>
+                    <span className="min-w-0">
+                      <span className={`block text-[6px] font-semibold uppercase tracking-[0.16em] transition-colors ${isActive ? "text-primary" : "text-white/35"}`}>{benefit.microLabel}</span>
+                      <span className="mt-1.5 block font-display text-[13px] font-semibold leading-[1.15] text-white">{benefit.title}</span>
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <div id="active-principle-panel" role="tabpanel" className="relative mt-2.5 min-h-[4rem] overflow-hidden rounded-lg border border-white/[0.07] bg-white/[0.015] px-4 py-3">
+            <div key={activeTeamBenefit.title} className="pillar-story-copy">
+              <p className="text-[11px] leading-[1.15rem] text-muted"><span className="mr-2 font-semibold text-white/85">{activeTeamBenefit.title}</span>{activeTeamBenefit.detail}</p>
+            </div>
           </div>
         </section>
 
@@ -355,23 +363,23 @@ export default function Skills() {
             <p className="mt-3 text-[8px] font-semibold uppercase tracking-[0.18em] text-white/35">Explore the four pillars ↓</p>
           </div>
 
-          <div className="mt-5 grid gap-7 md:grid-cols-[0.88fr_1.12fr] md:items-center md:gap-8">
+          <div className="mt-4 grid gap-6 md:grid-cols-[1.32fr_0.68fr] md:items-center md:gap-5">
             <div>
-              <div className="relative mx-auto hidden aspect-square w-full max-w-[20rem] sm:block" aria-label="Interactive pillar navigation">
-                <div className="pointer-events-none absolute inset-12 rounded-full border border-white/10" />
-                <div className="pointer-events-none absolute inset-[4.1rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
-                <div className="pointer-events-none absolute bottom-10 left-1/2 top-10 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-                <div className="pointer-events-none absolute left-10 right-10 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <div className="relative mx-auto hidden aspect-square w-full max-w-[25rem] sm:block" aria-label="Interactive pillar navigation">
+                <div className="pointer-events-none absolute inset-14 rounded-full border border-white/10" />
+                <div className="pointer-events-none absolute inset-[4.8rem] rounded-full border border-dashed border-white/[0.07] [animation:spin_32s_linear_infinite] motion-reduce:animate-none" />
+                <div className="pointer-events-none absolute bottom-12 left-1/2 top-12 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                <div className="pointer-events-none absolute left-12 right-12 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-                <div className="pointer-events-none absolute inset-12 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
+                <div className="pointer-events-none absolute inset-14 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none" style={{ transform: `rotate(${proofIndicatorRotations[activeProofPoint]}deg)` }}>
                   <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_18px_rgba(249,115,22,0.65)]" />
                 </div>
 
-                <div className="absolute left-1/2 top-1/2 grid h-28 w-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-3 text-center shadow-2xl shadow-black/40">
+                <div className="absolute left-1/2 top-1/2 grid h-36 w-36 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-dark/95 p-4 text-center shadow-2xl shadow-black/40">
                   <div className={`transition duration-150 ${isProofTransitioning ? "scale-95 opacity-0" : "scale-100 opacity-100"}`}>
-                    <span className="mx-auto block w-fit text-primary [&>svg]:h-5 [&>svg]:w-5">{activeProof.icon}</span>
-                    <p className="mt-2 text-[6px] font-semibold uppercase tracking-[0.18em] text-white/35">Active pillar</p>
-                    <p className="mt-1.5 font-display text-[11px] font-semibold leading-snug text-white">{activeProof.navLabel}</p>
+                    <span className="mx-auto block w-fit text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
+                    <p className="mt-2.5 text-[7px] font-semibold uppercase tracking-[0.18em] text-white/35">Active pillar</p>
+                    <p className="mt-1.5 font-display text-xs font-semibold leading-snug text-white">{activeProof.navLabel}</p>
                   </div>
                 </div>
 
@@ -386,10 +394,10 @@ export default function Skills() {
                       onClick={() => selectProofPoint(index)}
                       onMouseEnter={() => selectProofPoint(index)}
                       onFocus={() => selectProofPoint(index)}
-                      className={`absolute z-10 w-28 bg-dark/90 px-1.5 py-1.5 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
+                      className={`absolute z-10 w-32 bg-dark/90 px-2 py-2 transition-colors ${proofPointPositions[index]} ${isActive ? "text-white" : "text-white/40 hover:text-white/75"}`}
                     >
-                      <span className={`block text-[7px] font-semibold uppercase tracking-[0.13em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
-                      <span className="mt-1 block font-display text-[10px] font-semibold leading-snug">{point.navLabel}</span>
+                      <span className={`block text-[8px] font-semibold uppercase tracking-[0.14em] ${isActive ? "text-primary" : ""}`}>{point.eyebrow}</span>
+                      <span className="mt-1 block font-display text-[11px] font-semibold leading-snug">{point.navLabel}</span>
                     </button>
                   );
                 })}
@@ -410,15 +418,15 @@ export default function Skills() {
               </div>
             </div>
 
-            <article className={`relative min-h-[20rem] overflow-hidden border-t border-white/10 py-7 transition duration-150 md:border-l md:border-t-0 md:py-5 md:pl-7 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
+            <article className={`relative min-h-[18rem] overflow-hidden border-t border-white/10 py-6 transition duration-150 md:border-l md:border-t-0 md:py-4 md:pl-5 ${isProofTransitioning ? "translate-y-1 scale-[0.99] opacity-0" : "translate-y-0 scale-100 opacity-100"}`} aria-live="polite">
               <div key={activeProof.eyebrow}>
-                <span className="pillar-story-icon pointer-events-none absolute right-0 top-0 -rotate-6 text-white/[0.1] [&>svg]:h-32 [&>svg]:w-32 sm:[&>svg]:h-40 sm:[&>svg]:w-40" aria-hidden="true">{activeProof.icon}</span>
-                <div className="relative max-w-xl pt-24 sm:pt-28">
+                <span className="pillar-story-icon pointer-events-none absolute right-0 top-0 -rotate-6 text-white/[0.09] [&>svg]:h-24 [&>svg]:w-24 sm:[&>svg]:h-28 sm:[&>svg]:w-28" aria-hidden="true">{activeProof.icon}</span>
+                <div className="relative max-w-xl pt-20 sm:pt-24">
                   <p className="pillar-story-kicker text-[8px] font-semibold uppercase tracking-[0.18em] text-primary">0{displayedProofPoint + 1} / {activeProof.eyebrow}</p>
-                  <h3 className="pillar-story-heading mt-3 font-display text-3xl font-semibold leading-[1.04] text-white">
+                  <h3 className="pillar-story-heading mt-2.5 font-display text-2xl font-semibold leading-[1.04] text-white">
                     {activeProof.headline}<span className="block text-white/55">{activeProof.headlineAccent}</span>
                   </h3>
-                  <p className="pillar-story-copy mt-4 text-sm leading-6 text-muted-light/75">{activeProof.story}</p>
+                  <p className="pillar-story-copy mt-3.5 text-xs leading-5 text-muted-light/75">{activeProof.story}</p>
                 </div>
               </div>
             </article>
