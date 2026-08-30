@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import {
   ArrowRight,
   Award,
@@ -8,7 +8,6 @@ import {
   Boxes,
   Brain,
   Check,
-  ChevronDown,
   ChevronRight,
   Cloud,
   Code2,
@@ -248,143 +247,47 @@ const professionalIcons = [
   <HeartHandshake size={21} />,
 ];
 
-const professionalThemes = [
-  {
-    accent: "text-primary",
-    icon: "border-primary/20 bg-primary/[0.08]",
-    hover: "hover:border-primary/25",
-    line: "via-primary/65",
-  },
-  {
-    accent: "text-purple",
-    icon: "border-purple/20 bg-purple/[0.08]",
-    hover: "hover:border-purple/25",
-    line: "via-purple/65",
-  },
-  {
-    accent: "text-emerald-300",
-    icon: "border-emerald-400/20 bg-emerald-400/[0.07]",
-    hover: "hover:border-emerald-400/25",
-    line: "via-emerald-400/65",
-  },
-  {
-    accent: "text-blue-300",
-    icon: "border-blue-400/20 bg-blue-400/[0.07]",
-    hover: "hover:border-blue-400/25",
-    line: "via-blue-400/65",
-  },
-  {
-    accent: "text-amber-300",
-    icon: "border-amber-400/20 bg-amber-400/[0.07]",
-    hover: "hover:border-amber-400/25",
-    line: "via-amber-400/65",
-  },
-  {
-    accent: "text-rose-300",
-    icon: "border-rose-400/20 bg-rose-400/[0.07]",
-    hover: "hover:border-rose-400/25",
-    line: "via-rose-400/65",
-  },
+const professionalToneNames = ["orange", "purple", "emerald", "blue", "amber", "rose"];
+
+const professionalNarratives = [
+  "I break down complex requirements into clear, testable decisions and move from uncertainty to structure with focus and care.",
+  "I communicate with clarity and purpose, making technical work understandable and feedback actionable.",
+  "I collaborate across teams, take ownership and deliver quality solutions that create impact.",
+  "I plan effectively, stay focused and execute with consistency to move work forward.",
+  "I reflect, learn and improve — continuously strengthening my skills, systems and impact.",
+  "I consider the people behind the work, create with empathy and provide the right support.",
 ];
 
-interface SkillSectionAccordionProps {
-  id: string;
-  eyebrow: string;
-  title: string;
-  description: string;
-  summary: string;
-  icon: ReactNode;
-  accent: "primary" | "purple";
-  isOpen: boolean;
-  onToggle: () => void;
-  sectionRef: RefObject<HTMLElement | null>;
-  children: ReactNode;
-}
+const professionalPracticeOutcomes = [
+  ["Clarifying unclear requirements", "Breaking problems into steps", "Making decisions teams can act on"],
+  ["Translating technical ideas clearly", "Aligning expectations early", "Making feedback easy to act on"],
+  ["Working well across roles and teams", "Taking ownership and following through", "Delivering on time without compromising quality"],
+  ["Planning work that creates impact", "Staying focused on what matters", "Delivering quality consistently"],
+  ["Seeking feedback and learning", "Improving systems and workflows", "Turning lessons into better outcomes"],
+  ["Understanding real user needs", "Designing solutions that help", "Supporting users every step of the way"],
+];
 
-function SkillSectionAccordion({
-  id,
-  eyebrow,
-  title,
-  description,
-  summary,
-  icon,
-  accent,
-  isOpen,
-  onToggle,
-  sectionRef,
-  children,
-}: SkillSectionAccordionProps) {
-  const panelId = `${id}-panel`;
-  const isPrimary = accent === "primary";
-
-  return (
-    <section id={id} ref={sectionRef} className={`scroll-mt-24 overflow-hidden rounded-3xl border bg-surface/90 transition ${isOpen ? (isPrimary ? "border-primary/30 shadow-xl shadow-primary/5" : "border-purple/30 shadow-xl shadow-purple/5") : "border-white/10 hover:border-white/20"}`}>
-      <button
-        type="button"
-        onClick={onToggle}
-        className={`group flex w-full flex-col gap-5 bg-gradient-to-r p-5 text-left transition sm:p-7 lg:flex-row lg:items-center lg:justify-between ${isPrimary ? "from-primary/10 via-transparent to-purple/5 hover:from-primary/15" : "from-purple/10 via-transparent to-primary/5 hover:from-purple/15"}`}
-        aria-expanded={isOpen}
-        aria-controls={panelId}
-        data-testid={`${id}-toggle`}
-      >
-        <div className="flex min-w-0 items-start gap-4">
-          <span className={`grid h-14 w-14 flex-none place-items-center rounded-2xl border shadow-lg ${isPrimary ? "border-primary/20 bg-primary/15 text-primary shadow-primary/10" : "border-purple/20 bg-purple/15 text-purple shadow-purple/10"}`}>
-            {icon}
-          </span>
-          <div className="min-w-0">
-            <span className={`text-xs font-semibold uppercase tracking-[0.2em] ${isPrimary ? "text-primary" : "text-purple"}`}>{eyebrow}</span>
-            <h2 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">{title}</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted">{description}</p>
-          </div>
-        </div>
-
-        <div className="flex w-full items-center justify-between gap-4 lg:w-auto lg:justify-end">
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80">
-            {summary}
-          </span>
-          <span className={`grid h-11 w-11 flex-none place-items-center rounded-full border border-white/10 bg-white/5 text-white transition duration-300 group-hover:border-white/25 ${isOpen ? `rotate-180 ${isPrimary ? "text-primary" : "text-purple"}` : ""}`}>
-            <ChevronDown size={20} />
-          </span>
-        </div>
-      </button>
-
-      {isOpen && (
-        <div id={panelId} className="border-t border-white/5 p-4 sm:p-6 lg:p-8">
-          {children}
-        </div>
-      )}
-    </section>
-  );
-}
+const professionalValuePoints = [
+  { title: "Clearer Decisions", copy: "Complexity becomes direction.", icon: <Lightbulb size={18} /> },
+  { title: "Better Communication", copy: "Ideas become understandable and actionable.", icon: <MessageCircleMore size={18} /> },
+  { title: "Reliable Collaboration", copy: "Work moves forward, even when priorities shift.", icon: <Users size={18} /> },
+  { title: "User-Aware Delivery", copy: "Technical choices stay connected to real people.", icon: <HeartHandshake size={18} /> },
+];
 
 export default function Skills() {
-  const [openSection, setOpenSection] = useState<"professional" | null>(null);
   const [activeCapabilityIndex, setActiveCapabilityIndex] = useState<number | null>(null);
+  const [activeProfessionalIndex, setActiveProfessionalIndex] = useState(0);
   const [activeProofPoint, setActiveProofPoint] = useState(3);
   const [displayedProofPoint, setDisplayedProofPoint] = useState(3);
   const [isProofTransitioning, setIsProofTransitioning] = useState(false);
   const proofTransitionTimeout = useRef<number | null>(null);
   const technicalSectionRef = useRef<HTMLElement>(null);
-  const professionalSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => () => {
     if (proofTransitionTimeout.current !== null) {
       window.clearTimeout(proofTransitionTimeout.current);
     }
   }, []);
-
-  const toggleSection = (section: "professional") => {
-    const isOpening = openSection !== section;
-    setOpenSection((current) => current === section ? null : section);
-
-    if (isOpening) {
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          professionalSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      });
-    }
-  };
 
   useEffect(() => {
     if (activeCapabilityIndex === null) return;
@@ -428,6 +331,7 @@ export default function Skills() {
   };
 
   const activeProof = proofPoints[displayedProofPoint];
+  const activeProfessional = professionalSkillCategories[activeProfessionalIndex];
   const activeCapability = activeCapabilityIndex === null ? null : skillCategories[activeCapabilityIndex];
   const activeCapabilityExperience = activeCapability ? skillExperience[activeCapability.title] : null;
 
@@ -727,49 +631,78 @@ export default function Skills() {
         </div>
       </section>
 
-      <div className="mt-24">
-        <SkillSectionAccordion
-          id="professional-skills"
-          eyebrow="Professional Skills"
-          title="The human skills behind dependable delivery"
-          description="How I think, communicate, collaborate, organise work, improve and support the people using what I build."
-          summary="6 ways I add value"
-          icon={<Users size={25} />}
-          accent="purple"
-          isOpen={openSection === "professional"}
-          onToggle={() => toggleSection("professional")}
-          sectionRef={professionalSectionRef}
-        >
-          <div className="relative overflow-hidden rounded-2xl">
-            <div className="relative grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {professionalSkillCategories.map((group, index) => {
-                const theme = professionalThemes[index];
+      <section id="professional-skills" className="professional-strengths-section scroll-mt-24" aria-labelledby="professional-strengths-title">
+        <header className="professional-strengths-header">
+          <div><i /><span>Professional strengths</span><i /></div>
+          <h2 id="professional-strengths-title">How I make technical work land well.</h2>
+          <p>The human skills behind clear thinking, strong collaboration and dependable delivery.</p>
+        </header>
 
-                return (
-                  <article key={group.title} className={`relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition hover:bg-white/[0.04] ${theme.hover}`}>
-                    <div className={`absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent to-transparent ${theme.line}`} />
-                    <span className="absolute right-4 top-3 font-display text-5xl font-bold text-white/[0.035]">0{index + 1}</span>
-                    <div className={`flex items-center gap-3 ${theme.accent}`}>
-                      <span className={`grid h-10 w-10 place-items-center rounded-xl border ${theme.icon}`}>{professionalIcons[index]}</span>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em]">{group.eyebrow}</span>
-                    </div>
-                    <h3 className="mt-5 font-display text-xl font-semibold text-white">{group.title}</h3>
-                    <p className="mt-2 min-h-12 text-sm leading-relaxed text-muted">{group.description}</p>
-                    <ul className="mt-5 grid grid-cols-2 gap-2">
-                      {group.items.map((skill) => (
-                        <li key={skill} className="flex min-h-14 items-start gap-2 rounded-xl border border-white/10 bg-black/20 p-3 text-xs font-medium leading-snug text-white/80">
-                          <Check size={14} className={`mt-0.5 flex-none ${theme.accent}`} />
-                          <span>{skill}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                );
-              })}
+        <div className="professional-strengths-layout">
+          <nav className="professional-strengths-nav" aria-label="Professional strengths">
+            <span className="professional-strengths-rail" aria-hidden="true" />
+            {professionalSkillCategories.map((group, index) => {
+              const isActive = activeProfessionalIndex === index;
+              return (
+                <button
+                  key={group.title}
+                  type="button"
+                  className={`professional-strength-selector professional-tone-${professionalToneNames[index]} ${isActive ? "is-active" : ""}`}
+                  onClick={() => setActiveProfessionalIndex(index)}
+                  aria-pressed={isActive}
+                  aria-controls="professional-active-panel"
+                >
+                  <span className="professional-strength-selector-icon">{professionalIcons[index]}</span>
+                  <span className="professional-strength-selector-copy"><strong>0{index + 1} <em>{group.eyebrow}</em></strong><small>{group.description}</small></span>
+                  <ChevronRight size={17} />
+                </button>
+              );
+            })}
+          </nav>
+
+          <article
+            id="professional-active-panel"
+            key={activeProfessionalIndex}
+            className={`professional-strength-detail professional-tone-${professionalToneNames[activeProfessionalIndex]}`}
+            aria-live="polite"
+          >
+            <div className="professional-strength-detail-kicker"><span>{professionalIcons[activeProfessionalIndex]}</span><p>{activeProfessional.eyebrow}</p></div>
+            <div className="professional-strength-detail-visual" aria-hidden="true">{professionalIcons[activeProfessionalIndex]}</div>
+            <h3>{activeProfessional.title}</h3>
+            <p className="professional-strength-narrative">{professionalNarratives[activeProfessionalIndex]}</p>
+
+            <div className="professional-strength-skills">
+              <p>I bring to the table</p>
+              <ul>
+                {activeProfessional.items.map((skill, index) => (
+                  <li key={skill}><span>{index % 3 === 0 ? <Lightbulb size={14} /> : index % 3 === 1 ? <Sparkles size={14} /> : <Check size={14} />}</span>{skill}</li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </SkillSectionAccordion>
-      </div>
+
+            <div className="professional-strength-practice">
+              <div className="professional-strength-practice-heading"><span>What this looks like in practice</span><i /></div>
+              <ul>
+                {professionalPracticeOutcomes[activeProfessionalIndex].map((outcome, index) => (
+                  <li key={outcome}><span>{index === 0 ? <ListChecks size={16} /> : index === 1 ? <Blocks size={16} /> : <ShieldCheck size={16} />}</span>{outcome}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+
+          <aside className="professional-value-panel">
+            <h3>Why teams value this</h3>
+            <div className="professional-value-list">
+              {professionalValuePoints.map((point, index) => (
+                <article key={point.title} className={`professional-value-item professional-tone-${professionalToneNames[index]}`}>
+                  <span>{point.icon}</span><div><h4>{point.title}</h4><p>{point.copy}</p></div>
+                </article>
+              ))}
+            </div>
+            <blockquote><span>Technical skills build the solution.</span><strong>Professional skills make the solution dependable.</strong></blockquote>
+          </aside>
+        </div>
+      </section>
 
       <div className="mt-16 text-center">
         <p className="mb-6 text-muted">Always learning, always growing. This toolkit evolves with every project and credential.</p>
