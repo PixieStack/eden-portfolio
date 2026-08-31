@@ -33,9 +33,9 @@ import {
 import profilePortrait from "../assets/gallery/Profile.jpeg";
 import currentReadImage from "../assets/gallery/CurrentRead.jpg";
 import gameNightVideo from "../assets/gallery/Game night.mp4";
-import taskManagerVideo from "../assets/gallery/Last Task Manager App.mp4";
-import attorneysVideo from "../assets/gallery/Thwala Attorneys website.mp4";
-import budgetProImage from "../assets/projects/budgetpro-logo.png";
+import taskManagerVideo from "../assets/projects/taskmanager-demo.mp4";
+import attorneysVideo from "../assets/projects/thwala-attorneys-demo.mp4";
+import budgetProVideo from "../assets/projects/budgetpro-demo.mp4";
 import { professionalCredentials } from "../data/professionalCredentials";
 
 const designation = professionalCredentials.find((item) => item.type === "Professional Designation")!;
@@ -262,10 +262,10 @@ export default function Home() {
               <div className="home-project-preview"><video src={taskManagerVideo} autoPlay muted loop playsInline preload="metadata" /></div>
               <span className="home-project-status">Live</span><h3>Task Manager</h3><p>A collaborative task-management app with real-time updates, planning tools, and productivity-focused workflows.</p>
               <div className="home-project-tech"><span>Angular</span><span>FastAPI</span><span>PostgreSQL</span><span>JWT Auth</span><span>Analytics</span></div>
-              <footer><Link to="/projects" onClick={scrollToPageStart}>Live App <ExternalLink size={15} /></Link><Link to="/projects" onClick={scrollToPageStart}>View Stack</Link></footer>
+              <footer><a href="https://pixiestack-task-management-app-20260814.onrender.com/" target="_blank" rel="noopener noreferrer">Live App <ExternalLink size={15} /></a><Link to="/projects" onClick={scrollToPageStart}>View Stack</Link></footer>
             </article>
             <article className="home-project-card">
-              <div className="home-project-preview home-project-preview--contain"><img src={budgetProImage} alt="BudgetPro application" /></div>
+              <div className="home-project-preview"><video src={budgetProVideo} autoPlay muted loop playsInline preload="metadata" /></div>
               <span className="home-project-status">Live</span><h3>BudgetPro</h3><p>A personal finance platform for tracking income, spending, budgets, cash flow and savings insights.</p>
               <div className="home-project-tech"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>SQL Server</span><span>Docker</span></div>
               <footer><a href="https://budgetpro-afq2.onrender.com" target="_blank" rel="noopener noreferrer">Live App <ExternalLink size={15} /></a><Link to="/projects" onClick={scrollToPageStart}>View Stack</Link></footer>
