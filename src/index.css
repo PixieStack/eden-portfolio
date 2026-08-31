@@ -2877,15 +2877,15 @@ body {
 /* Engineering chapter */
 .home-engineering::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 24%; pointer-events: none; background: radial-gradient(ellipse at 50% 100%, rgba(99, 102, 241, 0.13), transparent 62%); }
 .home-principles-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2.75rem); margin-top: 2rem; }
-.home-principle-card { position: relative; display: grid; grid-template-columns: 4.4rem minmax(0, 1fr); gap: 0.9rem; min-height: 14.5rem; padding: 1.4rem; border: 1px solid rgba(var(--home-rgb), 0.48); border-radius: 1.1rem; background: radial-gradient(260px circle at 24% 38%, rgba(var(--home-rgb), 0.09), transparent 68%), rgba(7, 10, 18, 0.9); box-shadow: 0 0 28px rgba(var(--home-rgb), 0.06); }
+.home-principle-card { position: relative; display: grid; grid-template-columns: 4.4rem minmax(0, 1fr); gap: 0.9rem; min-height: 16.5rem; padding: 1.4rem; border: 1px solid rgba(var(--home-rgb), 0.48); border-radius: 1.1rem; background: radial-gradient(260px circle at 24% 38%, rgba(var(--home-rgb), 0.09), transparent 68%), rgba(7, 10, 18, 0.9); box-shadow: 0 0 28px rgba(var(--home-rgb), 0.06); }
 .home-principle-card > small { position: absolute; top: 0.8rem; left: 1.1rem; color: #fb923c; font-size: 0.82rem; }
 .home-principle-icon { display: grid; width: 4rem; height: 4rem; place-items: center; margin-top: 1.35rem; border: 1px solid rgba(var(--home-rgb), 0.5); border-radius: 999px; color: var(--home-color); background: rgba(var(--home-rgb), 0.06); box-shadow: 0 0 25px rgba(var(--home-rgb), 0.13); }
 .home-principle-card > div { margin-top: 1.25rem; }
 .home-principle-card > div > p { color: rgba(255, 255, 255, 0.84); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 .home-principle-card h3 { margin-top: 0.45rem; color: var(--home-color); font-size: 0.75rem; font-weight: 600; }
-.home-principle-card > div > div { margin-top: 0.55rem; color: rgba(203, 213, 225, 0.57); font-size: 0.68rem; line-height: 1.55; }
-.home-principle-card footer { position: absolute; right: 1.1rem; bottom: 1rem; left: 1.1rem; display: flex; gap: 0.45rem; }
-.home-principle-card footer span { display: inline-flex; align-items: center; gap: 0.3rem; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 999px; padding: 0.35rem 0.55rem; color: rgba(255, 255, 255, 0.62); background: rgba(255, 255, 255, 0.025); font-size: 0.5rem; }
+.home-principle-card > div > div { margin-top: 0.55rem; color: rgba(203, 213, 225, 0.64); font-size: 0.72rem; line-height: 1.62; }
+.home-principle-card footer { position: absolute; right: 1.1rem; bottom: 1rem; left: 1.1rem; display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.home-principle-card footer span { display: inline-flex; min-height: 2rem; align-items: center; gap: 0.38rem; border: 1px solid rgba(255, 255, 255, 0.11); border-radius: 999px; padding: 0.46rem 0.72rem; color: rgba(255, 255, 255, 0.7); background: rgba(255, 255, 255, 0.035); font-size: 0.65rem; }
 .home-capability-link { position: relative; z-index: 2; display: grid; width: min(26rem, 100%); grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.8rem; margin: 2rem auto 0; border: 1px solid rgba(168, 85, 247, 0.55); border-radius: 999px; padding: 0.8rem 1.4rem; color: #fff; background: linear-gradient(100deg, rgba(249, 115, 22, 0.12), rgba(168, 85, 247, 0.11)); box-shadow: 0 0 28px rgba(99, 102, 241, 0.14); }
 .home-capability-link > span { display: grid; width: 2.45rem; height: 2.45rem; place-items: center; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 0.75rem; color: #fb923c; }
 .home-capability-link strong, .home-capability-link small { display: block; }
@@ -3025,6 +3025,30 @@ body {
 .home-team-cta p { color: #fb923c; font-size: 0.74rem; }
 .home-team-cta a { display: inline-flex; min-width: 19rem; align-items: center; justify-content: center; gap: 0.65rem; border: 1px solid rgba(168, 85, 247, 0.48); border-radius: 999px; padding: 0.7rem 1rem; color: #fff; background: linear-gradient(90deg, rgba(249, 115, 22, 0.1), rgba(168, 85, 247, 0.1)); font-size: 0.68rem; }
 
+/* Keep supporting copy readable without competing with headings. */
+.home-recognition-credentials p,
+.home-experience-card > div > small,
+.home-experience-impact article p,
+.home-experience-summary,
+.home-education-card > p,
+.home-education-track > footer p,
+.home-project-card > p,
+.home-person-card > p,
+.home-team-card p {
+  font-size: 0.68rem;
+  line-height: 1.6;
+}
+
+.home-capability-link small,
+.home-experience-card > div > p,
+.home-learning-impact span,
+.home-education-card li,
+.home-education-card li small,
+.home-project-tech span,
+.home-project-status {
+  font-size: 0.62rem;
+}
+
 @media (max-width: 1250px) {
   .site-navbar-links { gap: 1.05rem; }
   .home-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(25rem, 0.88fr); gap: 2rem; }
@@ -3044,7 +3068,7 @@ body {
   .home-portrait-stage { height: 12.5rem; }
   .home-recognition-credentials > div { min-height: 4.2rem; }
   .home-principles-grid { margin-top: 1.25rem; }
-  .home-principle-card { min-height: 12.5rem; }
+  .home-principle-card { min-height: 15.5rem; }
   .home-capability-link { margin-top: 1rem; }
   .home-project-card { min-height: 26.5rem; }
   .home-project-preview { height: 12.5rem; }
