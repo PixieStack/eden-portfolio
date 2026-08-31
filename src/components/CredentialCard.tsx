@@ -24,11 +24,11 @@ export default function CredentialCard({ document, onView }: CredentialCardProps
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-purple/20 bg-purple/10 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-purple">
+            <span className="inline-flex min-h-8 items-center rounded-full border border-purple/20 bg-purple/10 px-3 py-1.5 text-xs font-medium uppercase tracking-wide text-purple">
               {document.type}
             </span>
             {document.status && (
-              <span className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${statusClass}`}>
+              <span className={`inline-flex min-h-8 items-center rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-wide ${statusClass}`}>
                 {document.status}
               </span>
             )}

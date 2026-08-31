@@ -366,7 +366,7 @@ export default function Skills() {
                 <span className="grid h-8 w-8 flex-none place-items-center rounded-full border border-primary/35 bg-primary/10 text-primary"><Star size={15} /></span>
                 <div>
                   <p className="text-[10px] font-semibold leading-4 text-primary">Builder. Problem-solver.<br />System thinker.</p>
-                  <p className="mt-1 text-[8px] leading-3.5 text-white/50">I turn ideas, data and logic into software that solves real problems for real people.</p>
+                  <p className="mt-1 text-[11px] leading-[1.05rem] text-white/50">I turn ideas, data and logic into software that solves real problems for real people.</p>
                 </div>
               </div>
             </div>
@@ -400,7 +400,7 @@ export default function Skills() {
                 <span className="grid h-9 w-9 place-items-center text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
                 <p className="mt-2 text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">Active pillar</p>
                 <h2 className="mt-1.5 font-display text-lg font-semibold leading-5 text-white">{activeProof.panelTitle}</h2>
-                <p className="mt-2 max-w-[8rem] text-[9px] leading-3.5 text-white/55">{activeProof.navLabel}</p>
+                <p className="mt-2 max-w-[8rem] text-[11px] leading-4 text-white/55">{activeProof.navLabel}</p>
               </div>
 
               {proofPoints.map((point, index) => {
@@ -426,7 +426,7 @@ export default function Skills() {
                 );
               })}
 
-              <p className="skills-orbit-hint absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap text-[8px] text-white/35">Hover or focus a pillar to explore how it shapes my work</p>
+              <p className="skills-orbit-hint absolute bottom-0 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] text-white/40">Hover or focus a pillar to explore how it shapes my work</p>
             </div>
           </section>
 
@@ -443,7 +443,7 @@ export default function Skills() {
                   {activeProof.workItems.map((item) => (
                     <div key={item.title} className="group flex gap-3">
                       <span className="grid h-9 w-9 flex-none place-items-center rounded-full border border-primary/30 bg-primary/[0.06] text-primary transition group-hover:bg-primary/10">{item.icon}</span>
-                      <div><h3 className="text-[11px] font-semibold text-white/90">{item.title}</h3><p className="mt-0.5 text-[9px] leading-3.5 text-white/45">{item.copy}</p></div>
+                      <div><h3 className="text-[11px] font-semibold text-white/90">{item.title}</h3><p className="mt-0.5 text-[11px] leading-4 text-white/50">{item.copy}</p></div>
                     </div>
                   ))}
                 </div>
@@ -454,8 +454,8 @@ export default function Skills() {
                 <div className="mt-3 grid grid-cols-4 gap-2">
                   {activeProof.evidence.map((item) => (
                     <div key={item.name} className="rounded-lg border border-white/[0.07] bg-white/[0.025] px-1.5 py-2 text-center">
-                      <span className="block text-[8px] font-semibold text-white/75">{item.name}</span>
-                      <span className="mt-1 block text-[6px] leading-2.5 text-white/35">{item.detail}</span>
+                      <span className="block text-[10px] font-semibold text-white/75">{item.name}</span>
+                      <span className="mt-1 block text-[10px] leading-3 text-white/40">{item.detail}</span>
                     </div>
                   ))}
                 </div>
@@ -473,7 +473,7 @@ export default function Skills() {
           {heroValues.map((value) => (
             <article key={value.title} className="group flex gap-3 border-b border-r border-white/[0.07] p-5 transition hover:bg-white/[0.025] last:border-r-0 xl:border-b-0">
               <span className="mt-0.5 flex-none text-primary transition group-hover:scale-110">{value.icon}</span>
-              <div><h2 className="font-display text-sm font-semibold text-white/90">{value.title}</h2><p className="mt-2 text-[9px] leading-4 text-white/45">{value.copy}</p></div>
+              <div><h2 className="font-display text-sm font-semibold text-white/90">{value.title}</h2><p className="mt-2 text-[11px] leading-4 text-white/50">{value.copy}</p></div>
             </article>
           ))}
         </div>

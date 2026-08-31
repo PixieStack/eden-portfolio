@@ -141,7 +141,7 @@ export default function SkillCard({
                 <h3 className="mt-1 break-words font-display text-lg font-semibold leading-snug text-white">{title}</h3>
               </div>
             </div>
-            <span className={`flex-none rounded-full border px-2.5 py-1 text-[10px] font-semibold ${colors.bg} ${colors.text} ${colors.border}`}>
+            <span className={`inline-flex min-h-8 flex-none items-center rounded-full border px-3 py-1.5 text-xs font-semibold ${colors.bg} ${colors.text} ${colors.border}`}>
               {experience.overall}
             </span>
           </div>

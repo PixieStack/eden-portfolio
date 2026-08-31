@@ -7,6 +7,10 @@
   --muted: #94a3b8;
   --primary: #f97316;
   --purple: #c084fc;
+  --supporting-copy-size: 0.7rem;
+  --compact-copy-size: 0.65rem;
+  --chip-min-height: 2rem;
+  --chip-inline-padding: 0.72rem;
 }
 
 * {
@@ -3220,4 +3224,132 @@ body {
   h2 {
     font-size: 2rem !important;
   }
+}
+
+/* App-wide readable supporting text and compact controls. */
+.capability-card-copy small,
+.capability-workflow-copy > span,
+.capability-toolkit-note p,
+.capability-perspective-card p,
+.capability-project-card p,
+.capability-coverage-copy,
+.professional-strength-selector-copy small,
+.professional-strength-skills li,
+.professional-strength-practice li,
+.professional-signature-intro small,
+.professional-signature-item p,
+.professional-signature-panel blockquote strong,
+.skills-continuum-copy > span,
+.capability-modal-header div > span,
+.capability-modal-intro,
+.capability-modal-groups li,
+.capability-modal-impact small,
+.capability-modal-footer span,
+.home-recognition-credentials p,
+.home-experience-card > div > small,
+.home-experience-impact article p,
+.home-experience-summary,
+.home-education-card > p,
+.home-education-track > footer p,
+.home-project-card > p,
+.home-person-card > p,
+.home-team-card p {
+  font-size: var(--supporting-copy-size);
+  line-height: 1.6;
+}
+
+.capability-coverage-card > small,
+.skills-continuum-action small,
+.home-recognition-credentials aside small,
+.home-capability-link small,
+.home-experience-card > div > p,
+.home-learning-impact span,
+.home-education-card li,
+.home-education-card li small {
+  font-size: var(--compact-copy-size);
+  line-height: 1.5;
+}
+
+.home-hero-bio {
+  font-size: clamp(0.72rem, 0.9vw, 0.78rem);
+}
+
+.engineering-principle-tags span,
+.capability-system-map-copy > div span,
+.home-principle-card footer span,
+.home-project-tech span,
+.home-person-card > footer span {
+  display: inline-flex;
+  min-height: var(--chip-min-height);
+  align-items: center;
+  padding: 0.46rem var(--chip-inline-padding);
+  font-size: var(--compact-copy-size);
+  line-height: 1.2;
+}
+
+.home-skill-pills span {
+  min-height: 2.45rem;
+  padding: 0.58rem 0.75rem;
+  font-size: 0.68rem;
+}
+
+.home-experience-pill,
+.home-experience-card > em,
+.home-project-status {
+  min-height: var(--chip-min-height);
+  align-items: center;
+  padding: 0.46rem 0.72rem;
+  font-size: var(--compact-copy-size);
+  line-height: 1.2;
+}
+
+.home-education-card > strong {
+  min-height: 2.25rem;
+  padding: 0.58rem 0.72rem;
+  font-size: var(--compact-copy-size);
+}
+
+.home-project-card > footer a,
+.skills-continuum-action a,
+.capability-project-card strong,
+.capability-modal-footer button {
+  min-height: 2.75rem;
+  padding: 0.72rem 1rem;
+  font-size: 0.7rem;
+}
+
+.capability-card {
+  min-height: 5.15rem;
+  padding: 0.7rem 0.85rem;
+}
+
+.capability-card-copy strong {
+  font-size: 0.74rem;
+}
+
+.professional-strength-selector {
+  min-height: 4.8rem;
+  padding: 0.75rem 0.85rem;
+}
+
+.professional-strength-selector-copy small {
+  white-space: normal;
+}
+
+.capability-modal-overall {
+  min-height: var(--chip-min-height);
+  padding: 0.55rem 0.9rem;
+}
+
+.capability-modal-overall small,
+.capability-modal-groups li > small {
+  font-size: 0.6rem;
+  line-height: 1.2;
+}
+
+.capability-modal-groups li > small {
+  display: inline-flex;
+  min-height: 1.75rem;
+  align-items: center;
+  padding: 0.35rem 0.55rem;
 }
