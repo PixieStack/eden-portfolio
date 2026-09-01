@@ -30,7 +30,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
-import profilePortrait from "../assets/gallery/Profile.jpeg";
+import profilePortrait from "../assets/gallery/Profile-dark.png";
 import beyondReadingImage from "../assets/home/beyond-reading.png";
 import beyondGamingImage from "../assets/home/beyond-gaming.png";
 import beyondListeningImage from "../assets/home/beyond-listening.png";
@@ -130,8 +130,11 @@ export default function Home() {
           <div className="home-hero-copy">
             <p className="home-kicker"><span /> Intermediate full-stack software developer</p>
             <h1 id="home-hero-title" data-testid="hero-title">Hi, I am<br /><span>Thembinkosi</span><br /><strong>Eden Thwala</strong></h1>
-            <p className="home-hero-role" data-testid="hero-role">Full-stack software engineer building across frontend, backend, APIs, integrations and data.</p>
-            <p className="home-hero-bio" data-testid="hero-bio">I build software from interface to infrastructure—responsive experiences, backend services, APIs, integrations and the data behind them. My strongest ground is full-stack engineering, with Python at the core of much of my backend work and TypeScript across modern web applications.</p>
+            <p className="home-hero-role" data-testid="hero-role">I build reliable software that solves real problems<br />and <span>drives business forward.</span></p>
+            <div className="home-hero-bio" data-testid="hero-bio">
+              <p>I build software from interface to infrastructure—responsive experiences, backend services, APIs, integrations and the data behind them.</p>
+              <p>My strongest ground is full-stack engineering, with Python at the core of much of my backend work and TypeScript across modern web applications.</p>
+            </div>
 
             <div className="home-skill-pills" aria-label="Core engineering strengths">
               <span><Code2 size={16} /> Full-Stack Engineering</span>
