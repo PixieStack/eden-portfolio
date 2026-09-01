@@ -3402,13 +3402,20 @@ body {
 
 .home-hero-grid {
   align-items: stretch;
-  margin-top: clamp(2rem, 5vh, 3rem);
+  margin-top: clamp(3.5rem, 7vh, 4.5rem);
 }
 
 .home-hero-copy {
   display: flex;
   min-height: 100%;
   flex-direction: column;
+}
+
+.home-hero .home-hero-copy > .home-kicker {
+  position: absolute;
+  top: 1.35rem;
+  left: clamp(1.75rem, 3vw, 3.25rem);
+  z-index: 2;
 }
 
 .home-hero-copy .home-experience-pill {
@@ -3469,7 +3476,16 @@ body {
 }
 
 .home-recognition-credentials aside {
-  flex: none;
+  width: 8rem;
+  flex: 0 0 8rem;
+  margin-left: auto;
+  padding-left: 0.9rem;
+}
+
+.home-recognition-credentials > div:nth-child(2) aside strong {
+  color: #fb923c;
+  font-size: 0.92rem;
+  white-space: nowrap;
 }
 
 /* Continuous development */
@@ -3746,7 +3762,11 @@ body {
   }
 
   .home-hero-grid {
-    margin-top: 1rem;
+    margin-top: 2.25rem;
+  }
+
+  .home-hero .home-hero-copy > .home-kicker {
+    top: 1rem;
   }
 
   .home-education-layout,

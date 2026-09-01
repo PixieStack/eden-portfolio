@@ -169,7 +169,7 @@ export default function Home() {
             </div>
             <div className="home-recognition-credentials" data-testid="hero-professional-credentials">
               <div><span><BadgeCheck size={25} /></span><div className="home-recognition-copy"><h3>{designation.shortTitle}</h3><p>Associate Member · Professional Designation</p></div><aside><small>{designation.credentialNumberLabel}</small><strong>{designation.credentialNumber}</strong></aside></div>
-              <div><span><Award size={25} /></span><div className="home-recognition-copy"><h3>{membership.shortTitle}</h3><p>Institute of Chartered IT Professionals<br />South Africa</p></div></div>
+              <div><span><Award size={25} /></span><div className="home-recognition-copy"><h3>{membership.shortTitle}</h3><p>Institute of Chartered IT Professionals<br />South Africa</p></div><aside><small>Membership ID</small><strong>A0001349</strong></aside></div>
               <div><span><GraduationCap size={25} /></span><div className="home-recognition-copy"><h3>Academic Excellence</h3><p>Both formal qualifications completed Cum Laude.</p></div><aside><small>Recognition</small><strong>Cum Laude ×2</strong></aside></div>
             </div>
           </article>
