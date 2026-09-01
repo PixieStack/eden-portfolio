@@ -2703,7 +2703,7 @@ body {
   position: relative;
   z-index: 1;
   display: grid;
-  width: min(1500px, 100%);
+  width: min(1568px, 100%);
   height: 3.65rem;
   grid-template-columns: minmax(12rem, 1fr) auto minmax(12rem, 1fr);
   align-items: center;
@@ -2737,14 +2737,15 @@ body {
 
 .site-navbar-brand strong { color: #fb7a1c; font-weight: 680; }
 
-.site-navbar-links { display: flex; align-items: stretch; gap: 1.65rem; height: 100%; }
+.site-navbar-links { display: flex; align-items: stretch; gap: 1.75rem; height: 100%; }
 
 .site-navbar-link {
   position: relative;
   display: flex;
   align-items: center;
   color: rgba(203, 213, 225, 0.67);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
+  font-weight: 500;
   transition: color 220ms ease;
 }
 
@@ -2777,7 +2778,7 @@ body {
   color: #fb923c;
   background: rgba(249, 115, 22, 0.025);
   box-shadow: inset 0 0 18px rgba(249, 115, 22, 0.035);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 600;
   transition: color 220ms ease, background 220ms ease, transform 220ms ease;
 }
@@ -2878,7 +2879,7 @@ body {
 .home-skill-pills span:nth-child(3n + 1) svg { color: #fb7a1c; }
 .home-skill-pills span:nth-child(3n + 2) svg { color: #c16cff; }
 .home-skill-pills span:nth-child(3n) svg { color: #42a5ff; }
-.home-hero-actions { display: flex; gap: 0.75rem; margin-top: 0.85rem; }
+.home-hero-actions { display: flex; gap: 0.75rem; margin-top: auto; padding-top: clamp(2.2rem, 5vh, 4.25rem); }
 .home-hero-actions a { display: inline-flex; min-width: 10.5rem; align-items: center; justify-content: center; gap: 0.65rem; border: 1px solid rgba(168, 85, 247, 0.45); border-radius: 0.75rem; padding: 0.7rem 1rem; color: #fff; background: rgba(168, 85, 247, 0.035); font-size: 0.75rem; transition: transform 220ms ease, box-shadow 220ms ease; }
 .home-hero-actions a:first-child { border-color: rgba(249, 115, 22, 0.65); background: linear-gradient(90deg, #f97316, rgba(249, 115, 22, 0.24)); box-shadow: 0 0 25px rgba(249, 115, 22, 0.18); }
 .home-hero-actions a:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(168, 85, 247, 0.18); }
@@ -2892,6 +2893,7 @@ body {
 .home-recognition-panel > header > span { display: grid; width: 2.6rem; height: 2.6rem; place-items: center; border: 1px solid rgba(249, 115, 22, 0.5); border-radius: 0.75rem; color: #fb923c; background: rgba(249, 115, 22, 0.06); }
 .home-recognition-panel > header p { color: #fb8a2a; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
 .home-recognition-panel > header h2 { margin-top: 0.25rem; color: rgba(255, 255, 255, 0.78); font-size: 0.85rem; font-weight: 500; }
+.home-recognition-panel > header .home-experience-pill { flex: none; margin: 0 0 0 auto; }
 .home-portrait-stage { position: relative; display: grid; width: min(20rem, 74%); height: clamp(13rem, 30vh, 18rem); place-items: end center; margin: 0.65rem auto 0; }
 .home-portrait-stage > img { position: relative; z-index: 2; width: 76%; height: 100%; object-fit: cover; object-position: center 22%; border-radius: 50% 50% 1rem 1rem / 45% 45% 1rem 1rem; filter: saturate(0.94) contrast(1.02); -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent); mask-image: linear-gradient(to bottom, #000 82%, transparent); }
 .home-portrait-orbit { position: absolute; inset: 4% 4% 0; border: 1px solid rgba(249, 115, 22, 0.48); border-radius: 50%; box-shadow: inset -10px 0 30px rgba(99, 102, 241, 0.08); }
@@ -3418,13 +3420,9 @@ body {
   z-index: 2;
 }
 
-.home-hero-copy .home-experience-pill {
-  align-self: flex-start;
-}
-
 .home-hero-copy .home-social-row {
-  margin-top: auto;
-  padding-top: 0.85rem;
+  margin-top: 0.7rem;
+  padding-top: 0;
 }
 
 /* Keep the portrait prominent without allowing it to wash out credential copy. */
@@ -3859,6 +3857,22 @@ body {
 }
 
 @media (max-width: 700px) {
+  .home-recognition-panel > header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .home-recognition-panel > header h2 {
+    font-size: 0.85rem !important;
+    line-height: 1.35;
+  }
+
+  .home-recognition-panel > header .home-experience-pill {
+    grid-column: 2;
+    justify-self: start;
+    margin: 0.65rem 0 0;
+  }
+
   .home-portrait-stage > img {
     width: 94%;
   }

@@ -132,7 +132,6 @@ export default function Home() {
             <p className="home-kicker"><span /> Intermediate full-stack software developer</p>
             <h1 id="home-hero-title" data-testid="hero-title">Hi, I am<br /><span>Thembinkosi</span><br /><strong>Eden Thwala</strong></h1>
             <p className="home-hero-role" data-testid="hero-role">Full-stack software engineer building across frontend, backend, APIs, integrations and data.</p>
-            <div className="home-experience-pill"><Award size={14} /> 3+ years experience</div>
             <p className="home-hero-bio" data-testid="hero-bio">I build software from interface to infrastructure—responsive experiences, backend services, APIs, integrations and the data behind them. My strongest ground is full-stack engineering, with Python at the core of much of my backend work and TypeScript across modern web applications.</p>
 
             <div className="home-skill-pills" aria-label="Core engineering strengths">
@@ -159,7 +158,11 @@ export default function Home() {
           </div>
 
           <article className="home-recognition-panel">
-            <header><span><Star size={22} /></span><div><p>Professional recognition</p><h2>Engineering backed by professional standing.</h2></div></header>
+            <header>
+              <span><Star size={22} /></span>
+              <div><p>Professional recognition</p><h2>Engineering backed by professional standing.</h2></div>
+              <div className="home-experience-pill"><Award size={14} /> 3+ years experience</div>
+            </header>
             <div className="home-portrait-stage">
               <div className="home-portrait-orbit" aria-hidden="true"><i /><i /><i /></div>
               <img src={profilePortrait} alt="Thembinkosi Eden Thwala" data-testid="hero-profile-image" />
