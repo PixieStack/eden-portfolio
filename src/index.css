@@ -3647,6 +3647,20 @@ body {
   margin-top: 1.45rem;
 }
 
+/* Show each supplied app screenshot in full instead of cropping its edges. */
+.home-project-preview {
+  height: auto;
+  aspect-ratio: 2.08 / 1;
+  padding: 0.35rem;
+}
+
+.home-project-preview img,
+.home-project-preview--contain img {
+  border-radius: 0.35rem;
+  object-fit: contain;
+  object-position: center;
+}
+
 /* Beyond the code */
 .home-person-layout {
   align-items: flex-start;
