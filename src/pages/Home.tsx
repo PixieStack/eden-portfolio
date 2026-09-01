@@ -10,11 +10,11 @@ import {
   CheckCircle2,
   Cloud,
   Code2,
+  Crown,
   Database,
   ExternalLink,
   Gamepad2,
   Github,
-  Globe2,
   GraduationCap,
   Headphones,
   Lightbulb,
@@ -29,10 +29,12 @@ import {
   Star,
   TerminalSquare,
   Users,
+  Zap,
 } from "lucide-react";
 import profilePortrait from "../assets/gallery/Profile.jpeg";
 import currentReadImage from "../assets/gallery/CurrentRead.jpg";
-import gameNightVideo from "../assets/gallery/Game night.mp4";
+import gamingModeImage from "../assets/home/gaming-mode.png";
+import bingeWatchingImage from "../assets/home/binge-watching.png";
 import taskManagerVideo from "../assets/projects/taskmanager-demo.mp4";
 import attorneysVideo from "../assets/projects/thwala-attorneys-demo.mp4";
 import budgetProVideo from "../assets/projects/budgetpro-demo.mp4";
@@ -112,10 +114,10 @@ const chapterImpact = [
 ];
 
 const teamValues = [
-  { title: "Curiosity Valued", copy: "I ask thoughtful questions, explore better ideas and enjoy solving problems that push the team forward.", icon: <Lightbulb size={31} />, tone: "orange" },
-  { title: "Open Communication", copy: "I communicate clearly, listen actively and share context early so the team stays aligned and moves with confidence.", icon: <MessageCircleMore size={31} />, tone: "purple" },
-  { title: "Structure & Trust", copy: "I bring structure without rigidity, own outcomes and build systems the team can rely on and build upon.", icon: <ShieldCheck size={31} />, tone: "blue" },
-  { title: "Real Diversity", copy: "I value different backgrounds, perspectives and experiences—because diverse teams build stronger solutions.", icon: <Users size={31} />, tone: "pink" },
+  { title: "Curiosity Driven", copy: "I ask thoughtful questions, explore better ideas, and enjoy solving problems that push the team forward.", tags: ["Inquisitive", "Analytical", "Growth"], icon: <Lightbulb size={31} />, tone: "orange" },
+  { title: "Open Communicator", copy: "I communicate clearly, listen actively, and share context early so the team stays aligned and moves with confidence.", tags: ["Transparent", "Listener", "Collaborative"], icon: <MessageCircleMore size={31} />, tone: "purple" },
+  { title: "Built on Trust", copy: "I bring structure without rigidity, own outcomes, and build systems the team can rely on and build upon.", tags: ["Reliable", "Accountable", "Structured"], icon: <ShieldCheck size={31} />, tone: "blue" },
+  { title: "Diverse by Default", copy: "I value different backgrounds, perspectives, and experiences—because diverse teams build stronger solutions.", tags: ["Inclusive", "Empathetic", "Global-Minded"], icon: <Users size={31} />, tone: "pink" },
 ];
 
 const scrollToPageStart = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -166,8 +168,8 @@ export default function Home() {
               <span className="home-portrait-node home-portrait-node--lower-right"><Boxes size={22} /></span>
             </div>
             <div className="home-recognition-credentials" data-testid="hero-professional-credentials">
-              <div><span><BadgeCheck size={25} /></span><div><h3>{designation.shortTitle}</h3><p>Associate Member · Professional Designation</p></div><aside><small>{designation.credentialNumberLabel}</small><strong>{designation.credentialNumber}</strong></aside></div>
-              <div><span><Award size={25} /></span><div><h3>{membership.shortTitle}</h3><p>Institute of Chartered IT Professionals<br />South Africa</p></div></div>
+              <div><span><BadgeCheck size={25} /></span><div className="home-recognition-copy"><h3>{designation.shortTitle}</h3><p>Associate Member · Professional Designation</p></div><aside><small>{designation.credentialNumberLabel}</small><strong>{designation.credentialNumber}</strong></aside></div>
+              <div><span><Award size={25} /></span><div className="home-recognition-copy"><h3>{membership.shortTitle}</h3><p>Institute of Chartered IT Professionals<br />South Africa</p></div></div>
             </div>
           </article>
         </div>
@@ -236,7 +238,10 @@ export default function Home() {
           <div className="home-education-intro">
             <p className="home-kicker"><span /> Continuous development</p>
             <h2 id="home-education-title">Experience built<br />my foundation.<br /><span>Curiosity keeps<br />extending it.</span></h2>
-            <p>I invest in disciplined upskilling and pursue recognised credentials that sharpen my edge, expand my range, and consistently translate into better outcomes for the teams and projects I work with.</p>
+            <div className="home-education-copy">
+              <p>Curiosity is part of how I work. I deliberately strengthen the knowledge around my core engineering practice—following shifts in modern development, cloud, data, and platform thinking, then testing what is genuinely useful in the software I deliver.</p>
+              <p>Upskilling is never a collection exercise. I pursue recognised learning to close gaps, deepen my judgement, and keep pace with the standards shaping dependable software—turning every new capability into better decisions, stronger systems, and more value for the teams I join.</p>
+            </div>
             <Link to="/education" onClick={scrollToPageStart}><GraduationCap size={20} /> Explore Education & Credentials <ArrowRight size={18} /></Link>
             <div className="home-learning-impact"><small>Learning drives impact</small><div><span><Star size={17} /> Stronger solutions</span><span><Code2 size={17} /> Clean, scalable code</span><span><ShieldCheck size={17} /> Trusted delivery</span></div></div>
           </div>
@@ -253,7 +258,7 @@ export default function Home() {
       <section className="home-chapter home-projects" aria-labelledby="home-projects-title">
         <div className="home-chapter-inner">
           <header className="home-projects-header">
-            <div><p className="home-kicker"><span /> Selected builds</p><h2 id="home-projects-title">Don’t just read the claims.<br /><span>Open the software.</span></h2><small>Real problems. Real users. Real code—built for scale and built to last.</small></div>
+            <div><p className="home-kicker"><span /> Selected builds</p><h2 id="home-projects-title">Don’t just read the claims.<br /><span>Open the software.</span></h2><p className="home-projects-intro">These builds turn the engineering story into something you can inspect. Each one responds to a real workflow, connects multiple layers of the stack, and reflects the decisions behind dependable software—from thoughtful interfaces and secure data to the systems that keep everything working together.</p></div>
             <Link to="/projects" onClick={scrollToPageStart}>Explore All Projects <ArrowRight size={18} /></Link>
           </header>
 
@@ -285,24 +290,34 @@ export default function Home() {
           <div className="home-person-intro">
             <p className="home-kicker"><span /> Beyond the code</p>
             <h2 id="home-person-title">There’s a person<br /><span>behind the<br />pull requests.</span></h2>
-            <p>Curiosity, discipline, and life outside work shape how I think, lead, and build. These are a few of the things that inspire how I create.</p>
+            <div className="home-person-copy">
+              <p>Code is only one side of the story. I’m driven by curiosity, grounded by discipline, and fuelled by creativity.</p>
+              <p>Books, competitive games, focused soundtracks, and epic storytelling shape the way I notice patterns, stay composed, challenge perspective, and bring fresh thinking to the problems I build for.</p>
+            </div>
             <div><Link to="/about" onClick={scrollToPageStart}>Meet Eden <ArrowRight size={18} /></Link><Link to="/about" onClick={scrollToPageStart}>View full story <ArrowRight size={14} /></Link></div>
           </div>
 
           <div className="home-person-cards">
-            <article className="home-person-card home-tone-orange"><header><span>01</span><BookOpen size={22} /></header><div className="home-person-media"><img src={currentReadImage} alt="The Alchemist by Paulo Coelho" /></div><h3>Currently Reading</h3><p>The Alchemist by Paulo Coelho. Curiosity, reflection, and reading beyond tech keep me grounded and growing.</p><footer><span>Curiosity</span><span>Reflection</span><span>Growth</span></footer></article>
-            <article className="home-person-card home-tone-pink"><header><span>02</span><Gamepad2 size={22} /></header><div className="home-person-media"><video src={gameNightVideo} autoPlay muted loop playsInline preload="metadata" /></div><h3>Gaming Reset</h3><p>Call of Duty is my reset. Strategy, focus, and pattern recognition in high-stakes environments.</p><footer><span>Strategy</span><span>Focus</span><span>Read Patterns</span></footer></article>
-            <article className="home-person-card home-tone-purple"><header><span>03</span><Headphones size={22} /></header><div className="home-person-media home-person-media--sound"><Headphones size={76} /><i /><i /><i /><i /><i /></div><h3>Always Listening</h3><p>Coding with soundtracks, focus playlists, and deep-work music. The right sound unlocks my best work.</p><footer><span>Focus</span><span>Flow</span><span>Deep Work</span></footer></article>
-            <article className="home-person-card home-tone-blue"><header><span>04</span><Globe2 size={22} /></header><div className="home-person-media home-person-media--world"><Globe2 size={92} /><i /><i /><i /></div><h3>More Than One World Shaped Me</h3><p>Every culture, conversation, and challenge adds a layer to how I see the world—and how I build for it.</p><footer><span>Perspective</span><span>Culture</span><span>Humanity</span></footer></article>
+            <article className="home-person-card home-tone-orange"><header><span>01</span><BookOpen size={22} /></header><div className="home-person-media"><img src={currentReadImage} alt="The Alchemist by Paulo Coelho" /></div><h3>Currently Reading</h3><p>Fuel for curiosity and growth, one chapter at a time. Stories that challenge perspective keep reflection and imagination active beyond the screen.</p><footer><span>Curiosity</span><span>Reflection</span><span>Growth</span></footer></article>
+            <article className="home-person-card home-tone-blue"><header><span>02</span><Gamepad2 size={22} /></header><div className="home-person-media"><img src={gamingModeImage} alt="Cinematic tactical gaming avatar" /></div><h3>Gaming Mode</h3><p>Call of Duty is my favourite reset and strategy lab. It rewards awareness, calm decisions, fast adaptation, and focus when the pressure rises.</p><footer><span>Strategy</span><span>Focus</span><span>Competitive</span></footer></article>
+            <article className="home-person-card home-tone-orange"><header><span>03</span><Headphones size={22} /></header><div className="home-person-media home-person-media--sound"><Headphones size={76} /><i /><i /><i /><i /><i /></div><h3>Always Listening</h3><p>Coding with soundtracks, focus playlists, and deep-work music. The right sound unlocks my best work and keeps me in the zone.</p><footer><span>Focus</span><span>Flow</span><span>Deep Work</span></footer></article>
+            <article className="home-person-card home-tone-blue"><header><span>04</span><Crown size={22} /></header><div className="home-person-media"><img src={bingeWatchingImage} alt="Dark fantasy throne and wolf" /></div><h3>Binge Watching</h3><p>Game of Thrones is my all-time favourite. Epic storytelling, layered worlds, and unforgettable characters keep imagination working.</p><footer><span>World-Building</span><span>Fantasy</span><span>Storytelling</span></footer></article>
           </div>
         </div>
       </section>
 
       <section className="home-chapter home-team" aria-labelledby="home-team-title">
         <div className="home-chapter-inner">
-          <header className="home-team-header"><p className="home-kicker"><span /> Team fit</p><h2 id="home-team-title">The best <span>work happens</span><br />where <span>curiosity, trust</span><br />and <span>standards meet.</span></h2><p>I thrive in teams that value learning, open communication, structure, ownership and real diversity—where everyone has a voice and the work speaks for itself.</p><div className="home-team-orbit" aria-hidden="true"><i /><i /><i /></div></header>
-          <div className="home-team-values">{teamValues.map((value) => <article key={value.title} className={`home-team-card home-tone-${value.tone}`}><span>{value.icon}</span><h3>{value.title}</h3><i /><p>{value.copy}</p></article>)}</div>
-          <div className="home-team-cta"><p>If that sounds like your team, we’ll likely work well together.</p><Link to="/contact" onClick={scrollToPageStart}>Let’s Talk About Your Team <ArrowRight size={18} /></Link></div>
+          <header className="home-team-header">
+            <p className="home-kicker"><span /> Working together</p>
+            <h2 id="home-team-title">The best work happens<br />where <span>curiosity and standards align.</span></h2>
+            <div className="home-team-intro-copy">
+              <p>I thrive in environments where learning is valued, communication is clear, and ownership is expected. I bring calm, collaborative energy to a team while remaining highly accountable for the quality of what I build.</p>
+              <p>I work best with people who care about trust, strong standards, and doing things properly—not simply quickly. My aim is to contribute beyond the task itself: strengthen the product, support the people around it, and raise the level of execution with every delivery.</p>
+            </div>
+          </header>
+          <div className="home-team-values">{teamValues.map((value) => <article key={value.title} className={`home-team-card home-tone-${value.tone}`}><span>{value.icon}</span><h3>{value.title}</h3><p>{value.copy}</p><footer>{value.tags.map((tag) => <span key={tag}>{tag}</span>)}</footer></article>)}</div>
+          <div className="home-team-cta"><span><Zap size={30} /></span><div><strong>I bring more than delivery — I bring momentum.</strong><p>Give me meaningful problems, strong collaboration, and room to grow, and I’ll contribute with clarity, ownership, and high standards from day one.</p></div><Link to="/contact" onClick={scrollToPageStart}>Let’s Build Something Great <ArrowRight size={18} /></Link></div>
         </div>
       </section>
     </div>
