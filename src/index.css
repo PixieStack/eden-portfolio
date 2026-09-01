@@ -3293,9 +3293,12 @@ body {
 .experience-roles-section,
 .experience-hire-section,
 .experience-detail {
-  width: min(100% - 3rem, 1180px);
+  width: min(100% - 2rem, 1600px);
   margin-inline: auto;
 }
+
+/* Role-detail cards intentionally keep their original focused width. */
+.experience-detail { width: min(100% - 3rem, 1180px); }
 
 .experience-hero {
   display: grid;
@@ -3304,6 +3307,14 @@ body {
   align-items: center;
   gap: clamp(3rem, 7vw, 7rem);
   padding: 4.2rem 4rem 4.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 1.7rem;
+  background:
+    radial-gradient(620px circle at 12% 40%, rgba(249, 115, 22, 0.05), transparent 68%),
+    radial-gradient(640px circle at 84% 46%, rgba(99, 102, 241, 0.045), transparent 70%),
+    rgba(5, 8, 16, 0.88);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
 }
 
 .experience-eyebrow {
@@ -3441,7 +3452,16 @@ body {
 .experience-roles-section {
   min-height: calc(100svh - 5rem);
   scroll-margin-top: 5rem;
+  margin-top: 1rem;
   padding: 2.1rem 2.2rem 3.2rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 1.7rem;
+  background:
+    radial-gradient(620px circle at 12% 40%, rgba(249, 115, 22, 0.045), transparent 68%),
+    radial-gradient(640px circle at 84% 46%, rgba(99, 102, 241, 0.04), transparent 70%),
+    rgba(5, 8, 16, 0.88);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
 }
 
 .experience-centered-heading { text-align: center; }
@@ -3497,16 +3517,17 @@ body {
 .experience-panel-button { width: 100%; gap: 1.4rem; margin-top: 0.6rem; padding: 0.85rem 1rem; font-size: 0.72rem; }
 
 .experience-hire-section {
-  min-height: calc(100svh - 5rem);
+  min-height: 0;
+  margin-top: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 1.45rem;
-  padding: clamp(2rem, 4vw, 3rem);
+  padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem) clamp(1.3rem, 2vw, 1.8rem);
   background: rgba(6, 10, 18, 0.76);
 }
 .experience-hire-top { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(20rem, 0.85fr); gap: clamp(3rem, 7vw, 7rem); align-items: start; }
-.experience-hire-copy h2 { margin-top: 0.7rem; font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 670; line-height: 1.17; letter-spacing: -0.045em; }
+.experience-hire-copy h2 { margin-top: 2.25rem; font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 670; line-height: 1.17; letter-spacing: -0.045em; }
 .experience-hire-copy > p:last-child { max-width: 42rem; margin-top: 0.9rem; color: rgba(203, 213, 225, 0.69); font-size: 0.85rem; line-height: 1.62; }
-.experience-contact-card { border: 1px solid transparent; border-radius: 1.05rem; padding: 1.7rem; background: linear-gradient(#111321, #111321) padding-box, linear-gradient(120deg, #ff7a18, #ec4899, #6d5cff) border-box; box-shadow: 0 0 35px rgba(249, 115, 22, 0.1); }
+.experience-contact-card { margin-top: 4rem; border: 1px solid transparent; border-radius: 1.05rem; padding: 1.7rem; background: linear-gradient(#111321, #111321) padding-box, linear-gradient(120deg, #ff7a18, #ec4899, #6d5cff) border-box; box-shadow: 0 0 35px rgba(249, 115, 22, 0.1); }
 .experience-contact-card h3 { margin-top: 1rem; font-size: 1.45rem; line-height: 1.15; }
 .experience-contact-card > i { display: block; width: 2.4rem; height: 1px; margin: 0.85rem 0; background: linear-gradient(90deg, #ff7a18, #a855f7, transparent); }
 .experience-contact-card p { color: rgba(203, 213, 225, 0.68); font-size: 0.78rem; line-height: 1.7; }
@@ -3572,6 +3593,7 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
   .experience-hero { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 3rem 1rem; }
   .experience-hero-copy h1 { font-size: clamp(3.8rem, 10vw, 5.4rem); }
   .experience-roles-layout, .experience-detail-layout, .experience-hire-top { grid-template-columns: minmax(0, 1fr); }
+  .experience-contact-card { margin-top: 0; }
   .experience-roles-layout > .experience-journey-panel { min-height: auto; }
   .experience-hire-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .experience-capability-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0; }
