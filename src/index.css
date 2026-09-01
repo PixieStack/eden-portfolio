@@ -3265,6 +3265,349 @@ body {
   }
 }
 
+/* Experience page redesign */
+.experience-page,
+.experience-detail {
+  --experience-orange: #ff7a18;
+  --experience-purple: #a855f7;
+  --experience-blue: #3b82f6;
+  --experience-pink: #ec4899;
+  position: relative;
+  z-index: 1;
+  color: #f8fafc;
+}
+
+.experience-page::before,
+.experience-detail::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(36rem 32rem at 17% 23%, rgba(249, 115, 22, 0.07), transparent 68%),
+    radial-gradient(40rem 34rem at 72% 48%, rgba(139, 92, 246, 0.055), transparent 72%);
+}
+
+.experience-hero,
+.experience-roles-section,
+.experience-hire-section,
+.experience-detail {
+  width: min(100% - 3rem, 1180px);
+  margin-inline: auto;
+}
+
+.experience-hero {
+  display: grid;
+  min-height: calc(100svh - 5rem);
+  grid-template-columns: minmax(0, 1.5fr) minmax(22rem, 0.9fr);
+  align-items: center;
+  gap: clamp(3rem, 7vw, 7rem);
+  padding: 4.2rem 4rem 4.8rem;
+}
+
+.experience-eyebrow {
+  color: #fb8a2a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.experience-hero-copy h1 {
+  margin-top: 1rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: clamp(4rem, 6.6vw, 6.35rem);
+  font-weight: 680;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.experience-hero-copy h1 span,
+.experience-centered-heading h2 span,
+.experience-hire-copy h2 span,
+.experience-contact-card h3 span {
+  background: linear-gradient(100deg, #ff7a18 5%, #ef5c8e 53%, #795bff 95%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.experience-hero-copy > h2 {
+  margin-top: 1.55rem;
+  color: rgba(226, 232, 240, 0.73);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 450;
+}
+
+.experience-lead {
+  max-width: 41rem;
+  margin-top: 0.75rem;
+  color: rgba(203, 213, 225, 0.68);
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.experience-icon {
+  display: grid;
+  width: 3.6rem;
+  height: 3.6rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 1rem;
+  background: rgba(8, 12, 22, 0.75);
+  box-shadow: 0 0 26px color-mix(in srgb, currentColor 17%, transparent);
+}
+
+.experience-icon--orange { color: var(--experience-orange); }
+.experience-icon--purple { color: #c167ff; }
+.experience-icon--blue { color: #4195ff; }
+.experience-icon--pink { color: #f0529b; }
+
+.experience-hero-stats {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr 1.28fr;
+  gap: 1rem;
+  margin-top: 1.55rem;
+}
+
+.experience-hero-stats article {
+  display: flex;
+  min-height: 5.2rem;
+  align-items: center;
+  gap: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.85rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.065), rgba(13, 15, 26, 0.8));
+}
+
+.experience-hero-stats article:nth-child(2),
+.experience-direction-stat { background: linear-gradient(135deg, rgba(168, 85, 247, 0.09), rgba(13, 15, 26, 0.84)); }
+.experience-hero-stats .experience-icon { width: 2.9rem; height: 2.9rem; border-radius: 0.72rem; }
+.experience-hero-stats strong { display: block; font-size: 1.45rem; }
+.experience-hero-stats small { display: block; margin-top: 0.08rem; color: rgba(203, 213, 225, 0.65); font-size: 0.7rem; }
+.experience-direction-stat strong { color: #d8a8ff; font-size: 0.83rem; line-height: 1.45; }
+
+.experience-gradient-button,
+.experience-panel-button,
+.experience-contact-card > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+  border: 0;
+  border-radius: 0.75rem;
+  color: #fff;
+  background: linear-gradient(105deg, #ff7a18, #e34d7a 55%, #723cff);
+  box-shadow: 0 12px 36px rgba(168, 85, 247, 0.18);
+  font-weight: 650;
+  transition: transform 200ms ease, filter 200ms ease;
+}
+
+.experience-gradient-button:hover,
+.experience-panel-button:hover,
+.experience-contact-card > a:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.experience-gradient-button { min-width: 18rem; margin-top: 1.55rem; padding: 1rem 1.5rem; }
+
+.experience-journey-panel {
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(18, 18, 33, 0.9), rgba(7, 12, 21, 0.94));
+  box-shadow: inset 0 0 34px rgba(59, 130, 246, 0.025), 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+.experience-journey-panel > header,
+.experience-detail-strengths > header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.experience-journey-panel > header .experience-icon,
+.experience-detail-strengths > header .experience-icon { width: 3rem; height: 3rem; border-radius: 0.8rem; }
+.experience-journey-panel > header p,
+.experience-detail-strengths > header h2 { color: #fb8a2a; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.17em; text-transform: uppercase; }
+.experience-strength-list { margin-top: 1.1rem; }
+.experience-strength-item { display: flex; align-items: center; gap: 1.25rem; padding: 1.4rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.experience-strength-item:last-child { border-bottom: 0; }
+.experience-strength-item .experience-icon { border-radius: 999px; }
+.experience-strength-item h3 { color: rgba(255, 255, 255, 0.9); font-size: 0.92rem; font-weight: 650; }
+.experience-strength-item p { margin-top: 0.42rem; color: rgba(203, 213, 225, 0.58); font-size: 0.68rem; line-height: 1.58; }
+.experience-strength-list.is-compact .experience-strength-item .experience-icon { width: 3.2rem; height: 3.2rem; }
+
+.experience-roles-section {
+  min-height: calc(100svh - 5rem);
+  scroll-margin-top: 5rem;
+  padding: 2.1rem 2.2rem 3.2rem;
+}
+
+.experience-centered-heading { text-align: center; }
+.experience-centered-heading h2 { margin-top: 0.6rem; font-size: clamp(2.35rem, 4vw, 3.6rem); font-weight: 680; letter-spacing: -0.045em; }
+.experience-centered-heading > p:last-child { margin-top: 0.6rem; color: rgba(203, 213, 225, 0.62); font-size: 0.87rem; line-height: 1.55; }
+
+.experience-roles-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.78fr) minmax(20rem, 0.72fr);
+  gap: 1.5rem;
+  margin-top: 1.55rem;
+}
+
+.experience-role-timeline { position: relative; display: grid; gap: 0.8rem; padding-left: 4.7rem; }
+.experience-role-timeline::before { content: ""; position: absolute; top: 1rem; bottom: 1rem; left: 2.5rem; width: 1px; background: linear-gradient(#ff7a18, #a855f7 52%, #ff7a18); }
+.experience-role-card {
+  --role-accent: 249 115 22;
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 8.55rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.15rem;
+  border: 1px solid rgba(var(--role-accent), 0.48);
+  border-radius: 0.85rem;
+  padding: 1.15rem 1.2rem;
+  color: inherit;
+  text-align: left;
+  background: radial-gradient(24rem circle at 94% 40%, rgba(var(--role-accent), 0.09), transparent 70%), rgba(10, 13, 22, 0.91);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.experience-role-card:hover { transform: translateX(5px); box-shadow: 0 12px 34px rgba(var(--role-accent), 0.1); }
+.experience-role-card--purple { --role-accent: 168 85 247; }
+.experience-role-number { position: absolute; left: -4.5rem; display: grid; width: 2.7rem; height: 2.7rem; place-items: center; border: 1px solid rgba(var(--role-accent), 0.7); border-radius: 999px; color: rgb(var(--role-accent)); background: #080b13; box-shadow: 0 0 22px rgba(var(--role-accent), 0.22); font-size: 0.78rem; font-weight: 700; }
+.experience-role-number::after { content: ""; position: absolute; left: 100%; width: 2rem; height: 1px; background: rgb(var(--role-accent)); }
+.experience-role-icon { display: grid; width: 3.5rem; height: 3.5rem; place-items: center; border: 1px solid currentColor; border-radius: 0.75rem; }
+.experience-role-icon--orange { color: var(--experience-orange); }
+.experience-role-icon--purple { color: #c167ff; }
+.experience-role-copy { min-width: 0; }
+.experience-role-copy strong, .experience-role-copy b, .experience-role-copy small, .experience-role-copy em { display: flex; }
+.experience-role-copy strong { color: #fff; font-size: 1rem; font-weight: 650; }
+.experience-role-copy b { margin-top: 0.15rem; color: rgb(var(--role-accent)); font-size: 0.75rem; }
+.experience-role-copy small { align-items: center; gap: 0.35rem; margin-top: 0.4rem; color: rgba(203, 213, 225, 0.58); font-size: 0.58rem; }
+.experience-role-copy small i { width: 0.24rem; height: 0.24rem; margin: 0 0.2rem; border-radius: 999px; background: rgba(255, 255, 255, 0.24); }
+.experience-role-copy em { max-width: 38rem; margin-top: 0.7rem; color: rgba(203, 213, 225, 0.62); font-size: 0.68rem; font-style: normal; line-height: 1.45; }
+.experience-role-link { display: flex; align-items: center; gap: 0.5rem; color: rgb(var(--role-accent)); font-size: 0.65rem; white-space: nowrap; }
+.experience-roles-layout > .experience-journey-panel { align-self: stretch; padding: 1.2rem; }
+.experience-roles-layout .experience-strength-item { gap: 0.9rem; padding: 1rem 0; }
+.experience-roles-layout .experience-strength-item h3 { font-size: 0.76rem; }
+.experience-roles-layout .experience-strength-item p { font-size: 0.57rem; }
+.experience-roles-layout .experience-strength-list.is-compact .experience-icon { width: 2.8rem; height: 2.8rem; }
+.experience-panel-button { width: 100%; gap: 1.4rem; margin-top: 0.6rem; padding: 0.85rem 1rem; font-size: 0.72rem; }
+
+.experience-hire-section {
+  min-height: calc(100svh - 5rem);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1.45rem;
+  padding: clamp(2rem, 4vw, 3rem);
+  background: rgba(6, 10, 18, 0.76);
+}
+.experience-hire-top { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(20rem, 0.85fr); gap: clamp(3rem, 7vw, 7rem); align-items: start; }
+.experience-hire-copy h2 { margin-top: 0.7rem; font-size: clamp(2.4rem, 4vw, 4rem); font-weight: 670; line-height: 1.17; letter-spacing: -0.045em; }
+.experience-hire-copy > p:last-child { max-width: 42rem; margin-top: 0.9rem; color: rgba(203, 213, 225, 0.69); font-size: 0.85rem; line-height: 1.62; }
+.experience-contact-card { border: 1px solid transparent; border-radius: 1.05rem; padding: 1.7rem; background: linear-gradient(#111321, #111321) padding-box, linear-gradient(120deg, #ff7a18, #ec4899, #6d5cff) border-box; box-shadow: 0 0 35px rgba(249, 115, 22, 0.1); }
+.experience-contact-card h3 { margin-top: 1rem; font-size: 1.45rem; line-height: 1.15; }
+.experience-contact-card > i { display: block; width: 2.4rem; height: 1px; margin: 0.85rem 0; background: linear-gradient(90deg, #ff7a18, #a855f7, transparent); }
+.experience-contact-card p { color: rgba(203, 213, 225, 0.68); font-size: 0.78rem; line-height: 1.7; }
+.experience-contact-card > a { width: 100%; gap: 1.2rem; margin-top: 1rem; padding: 0.8rem; }
+.experience-hire-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1.2rem; }
+.experience-hire-card { --hire-accent: 249 115 22; display: flex; min-height: 10rem; align-items: flex-start; gap: 1rem; border: 1px solid rgba(var(--hire-accent), 0.42); border-radius: 1rem; padding: 1.15rem; background: linear-gradient(145deg, rgba(var(--hire-accent), 0.055), rgba(7, 12, 21, 0.94)); }
+.experience-hire-card--purple { --hire-accent: 168 85 247; }
+.experience-hire-card--blue { --hire-accent: 59 130 246; }
+.experience-hire-card--pink { --hire-accent: 236 72 153; }
+.experience-hire-card .experience-icon { width: 3.8rem; height: 3.8rem; border-radius: 999px; }
+.experience-hire-card h3 { margin-top: 0.55rem; font-size: 0.9rem; }
+.experience-hire-card p { margin-top: 0.45rem; color: rgba(203, 213, 225, 0.62); font-size: 0.69rem; line-height: 1.55; }
+.experience-capability-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 1rem; border: 1px solid transparent; border-radius: 0.9rem; padding: 1rem; background: linear-gradient(#0b0f19, #0b0f19) padding-box, linear-gradient(100deg, #ff7a18, rgba(168, 85, 247, 0.4), #a855f7) border-box; }
+.experience-capability-strip span { display: flex; min-height: 2.2rem; align-items: center; justify-content: center; gap: 0.8rem; border-right: 1px solid rgba(255, 255, 255, 0.18); color: rgba(255, 255, 255, 0.84); font-size: 0.78rem; }
+.experience-capability-strip span:last-child { border-right: 0; }
+.experience-capability-strip svg { color: #a855f7; }
+.experience-capability-strip span:first-child svg { color: #ff7a18; }
+.experience-capability-strip span:nth-child(3) svg { color: #3b82f6; }
+.experience-capability-strip span:nth-child(4) svg { color: #ec4899; }
+
+/* Focused role state */
+.experience-detail { min-height: calc(100svh - 5rem); padding: 1rem 1rem 3rem; }
+body.experience-detail-open footer[data-testid="footer"] { display: none; }
+.experience-back-button { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.2rem 0 0.9rem; color: #fb8a2a; font-size: 0.72rem; }
+.experience-detail-layout { display: grid; grid-template-columns: minmax(0, 2.25fr) minmax(18.5rem, 0.75fr); gap: 1.2rem; align-items: start; }
+.experience-detail-card { --detail-accent: 249 115 22; position: relative; min-height: 34rem; overflow: hidden; border: 1px solid rgba(var(--detail-accent), 0.43); border-radius: 1rem; padding: 1.5rem 1.5rem 1.3rem 7.4rem; background: radial-gradient(34rem circle at 92% 5%, rgba(168, 85, 247, 0.11), transparent 72%), rgba(9, 13, 22, 0.92); }
+.experience-detail--purple .experience-detail-card { --detail-accent: 168 85 247; }
+.experience-detail-rail { position: absolute; top: 1.2rem; bottom: 1.2rem; left: 1.7rem; display: flex; width: 3.6rem; align-items: center; flex-direction: column; }
+.experience-detail-rail span { position: relative; z-index: 2; display: grid; width: 2.7rem; height: 2.7rem; place-items: center; border: 1px solid rgb(var(--detail-accent)); border-radius: 999px; color: rgb(var(--detail-accent)); background: #0a0d15; box-shadow: 0 0 20px rgba(var(--detail-accent), 0.23); font-size: 0.72rem; }
+.experience-detail-rail i { width: 1px; flex: 1; background: linear-gradient(rgb(var(--detail-accent)), rgba(168, 85, 247, 0.28)); }
+.experience-detail-rail b { display: grid; width: 3.5rem; height: 3.5rem; place-items: center; border: 1px solid rgb(var(--detail-accent)); border-radius: 0.8rem; color: rgb(var(--detail-accent)); background: #0a0d15; }
+.experience-detail--role-0 .experience-detail-rail span { width: 0.65rem; height: 0.65rem; border: 0; color: transparent; background: #ff7a18; box-shadow: 0 0 16px #ff7a18; font-size: 0; }
+.experience-detail--role-0 .experience-detail-rail b { display: none; }
+.experience-detail--role-1 .experience-detail-rail { display: none; }
+.experience-detail--role-1 .experience-detail-card { padding-left: 2rem; }
+.experience-detail--role-2 .experience-detail-mobile-icon { display: none; }
+.experience-detail-header { display: flex; gap: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+.experience-detail-mobile-icon { display: grid; width: 3.8rem; height: 3.8rem; flex: none; place-items: center; border: 1px solid rgb(var(--detail-accent)); border-radius: 0.8rem; color: rgb(var(--detail-accent)); }
+.experience-detail-header small { color: rgb(var(--detail-accent)); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.experience-detail-header h1 { margin-top: 0.25rem; font-size: clamp(1.7rem, 3vw, 2.45rem); font-weight: 680; letter-spacing: -0.035em; }
+.experience-detail-header h2 { margin-top: 0.1rem; color: rgb(var(--detail-accent)); font-size: 1rem; font-weight: 650; }
+.experience-detail-header p { display: flex; align-items: center; gap: 0.45rem; margin-top: 0.55rem; color: rgba(203, 213, 225, 0.62); font-size: 0.65rem; }
+.experience-detail-header p i { width: 0.24rem; height: 0.24rem; margin-inline: 0.2rem; border-radius: 999px; background: rgba(255,255,255,.25); }
+.experience-detail-header div > div { max-width: 43rem; margin-top: 0.9rem; color: rgba(203, 213, 225, 0.7); font-size: 0.73rem; line-height: 1.55; }
+.experience-detail-achievements, .experience-detail-technologies { padding-top: 1rem; }
+.experience-detail-achievements h3, .experience-detail-technologies h3 { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; font-weight: 650; }
+.experience-detail-achievements h3 svg { color: #ff8a1f; }
+.experience-detail-achievements li { position: relative; margin-top: 0.38rem; padding-left: 1.35rem; color: rgba(203, 213, 225, 0.68); font-size: 0.65rem; line-height: 1.4; }
+.experience-detail-achievements li::before { content: "▸"; position: absolute; left: 0; color: #ff8a1f; }
+.experience-detail-technologies { margin-top: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+.experience-detail-technologies h3 svg { color: #b968ff; }
+.experience-detail-technologies > div { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.65rem; }
+.experience-detail-technologies span { border: 1px solid rgba(168, 85, 247, 0.35); border-radius: 0.35rem; padding: 0.35rem 0.7rem; color: #c882ff; background: rgba(168, 85, 247, 0.11); font-size: 0.55rem; }
+.experience-detail-strengths { border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 1rem; padding: 1.2rem; background: linear-gradient(150deg, rgba(19, 18, 33, 0.94), rgba(8, 13, 22, 0.95)); }
+.experience-detail-strengths .experience-strength-item { padding: 1.15rem 0; }
+.experience-detail-strengths .experience-strength-item .experience-icon { width: 3.1rem; height: 3.1rem; }
+.experience-detail-strengths .experience-strength-item h3 { font-size: 0.78rem; }
+.experience-detail-strengths .experience-strength-item p { font-size: 0.61rem; }
+.experience-related-projects { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; margin-top: 1rem; border: 1px solid rgba(168, 85, 247, 0.38); border-radius: 0.7rem; padding: 0.8rem 1rem; color: rgba(255,255,255,.86); background: linear-gradient(90deg, rgba(249,115,22,.06), rgba(168,85,247,.08)); font-size: 0.7rem; }
+.experience-related-projects svg:first-child { color: #ff8a1f; }
+
+@media (max-width: 1000px) {
+  .experience-hero { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 3rem 1rem; }
+  .experience-hero-copy h1 { font-size: clamp(3.8rem, 10vw, 5.4rem); }
+  .experience-roles-layout, .experience-detail-layout, .experience-hire-top { grid-template-columns: minmax(0, 1fr); }
+  .experience-roles-layout > .experience-journey-panel { min-height: auto; }
+  .experience-hire-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .experience-capability-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0; }
+  .experience-capability-strip span:nth-child(2) { border-right: 0; }
+}
+
+@media (max-width: 700px) {
+  .experience-hero, .experience-roles-section, .experience-hire-section, .experience-detail { width: min(100% - 1rem, 1180px); }
+  .experience-hero { padding: 2rem 0.7rem 3rem; }
+  .experience-hero-copy h1 { font-size: clamp(3.2rem, 16vw, 4.3rem); }
+  .experience-hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .experience-direction-stat { grid-column: 1 / -1; }
+  .experience-gradient-button { min-width: 0; width: 100%; }
+  .experience-roles-section { padding: 2rem 0.65rem 3rem; }
+  .experience-centered-heading > p:last-child br { display: none; }
+  .experience-role-timeline { padding-left: 3.5rem; }
+  .experience-role-timeline::before { left: 1.7rem; }
+  .experience-role-card { grid-template-columns: auto minmax(0, 1fr); padding: 1rem; }
+  .experience-role-number { left: -3.45rem; width: 2.25rem; height: 2.25rem; }
+  .experience-role-number::after { width: 1.25rem; }
+  .experience-role-icon { width: 3rem; height: 3rem; }
+  .experience-role-link { grid-column: 2; margin-top: 0.35rem; }
+  .experience-role-copy small { align-items: flex-start; flex-direction: column; }
+  .experience-role-copy small i { display: none; }
+  .experience-hire-section { padding: 1.5rem 1rem; }
+  .experience-hire-grid, .experience-capability-strip { grid-template-columns: minmax(0, 1fr); }
+  .experience-capability-strip span { justify-content: flex-start; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.12); padding: .5rem; }
+  .experience-capability-strip span:last-child { border-bottom: 0; }
+  .experience-detail { padding: 0.8rem 0.25rem 2rem; }
+  .experience-detail-card { padding: 1rem; }
+  .experience-detail-rail { display: none; }
+  .experience-detail-header { align-items: flex-start; flex-direction: column; }
+  .experience-detail--role-2 .experience-detail-mobile-icon { display: grid; }
+  .experience-detail-strengths > header h2 { font-size: 0.68rem; letter-spacing: 0.12em; line-height: 1.5; }
+}
+
 /* App-wide readable supporting text and compact controls. */
 .capability-card-copy small,
 .capability-workflow-copy > span,
