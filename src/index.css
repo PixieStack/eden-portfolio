@@ -3400,6 +3400,26 @@ body {
   padding-top: clamp(1.8rem, 2.6vw, 2.65rem);
 }
 
+.home-hero-grid {
+  align-items: stretch;
+  margin-top: clamp(2rem, 5vh, 3rem);
+}
+
+.home-hero-copy {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+
+.home-hero-copy .home-experience-pill {
+  align-self: flex-start;
+}
+
+.home-hero-copy .home-social-row {
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
 /* Keep the portrait prominent without allowing it to wash out credential copy. */
 .home-portrait-stage {
   height: clamp(14rem, 31vh, 18.5rem);
@@ -3424,6 +3444,18 @@ body {
   overflow: hidden;
   background: rgba(8, 12, 20, 0.97);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.home-recognition-credentials > div:nth-child(3) > span {
+  color: #5d8dff;
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.055);
+}
+
+.home-recognition-credentials > div:nth-child(3) aside strong {
+  color: #c16cff;
+  font-size: 0.86rem;
+  white-space: nowrap;
 }
 
 .home-recognition-copy {
@@ -3711,6 +3743,10 @@ body {
 @media (max-width: 1000px) {
   .home-chapter {
     padding-top: 2.5rem;
+  }
+
+  .home-hero-grid {
+    margin-top: 1rem;
   }
 
   .home-education-layout,
