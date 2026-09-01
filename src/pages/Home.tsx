@@ -240,7 +240,66 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="home-chapter home-education" aria-labelledby="home-education-title">
+      <section className="home-chapter home-development-showcase" aria-labelledby="home-development-title">
+        <div className="home-chapter-inner home-development-layout">
+          <div className="home-development-intro">
+            <p className="home-kicker"><span /> Continuous development</p>
+            <h2 id="home-development-title">Experience<br />built<br /><span className="home-development-foundation">my <em>foundation.</em></span><br /><b>Curiosity keeps<br />extending it.</b></h2>
+            <i />
+            <div className="home-development-copy">
+              <p>I build my expertise through structured learning, professional recognition, and continuous growth.</p>
+              <p>Each credential is more than a certificate—it’s evidence of discipline, problem-solving, and commitment to delivering real impact.</p>
+              <p>I stay intentional about learning what matters, applying it consistently, and raising the standard in every project and team I’m part of.</p>
+            </div>
+            <Link className="home-development-link" to="/education" onClick={scrollToPageStart}><Zap size={18} /> View All Achievements <ArrowRight size={18} /></Link>
+          </div>
+
+          <div className="home-development-track">
+            <article className="home-development-card home-tone-orange">
+              <small>01 <span>Foundation</span></small><i />
+              <div className="home-development-card-icon"><GraduationCap size={28} /></div>
+              <h3>Academic Foundation</h3>
+              <p>Formal education and academic achievements that built my knowledge base and critical thinking.</p>
+              <div className="home-development-items">
+                <div><span><Award size={17} /></span><p>Diploma in Information Technology<small>Software Development</small></p></div>
+                <div><span><Award size={17} /></span><p>Higher Certificate in<small>IT Support Services</small></p></div>
+              </div>
+              <div className="home-development-stat"><Star size={21} /><strong>2</strong><span>Academic<br />Qualifications</span></div>
+            </article>
+
+            <article className="home-development-card home-tone-purple">
+              <small>02 <span>Recognised standing</span></small><i />
+              <div className="home-development-card-icon"><ShieldCheck size={28} /></div>
+              <h3>Professional Standing</h3>
+              <p>Industry-recognised certifications that validate my competence, ethics, and professional commitment.</p>
+              <div className="home-development-items">
+                <div><span><ShieldCheck size={17} /></span><p>Associate Member<small>(AMICITP-SA)</small></p></div>
+                <div><span><ShieldCheck size={17} /></span><p>ICITP-SA Professional<small>Membership</small></p></div>
+              </div>
+              <div className="home-development-stat"><BadgeCheck size={21} /><strong>2</strong><span>Professional<br />Credentials</span></div>
+            </article>
+
+            <article className="home-development-card home-tone-blue">
+              <small>03 <span>Active upskilling</span></small><i />
+              <div className="home-development-card-icon"><Code2 size={28} /></div>
+              <h3>Current ServiceNow Studies</h3>
+              <p>I’m actively expanding my skills in the ServiceNow ecosystem to deliver smarter, faster, and more connected solutions.</p>
+              <div className="home-development-items">
+                <div><span className="home-now-mark">now</span><p>ServiceNow Certified System Administrator (CSA)<small className="home-course-status">In Progress</small></p></div>
+                <div><span className="home-now-mark">now</span><p>ServiceNow Certified Application Developer (CAD)<small className="home-course-status">In Progress</small></p></div>
+              </div>
+              <div className="home-development-stat"><BookOpen size={21} /><strong>2</strong><span>Active<br />Courses</span></div>
+            </article>
+          </div>
+
+          <footer className="home-development-manifesto">
+            <span className="home-development-manifesto-icon"><ShieldCheck size={28} /></span>
+            <div><strong>I don’t just collect credentials—I live by them.</strong><p>Every qualification, certification, and course I pursue is intentional. It shows up in the quality of my work, the standards I set, and the impact I create. I keep learning, stay curious, and never stop raising the bar.</p></div>
+          </footer>
+        </div>
+      </section>
+
+      <section className="home-chapter home-education home-education-legacy" aria-labelledby="home-education-title">
         <div className="home-chapter-inner home-education-layout">
           <div className="home-education-intro">
             <p className="home-kicker"><span /> Continuous development</p>
