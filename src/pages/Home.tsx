@@ -32,9 +32,10 @@ import {
   Zap,
 } from "lucide-react";
 import profilePortrait from "../assets/gallery/Profile.jpeg";
-import currentReadImage from "../assets/gallery/CurrentRead.jpg";
-import gamingModeImage from "../assets/home/gaming-mode.png";
-import bingeWatchingImage from "../assets/home/binge-watching.png";
+import beyondReadingImage from "../assets/home/beyond-reading.png";
+import beyondGamingImage from "../assets/home/beyond-gaming.png";
+import beyondListeningImage from "../assets/home/beyond-listening.png";
+import beyondWatchingImage from "../assets/home/beyond-watching.png";
 import taskManagerVideo from "../assets/projects/taskmanager-demo.mp4";
 import attorneysVideo from "../assets/projects/thwala-attorneys-demo.mp4";
 import budgetProVideo from "../assets/projects/budgetpro-demo.mp4";
@@ -244,7 +245,6 @@ export default function Home() {
               <p>Upskilling is never a collection exercise. I pursue recognised learning to close gaps, deepen my judgement, and keep pace with the standards shaping dependable software—turning every new capability into better decisions, stronger systems, and more value for the teams I join.</p>
             </div>
             <Link to="/education" onClick={scrollToPageStart}><GraduationCap size={20} /> Explore Education & Credentials <ArrowRight size={18} /></Link>
-            <div className="home-learning-impact"><small>Learning drives impact</small><div><span><Star size={17} /> Stronger solutions</span><span><Code2 size={17} /> Clean, scalable code</span><span><ShieldCheck size={17} /> Trusted delivery</span></div></div>
           </div>
 
           <div className="home-education-track">
@@ -299,10 +299,10 @@ export default function Home() {
           </div>
 
           <div className="home-person-cards">
-            <article className="home-person-card home-tone-orange"><header><span>01</span><BookOpen size={22} /></header><div className="home-person-media"><img src={currentReadImage} alt="The Alchemist by Paulo Coelho" /></div><h3>Currently Reading</h3><p>Fuel for curiosity and growth, one chapter at a time. Stories that challenge perspective keep reflection and imagination active beyond the screen.</p><footer><span>Curiosity</span><span>Reflection</span><span>Growth</span></footer></article>
-            <article className="home-person-card home-tone-blue"><header><span>02</span><Gamepad2 size={22} /></header><div className="home-person-media"><img src={gamingModeImage} alt="Cinematic tactical gaming avatar" /></div><h3>Gaming Mode</h3><p>Call of Duty is my favourite reset and strategy lab. It rewards awareness, calm decisions, fast adaptation, and focus when the pressure rises.</p><footer><span>Strategy</span><span>Focus</span><span>Competitive</span></footer></article>
-            <article className="home-person-card home-tone-orange"><header><span>03</span><Headphones size={22} /></header><div className="home-person-media home-person-media--sound"><Headphones size={76} /><i /><i /><i /><i /><i /></div><h3>Always Listening</h3><p>Coding with soundtracks, focus playlists, and deep-work music. The right sound unlocks my best work and keeps me in the zone.</p><footer><span>Focus</span><span>Flow</span><span>Deep Work</span></footer></article>
-            <article className="home-person-card home-tone-blue"><header><span>04</span><Crown size={22} /></header><div className="home-person-media"><img src={bingeWatchingImage} alt="Dark fantasy throne and wolf" /></div><h3>Binge Watching</h3><p>Game of Thrones is my all-time favourite. Epic storytelling, layered worlds, and unforgettable characters keep imagination working.</p><footer><span>World-Building</span><span>Fantasy</span><span>Storytelling</span></footer></article>
+            <article className="home-person-card home-tone-orange"><header><span>01</span><BookOpen size={22} /></header><div className="home-person-media"><img src={beyondReadingImage} alt="The Alchemist by Paulo Coelho in a warm reading setting" /></div><h3>Currently Reading</h3><p>Fuel for curiosity and growth, one chapter at a time. Stories that challenge perspective keep reflection and imagination active beyond the screen.</p><footer><span>Curiosity</span><span>Reflection</span><span>Growth</span></footer></article>
+            <article className="home-person-card home-tone-blue"><header><span>02</span><Gamepad2 size={22} /></header><div className="home-person-media"><img src={beyondGamingImage} alt="Call of Duty inspired tactical gaming avatar" /></div><h3>Gaming Mode</h3><p>Call of Duty is my favourite reset and strategy lab. It rewards awareness, calm decisions, fast adaptation, and focus when the pressure rises.</p><footer><span>Strategy</span><span>Focus</span><span>Competitive</span></footer></article>
+            <article className="home-person-card home-tone-orange"><header><span>03</span><Headphones size={22} /></header><div className="home-person-media"><img src={beyondListeningImage} alt="Headphones in a focused creative workspace" /></div><h3>Always Listening</h3><p>Coding with soundtracks, focus playlists, and deep-work music. The right sound unlocks my best work and keeps me in the zone.</p><footer><span>Focus</span><span>Flow</span><span>Deep Work</span></footer></article>
+            <article className="home-person-card home-tone-blue"><header><span>04</span><Crown size={22} /></header><div className="home-person-media"><img src={beyondWatchingImage} alt="Dark fantasy throne inspired by epic storytelling" /></div><h3>Binge Watching</h3><p>Game of Thrones is my all-time favourite. Epic storytelling, layered worlds, and unforgettable characters keep imagination working.</p><footer><span>World-Building</span><span>Fantasy</span><span>Storytelling</span></footer></article>
           </div>
         </div>
       </section>
