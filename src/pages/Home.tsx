@@ -247,14 +247,16 @@ export default function Home() {
               <p>Curiosity is part of how I work. I deliberately strengthen the knowledge around my core engineering practice—following shifts in modern development, cloud, data, and platform thinking, then testing what is genuinely useful in the software I deliver.</p>
               <p>Upskilling is never a collection exercise. I pursue recognised learning to close gaps, deepen my judgement, and keep pace with the standards shaping dependable software—turning every new capability into better decisions, stronger systems, and more value for the teams I join.</p>
             </div>
-            <Link to="/education" onClick={scrollToPageStart}><GraduationCap size={20} /> Explore Education & Credentials <ArrowRight size={18} /></Link>
           </div>
 
-          <div className="home-education-track">
-            <article className="home-education-card home-tone-orange"><small>01 <span>Foundation</span></small><i /><div className="home-education-card-icon"><GraduationCap size={28} /></div><h3>Academic Foundation</h3><p>Built on structured learning, discipline, and consistency—the foundation behind every solution I build.</p><ul><li>Diploma in Information Technology<small>Software Development</small></li><li>Higher Certificate in<small>IT Support Services</small></li></ul><strong><Star size={14} /> Cum Laude <b>×2</b></strong></article>
-            <article className="home-education-card home-tone-purple"><small>02 <span>Recognised standing</span></small><i /><div className="home-education-card-icon"><ShieldCheck size={28} /></div><h3>Professional Standing</h3><p>Recognised by the profession.<br />Accountable to standards.<br />Committed to ethical, reliable impact.</p><ul><li>AMICITP-SA<small>Associate Member</small></li><li>ICITP-SA Member<small>Institute of Chartered IT Professionals SA</small></li></ul><strong>Practice Number <b>ITP2023465</b></strong></article>
-            <article className="home-education-card home-tone-blue"><small>03 <span>Active upskilling</span></small><i /><div className="home-education-card-icon"><BarChart3 size={28} /></div><h3>Active Upskilling</h3><p>Continuously expanding my toolkit across data, platforms, and infrastructure to stay future-ready.</p><ul><li>Databricks<small>Data Engineer Professional</small></li><li>Databricks<small>Data Analyst Associate</small></li><li>ServiceNow<small>Learning Path</small></li><li>Cisco<small>Networking & Cybersecurity</small></li></ul></article>
-            <footer><ShieldCheck size={21} /><p>I don’t just collect credentials—I apply them.<br /><span>Every course, certification, and skill I pursue is intentional and shows up in the quality of my work.</span></p></footer>
+          <div className="home-education-stage">
+            <Link className="home-education-link" to="/education" onClick={scrollToPageStart}><GraduationCap size={20} /> Explore Education & Credentials <ArrowRight size={18} /></Link>
+            <div className="home-education-track">
+              <article className="home-education-card home-tone-orange"><small>01 <span>Foundation</span></small><i /><div className="home-education-card-icon"><GraduationCap size={28} /></div><h3>Academic Foundation</h3><p>Built on structured learning, discipline, and consistency—the foundation behind every solution I build.</p><ul><li>Diploma in Information Technology<small>Software Development</small></li><li>Higher Certificate in<small>IT Support Services</small></li></ul><strong><Star size={14} /> Cum Laude <b>×2</b></strong></article>
+              <article className="home-education-card home-tone-purple"><small>02 <span>Recognised standing</span></small><i /><div className="home-education-card-icon"><ShieldCheck size={28} /></div><h3>Professional Standing</h3><p>Recognised by the profession.<br />Accountable to standards.<br />Committed to ethical, reliable impact.</p><ul><li>AMICITP-SA<small>Associate Member</small></li><li>ICITP-SA Member<small>Institute of Chartered IT Professionals SA</small></li></ul><strong>Practice Number <b>ITP2023465</b></strong></article>
+              <article className="home-education-card home-tone-blue"><small>03 <span>Active upskilling</span></small><i /><div className="home-education-card-icon"><BarChart3 size={28} /></div><h3>Active Upskilling</h3><p>Continuously expanding my toolkit across data, platforms, and infrastructure to stay future-ready.</p><ul><li>Databricks<small>Data Engineer Professional</small></li><li>Databricks<small>Data Analyst Associate</small></li><li>ServiceNow<small>Learning Path</small></li><li>Cisco<small>Networking & Cybersecurity</small></li></ul></article>
+              <footer><ShieldCheck size={21} /><p>I don’t just collect credentials—I apply them.<br /><span>Every course, certification, and skill I pursue is intentional and shows up in the quality of my work.</span></p></footer>
+            </div>
           </div>
         </div>
       </section>
@@ -298,7 +300,7 @@ export default function Home() {
               <p>Code is only one side of the story. I’m driven by curiosity, grounded by discipline, and fuelled by creativity.</p>
               <p>Books, competitive games, focused soundtracks, and epic storytelling shape the way I notice patterns, stay composed, challenge perspective, and bring fresh thinking to the problems I build for.</p>
             </div>
-            <div><Link to="/about" onClick={scrollToPageStart}>Meet Eden <ArrowRight size={18} /></Link><Link to="/about" onClick={scrollToPageStart}>View full story <ArrowRight size={14} /></Link></div>
+            <div><Link to="/about" onClick={scrollToPageStart}>Meet Eden <ArrowRight size={18} /></Link></div>
           </div>
 
           <div className="home-person-cards">
