@@ -3405,7 +3405,9 @@ body {
 }
 
 .home-hero {
+  min-height: calc(100svh - 6rem);
   padding-top: clamp(1.8rem, 2.6vw, 2.65rem);
+  padding-bottom: clamp(1.25rem, 1.8vw, 1.75rem);
 }
 
 .home-hero-grid {
