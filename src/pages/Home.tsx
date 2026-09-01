@@ -15,6 +15,7 @@ import {
   Gamepad2,
   Github,
   GraduationCap,
+  HandCoins,
   Headphones,
   Lightbulb,
   Linkedin,
@@ -27,7 +28,10 @@ import {
   ShieldCheck,
   Star,
   TerminalSquare,
+  TrendingUp,
+  UserRound,
   Users,
+  Settings,
   Zap,
 } from "lucide-react";
 import profilePortrait from "../assets/gallery/Profile-dark.png";
@@ -337,22 +341,37 @@ export default function Home() {
             <article className="home-project-card">
               <header><span>01</span><span className="home-project-status"><i /> Live</span></header>
               <div className="home-project-preview"><img src={taskManagerImage} alt="M.O.B Task Manager dashboard" /></div>
-              <h3>Task Manager</h3><p>A collaborative task-management app with real-time updates, planning tools, and productivity-focused workflows.</p>
-              <div className="home-project-tech"><span>Angular</span><span>FastAPI</span><span>PostgreSQL</span><span>JWT Auth</span><span>Analytics</span></div>
+              <small className="home-project-type">Real-time product · Full stack</small>
+              <h3>Task Manager</h3><p>A collaborative task-management platform with real-time updates, planning tools and productivity-focused workflows.</p>
+              <div className="home-project-capabilities">
+                <span><Boxes size={19} />Workflow<br />Automation</span>
+                <span><Users size={19} />Real-Time<br />Collaboration</span>
+                <span><BarChart3 size={19} />Analytics &amp;<br />Insights</span>
+              </div>
               <footer><Link to="/projects#task-manager">Explore Project <ArrowRight size={16} /></Link></footer>
             </article>
             <article className="home-project-card">
               <header><span>02</span><span className="home-project-status"><i /> Live</span></header>
               <div className="home-project-preview"><img src={budgetProImage} alt="BudgetPro finance dashboard" /></div>
-              <h3>BudgetPro</h3><p>A personal finance platform for tracking income, spending, budgets, cash flow and savings insights.</p>
-              <div className="home-project-tech"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>SQL Server</span><span>Docker</span></div>
+              <small className="home-project-type">Fintech product · Full stack</small>
+              <h3>BudgetPro</h3><p>A personal-finance platform that turns income, spending and budgets into forecasts, insights and actionable financial visibility.</p>
+              <div className="home-project-capabilities">
+                <span><HandCoins size={19} />Financial<br />Logic</span>
+                <span><TrendingUp size={19} />Forecasting &amp;<br />Projections</span>
+                <span><BarChart3 size={19} />Data<br />Visualisation</span>
+              </div>
               <footer><Link to="/projects#budgetpro">Explore Project <ArrowRight size={16} /></Link></footer>
             </article>
             <article className="home-project-card">
               <header><span>03</span><span className="home-project-status"><i /> Live</span></header>
               <div className="home-project-preview"><img src={attorneysImage} alt="Thwala Attorneys website homepage" /></div>
-              <h3>Thwala Attorneys</h3><p>A professional legal-services platform with enquiry flows, service information and a refined client-facing experience.</p>
-              <div className="home-project-tech"><span>React</span><span>TypeScript</span><span>ASP.NET Core</span><span>SQL Server</span><span>Docker</span></div>
+              <small className="home-project-type">Business platform · Full stack</small>
+              <h3>Thwala Attorneys Inc</h3><p>A client-facing legal-services platform built around enquiries, service discovery and structured administrative workflows.</p>
+              <div className="home-project-capabilities">
+                <span><UserRound size={19} />Client<br />Workflows</span>
+                <span><Settings size={19} />Admin<br />Operations</span>
+                <span><ShieldCheck size={19} />Secure<br />Enquiries</span>
+              </div>
               <footer><Link to="/projects#thwala-attorneys">Explore Project <ArrowRight size={16} /></Link></footer>
             </article>
           </div>
