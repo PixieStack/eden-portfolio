@@ -1,10 +1,12 @@
 import attorneysImg from "../assets/projects/thwala-attorneys-logo.jpeg";
 import budgetProImg from "../assets/projects/budgetpro-logo.png";
 import minnieVerseImg from "../assets/projects/minnie-verse-logo.png";
+import taskManagerImg from "../assets/projects/home-task-manager.png";
 
 export type ProjectStatus = "live" | "development";
 
 export interface Project {
+  slug: string;
   category: string;
   title: string;
   period: string;
@@ -26,6 +28,42 @@ const publicImage = (fileName: string): string =>
 
 export const projects: Project[] = [
   {
+    slug: "task-manager",
+    category: "Productivity",
+    title: "M.O.B TaskManager",
+    period: "Productivity Platform",
+    status: "live",
+    description:
+      "A collaborative productivity platform that brings tasks, habits, reading, projects, focus sessions and AI support into one focused workspace.",
+    achievements: [
+      "Built connected task, habit, reading and project-planning workflows",
+      "Added real-time updates, authentication, analytics and an AI assistant",
+      "Designed the experience for responsive web use and future desktop and mobile delivery",
+    ],
+    technologies: [
+      "Angular",
+      "TypeScript",
+      "FastAPI",
+      "Python",
+      "PostgreSQL",
+      "JWT Authentication",
+      "Analytics",
+    ],
+    stack: {
+      Frontend: ["Angular", "TypeScript"],
+      Backend: ["FastAPI", "Python"],
+      Database: ["PostgreSQL"],
+      Security: ["JWT Authentication"],
+      Product: ["Real-Time Updates", "Analytics", "AI Assistant"],
+    },
+    image: taskManagerImg,
+    imageFit: "cover",
+    imageScale: 1,
+    imagePosition: "top center",
+    live: "https://pixiestack-task-management-app-20260814.onrender.com/",
+  },
+  {
+    slug: "budgetpro",
     category: "Finance Tech",
     title: "BudgetPro",
     period: "Personal Finance Platform",
@@ -63,6 +101,7 @@ export const projects: Project[] = [
     live: "https://budgetpro-afq2.onrender.com",
   },
   {
+    slug: "thwala-attorneys",
     category: "Legal Tech",
     title: "Thwala Attorneys Web Application",
     period: "Legal Practice Platform",
@@ -101,6 +140,7 @@ export const projects: Project[] = [
     live: "https://thwala-attorneys-web-ougs.onrender.com",
   },
   {
+    slug: "minnieverse",
     category: "Creative Web",
     title: "MinnieVerse",
     period: "Creative Landing Experience",
@@ -138,6 +178,7 @@ export const projects: Project[] = [
     live: "https://minnieverse-landing.onrender.com",
   },
   {
+    slug: "shuttlebee",
     category: "Transport Tech",
     title: "ShuttleBee",
     period: "School Transport Management Platform",
@@ -188,6 +229,7 @@ export const projects: Project[] = [
     live: "https://shuttle-bee.onrender.com/",
   },
   {
+    slug: "luna-rides",
     category: "Mobility Tech",
     title: "Luna Rides",
     period: "Luxury E-Hailing Platform",
@@ -235,6 +277,7 @@ export const projects: Project[] = [
     live: "https://luna-rides.onrender.com/",
   },
   {
+    slug: "nkhensani-hospitality",
     category: "Hospitality Tech",
     title: "Nkhensani Hospitality",
     period: "Hospitality and Booking Experience",

@@ -1,8 +1,11 @@
 import { Mail } from "lucide-react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import { projects } from "../data/projects";
 
 const projectOrder = [
+  "M.O.B TaskManager",
   "Thwala Attorneys Web Application",
   "BudgetPro",
   "MinnieVerse",
@@ -30,6 +33,21 @@ const projectsInDevelopment = orderedProjects.filter(
 );
 
 export default function Projects() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [hash]);
+
   return (
     <section className="section" data-testid="projects-section">
       {/* Header */}

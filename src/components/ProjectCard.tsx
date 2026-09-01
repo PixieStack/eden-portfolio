@@ -47,6 +47,7 @@ export default function ProjectCard({
 
   return (
     <div
+      id={project.slug}
       className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
       data-testid={`project-card-${index}`}
     >

@@ -12,7 +12,6 @@ import {
   Code2,
   Crown,
   Database,
-  ExternalLink,
   Gamepad2,
   Github,
   GraduationCap,
@@ -36,9 +35,9 @@ import beyondReadingImage from "../assets/home/beyond-reading.png";
 import beyondGamingImage from "../assets/home/beyond-gaming.png";
 import beyondListeningImage from "../assets/home/beyond-listening.png";
 import beyondWatchingImage from "../assets/home/beyond-watching.png";
-import taskManagerVideo from "../assets/projects/taskmanager-demo.mp4";
-import attorneysVideo from "../assets/projects/thwala-attorneys-demo.mp4";
-import budgetProVideo from "../assets/projects/budgetpro-demo.mp4";
+import taskManagerImage from "../assets/projects/home-task-manager.png";
+import attorneysImage from "../assets/projects/home-thwala-attorneys.png";
+import budgetProImage from "../assets/projects/home-budgetpro.png";
 import { professionalCredentials } from "../data/professionalCredentials";
 
 const designation = professionalCredentials.find((item) => item.type === "Professional Designation")!;
@@ -264,28 +263,35 @@ export default function Home() {
       <section className="home-chapter home-projects" aria-labelledby="home-projects-title">
         <div className="home-chapter-inner">
           <header className="home-projects-header">
-            <div><p className="home-kicker"><span /> Selected builds</p><h2 id="home-projects-title">Don’t just read the claims.<br /><span>Open the software.</span></h2><p className="home-projects-intro">These builds turn the engineering story into something you can inspect. Each one responds to a real workflow, connects multiple layers of the stack, and reflects the decisions behind dependable software—from thoughtful interfaces and secure data to the systems that keep everything working together.</p></div>
-            <Link to="/projects" onClick={scrollToPageStart}>Explore All Projects <ArrowRight size={18} /></Link>
+            <div className="home-projects-heading-line">
+              <p className="home-kicker"><span /> Selected builds</p>
+              <Link to="/projects" onClick={scrollToPageStart}>Explore All Projects <ArrowRight size={18} /></Link>
+            </div>
+            <h2 id="home-projects-title">Don’t just read the claims.<br /><span>Open the software.</span></h2>
+            <p className="home-projects-intro">These builds turn the engineering story into something you can inspect. Each one responds to a real workflow, connects multiple layers of the stack, and reflects the decisions behind dependable software—from thoughtful interfaces and secure data to the systems that keep everything working together.</p>
           </header>
 
           <div className="home-project-grid">
             <article className="home-project-card">
-              <div className="home-project-preview"><video src={taskManagerVideo} autoPlay muted loop playsInline preload="metadata" /></div>
-              <span className="home-project-status">Live</span><h3>Task Manager</h3><p>A collaborative task-management app with real-time updates, planning tools, and productivity-focused workflows.</p>
+              <header><span>01</span><span className="home-project-status"><i /> Live</span></header>
+              <div className="home-project-preview"><img src={taskManagerImage} alt="M.O.B Task Manager dashboard" /></div>
+              <h3>Task Manager</h3><p>A collaborative task-management app with real-time updates, planning tools, and productivity-focused workflows.</p>
               <div className="home-project-tech"><span>Angular</span><span>FastAPI</span><span>PostgreSQL</span><span>JWT Auth</span><span>Analytics</span></div>
-              <footer><a href="https://pixiestack-task-management-app-20260814.onrender.com/" target="_blank" rel="noopener noreferrer">Live App <ExternalLink size={15} /></a><Link to="/projects" onClick={scrollToPageStart}>View Stack</Link></footer>
+              <footer><Link to="/projects#task-manager">Explore Project <ArrowRight size={16} /></Link></footer>
             </article>
             <article className="home-project-card">
-              <div className="home-project-preview"><video src={budgetProVideo} autoPlay muted loop playsInline preload="metadata" /></div>
-              <span className="home-project-status">Live</span><h3>BudgetPro</h3><p>A personal finance platform for tracking income, spending, budgets, cash flow and savings insights.</p>
+              <header><span>02</span><span className="home-project-status"><i /> Live</span></header>
+              <div className="home-project-preview"><img src={budgetProImage} alt="BudgetPro finance dashboard" /></div>
+              <h3>BudgetPro</h3><p>A personal finance platform for tracking income, spending, budgets, cash flow and savings insights.</p>
               <div className="home-project-tech"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span><span>SQL Server</span><span>Docker</span></div>
-              <footer><a href="https://budgetpro-afq2.onrender.com" target="_blank" rel="noopener noreferrer">Live App <ExternalLink size={15} /></a><Link to="/projects" onClick={scrollToPageStart}>View Stack</Link></footer>
+              <footer><Link to="/projects#budgetpro">Explore Project <ArrowRight size={16} /></Link></footer>
             </article>
             <article className="home-project-card">
-              <div className="home-project-preview"><video src={attorneysVideo} autoPlay muted loop playsInline preload="metadata" /></div>
-              <span className="home-project-status">Live</span><h3>Thwala Attorneys</h3><p>A professional legal-services platform with enquiry flows, service information and a refined client-facing experience.</p>
+              <header><span>03</span><span className="home-project-status"><i /> Live</span></header>
+              <div className="home-project-preview"><img src={attorneysImage} alt="Thwala Attorneys website homepage" /></div>
+              <h3>Thwala Attorneys</h3><p>A professional legal-services platform with enquiry flows, service information and a refined client-facing experience.</p>
               <div className="home-project-tech"><span>React</span><span>TypeScript</span><span>ASP.NET Core</span><span>SQL Server</span><span>Docker</span></div>
-              <footer><a href="https://thwala-attorneys-web-ougs.onrender.com" target="_blank" rel="noopener noreferrer">Live App <ExternalLink size={15} /></a><Link to="/projects" onClick={scrollToPageStart}>View Stack</Link></footer>
+              <footer><Link to="/projects#thwala-attorneys">Explore Project <ArrowRight size={16} /></Link></footer>
             </article>
           </div>
         </div>
