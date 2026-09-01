@@ -296,10 +296,6 @@ export default function Home() {
             </article>
           </div>
 
-          <footer className="home-development-manifesto">
-            <span className="home-development-manifesto-icon"><ShieldCheck size={28} /></span>
-            <div><strong>I don’t just collect credentials—I live by them.</strong><p>Every qualification, certification, and course I pursue is intentional. It shows up in the quality of my work, the standards I set, and the impact I create. I keep learning, stay curious, and never stop raising the bar.</p></div>
-          </footer>
         </div>
       </section>
 
