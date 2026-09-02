@@ -4413,6 +4413,11 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 }
 
 /* Selected builds */
+.home-projects {
+  padding-top: clamp(1.1rem, 1.4vw, 1.4rem);
+  padding-bottom: clamp(1.1rem, 1.4vw, 1.4rem);
+}
+
 .home-projects-header h2 {
   margin-top: 3.35rem;
 }
@@ -4437,7 +4442,7 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 .home-project-preview {
   height: auto;
   aspect-ratio: 2.08 / 1;
-  padding: 0.35rem;
+  padding: 0;
 }
 
 .home-project-preview img,
@@ -4445,6 +4450,11 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
   border-radius: 0.35rem;
   object-fit: contain;
   object-position: center;
+}
+
+.home-project-card:nth-child(3) .home-project-preview img {
+  border-radius: 0;
+  object-fit: cover;
 }
 
 /* Beyond the code */
