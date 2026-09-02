@@ -81,24 +81,48 @@ export default function Education() {
 
   return (
     <section className="education-redesign" data-testid="education-section">
-      <section id="education-overview" className="education-hero education-panel scroll-mt-28">
+      <section id="education-overview" className="education-hero education-hero-reference education-panel scroll-mt-28">
         <div className="education-hero-copy">
           <p className="education-kicker"><span><Sparkles size={13} /></span> Education</p>
-          <h1 data-testid="education-title">Verified Knowledge.<br /><span>Academic Foundation.</span><br /><em>Continuous Growth.</em></h1>
+          <h1 data-testid="education-title">Verified Knowledge.<i className="education-title-spark" aria-hidden="true"><Sparkles size={16} /></i><br /><span>Academic Foundation.</span><br /><em>Continuous Growth.</em></h1>
           <p className="education-lead">A verified view of my academic qualifications, professional credentials and ongoing learning—backed by trusted issuers and applied in the software I build.</p>
           <EducationNav active="education-overview" />
           <div className="education-hero-stats">
-            <article><span><GraduationCap size={20} /></span><strong>2</strong><p>Qualifications<small>Both Cum Laude</small></p></article>
-            <article><span><ShieldCheck size={20} /></span><strong>{professionalDocuments.length}</strong><p>Credentials<small>Professional records</small></p></article>
-            <article><span><BadgeCheck size={20} /></span><strong>{badgeCount}</strong><p>Badges<small>Verified learning</small></p></article>
-            <article><span><CheckCircle2 size={20} /></span><strong>100%</strong><p>Evidence-led<small>Trusted &amp; authentic</small></p></article>
+            <article className="education-stat-purple"><span><GraduationCap size={20} /></span><strong>2</strong><p>Qualifications<small>Both Cum Laude</small></p></article>
+            <article className="education-stat-orange"><span><Award size={20} /></span><strong>{professionalDocuments.length}</strong><p>Credentials<small>Professional records</small></p></article>
+            <article className="education-stat-blue"><span><ShieldCheck size={20} /></span><strong>{badgeCount}</strong><p>Badges<small>Verified learning</small></p></article>
+            <article className="education-stat-purple"><span><CheckCircle2 size={20} /></span><strong>100%</strong><p>Verified<small>Trusted &amp; authentic</small></p></article>
           </div>
         </div>
         <div className="education-hero-art" aria-hidden="true">
           <div className="education-orbit education-orbit-one" /><div className="education-orbit education-orbit-two" />
-          <div className="education-diploma-card"><GraduationCap size={28} /><span>Academic qualification</span><strong>Diploma</strong><small>Cum Laude</small></div>
-          <div className="education-credential-card-art"><ShieldCheck size={27} /><span>Professional standing</span><strong>AMICITP-SA</strong><small>Verified designation</small></div>
-          <div className="education-badge-card-art"><BadgeCheck size={27} /><span>Verified learning</span><strong>{badgeCount} digital badges</strong><small>ServiceNow · Databricks · Cisco</small></div>
+          <i className="education-art-star education-art-star-one" /><i className="education-art-star education-art-star-two" /><i className="education-art-star education-art-star-three" />
+          <div className="education-diploma-card">
+            <GraduationCap size={28} />
+            <span>Academic qualification</span>
+            <strong>Diploma</strong>
+            <small>Cum Laude</small>
+            <div className="education-diploma-laurel"><i /><i /></div>
+            <em>Thembinkosi Eden Thwala</em>
+            <b>Verified award</b>
+          </div>
+          <div className="education-credential-card-art">
+            <div className="education-art-card-icon"><ShieldCheck size={23} /></div>
+            <span>Professional credential</span>
+            <strong>Data Engineer Professional</strong>
+            <small>Databricks · Certified</small>
+            <i /><i />
+            <b>Certified</b>
+          </div>
+          <div className="education-badge-card-art">
+            <div className="education-art-card-icon"><BadgeCheck size={23} /></div>
+            <span>Verified badge</span>
+            <strong>Generative AI Fundamentals</strong>
+            <div className="education-art-badge-row">
+              {badgeGroups[1].badges.slice(0, 4).map((badge) => <img key={badge.name} src={`${import.meta.env.BASE_URL}${badge.image}`} alt="" />)}
+              <b>+{badgeGroups[1].badges.length - 4}</b>
+            </div>
+          </div>
           <div className="education-art-platform"><i /><i /><i /></div>
         </div>
       </section>
