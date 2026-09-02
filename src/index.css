@@ -359,6 +359,7 @@ body {
   display: grid;
   flex: 1;
   grid-template-columns: minmax(0, 0.98fr) minmax(26rem, 1.08fr) minmax(20rem, 0.94fr);
+  align-items: start;
   gap: 1rem;
   min-height: 35.5rem;
   padding: 1.5rem;
@@ -407,8 +408,9 @@ body {
 
 .skills-wheel-panel {
   display: grid;
-  place-items: center;
+  place-items: start center;
   min-height: 32.5rem;
+  padding-top: 5.2rem;
 }
 
 .skills-orbit-wheel {
@@ -632,7 +634,8 @@ body {
 }
 
 .skills-evidence-panel {
-  align-self: stretch;
+  align-self: start;
+  margin-top: 5.2rem;
 }
 
 .skills-evidence-panel::before {
@@ -689,6 +692,8 @@ body {
   .skills-wheel-panel,
   .skills-evidence-panel {
     min-height: 34rem;
+    margin-top: 0;
+    padding-top: 0;
   }
 }
 

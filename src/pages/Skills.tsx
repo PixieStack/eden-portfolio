@@ -30,7 +30,6 @@ import {
   Star,
   TestTube2,
   TrendingUp,
-  Users,
   Wrench,
   X,
 } from "lucide-react";
@@ -138,29 +137,6 @@ const proofPoints = [
 const proofPointPositions = ["top", "right", "left", "bottom"];
 
 const proofIndicatorRotations = [0, 90, -90, 180];
-
-const heroValues = [
-  {
-    title: "Full-Stack Perspective",
-    copy: "I see the whole system—design, code, data, APIs, infrastructure and the experience in between.",
-    icon: <Boxes size={25} />,
-  },
-  {
-    title: "Clean. Scalable. Maintainable.",
-    copy: "I write code that’s easy to understand, easy to extend and built to survive beyond the first release.",
-    icon: <ShieldCheck size={25} />,
-  },
-  {
-    title: "Human-Centered Engineering",
-    copy: "I build for people, not just for specs. Usability, clarity and impact guide every decision I make.",
-    icon: <Users size={25} />,
-  },
-  {
-    title: "Impact > Output",
-    copy: "I care less about how much I build, and more about the difference it makes.",
-    icon: <Rocket size={25} />,
-  },
-];
 
 const engineeringPrinciples = [
   {
@@ -454,14 +430,6 @@ export default function Skills() {
           </article>
         </div>
 
-        <div className="skills-value-strip relative z-10 grid border-t border-white/[0.08] bg-[linear-gradient(90deg,rgba(249,115,22,0.07),rgba(255,255,255,0.018),rgba(249,115,22,0.05))] sm:grid-cols-2 xl:grid-cols-4">
-          {heroValues.map((value) => (
-            <article key={value.title} className="group flex gap-3 border-b border-r border-white/[0.07] p-5 transition hover:bg-white/[0.025] last:border-r-0 xl:border-b-0">
-              <span className="mt-0.5 flex-none text-primary transition group-hover:scale-110">{value.icon}</span>
-              <div><h2 className="font-display text-base font-semibold text-white/90">{value.title}</h2><p className="mt-2 text-sm leading-5 text-white/68">{value.copy}</p></div>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section className="engineering-method-section" aria-labelledby="engineering-method-title">
