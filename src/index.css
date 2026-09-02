@@ -4821,3 +4821,118 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
     text-align: center;
   }
 }
+
+/* Homepage readability: use the hero biography as the supporting-copy baseline. */
+.home-redesign {
+  --home-readable-copy: clamp(0.9rem, 0.95vw, 0.96rem);
+  --home-card-copy: var(--home-readable-copy);
+  --home-meta-copy: clamp(0.72rem, 0.78vw, 0.8rem);
+}
+
+.home-redesign .home-hero-bio,
+.home-redesign .home-section-heading > p:last-child,
+.home-redesign .home-development-copy p,
+.home-redesign .home-projects-intro,
+.home-redesign .home-person-copy p,
+.home-redesign .home-team-intro-copy p {
+  color: rgba(203, 213, 225, 0.74);
+  font-size: var(--home-readable-copy);
+  line-height: 1.65;
+}
+
+.home-redesign .home-principle-card > div > div,
+.home-redesign .home-experience-card > div > small,
+.home-redesign .home-experience-impact article p,
+.home-redesign .home-development-card > p,
+.home-redesign .home-project-card > p,
+.home-redesign .home-person-card > p,
+.home-redesign .home-team-card > p {
+  color: rgba(203, 213, 225, 0.74);
+  font-size: var(--home-card-copy);
+  line-height: 1.62;
+}
+
+.home-redesign .home-recognition-credentials p,
+.home-redesign .home-recognition-credentials aside small,
+.home-redesign .home-principle-card > div > p,
+.home-redesign .home-principle-card h3,
+.home-redesign .home-principle-card footer span,
+.home-redesign .home-capability-link small,
+.home-redesign .home-experience-card > div > strong,
+.home-redesign .home-experience-card > div > p,
+.home-redesign .home-experience-impact article h3,
+.home-redesign .home-experience-summary,
+.home-redesign .home-development-card > small span,
+.home-redesign .home-development-items p,
+.home-redesign .home-development-items p small,
+.home-redesign .home-development-stat span,
+.home-redesign .home-project-type,
+.home-redesign .home-project-capabilities > span,
+.home-redesign .home-project-card > footer a,
+.home-redesign .home-person-card > footer span,
+.home-redesign .home-team-card footer span,
+.home-redesign .home-team-cta > div p {
+  font-size: var(--home-meta-copy);
+}
+
+.home-redesign .home-skill-pills span,
+.home-redesign .home-hero-actions a,
+.home-redesign .home-development-link,
+.home-redesign .home-projects-heading-line > a,
+.home-redesign .home-experience-impact > a,
+.home-redesign .home-person-intro > div:last-child a:first-child,
+.home-redesign .home-team-cta a {
+  font-size: clamp(0.78rem, 0.82vw, 0.86rem);
+}
+
+.home-redesign .home-person-card > footer span {
+  font-size: 0.6rem;
+}
+
+.home-redesign .home-recognition-credentials p,
+.home-redesign .home-experience-summary,
+.home-redesign .home-team-cta > div p {
+  font-size: var(--home-card-copy);
+  line-height: 1.6;
+}
+
+.home-redesign .home-experience-impact article h3,
+.home-redesign .home-development-items p {
+  font-size: clamp(0.78rem, 0.82vw, 0.84rem);
+}
+
+.home-redesign .home-principle-card {
+  min-height: 19.5rem;
+}
+
+.home-redesign .home-experience-card {
+  min-height: 9rem;
+}
+
+.home-redesign .home-development-card {
+  min-height: 31rem;
+}
+
+.home-redesign .home-development-card > p {
+  min-height: 5.5rem;
+}
+
+.home-redesign .home-development-items > div {
+  min-height: 4.4rem;
+}
+
+.home-redesign .home-project-card {
+  min-height: 36rem;
+}
+
+.home-redesign .home-project-card > p {
+  min-height: 4.5rem;
+}
+
+.home-redesign .home-person-card {
+  min-height: 41rem;
+}
+
+.home-redesign .home-team-card {
+  min-height: 19rem;
+}
