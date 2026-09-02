@@ -4936,3 +4936,150 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 .home-redesign .home-team-card {
   min-height: 19rem;
 }
+
+/* Skills page readability and aligned principle evidence. */
+.skills-page-section {
+  --supporting-copy-size: clamp(0.82rem, 0.88vw, 0.9rem);
+  --compact-copy-size: clamp(0.72rem, 0.76vw, 0.8rem);
+}
+
+.skills-page-section .skills-orbit-node-label {
+  font-size: 0.56rem;
+}
+
+.skills-page-section .skills-orbit-node-detail,
+.skills-page-section .skills-orbit-hint {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.skills-page-section .engineering-method-intro > p,
+.skills-page-section .technical-capabilities-heading > p,
+.skills-page-section .professional-strengths-header > p,
+.skills-page-section .professional-strength-narrative {
+  color: rgba(203, 213, 225, 0.74);
+  font-size: clamp(0.9rem, 0.95vw, 0.98rem);
+  line-height: 1.7;
+}
+
+.skills-page-section .engineering-stack-notes strong {
+  font-size: 0.72rem;
+}
+
+.skills-page-section .engineering-stack-notes small {
+  color: rgba(203, 213, 225, 0.7);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.skills-page-section .engineering-principle-card {
+  display: flex;
+  min-height: 23rem;
+  flex-direction: column;
+}
+
+.skills-page-section .engineering-principle-eyebrow {
+  font-size: 0.62rem;
+}
+
+.skills-page-section .engineering-principle-copy {
+  color: rgba(203, 213, 225, 0.74);
+  font-size: clamp(0.86rem, 0.9vw, 0.92rem);
+  line-height: 1.65;
+}
+
+.skills-page-section .engineering-principle-tags {
+  align-items: stretch;
+  flex-wrap: nowrap;
+  margin-top: auto;
+  padding-top: 1.15rem;
+}
+
+.skills-page-section .engineering-principle-tags span {
+  width: 5.35rem;
+  min-width: 5.35rem;
+  min-height: 2.75rem;
+  justify-content: center;
+  padding: 0.42rem 0.5rem;
+  font-size: 0.68rem;
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal;
+}
+
+.skills-page-section .engineering-result-strip div > span,
+.skills-page-section .engineering-result-strip button {
+  font-size: clamp(0.76rem, 0.8vw, 0.84rem);
+}
+
+.skills-page-section .capability-system-map-copy > p,
+.skills-page-section .capability-workflow-copy p,
+.skills-page-section .capability-coverage-heading p,
+.skills-page-section .professional-signature-intro > p,
+.skills-page-section .skills-continuum-copy > p {
+  font-size: 0.68rem;
+}
+
+.skills-page-section .capability-system-map-copy h3,
+.skills-page-section .capability-card-copy strong,
+.skills-page-section .capability-workflow-copy h3,
+.skills-page-section .capability-project-card h3,
+.skills-page-section .capability-coverage-heading h3,
+.skills-page-section .professional-strength-selector-copy strong,
+.skills-page-section .professional-signature-item h4 {
+  font-size: clamp(0.8rem, 0.84vw, 0.88rem);
+}
+
+.skills-page-section .capability-system-map-copy > div span,
+.skills-page-section .capability-card-copy small,
+.skills-page-section .capability-workflow-copy > span,
+.skills-page-section .capability-workflow-track small,
+.skills-page-section .capability-toolkit-note small,
+.skills-page-section .capability-coverage-stats span,
+.skills-page-section .capability-coverage-card > small,
+.skills-page-section .professional-strength-selector-copy em,
+.skills-page-section .professional-strength-selector-copy small,
+.skills-page-section .professional-strength-practice-heading span,
+.skills-page-section .professional-signature-intro small,
+.skills-page-section .professional-signature-panel blockquote span,
+.skills-page-section .skills-continuum-action small,
+.skills-page-section .capability-modal-overall small,
+.skills-page-section .capability-modal-groups li > small {
+  font-size: var(--compact-copy-size);
+  line-height: 1.45;
+}
+
+.skills-page-section .capability-workflow-copy > span,
+.skills-page-section .capability-toolkit-note p,
+.skills-page-section .capability-project-card p,
+.skills-page-section .capability-perspective-card p,
+.skills-page-section .capability-coverage-copy,
+.skills-page-section .professional-strength-selector-copy small,
+.skills-page-section .professional-strength-skills li,
+.skills-page-section .professional-strength-practice li,
+.skills-page-section .professional-signature-item p,
+.skills-page-section .professional-signature-panel blockquote strong,
+.skills-page-section .skills-continuum-copy > span {
+  color: rgba(203, 213, 225, 0.7);
+  font-size: var(--supporting-copy-size);
+  line-height: 1.6;
+}
+
+.skills-page-section .capability-project-card strong,
+.skills-page-section .skills-continuum-action a,
+.skills-page-section .capability-modal-footer button {
+  font-size: clamp(0.76rem, 0.8vw, 0.84rem);
+}
+
+@media (max-width: 1200px) {
+  .skills-page-section .engineering-principle-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-page-section .engineering-principle-tags {
+    flex-wrap: wrap;
+  }
+}

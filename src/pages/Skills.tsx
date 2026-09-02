@@ -30,7 +30,6 @@ import {
   Star,
   TestTube2,
   TrendingUp,
-  Trophy,
   Users,
   Wrench,
   X,
@@ -347,13 +346,13 @@ export default function Skills() {
                 <span className="skills-gradient-title mt-1 block">Technologies</span>
               </h1>
               <p className="mt-5 max-w-[19rem] font-display text-lg leading-6 text-white/80">I don’t just work across the stack &mdash;<br />I <span className="font-semibold text-primary">connect it.</span></p>
-              <p className="mt-4 max-w-[19rem] text-[11px] leading-[1.1rem] text-white/50">Strong software isn’t built by knowing more technologies &mdash; it’s built by understanding how each piece influences the next.</p>
-              <p className="mt-2 text-[11px] font-medium text-white/55">That’s where I operate.</p>
+              <p className="mt-4 max-w-[21rem] text-sm font-medium leading-6 text-white/75">Strong software isn’t built by knowing more technologies &mdash; it’s built by understanding how each piece influences the next.</p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-white/85">That’s where I operate.</p>
             </div>
 
             <div className="skills-signature relative z-20 mt-8 w-fit">
-              <p className="font-serif text-base italic">Thembinkosi Eden Thwala</p>
-              <span className="mt-1 block text-[7px] font-semibold uppercase tracking-[0.18em] text-white/45">Full-stack developer</span>
+              <p className="font-serif text-xl font-semibold italic text-white/90">Thembinkosi Eden Thwala</p>
+              <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70">Full-stack developer</span>
             </div>
 
             <div className="skills-portrait-wrap pointer-events-none absolute inset-x-0 bottom-12 z-0 h-[58%]">
@@ -361,29 +360,16 @@ export default function Skills() {
               <img src={profilePortrait} alt="Thembinkosi Eden Thwala" className="skills-portrait h-full w-full object-cover" />
             </div>
 
-            <div className="skills-builder-card absolute bottom-[4.25rem] left-0 z-20 max-w-[13rem] rounded-xl border border-primary/35 bg-[#101117]/90 p-3 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-md">
+            <div className="skills-builder-card absolute bottom-6 left-0 z-20 max-w-[15rem] rounded-xl border border-primary/35 bg-[#101117]/90 p-3.5 shadow-[0_18px_45px_rgba(0,0,0,0.48)] backdrop-blur-md">
               <div className="flex items-start gap-2.5">
                 <span className="grid h-8 w-8 flex-none place-items-center rounded-full border border-primary/35 bg-primary/10 text-primary"><Star size={15} /></span>
                 <div>
-                  <p className="text-[10px] font-semibold leading-4 text-primary">Builder. Problem-solver.<br />System thinker.</p>
-                  <p className="mt-1 text-[11px] leading-[1.05rem] text-white/50">I turn ideas, data and logic into software that solves real problems for real people.</p>
+                  <p className="text-xs font-semibold leading-5 text-primary">Builder. Problem-solver.<br />System thinker.</p>
+                  <p className="mt-1 text-sm leading-5 text-white/68">I turn ideas, data and logic into software that solves real problems for real people.</p>
                 </div>
               </div>
             </div>
 
-            <div className="skills-stat-strip absolute inset-x-0 bottom-0 z-20 grid grid-cols-4 border-y border-white/[0.08] bg-[#0e1016]/90 backdrop-blur-md">
-              {[
-                { value: "3+", label: "Years of experience", icon: <Code2 size={14} /> },
-                { value: "100+", label: "Technologies & tools", icon: <Wrench size={14} /> },
-                { value: "20+", label: "Projects delivered", icon: <Rocket size={14} /> },
-                { value: "8", label: "Certifications earned", icon: <Trophy size={14} /> },
-              ].map((stat) => (
-                <div key={stat.label} className="flex min-w-0 gap-1.5 border-r border-white/[0.07] px-2 py-2.5 last:border-r-0">
-                  <span className="mt-0.5 text-purple">{stat.icon}</span>
-                  <span className="min-w-0"><span className="block font-display text-sm font-semibold leading-none text-primary">{stat.value}</span><span className="mt-1 block text-[6px] uppercase leading-2.5 tracking-[0.08em] text-white/40">{stat.label}</span></span>
-                </div>
-              ))}
-            </div>
           </section>
 
           <section className="skills-wheel-panel relative min-w-0" aria-label="Interactive engineering pillars">
@@ -400,7 +386,6 @@ export default function Skills() {
                 <span className="grid h-9 w-9 place-items-center text-primary [&>svg]:h-6 [&>svg]:w-6">{activeProof.icon}</span>
                 <p className="mt-2 text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">Active pillar</p>
                 <h2 className="mt-1.5 font-display text-lg font-semibold leading-5 text-white">{activeProof.panelTitle}</h2>
-                <p className="mt-2 max-w-[8rem] text-[11px] leading-4 text-white/55">{activeProof.navLabel}</p>
               </div>
 
               {proofPoints.map((point, index) => {
@@ -435,27 +420,27 @@ export default function Skills() {
               <p className="pillar-story-kicker text-[8px] font-semibold uppercase tracking-[0.18em] text-primary">Active pillar</p>
               <h2 className="pillar-story-heading mt-2 font-display text-2xl font-semibold leading-tight text-white">{activeProof.panelTitle}</h2>
               <p className="mt-1 text-sm text-white/75">{activeProof.navLabel}</p>
-              <p className="pillar-story-copy mt-4 text-[11px] leading-[1.1rem] text-white/48">{activeProof.story}</p>
+              <p className="pillar-story-copy mt-4 text-sm leading-6 text-white/68">{activeProof.story}</p>
 
               <div className="mt-5 border-t border-white/[0.08] pt-4">
-                <p className="text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">How this shows up in my work</p>
+                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-primary">How this shows up in my work</p>
                 <div className="mt-3 space-y-3">
                   {activeProof.workItems.map((item) => (
                     <div key={item.title} className="group flex gap-3">
                       <span className="grid h-9 w-9 flex-none place-items-center rounded-full border border-primary/30 bg-primary/[0.06] text-primary transition group-hover:bg-primary/10">{item.icon}</span>
-                      <div><h3 className="text-[11px] font-semibold text-white/90">{item.title}</h3><p className="mt-0.5 text-[11px] leading-4 text-white/50">{item.copy}</p></div>
+                      <div><h3 className="text-sm font-semibold text-white/90">{item.title}</h3><p className="mt-1 text-sm leading-5 text-white/68">{item.copy}</p></div>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="mt-5 border-t border-white/[0.08] pt-4">
-                <p className="text-[7px] font-semibold uppercase tracking-[0.18em] text-primary">Evidence in progress</p>
+                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-primary">Evidence in progress</p>
                 <div className="mt-3 grid grid-cols-4 gap-2">
                   {activeProof.evidence.map((item) => (
                     <div key={item.name} className="rounded-lg border border-white/[0.07] bg-white/[0.025] px-1.5 py-2 text-center">
-                      <span className="block text-[10px] font-semibold text-white/75">{item.name}</span>
-                      <span className="mt-1 block text-[10px] leading-3 text-white/40">{item.detail}</span>
+                      <span className="block text-xs font-semibold text-white/80">{item.name}</span>
+                      <span className="mt-1 block text-xs leading-4 text-white/55">{item.detail}</span>
                     </div>
                   ))}
                 </div>
@@ -463,7 +448,7 @@ export default function Skills() {
 
               <blockquote className="mt-5 flex gap-3 rounded-xl border border-primary/10 bg-[linear-gradient(105deg,rgba(249,115,22,0.08),rgba(255,255,255,0.025))] p-4">
                 <span className="font-serif text-3xl leading-none text-primary">&ldquo;</span>
-                <p className="text-xs leading-5 text-white/60">{activeProof.quote}</p>
+                <p className="text-sm leading-6 text-white/72">{activeProof.quote}</p>
               </blockquote>
             </div>
           </article>
@@ -473,7 +458,7 @@ export default function Skills() {
           {heroValues.map((value) => (
             <article key={value.title} className="group flex gap-3 border-b border-r border-white/[0.07] p-5 transition hover:bg-white/[0.025] last:border-r-0 xl:border-b-0">
               <span className="mt-0.5 flex-none text-primary transition group-hover:scale-110">{value.icon}</span>
-              <div><h2 className="font-display text-sm font-semibold text-white/90">{value.title}</h2><p className="mt-2 text-[11px] leading-4 text-white/50">{value.copy}</p></div>
+              <div><h2 className="font-display text-base font-semibold text-white/90">{value.title}</h2><p className="mt-2 text-sm leading-5 text-white/68">{value.copy}</p></div>
             </article>
           ))}
         </div>
