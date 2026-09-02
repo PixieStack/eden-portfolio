@@ -4481,7 +4481,12 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 }
 
 .home-person-intro > div:last-child {
-  margin-top: 1.35rem;
+  margin-top: 6.25rem;
+}
+
+.home-person-intro > div:last-child a:first-child {
+  min-width: 11.75rem;
+  justify-content: center;
 }
 
 .home-person-card {
@@ -4521,10 +4526,16 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 }
 
 .home-person-card > footer span {
-  flex: none;
-  padding: 0.34rem 0.4rem;
+  display: grid;
+  width: 3.4375rem;
+  min-width: 3.4375rem;
+  height: 2rem;
+  place-items: center;
+  padding: 0.2rem;
   font-size: 0.5rem;
-  white-space: nowrap;
+  line-height: 1.05;
+  text-align: center;
+  white-space: normal;
 }
 
 /* Working together: left-aligned, descriptive, and evidence-led. */
@@ -4699,6 +4710,10 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
   .home-education-layout,
   .home-person-layout {
     gap: 2.5rem;
+  }
+
+  .home-person-intro > div:last-child {
+    margin-top: 2rem;
   }
 
   .home-engineering .home-section-heading h2,

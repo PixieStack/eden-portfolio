@@ -383,7 +383,7 @@ export default function Home() {
               <p>Code is only one side of the story. I’m driven by curiosity, grounded by discipline, and fuelled by creativity.</p>
               <p>Books, competitive games, focused soundtracks, and epic storytelling shape the way I notice patterns, stay composed, challenge perspective, and bring fresh thinking to the problems I build for.</p>
             </div>
-            <div><Link to="/about" onClick={scrollToPageStart}>Meet Eden <ArrowRight size={18} /></Link></div>
+            <div><Link to="/about" onClick={scrollToPageStart}>Discover My Story <ArrowRight size={18} /></Link></div>
           </div>
 
           <div className="home-person-cards">
