@@ -3861,6 +3861,11 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
   font-size: 0.48rem;
 }
 
+.home-development-items p .home-course-status-complete {
+  color: #52d89f;
+  background: rgba(16, 185, 129, 0.12);
+}
+
 .home-development-stat {
   display: grid;
   min-height: 4rem;

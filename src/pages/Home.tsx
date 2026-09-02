@@ -286,13 +286,13 @@ export default function Home() {
             <article className="home-development-card home-tone-blue">
               <small>03 <span>Active upskilling</span></small><i />
               <div className="home-development-card-icon"><Code2 size={28} /></div>
-              <h3>Current ServiceNow Studies</h3>
-              <p>I’m actively expanding my skills in the ServiceNow ecosystem to deliver smarter, faster, and more connected solutions.</p>
+              <h3>Current Learning &amp; Credentials</h3>
+              <p>I’m currently preparing for the ServiceNow CSA, supported by a completed Databricks data analytics credential.</p>
               <div className="home-development-items">
                 <div><span className="home-now-mark">now</span><p>ServiceNow Certified System Administrator (CSA)<small className="home-course-status">In Progress</small></p></div>
-                <div><span className="home-now-mark">now</span><p>ServiceNow Certified Application Developer (CAD)<small className="home-course-status">In Progress</small></p></div>
+                <div><span><BarChart3 size={17} /></span><p>Databricks Certified Data Analyst Associate<small className="home-course-status home-course-status-complete">Certified</small></p></div>
               </div>
-              <div className="home-development-stat"><BookOpen size={21} /><strong>2</strong><span>Active<br />Courses</span></div>
+              <div className="home-development-stat"><BookOpen size={21} /><strong>1</strong><span>Active<br />Course</span></div>
             </article>
           </div>
 
