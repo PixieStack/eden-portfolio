@@ -6,6 +6,7 @@ import { projects } from "../data/projects";
 
 const projectOrder = [
   "M.O.B TaskManager",
+  "HE CARES Foundation",
   "Thwala Attorneys Web Application",
   "BudgetPro",
   "MinnieVerse",
@@ -158,8 +159,8 @@ export default function Projects() {
           </h3>
 
           <p className="text-muted mb-6">
-            All of my project repositories are private, but source code,
-            technical samples and project walkthroughs are available upon
+            Selected repositories are linked directly above. Additional source
+            code, technical samples and project walkthroughs are available upon
             request for recruitment or collaboration purposes.
           </p>
 

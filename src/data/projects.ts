@@ -1,7 +1,10 @@
 import attorneysImg from "../assets/projects/thwala-attorneys-logo.jpeg";
 import budgetProImg from "../assets/projects/budgetpro-logo.png";
+import heCaresLogo from "../assets/projects/he-cares-logo.svg";
 import minnieVerseImg from "../assets/projects/minnie-verse-logo.png";
-import taskManagerImg from "../assets/projects/home-task-manager.png";
+
+const taskManagerLogo =
+  "https://raw.githubusercontent.com/PixieStack/task-management/master/frontend/public/icons/icon-512.png";
 
 export type ProjectStatus = "live" | "development";
 
@@ -56,11 +59,48 @@ export const projects: Project[] = [
       Security: ["JWT Authentication"],
       Product: ["Real-Time Updates", "Analytics", "AI Assistant"],
     },
-    image: taskManagerImg,
-    imageFit: "cover",
+    image: taskManagerLogo,
+    imageFit: "contain",
     imageScale: 1,
-    imagePosition: "top center",
+    imagePosition: "center",
+    github: "https://github.com/PixieStack/task-management",
     live: "https://pixiestack-task-management-app-20260814.onrender.com/",
+  },
+  {
+    slug: "he-cares-foundation",
+    category: "Social Impact",
+    title: "HE CARES Foundation",
+    period: "Empowerment & Protection Platform",
+    status: "live",
+    description:
+      "A responsive public platform dedicated to empowering and protecting women and children in South Africa while mobilising men as visible advocates for meaningful change.",
+    achievements: [
+      "Created clear pathways to crisis support, educational resources and advocacy programmes",
+      "Designed accessible volunteer, donation, fundraising and community-engagement journeys",
+      "Built a responsive Angular experience structured for evolving FastAPI-powered services",
+    ],
+    technologies: [
+      "Angular",
+      "TypeScript",
+      "SCSS",
+      "Responsive Web Design",
+      "FastAPI",
+      "Python",
+      "Render",
+    ],
+    stack: {
+      Frontend: ["Angular", "TypeScript", "SCSS"],
+      Experience: ["Responsive Design", "Accessible Information Architecture"],
+      Backend: ["FastAPI", "Python"],
+      Platform: ["Crisis Support", "Education", "Advocacy", "Community Engagement"],
+      Deployment: ["Render"],
+    },
+    image: heCaresLogo,
+    imageFit: "contain",
+    imageScale: 1,
+    imagePosition: "center",
+    github: "https://github.com/PixieStack/he-cares-foundation",
+    live: "https://he-cares-foundation.onrender.com/",
   },
   {
     slug: "budgetpro",
