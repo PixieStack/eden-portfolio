@@ -4545,6 +4545,7 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 
 .home-team-header h2 {
   max-width: 80rem;
+  margin-top: 7rem;
   font-size: clamp(2.55rem, 3.7vw, 3.9rem);
   line-height: 1.05;
 }
@@ -4578,8 +4579,10 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 
 .home-team-card > span {
   position: relative;
+  flex: 0 0 4rem;
   width: 4rem;
   height: 4rem;
+  aspect-ratio: 1;
   margin: 0;
 }
 
@@ -4598,12 +4601,7 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 }
 
 .home-team-card > span::after {
-  top: -0.15rem;
-  right: -0.05rem;
-  width: 0.36rem;
-  height: 0.36rem;
-  background: #fff;
-  box-shadow: 0 0 10px var(--home-color);
+  display: none;
 }
 
 .home-team-card h3 {
@@ -4628,14 +4626,19 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 
 .home-team-card footer span {
   display: inline-flex;
+  min-width: 0;
   min-height: 2rem;
+  flex: 1 1 0;
   align-items: center;
+  justify-content: center;
   border: 1px solid rgba(var(--home-rgb), 0.36);
   border-radius: 0.4rem;
-  padding: 0.4rem 0.62rem;
+  padding: 0.4rem 0.35rem;
   color: var(--home-color);
   background: rgba(var(--home-rgb), 0.04);
   font-size: 0.62rem;
+  line-height: 1.15;
+  text-align: center;
 }
 
 .home-team-cta {
@@ -4714,6 +4717,10 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
 
   .home-person-intro > div:last-child {
     margin-top: 2rem;
+  }
+
+  .home-team-header h2 {
+    margin-top: 3rem;
   }
 
   .home-engineering .home-section-heading h2,
