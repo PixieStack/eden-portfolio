@@ -4947,44 +4947,8 @@ body.experience-detail-open footer[data-testid="footer"] { display: none; }
   min-height: 19rem;
 }
 
-/* Keep the selected builds and working-together chapters within one desktop view. */
+/* Keep the working-together chapter within one desktop view. */
 @media (min-width: 1001px) {
-  .home-redesign .home-projects {
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
-  }
-
-  .home-redesign .home-projects-header h2 {
-    margin-top: 2rem;
-  }
-
-  .home-redesign .home-project-grid {
-    margin-top: 1rem;
-  }
-
-  .home-redesign .home-project-card {
-    min-height: 31.25rem;
-  }
-
-  .home-redesign .home-project-card > p {
-    min-height: 3.65rem;
-  }
-
-  .home-redesign .home-project-capabilities {
-    gap: 0.4rem;
-    margin-top: 0.55rem;
-  }
-
-  .home-redesign .home-project-capabilities > span {
-    min-height: 3.75rem;
-    gap: 0.3rem;
-    padding: 0.45rem 0.55rem;
-  }
-
-  .home-redesign .home-project-card > footer a:last-child {
-    min-height: 2.5rem;
-  }
-
   .home-redesign .home-team-header h2 {
     margin-top: 3rem;
   }
