@@ -12,7 +12,7 @@ export default function BadgeGroupCard({ group }: BadgeGroupCardProps) {
   const previewBadges = group.badges.slice(0, 4);
 
   return (
-    <article className={`overflow-hidden rounded-3xl border transition ${isOpen ? "border-purple/30 bg-surface shadow-2xl shadow-purple/5" : "border-white/10 bg-surface/80 hover:border-white/20"}`}>
+    <article className={`education-badge-group overflow-hidden rounded-3xl border transition ${isOpen ? "is-open border-purple/30 bg-surface shadow-2xl shadow-purple/5" : "border-white/10 bg-surface/80 hover:border-white/20"}`}>
       <button
         type="button"
         onClick={() => setIsOpen((open) => !open)}
