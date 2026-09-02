@@ -43,6 +43,14 @@ const documentIcon = (document: PortfolioDocument) => {
   return Award;
 };
 
+const renderDocumentIcon = (document: PortfolioDocument, size: number) => {
+  if (document.type === "Certification Programme") return <BookOpenCheck size={size} />;
+  if (document.type === "Academic Record") return <FileCheck2 size={size} />;
+  if (document.type === "Academic Achievement") return <GraduationCap size={size} />;
+  if (document.type === "Professional Membership") return <ShieldCheck size={size} />;
+  return <Award size={size} />;
+};
+
 function EducationNav({ active }: { active: string }) {
   return (
     <nav className="education-section-nav" aria-label="Education page sections">
@@ -149,11 +157,21 @@ export default function Education() {
             })}
           </div>
           <article className="education-credential-detail" aria-live="polite">
-            <div className="education-credential-detail-head"><span><ShieldCheck size={25} /></span><div><small>{selectedCredential.type}</small><h3>{selectedCredential.title}</h3><strong>{selectedCredential.issuer}</strong></div>{selectedCredential.status && <b>{selectedCredential.status}</b>}</div>
-            <p>{selectedCredential.description}</p>
-            <dl><div><dt>{selectedCredential.issuedLabel ?? "Issued"}</dt><dd>{selectedCredential.issued}</dd></div>{selectedCredential.expires && <div><dt>Expires</dt><dd>{selectedCredential.expires}</dd></div>}{selectedCredential.details?.map((detail) => <div key={detail.label}><dt>{detail.label}</dt><dd>{detail.value}</dd></div>)}</dl>
-            <div className="education-credential-proof"><BadgeCheck size={34} /><div><strong>Credential evidence</strong><p>The public document can be reviewed directly on this page. Sensitive identifiers are intentionally excluded.</p></div></div>
-            <div className="education-credential-actions">{selectedCredential.documentPath && <button type="button" onClick={() => setSelectedDocument(selectedCredential)}><FileCheck2 size={16} /> View Credential <Eye size={15} /></button>}{selectedCredential.actionUrl && <a href={selectedCredential.actionUrl} target="_blank" rel="noopener noreferrer">Open issuer page <ExternalLink size={15} /></a>}</div>
+            <div className="education-credential-detail-copy">
+              <div className="education-credential-detail-head"><span>{renderDocumentIcon(selectedCredential, 25)}</span><div><small>{selectedCredential.type}</small><h3>{selectedCredential.title}</h3><strong>{selectedCredential.issuer}</strong></div>{selectedCredential.status && <b>{selectedCredential.status}</b>}</div>
+              <p>{selectedCredential.description}</p>
+              <dl><div><dt>{selectedCredential.issuedLabel ?? "Issued"}</dt><dd>{selectedCredential.issued}</dd></div>{selectedCredential.expires && <div><dt>Expires</dt><dd>{selectedCredential.expires}</dd></div>}{selectedCredential.details?.map((detail) => <div key={detail.label}><dt>{detail.label}</dt><dd>{detail.value}</dd></div>)}</dl>
+              <div className="education-credential-proof"><BadgeCheck size={30} /><div><strong>Verified credential evidence</strong><p>The public document can be reviewed directly on this page. Sensitive identifiers are excluded.</p></div></div>
+              <div className="education-credential-actions">{selectedCredential.documentPath && <button type="button" onClick={() => setSelectedDocument(selectedCredential)}><FileCheck2 size={16} /> View Credential <Eye size={15} /></button>}{selectedCredential.actionUrl && <a href={selectedCredential.actionUrl} target="_blank" rel="noopener noreferrer">Open issuer page <ExternalLink size={15} /></a>}</div>
+            </div>
+            <div className="education-credential-visual" aria-hidden="true">
+              <span>{selectedCredential.issuer}</span>
+              {renderDocumentIcon(selectedCredential, 42)}
+              <small>Verified {selectedCredential.type}</small>
+              <strong>{selectedCredential.title}</strong>
+              <i /><i /><i />
+              <em><BadgeCheck size={15} /> {selectedCredential.status ?? "Verified"}</em>
+            </div>
           </article>
         </div>
       </section>

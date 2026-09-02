@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { ChevronDown, ExternalLink, Sparkles } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import type { BadgeGroup } from "../data/badges";
 
 interface BadgeGroupCardProps {
@@ -21,8 +21,8 @@ export default function BadgeGroupCard({ group }: BadgeGroupCardProps) {
         aria-controls={panelId}
       >
         <div className="flex min-w-0 items-start gap-4">
-          <span className="grid h-12 w-12 flex-none place-items-center rounded-2xl border border-purple/20 bg-purple/15 text-purple shadow-lg shadow-purple/10">
-            <Sparkles size={21} />
+          <span className="grid h-12 w-12 flex-none place-items-center overflow-hidden rounded-2xl border border-purple/20 bg-white p-1.5 text-purple shadow-lg shadow-purple/10">
+            <img src={`${import.meta.env.BASE_URL}${group.badges[0].image}`} alt="" className="h-full w-full object-contain" />
           </span>
           <div className="min-w-0">
             <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-purple">Verified issuer</span>
